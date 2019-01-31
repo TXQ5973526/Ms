@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/WLMaker.css">
+    <script src="./js/blockly_compressed.js"></script>
+    <script src="./js/blocks_compressed.js"></script>
+    <script src="./js/javascript_compressed.js"></script>
+    <script src="goog/base.js"></script>
+    <script src="./js/WLMaker.js"></script>
+    <script src="./js/WLMaker_blocks.js"></script>
+    <script src="./js/WLMaker_blocks_start.js"></script>
+    <script src="./js/WLMaker_blocks_control.js"></script>
+    <script src="./js/WLMaker_blocks_movement.js"></script>
+    <script src="./js/WLMaker_blocks_perception.js"></script>
+    <script src="./js/acorn_interpreter.js"></script>
+</head>
+
+<body>
+    <div>
+        <div id="menuLeft">
+            <div id="toolboxScrollingDiv">
+                <div id="toolboxDiv"></div>
+            </div>
+        </div>
+        <!-- main -->
+        <div id="panel">
+            <!--<img src="./images/coverPage-02.png" class="blocklyMainBackground" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;display: block;z-index: 99">-->
+            <div id="blocklyDiv"></div>
+        </div>
+    </div>
+    <xml id="toolbox" style="display:none"><br />
+        <!--开始-->
+        <category name="" class="start">
+            <block type="Start_MainStart"></block>
+        </category>
+        <!--感知-->
+        <category name="" class="perception">
+            <!--触碰开关-->
+            <block type="Perception_Button">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="Perception_ButtonState">
+                    </shadow>
+                </value>
+            </block>
+            <!--声音传感器-->
+            <block type="Perception_Sound">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
+            <!--红外传感器-->
+            <block type="Perception_InfraredSensor">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
+            <!--红外遥控器-->
+            <block type="Perception_IRRemoteControl">
+                <value name="GETPIN">
+                    <shadow type="PerPinUART">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="Perception_IRRemoteControlButton">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Perception_IRRemoteControl_2">
+                <value name="GETPIN">
+                    <shadow type="PerPinUART">
+                    </shadow>
+                </value>
+            </block>
+            <!--2.4G遥控器-->
+            <block type="Perception_NRFRemoteRockerValue">
+                <value name="GETPIN">
+                    <shadow type="PerPinUART">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Perception_NRFRemoteRockerDirection">
+                <value name="GETPIN">
+                    <shadow type="PerPinUART">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="Perception_NRFRemoteRockerDirectionMenu">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Perception_NRFRemoteControl">
+                <value name="GETPIN">
+                    <shadow type="PerPinUART">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="Perception_NRFRemoteControlButton">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Perception_NRFRemoteControl_2">
+                <value name="GETPIN">
+                    <shadow type="PerPinUART">
+                    </shadow>
+                </value>
+            </block>
+            <!--电位器-->
+            <block type="Perception_Potentiometer">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+            </block>
+            <!--火焰传感器-->
+            <block type="Perception_FlameSensor_Analog">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Perception_FlameSensor_Digital">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
+            <!--热敏传感器-->
+            <block type="Perception_Thermistor_Analog">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Perception_Thermistor_Digital">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
+            <!--光敏传感器-->
+            <block type="Perception_Photoresistor_Analog">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Perception_Photoresistor_Digital">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
+            <!--震动传感器-->
+            <block type="Perception_Shake">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
+            <!--光敏传感器-->
+            <block type="Perception_Photosensitive">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
+            <!--烟雾传感器-->
+            <block type="Perception_Smoke">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
+            <!--酒精传感器-->
+            <block type="Perception_Alcohol">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
+            <!--可燃气体传感器-->
+            <block type="Perception_CombustibleGas">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
+            <!--土壤湿度传感器-->
+            <block type="Perception_SoilMoisture">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
+            <!---------分界线----------->
+            <block type="perception_waliblocks8_1"></block>
+            <block type="perception_waliblocks8_2"></block>
+            <block type="perception_waliblocksEnd"></block>
+        </category>
+        <!--运动-->
+        <category name="" class="movement">
+            <block type="Movement_BoardLED">
+                <value name="GETPIN">
+                    <shadow type="Movement_BoardLEDPin">
+                    </shadow>
+                </value>
+                <value name="SETSTATE">
+                    <shadow type="Movement_BrightOut">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_LEDLight">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="SETSTATE">
+                    <shadow type="Movement_BrightOut">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_LEDLightPWM">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="SETSTATE">
+                    <shadow type="Movement_0_100">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_Buzzer">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="SETSTATE">
+                    <shadow type="Movement_BuzzerState">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_Motor2W">
+                <value name="GETPIN">
+                    <shadow type="Movement_Motor2WPin">
+                    </shadow>
+                </value>
+                <value name="GETDIRECTION">
+                    <shadow type="Movement_Motor2WDirection">
+                    </shadow>
+                </value>
+                <value name="GETSPEED">
+                    <shadow type="Movement_0_100">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_Servo">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="SETANGLE">
+                    <shadow type="Movement_ServoNum">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_ColorLED1">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="SETCOLOR">
+                    <shadow type="Movement_ColorLEDColorRed">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_ColorLED3">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="GETLED">
+                    <shadow type="Movement_ColorLED3Num">
+                    </shadow>
+                </value>
+                <value name="GETCOLOR">
+                    <shadow type="Movement_ColorLEDColorRed">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_ColorLED3RGB">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="SETR">
+                    <shadow type="Movement_ColorLEDColorRed">
+                    </shadow>
+                </value>
+                <value name="SETG">
+                    <shadow type="Movement_ColorLEDColorGreen">
+                    </shadow>
+                </value>
+                <value name="SETB">
+                    <shadow type="Movement_ColorLEDColorBlue">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_ColorLED3RGBPWM">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="GETLED">
+                    <shadow type="Movement_ColorLED3Num">
+                    </shadow>
+                </value>
+                <value name="GETRGB">
+                    <shadow type="Movement_ColorLED3Color">
+                    </shadow>
+                </value>
+                <value name="GETPWM">
+                    <shadow type="Movement_0_100">
+                    </shadow>
+                </value>
+            </block>
+
+            <block type="otion_waliblocks90">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="otion_waliblocks9">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="otion_waliblocks10"></block>
+            <block type="otion_waliblocks11"></block>
+            <block type="otion_waliblocksOLED_1"></block>
+            <block type="otion_waliblocksOLED_2"></block>
+            <block type="otion_waliblocksOLED_3">
+                <value name="NAME">
+                    <shadow type="math_number">
+                        <field name="NUM">100</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="otion_waliblocksOLED_4"></block>
+            <block type="otion_waliblocksOLED_5"></block>
+            <block type="otion_waliblocksOLED_6"></block>
+            <block type="otion_waliblocksNEC_0"></block>
+            <block type="otion_waliblocksEnd"></block>
+        </category>
+        <!--控制-->
+        <category name="" class="control">
+            <block type="control_waliblocks0"></block>
+            <block type="control_waliblocks1"></block>
+            <block type="control_waliblocks2"></block>
+            <block type="control_waliblocks3">
+                <value name="TIMES">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="controls_if"></block>
+            <block type="control_waliblocks5"></block>
+            <block type="control_waliblocks6"></block>
+            <block type="control_waliblocks7"></block>
+            <block type="control_waliblocks8">
+                <value name="VAR">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+                <value name="VAL">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+                <value name="A">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+                <value name="B">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+                <value name="VAR1">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+                </value>
+                <value name="BY">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="control_waliblocks9"></block>
+            <block type="control_waliblocks10"></block>
+        </category>
+        <!--运算-->
+        <category name="" class="operation">
+            <block type="wl_math_number"></block>
+            <block type="math_waliblocks1">
+                <value name="A">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+                <value name="B">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_waliblocks3">
+                <value name="A">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+                <value name="B">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_waliblocks4">
+                <value name="A">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+                <value name="B">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_waliblocks2"></block>
+        </category>
+        <!--定义-->
+        <category name="" custom="VARIABLE"></category>
+    </xml>
+    <script src="./js/initBlockly.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+html {
+	-webkit-box-shadow: 0 0 0px #3388cc/*{c-active-background-color}*/
+	;
+	-moz-box-shadow: 0 0 0px #3388cc/*{c-active-background-color}*/
+	;
+	box-shadow: 0 0 0px #3388cc/*{c-active-background-color}*/
+	;
+}
+
+* {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+}
+
+button {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+
+/*button,
+button:active,
+button:focus {
+	/*background: transparent;*/
+
+background-color: transparent!important;
+border: none!important;
+outline: none;
+border-radius: 50%;
+border-spacing: 0px;
+margin: 0px;
+padding: 0px;
+background-size: cover!important;
+
+}
+
+
+/* border-color   改变菜单栏字体颜色*/ 
+#toolboxDiv div[role="treeitem"]:nth-child(1) .blocklyTreeRow {
+	color: rgb(0, 0, 0);
+}
+#toolboxDiv div[role="treeitem"]:nth-child(2) .blocklyTreeRow {
+	color: rgb(0, 0, 0);
+}
+#toolboxDiv div[role="treeitem"]:nth-child(3) .blocklyTreeRow {
+	color: rgb(0, 0, 0);
+}
+#toolboxDiv div[role="treeitem"]:nth-child(4) .blocklyTreeRow {
+    color: rgb(0, 0, 0);
+}
+#toolboxDiv div[role="treeitem"]:nth-child(5) .blocklyTreeRow {
+	color: rgb(0, 0, 0);
+}
+#toolboxDiv div[role="treeitem"]:nth-child(6) .blocklyTreeRow {
+	color: rgb(0, 0, 0);
+}
+#toolboxDiv div[role="treeitem"]:nth-child(7) .blocklyTreeRow {
+	color: rgb(0, 0, 0);
+}
+#toolboxDiv div[role="treeitem"] {
+	text-align: center;
+	font-size: 45px;   /*临时修改  改变菜单栏单元高度*/
+	font-weight: bold;
+}
+#blocklyDiv {
+	width: 100%;
+	height: 100%;
+	background-color: #F5F2F2;
+	
+	/*background: url(../images/white-trashcan.png) no-repeat;*/
+}
+#toolboxDiv div[role="treeitem"] .blocklyTreeSelected,
+#toolboxDiv .blocklyTreeRow:focus,
+#toolboxDiv .blocklyTreeRow:hover {
+	/*background-color: #66cefe!important;*/
+	
+	/*color: red;*/
+	/*text-align: right;*/
+}
+.goog-slider-vertical .goog-slider-thumb {
+	left: 0;
+	height: 20px;
+	width: 100%;
+}
+.goog-slider-horizontal .goog-slider-thumb {
+	top: 0;
+	width: 20px;
+	height: 100%;
+}
+.goog-slider-disabled {
+	background-color: lightgray
+}
+#s-h {
+	margin-bottom: 2em;
+}
+strong {
+	display: block;
+	margin-bottom: 3px;
+}
+
+.blocklyTreeSelected .blocklyTreeLabel {
+	color: white!important;  /*临时修改  改变选中菜单的字体的颜色*/
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1800px) {}
+@media screen and (max-width: 1200px) {
+	.blocklyTreeLabel {
+		font-size: 20px!important;  /*临时修改  改变菜单栏的字体大小*/
+		;
+	}
+	.modal-dialog {
+		width: 657px;
+		height: 448px;
+	}
+}

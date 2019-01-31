@@ -1,0 +1,348 @@
+/* global settings */
+
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+button,
+.btn {
+	cursor: pointer;
+}
+
+.clearfix {
+	clear: both;
+}
+
+@font-face {
+	font-family: 'robotobold';
+	src: url('../fonts/roboto-bold-webfont.eot');
+	src: url('../fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/roboto-bold-webfont.ttf') format('truetype'), url('../fonts/roboto-bold-webfont.svg#robotobold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'robotoregular';
+	src: url('../fonts/roboto-regular-webfont.eot');
+	src: url('../fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/roboto-regular-webfont.ttf') format('truetype'), url('../fonts/roboto-regular-webfont.svg#robotoregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	/*box-sizing: border-box;*/
+	font-family: 'robotoregular', sans-serif!important;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+
+.fa {
+	font-family: 'FontAwesome'!important;
+}
+
+
+/* common */
+
+html {
+	background-color: transparent!important;
+}
+
+body {
+	background-color: transparent!important;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	height: 100%;
+}
+
+#blocklyDiv {
+	width: 100%;
+	height: 100%;
+	background-color: #F5F2F2;
+	
+	/*background: url(../images/white-trashcan.png) no-repeat;*/
+}
+
+.blocklyToolboxDiv {
+	width: 226px;
+	background-color: #fff!important;
+}
+.blocklyTreeIcon{
+	
+}
+
+/*----------------------
+  menuLeft
+-----------------------*/
+
+#menuLeft {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	height: auto!important;
+	width: 124px;   /*临时修改 修改菜单宽度*/
+	z-index: 1;
+	background-color: #fff;
+}
+
+#blockDeletionMask {
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	width: 170px;
+	/* the same with menuLeft */
+	z-index: 3;
+	background-color: rgba(150, 150, 150, 0.5);
+}
+
+#blockDeletionMask.mouse-over {
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+#blockDeletionMask .trash-icon {
+	/*background: url(../images/white-trashcan.png) no-repeat;*/
+	width: 75px;
+	height: 75px;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	margin-left: -32.5px;
+}
+
+/* toolbox */
+
+#toolboxScrollingDiv {
+	position: absolute;
+	top: 1px;  /*临时修改  工具栏懂不高度*/
+	bottom: 100px;
+	width: 100%;
+	height: auto!important;
+}
+
+
+/* left side scroll bar  左侧滚动条*/
+
+#toolboxDiv .blocklyToolboxDiv {
+	border-right: none !important;
+	background-color: #FFFFFF!important;   /*临时修改  改变工具栏背景颜色*/
+	/*overflow: visible!important;*/
+	width: 100%;
+}
+
+#toolboxDiv .blocklyTreeRow {
+	height: auto!important;
+	line-height: 130%!important;
+	background-color: #fff;
+	margin-top: 0;
+	/*-webkit-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;*/
+}
+
+.blocklyTreeRoot div[role="treeitem"] {
+	border-bottom: 0px solid #e1f2f9;    /*临时修改  改变菜单单元间距*/
+}
+/*临时修改   菜单item未选中样式*/
+#toolboxDiv div[role="treeitem"]:nth-child(1) .blocklyTreeRow {
+	background: url(../images/kaishi_k.svg) no-repeat center
+}
+#toolboxDiv div[role="treeitem"]:nth-child(2) .blocklyTreeRow {
+	background: url(../images/ganzhi_k.svg) no-repeat center
+}
+#toolboxDiv div[role="treeitem"]:nth-child(3) .blocklyTreeRow {
+	background: url(../images/yundong_k.svg) no-repeat center
+}
+#toolboxDiv div[role="treeitem"]:nth-child(4) .blocklyTreeRow {
+	background: url(../images/kongzhi_k.svg) no-repeat center
+}
+#toolboxDiv div[role="treeitem"]:nth-child(5) .blocklyTreeRow {
+	background: url(../images/yunsuan_k.svg) no-repeat center
+}
+#toolboxDiv div[role="treeitem"]:nth-child(6) .blocklyTreeRow {
+	background: url(../images/dingyi_k.svg) no-repeat center
+}
+
+/*临时修改   菜单item选中样式*/
+
+#toolboxDiv div[role="treeitem"]:nth-child(1) .blocklyTreeSelected {
+	background: url(../images/kaishi_x.svg) no-repeat center
+}
+
+#toolboxDiv div[role="treeitem"]:nth-child(2) .blocklyTreeSelected {
+	background: url(../images/ganzhi_x.svg) no-repeat center
+}
+
+#toolboxDiv div[role="treeitem"]:nth-child(3) .blocklyTreeSelected {
+	background: url(../images/yundong_x.svg) no-repeat center
+}
+
+#toolboxDiv div[role="treeitem"]:nth-child(4) .blocklyTreeSelected {
+	background: url(../images/kongzhi_x.svg) no-repeat center
+}
+
+#toolboxDiv div[role="treeitem"]:nth-child(5) .blocklyTreeSelected {
+	background: url(../images/yunsuan_x.svg) no-repeat center
+}
+
+#toolboxDiv div[role="treeitem"]:nth-child(6) .blocklyTreeSelected {
+	background: url(../images/dingyi_x.svg) no-repeat center
+}
+
+#toolboxDiv div[role="treeitem"] .blocklyTreeSelected,
+#toolboxDiv .blocklyTreeRow:focus,
+#toolboxDiv .blocklyTreeRow:hover {  /*鼠标滑动到itme的效果*/
+	/*width: 236px;*/
+	/*background-color: #fff;*/
+	/*border-bottom-width: 5px;*/
+}
+
+
+/* icon */
+
+#toolboxDiv div[role="treeitem"] .blocklyTreeRow .blocklyTreeIcon {
+	width: 60px;
+	height: 60px;
+	background-color: red;
+	background-size: 100%;
+	background-position: left center;
+	margin-left: 5px;
+	margin-right: 0px;
+	display: none!important;
+}
+
+.star-active {
+	background: url(../images/star.svg) no-repeat center;
+	opacity: 0;
+	-webkit-transform: translate(0, -80px);
+	-ms-transform: translate(0, -80px);
+	-o-transform: translate(0, -80px);
+	transform: translate(0, -80px);
+	-webkit-transition: 1s;
+	-ms-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+
+.blocklyFlyoutBackground {
+	fill: #eceaea!important;
+    /* for IE */
+    filter:alpha(opacity=60);
+    /* CSS3 standard */
+    opacity:0.6;
+}
+
+
+/*----------------------
+  main panel
+-----------------------*/
+
+#panel {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	width: auto;
+	height: auto;
+	z-index: 0;
+}
+
+.blocklyMainBackground {
+	fill: #c3e6ff!important;
+}
+
+
+/*----------------------
+  right menu
+-----------------------*/
+
+#menuRight {
+	transition: right 500ms ease;
+	-webkit-transition: right 500ms ease;
+	-moz-transition: right 500ms ease;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	width: 100%;
+	right: -100%;
+	z-index: 4;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	display: block;
+	background: #ccc;
+	opacity: .98;
+}
+
+.close-btn {
+	cursor: pointer;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	font-size: 40px;
+}
+
+#sideButtons {
+	top: 30px;
+	width: 20px;
+	position: absolute;
+	right: 50px;
+	height: 100%;
+}
+
+#sideButtons .btn {
+	display: block;
+	width: 140px;
+	height: 47px;
+	border: 1px solid transparent;
+	margin-top: 20px;
+	text-align: center;
+	line-height: 42px;
+	-webkit-border-radius: 8px;
+	-ms-border-radius: 8px;
+	-o-border-radius: 8px;
+	border-radius: 8px;
+	font-size: 1.1em;
+	cursor: pointer;
+	border-bottom-width: 5px;
+	text-decoration: none;
+	color: #333;
+	margin-left: -96px;
+}
+
+#sideButtons div.btn:active {
+	position: relative;
+	top: 6px;
+	border-bottom-width: 1px;
+}
+
+/* dropdown menu */
+
+.blocklyWidgetDiv .goog-menu {
+	background: rgba(255, 255, 255, 0.9)!important;
+	border-color: #888!important;
+	border-radius: 8px;
+	overflow: hidden;
+	margin-top: 5px;
+	top: 5px;
+	font-size: 13px!important;
+}
+
+/* block */
+
+.blocklyDragging>.blocklyPathLight,
+.blocklyDragging>.blocklyPath {}
+
+.blocklySelected>.blocklyPath {
+	stroke: #aee238!important;
+	stroke-width: 3px;
+}

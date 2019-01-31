@@ -1,0 +1,5 @@
+<xml xmlns="http://www.w3.org/1999/xhtml"><block type="start_waliblocks" id="_[Y%9OGd`zf@?zm|eFL*" x="-584" y="-404"><next><block type="control_waliblocks2" id="_Y}oDySOzCnvaPP3?xVp"><statement name="NAME"><block type="otion_waliblocks1" id="jCDTF9/!eGzZxkn1AWr="><field name="CHAJIAO">1</field><field name="XUANXIANG">1</field><next><block type="control_waliblocks1" id=")zh)E8!p@R)Vg`n*zIr)"><field name="SHIJIAN">0.5</field><next><block type="otion_waliblocks1" id="R`Pp`[BT!;l8EhHZx?`:"><field name="CHAJIAO">1</field><field name="XUANXIANG">0</field><next><block type="control_waliblocks1" id="V8~N,Gkfy*hnc,34mVF="><field name="SHIJIAN">0.5</field></block></next></block></next></block></next></block></statement></block></next></block></xml>WaliVariableType:adc:int?
+
+
+
+

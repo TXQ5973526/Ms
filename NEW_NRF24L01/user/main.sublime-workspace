@@ -1,0 +1,255 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Add Channel"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 137.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/10427/AppData/Roaming/Sublime Text 3/Packages/User/Git.sublime-settings",
+		"/C/Users/10427/AppData/Roaming/Sublime Text 3/Packages/Git/Git.sublime-settings",
+		"/C/Users/10427/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/C/Users/10427/AppData/Roaming/Sublime Text 3/Packages/DocBlockr/README.md",
+		"/C/Users/10427/AppData/Roaming/Sublime Text 3/Packages/Insert Nums/README.md",
+		"/C/Users/10427/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/nrfrc.c",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/usart.c",
+		"/E/Git Warehouse/Private/nrf24L01_plus/gateway/main.c",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/timer14.h",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/timer14.c",
+		"/E/Work/2.4/New_2.4/1/user/main.c",
+		"/F/Tools/Walimaker_S/stw/makefile",
+		"/F/Tools/Walimaker_S/stw/USER/WaLi.c",
+		"/F/Tools/Walimaker_S/stw/USER/WaLi.h",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/nrfrc.h",
+		"/C/Users/10427/Desktop/STM32F030C8T6模版/App/SysTick/SysTick.h",
+		"/C/Users/10427/Desktop/STM32F030C8T6模版/App/SysTick/SysTick.c",
+		"/C/Users/10427/Desktop/STM32F030C8T6模版/User/stm32f0xx.h",
+		"/C/Users/10427/Desktop/STM32F030C8T6模版/User/stm32f0xx_conf.h",
+		"/C/Users/10427/Desktop/STM32F030C8T6模版/User/stm32f0xx_it.c",
+		"/C/Users/10427/Desktop/STM32F030C8T6模版/User/stm32f0xx_it.h",
+		"/F/Tools/Walimaker_S/stw/USER/stm32f4xx_conf.h",
+		"/E/Work/瓦力工厂 - 熊/瓦力工厂/项目/PCB/0.一期二期代码整理匹配/6.数码管模块使用说明/stm8LEDS定版/stm8LEDS/USER/stm8s_interruput.c",
+		"/E/Work/瓦力工厂 - 熊/瓦力工厂/项目/PCB/0.一期二期代码整理匹配/6.数码管模块使用说明/stm8LEDS定版/stm8LEDS/USER/main.c",
+		"/F/Tools/Walimaker_S/htm/js/WLMaker_blocks.js",
+		"/E/Work/瓦力工厂 - 熊/瓦力工厂/项目/PCB/0.一期二期代码整理匹配/6.数码管模块使用说明/stm8LEDS定版/stm8LEDS/USER/tim1.c",
+		"/E/Work/瓦力工厂 - 熊/瓦力工厂/项目/PCB/0.一期二期代码整理匹配/6.数码管模块使用说明/stm8LEDS定版/stm8LEDS/USER/uart.c",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/usart.h",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/pwm.c",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/myiic.c",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/motor.c",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/delay.c",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/gpio.c",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/irc.c",
+		"/F/Tools/Walimaker_S/stw/FWLIB/src/stm32f4xx_usart.c",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/sys.c",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/Users/10427/Desktop/MPU6050/MPU6050/mpu6050.c",
+		"/C/Users/10427/Desktop/MPU6050/MPU6050/mpu6050.h",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/dht11.h",
+		"/D/STM32Data/探索者F4 资料盘(A盘)/4，程序源码/2，标准例程-库函数版本/实验32 MPU6050六轴传感器实验/HARDWARE/MPU6050/mpu6050.h",
+		"/D/STM32Data/探索者F4 资料盘(A盘)/4，程序源码/2，标准例程-库函数版本/实验32 MPU6050六轴传感器实验/HARDWARE/MPU6050/mpu6050.c",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/dht11.c",
+		"/F/Tools/Walimaker_S/stw/SYSTEM/gpio.h",
+		"/C/Users/10427/Desktop/MPU6050/MPU6050/eMPL/inv_mpu_dmp_motion_driver.h",
+		"/C/Users/10427/Desktop/MPU6050/MPU6050/eMPL/inv_mpu_dmp_motion_driver.c",
+		"/C/Users/10427/Desktop/MPU6050/MPU6050/eMPL/inv_mpu.h",
+		"/C/Users/10427/Desktop/MPU6050/MPU6050/eMPL/inv_mpu.c",
+		"/C/Users/10427/Desktop/MPU6050/MPU6050/eMPL/dmpmap.h",
+		"/C/Users/10427/Desktop/MPU6050/MPU6050/eMPL/dmpKey.h",
+		"/C/Users/10427/Desktop/MPU6050/MPU6050/IIC.h",
+		"/C/Users/10427/Desktop/MPU6050/MPU6050/IIC.c",
+		"/F/Tools/Walimaker_S/htm/js/acorn_interpreter.js",
+		"/F/Tools/Walimaker_S/htm/js/blockly_compressed.js",
+		"/F/Tools/Walimaker_S/htm/js/blockly-i18n-hot-loader.js",
+		"/F/Tools/Walimaker_S/htm/js/blocks_compressed.js",
+		"/F/Tools/Walimaker_S/htm/js/initBlockly.js",
+		"/F/Tools/Walimaker_S/htm/js/javascript_compressed.js",
+		"/F/Tools/Walimaker_S/htm/js/WLMaker.js",
+		"/C/Users/10427/.ssh/id_rsa.pub",
+		"/E/迅雷下载/Trigun (R2DVD 704x480 x264 AC3 Chap)/[アニメ].TRIGUN.第01話.「600億$$の男」.(DVD.640x480.WMV9.70465252).v2.ass"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 105.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "main.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\10427\\Desktop\\MPU6050\\MPU6050\\mpu6050.h"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

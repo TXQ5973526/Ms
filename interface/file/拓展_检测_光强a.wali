@@ -1,0 +1,4 @@
+<xml xmlns="http://www.w3.org/1999/xhtml"><block type="start_waliblocks" id="X0bpe8/t?_zL+-_D.R5~" x="604" y="121"><next><block type="otion_waliblocksEnd" id="pWvIBdawGi7jj.JW)K,]"><field name="COUNT">PrintfInit()</field><next><block type="control_waliblocks2" id="S8{4:SQ}_B[NStv#M9IO"><statement name="NAME"><block type="math_change" id="P@b4nb8`R[UP(M*^pso}"><field name="VAR">adc</field><value name="DELTA"><shadow type="math_number" id="p*rA|OFv$Dipf=goO5Nb"><field name="NUM">1</field></shadow><block type="perception_waliblocks5_1" id="*^$hF-*vQQQ`ZT$iA{xD"><field name="IO_IN">1</field></block></value><next><block type="otion_waliblocksEnd" id="eUXQOl#k?In?s;WoorM2"><field name="COUNT">printf("火焰值[0-1024]:%d\n",adc);</field><next><block type="control_waliblocks1" id="QH;1x]@3rkL}Gat)}QQT"><field name="SHIJIAN">0.1</field></block></next></block></next></block></statement></block></next></block></next></block></xml>WaliVariableType:adc:int?
+
+
+
