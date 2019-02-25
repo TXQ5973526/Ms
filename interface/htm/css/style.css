@@ -169,8 +169,12 @@ body {
 	background: url(../images/yunsuan_k.svg) no-repeat center
 }
 #toolboxDiv div[role="treeitem"]:nth-child(6) .blocklyTreeRow {
+	background: url(../images/hanshu_k.svg) no-repeat center
+}
+#toolboxDiv div[role="treeitem"]:nth-child(7) .blocklyTreeRow {
 	background: url(../images/dingyi_k.svg) no-repeat center
 }
+
 
 /*临时修改   菜单item选中样式*/
 
@@ -193,8 +197,10 @@ body {
 #toolboxDiv div[role="treeitem"]:nth-child(5) .blocklyTreeSelected {
 	background: url(../images/yunsuan_x.svg) no-repeat center
 }
-
 #toolboxDiv div[role="treeitem"]:nth-child(6) .blocklyTreeSelected {
+	background: url(../images/hanshu_x.svg) no-repeat center
+}
+#toolboxDiv div[role="treeitem"]:nth-child(7) .blocklyTreeSelected {
 	background: url(../images/dingyi_x.svg) no-repeat center
 }
 

@@ -9,4 +9,5 @@ int main(void)
 	BoardLEDInit();
 	Motor2WInit();
 	Workspace();
+	while(1);
 }

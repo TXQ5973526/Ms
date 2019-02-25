@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 20.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 147 74" style="enable-background:new 0 0 147 74;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#21CDB8;}
-	.st1{fill:#F9F9F9;}
-	.st2{font-family:'MicrosoftYaHeiLight';}
-	.st3{font-size:25.2914px;}
-</style>
-<rect x="0.2" y="0.1" class="st0" width="146.7" height="73.7"/>
-<rect x="0.1" y="0.1" class="st0" width="5.4" height="74.1"/>
-<text transform="matrix(1 0 0 1 61.7905 45.7314)" class="st1 st2 st3">感知</text>
-<path class="st1" d="M50.7,39.7c0,7.7-6.1,14.1-14,14.1c-7.7,0-14.1-6.1-14.1-14c0-7.2,5.5-13.3,12.7-14.1v-1.4h-4.2v-3.1h11.3v3.1
-	h-4.2v1.4c2.7,0.3,5.3,1.4,7.5,3.1l0.9-0.9l-2-2l1.9-1.9l6,6l-1.9,1.9l-2-1.9l-0.9,0.9C49.6,33.3,50.9,36.4,50.7,39.7 M26.4,38.3
-	h3.5v2.8h-3.9c0.8,4.9,4.7,8.6,9.6,9.4v-3.9h2.8v3.9c4.9-0.8,8.8-4.6,9.6-9.4H44v-2.8h3.9c-0.8-4.9-4.7-8.6-9.6-9.4v3.9h-2.8v-3.9
-	c-4.9,0.8-8.8,4.6-9.6,9.4 M36.7,36.9c1.6-0.2,2.8,1.1,3,2.5c0.2,1.6-1.1,2.8-2.5,3c-0.2,0-0.3,0-0.3,0l-5.8,4.2l2.8-6.9
-	C33.9,38.2,35.2,36.9,36.7,36.9L36.7,36.9"/>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="125px" height="63px" viewBox="243.5 364.5 125 63" enable-background="new 243.5 364.5 125 63" xml:space="preserve">
+<rect x="243.585" y="364.5" fill="#3DB8C1" width="124.915" height="63"/>
+<text transform="matrix(1.0015 0 0 1 296.0283 403.2949)" fill="#F9F9F9" font-family="'MicrosoftYaHeiLight'" font-size="21.5028">感知</text>
+<path fill="#F9F9F9" d="M286.586,398.168c0,6.547-5.194,11.988-11.921,11.988c-6.557,0-12.006-5.187-12.006-11.903
+	c0-6.121,4.684-11.308,10.814-11.988v-1.19h-3.576v-2.636h9.622v2.636h-3.577v1.19c2.299,0.255,4.513,1.19,6.387,2.636l0.766-0.765
+	l-1.703-1.701l1.618-1.615l5.109,5.101l-1.618,1.615l-1.704-1.615l-0.766,0.765C285.649,392.727,286.756,395.362,286.586,398.168
+	 M265.895,396.978h2.98v2.381h-3.321c0.681,4.166,4.002,7.313,8.174,7.991v-3.314h2.384v3.314c4.172-0.679,7.493-3.911,8.174-7.991
+	h-3.406v-2.381h3.321c-0.681-4.166-4.002-7.312-8.174-7.992v3.316h-2.384v-3.316c-4.172,0.68-7.493,3.911-8.174,7.992
+	 M274.665,395.788c1.362-0.17,2.384,0.935,2.554,2.125c0.17,1.36-0.937,2.381-2.129,2.55c-0.17,0-0.255,0-0.255,0l-4.938,3.572
+	l2.384-5.867C272.281,396.893,273.388,395.788,274.665,395.788L274.665,395.788"/>
 </svg>

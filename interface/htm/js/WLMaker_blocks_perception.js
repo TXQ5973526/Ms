@@ -20,7 +20,7 @@ Blockly.Blocks['Perception_Button'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -33,7 +33,7 @@ Blockly.Blocks['Perception_ButtonState'] = {
                 ["抬起", "1"]
             ]), "BUTTONSTATE");
         this.setOutput(true, "Boolean");
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
     }
 };
@@ -61,7 +61,7 @@ Blockly.Blocks['Perception_Sound'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("感应时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -86,7 +86,7 @@ Blockly.Blocks['Perception_InfraredSensor'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("感应时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -111,7 +111,7 @@ Blockly.Blocks['Perception_IRRemoteControl'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("按下时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -129,7 +129,7 @@ Blockly.Blocks['Perception_IRRemoteControlButton'] = {
                 ["无按键", "IR_ButtonNO"]
             ]), "BUTTONSTATE");
         this.setOutput(true, "Number");
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
     }
 };
@@ -162,7 +162,7 @@ Blockly.Blocks['Perception_IRRemoteControl_2'] = {
             .appendField(new Blockly.FieldCheckbox("FALSE"), "IRBUTTON6")
             .appendField("按下时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -187,7 +187,7 @@ Blockly.Blocks['Perception_Potentiometer'] = {
         this.appendDummyInput()
             .appendField(",采集模拟值");
         this.setOutput(true, "Number");
-        this.setColour("#08ad9d");
+        this.setColour("#018997");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -205,7 +205,7 @@ Blockly.Blocks['Perception_FlameSensor_Analog'] = {
         this.appendDummyInput()
             .appendField(",采集模拟值");
         this.setOutput(true, "Number");
-        this.setColour("#08ad9d");
+        this.setColour("#018997");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -228,7 +228,7 @@ Blockly.Blocks['Perception_FlameSensor_Digital'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("感应时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -247,7 +247,7 @@ Blockly.Blocks['Perception_Thermistor_Analog'] = {
         this.appendDummyInput()
             .appendField(",采集模拟值");
         this.setOutput(true, "Number");
-        this.setColour("#08ad9d");
+        this.setColour("#018997");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -270,7 +270,7 @@ Blockly.Blocks['Perception_Thermistor_Digital'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("感应时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -289,7 +289,7 @@ Blockly.Blocks['Perception_Photoresistor_Analog'] = {
         this.appendDummyInput()
             .appendField(",采集模拟值");
         this.setOutput(true, "Number");
-        this.setColour("#08ad9d");
+        this.setColour("#018997");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -312,12 +312,37 @@ Blockly.Blocks['Perception_Photoresistor_Digital'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("感应时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
 };
 Blockly.JavaScript['Perception_Photoresistor_Digital'] = function() {
+    var pin = Blockly.JavaScript.valueToCode(this, 'GETPIN', Blockly.JavaScript.ORDER_ATOMIC);
+    var state = Blockly.JavaScript.valueToCode(this, 'GETSTATE', Blockly.JavaScript.ORDER_ATOMIC);
+    return ['WLINState(' + pin + ')==' + state, Blockly.JavaScript.ORDER_NONE];
+};
+//---------- 霍尔传感器 ----------------------------------------
+Blockly.Blocks['Perception_HallSensor_Digital'] = {
+    init: function() {
+        this.appendValueInput("GETPIN")
+            .setCheck("Number")
+            .appendField("霍尔传感器连接");
+        this.appendDummyInput()
+            .setAlign(Blockly.ALIGN_CENTRE)
+            .appendField(",当");
+        this.appendValueInput("GETSTATE")
+            .setCheck("Boolean");
+        this.appendDummyInput()
+            .setAlign(Blockly.ALIGN_CENTRE)
+            .appendField("感应时");
+        this.setOutput(true, null);
+        this.setColour("#3db8c1");
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+Blockly.JavaScript['Perception_HallSensor_Digital'] = function() {
     var pin = Blockly.JavaScript.valueToCode(this, 'GETPIN', Blockly.JavaScript.ORDER_ATOMIC);
     var state = Blockly.JavaScript.valueToCode(this, 'GETSTATE', Blockly.JavaScript.ORDER_ATOMIC);
     return ['WLINState(' + pin + ')==' + state, Blockly.JavaScript.ORDER_NONE];
@@ -332,7 +357,7 @@ Blockly.Blocks['Perception_NRFRemoteRockerValue'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField(",获取摇杆值");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -355,7 +380,7 @@ Blockly.Blocks['Perception_NRFRemoteRockerDirection'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -371,7 +396,7 @@ Blockly.Blocks['Perception_NRFRemoteRockerDirectionMenu'] = {
                 ["居中", "NRFRockerN"]
             ]), "BUTTONSTATE");
         this.setOutput(true, "Number");
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
     }
 };
@@ -398,7 +423,7 @@ Blockly.Blocks['Perception_NRFRemoteControl'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("按下时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -414,7 +439,7 @@ Blockly.Blocks['Perception_NRFRemoteControlButton'] = {
                 ["无按键", "NRFKeyNO"]
             ]), "BUTTONSTATE");
         this.setOutput(true, "Number");
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
     }
 };
@@ -443,7 +468,7 @@ Blockly.Blocks['Perception_NRFRemoteControl_2'] = {
             .appendField(new Blockly.FieldCheckbox("FALSE"), "NRFBUTTON4")
             .appendField("按下时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -472,7 +497,7 @@ Blockly.Blocks['Perception_Shake'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("感应时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -497,7 +522,7 @@ Blockly.Blocks['Perception_Photosensitive'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("感应时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -522,7 +547,7 @@ Blockly.Blocks['Perception_Smoke'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("感应时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -547,7 +572,7 @@ Blockly.Blocks['Perception_Alcohol'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("感应时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -572,7 +597,7 @@ Blockly.Blocks['Perception_CombustibleGas'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("感应时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -597,7 +622,7 @@ Blockly.Blocks['Perception_SoilMoisture'] = {
             .setAlign(Blockly.ALIGN_CENTRE)
             .appendField("感应时");
         this.setOutput(true, null);
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -608,6 +633,42 @@ Blockly.JavaScript['Perception_SoilMoisture'] = function() {
     return ['WLINState(' + pin + ')==' + state, Blockly.JavaScript.ORDER_NONE];
 };
 
+//---------- 温湿度传感器 ----------------------------------------
+Blockly.Blocks['Perception_Temperature'] = {
+    init: function() {
+        this.appendValueInput("GETPIN")
+            .setCheck("Number")
+            .appendField("温湿度传感器连接");
+        this.appendDummyInput()
+            .appendField(",采集到温度值");
+        this.setOutput(true, "Number");
+        this.setColour("#3db8c1");
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+Blockly.JavaScript['Perception_Temperature'] = function(block) {
+    var pin = Blockly.JavaScript.valueToCode(this, 'GETPIN', Blockly.JavaScript.ORDER_ATOMIC);
+    return ['SETUPCODE:delay_init();SETUPEND DHT11_temperature(' + pin + ')', Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.Blocks['Perception_Humidity'] = {
+    init: function() {
+        this.appendValueInput("GETPIN")
+            .setCheck("Number")
+            .appendField("温湿度传感器连接");
+        this.appendDummyInput()
+            .appendField(",采集到湿度值");
+        this.setOutput(true, "Number");
+        this.setColour("#3db8c1");
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+Blockly.JavaScript['Perception_Humidity'] = function(block) {
+    var pin = Blockly.JavaScript.valueToCode(this, 'GETPIN', Blockly.JavaScript.ORDER_ATOMIC);
+    return ['SETUPCODE:delay_init();SETUPEND DHT11_humidity(' + pin + ')', Blockly.JavaScript.ORDER_NONE];
+};
 
 
 

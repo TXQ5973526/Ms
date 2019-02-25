@@ -13,9 +13,11 @@
     <script src="./js/WLMaker.js"></script>
     <script src="./js/WLMaker_blocks.js"></script>
     <script src="./js/WLMaker_blocks_start.js"></script>
-    <script src="./js/WLMaker_blocks_control.js"></script>
-    <script src="./js/WLMaker_blocks_movement.js"></script>
     <script src="./js/WLMaker_blocks_perception.js"></script>
+    <script src="./js/WLMaker_blocks_movement.js"></script>
+    <script src="./js/WLMaker_blocks_control.js"></script>
+    <script src="./js/WLMaker_blocks_computing.js"></script>
+    <script src="./js/WLMaker_blocks_functions.js"></script>
     <script src="./js/acorn_interpreter.js"></script>
 </head>
 
@@ -36,6 +38,15 @@
         <!--开始-->
         <category name="" class="start">
             <block type="Start_MainStart"></block>
+            <block type="Start_Timer"></block>
+            <block type="Start_TimerInit">
+                <value name="SETSTATE">
+                    <shadow type="Start_TimerInitNumber">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Start_TimerStart"></block>
+            <block type="Start_TimerStop"></block>
         </category>
         <!--感知-->
         <category name="" class="perception">
@@ -180,6 +191,17 @@
                     </shadow>
                 </value>
             </block>
+            <!--霍尔传感器-->
+            <block type="Perception_HallSensor_Digital">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+                <value name="GETSTATE">
+                    <shadow type="PerHaveNot">
+                    </shadow>
+                </value>
+            </block>
             <!--震动传感器-->
             <block type="Perception_Shake">
                 <value name="GETPIN">
@@ -246,9 +268,20 @@
                     </shadow>
                 </value>
             </block>
+            <!--温湿度传感器-->
+            <block type="Perception_Temperature">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Perception_Humidity">
+                <value name="GETPIN">
+                    <shadow type="PerPinIn">
+                    </shadow>
+                </value>
+            </block>
             <!---------分界线----------->
-            <block type="perception_waliblocks8_1"></block>
-            <block type="perception_waliblocks8_2"></block>
             <block type="perception_waliblocksEnd"></block>
         </category>
         <!--运动-->
@@ -377,23 +410,195 @@
                     </shadow>
                 </value>
             </block>
+            <block type="Movement_waliblocks_Lattice">
+                <value name="GETPIN">
+                    <shadow type="PerPinUART">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_Digital_Tube1">
+                <value name="GETPIN">
+                    <shadow type="Movement_PinUART">
+                    </shadow>
+                </value>
+                <value name="NUM_NUM">
+                    <shadow type="Movement_0_9999">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_Digital_Tube2">
+                <value name="GETPIN">
+                    <shadow type="Movement_PinUART">
+                    </shadow>
+                </value>
+                <value name="DT_NUM">
+                    <shadow type="Movement_DT_led_num">
+                    </shadow>
+                </value>
+                <value name="NUM_NUM">
+                    <shadow type="Movement_0_9">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_Digital_Tube3">
+                <value name="GETPIN">
+                    <shadow type="Movement_PinUART">
+                    </shadow>
+                </value>
+                <value name="LED1">
+                    <shadow type="Movement_DT_character">
+                    </shadow>
+                </value>
+                <value name="LED2">
+                    <shadow type="Movement_DT_character">
+                    </shadow>
+                </value>
+                <value name="LED3">
+                    <shadow type="Movement_DT_character">
+                    </shadow>
+                </value>
+                <value name="LED4">
+                    <shadow type="Movement_DT_character">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_Digital_Tube4">
+                <value name="GETPIN">
+                    <shadow type="Movement_PinUART">
+                    </shadow>
+                </value>
+                <value name="LED1">
+                    <shadow type="Movement_DT_led01">
+                    </shadow>
+                </value>
+                <value name="LED2">
+                    <shadow type="Movement_DT_led01">
+                    </shadow>
+                </value>
+                <value name="LED3">
+                    <shadow type="Movement_DT_led01">
+                    </shadow>
+                </value>
+                <value name="LED4">
+                    <shadow type="Movement_DT_led01">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_BluetoothAudioControl">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="COMMAND">
+                    <shadow type="Movement_BluetoothAudioControlCOMMAND">
+                    </shadow>
+                </value>
+            </block>
 
-            <block type="otion_waliblocks90">
-                <value name="NUM">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+
+            <block type="Movement_waliblocksOLED_1">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="X_NUM">
+                    <shadow type="Movement_0_111">
+                    </shadow>
+                </value>
+                <value name="Y_NUM">
+                    <shadow type="Movement_0_7">
+                    </shadow>
+                </value>
+                <value name="Ch_char_NUM">
+                    <shadow type="Movement_0_100">
                     </shadow>
                 </value>
             </block>
-            <block type="otion_waliblocks9">
-                <value name="NUM">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+
+
+            <block type="Movement_waliblocksOLED_2">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="X_NUM">
+                    <shadow type="Movement_0_111">
+                    </shadow>
+                </value>
+                <value name="Y_NUM">
+                    <shadow type="Movement_0_7">
+                    </shadow>
+                </value>
+                <value name="char_Soze">
+                    <shadow type="Movement_OLED_Character_Size">
                     </shadow>
                 </value>
             </block>
-            <block type="otion_waliblocks10"></block>
-            <block type="otion_waliblocks11"></block>
+
+            <block type="Movement_waliblocksOLED_3">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="X_NUM">
+                    <shadow type="Movement_0_111">
+                    </shadow>
+                </value>
+                <value name="Y_NUM">
+                    <shadow type="Movement_0_7">
+                    </shadow>
+                </value>
+                <value name="char_Soze">
+                    <shadow type="Movement_OLED_Character_Size">
+                    </shadow>
+                </value>
+                <value name="characternum">
+                    <shadow type="Movement_0_10">
+                    </shadow>
+                </value>
+
+                <value name="NUM">
+                    <shadow type="Movement_0_100">
+                    </shadow>
+                </value>
+            </block>
+
+            <block type="Movement_waliblocksOLED_4">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+                <value name="X_NUM">
+                    <shadow type="Movement_0_111">
+                    </shadow>
+                </value>
+                <value name="Y_NUM">
+                    <shadow type="Movement_0_7">
+                    </shadow>
+                </value>
+                <value name="char_Soze">
+                    <shadow type="Movement_OLED_Character_Size">
+                    </shadow>
+                </value>
+                <value name="character">
+                    <shadow type="Movement_OLED_Character">
+                    </shadow>
+                </value> 
+            </block>
+
+            <block type="Movement_waliblocksOLED_5">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Movement_waliblocksOLED_6">
+                <value name="GETPIN">
+                    <shadow type="MovPinOut">
+                    </shadow>
+                </value>
+            </block>
+
             <block type="otion_waliblocksOLED_1"></block>
             <block type="otion_waliblocksOLED_2"></block>
             <block type="otion_waliblocksOLED_3">
@@ -406,55 +611,44 @@
             <block type="otion_waliblocksOLED_4"></block>
             <block type="otion_waliblocksOLED_5"></block>
             <block type="otion_waliblocksOLED_6"></block>
-            <block type="otion_waliblocksNEC_0"></block>
             <block type="otion_waliblocksEnd"></block>
         </category>
         <!--控制-->
         <category name="" class="control">
-            <block type="control_waliblocks0"></block>
-            <block type="control_waliblocks1"></block>
+            <block type="controls_if"></block>
             <block type="control_waliblocks2"></block>
-            <block type="control_waliblocks3">
-                <value name="TIMES">
-                    <shadow type="math_number">
-                        <field name="NUM">10</field>
+            <block type="control_waliblocks7"></block>
+            <block type="Control_LoopNum">
+                <value name="NUM">
+                    <shadow type="Control_Num">
                     </shadow>
                 </value>
             </block>
-            <block type="controls_if"></block>
-            <block type="control_waliblocks5"></block>
             <block type="control_waliblocks6"></block>
-            <block type="control_waliblocks7"></block>
             <block type="control_waliblocks8">
                 <value name="VAR">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+                    <shadow type="Control_Num">
                     </shadow>
                 </value>
                 <value name="VAL">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+                    <shadow type="Control_Num">
                     </shadow>
                 </value>
                 <value name="A">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+                    <shadow type="Control_Num">
                     </shadow>
                 </value>
                 <value name="B">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+                    <shadow type="Control_Num">
                     </shadow>
                 </value>
                 <value name="VAR1">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+                    <shadow type="Control_Num">
                     </shadow>
                 </value>
                 </value>
                 <value name="BY">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+                    <shadow type="Control_Num">
                     </shadow>
                 </value>
             </block>
@@ -463,44 +657,76 @@
         </category>
         <!--运算-->
         <category name="" class="operation">
-            <block type="wl_math_number"></block>
-            <block type="math_waliblocks1">
-                <value name="A">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+            <block type="Computing_Num"></block>
+            <block type="Computing_LogicalOperation">
+                <value name="NUM1">
+                    <shadow type="Computing_Num">
                     </shadow>
                 </value>
-                <value name="B">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
-                    </shadow>
-                </value>
-            </block>
-            <block type="math_waliblocks3">
-                <value name="A">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
-                    </shadow>
-                </value>
-                <value name="B">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+                <value name="NUM2">
+                    <shadow type="Computing_Num">
                     </shadow>
                 </value>
             </block>
-            <block type="math_waliblocks4">
-                <value name="A">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+            <block type="Computing_MathOperation">
+                <value name="NUM1">
+                    <shadow type="Computing_Num">
                     </shadow>
                 </value>
-                <value name="B">
-                    <shadow type="math_number">
-                        <field name="NUM">0</field>
+                <value name="NUM2">
+                    <shadow type="Computing_Num">
                     </shadow>
                 </value>
             </block>
-            <block type="math_waliblocks2"></block>
+            <block type="Computing_ComparativeOperation">
+                <value name="NUM1">
+                    <shadow type="Computing_Num">
+                    </shadow>
+                </value>
+                <value name="NUM2">
+                    <shadow type="Computing_Num">
+                    </shadow>
+                </value>
+            </block>
+        </category>
+        <!--函数-->
+        <category name="" class="start">
+            <block type="Functions_DelayS">
+                <value name="NUM">
+                    <shadow type="Functions_DelayNum">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Functions_DelayMs">
+                <value name="NUM">
+                    <shadow type="Functions_DelayNum">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Functions_DelayUs">
+                <value name="NUM">
+                    <shadow type="Functions_DelayNum">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Functions_Random">
+                <value name="NUM1">
+                    <shadow type="Functions_Num">
+                    </shadow>
+                </value>
+                <value name="NUM2">
+                    <shadow type="Functions_Num">
+                    </shadow>
+                </value>
+            </block>
+            <block type="Functions_PrintfInit"></block>
+            <block type="Functions_PrintfString"></block>
+            <block type="Functions_PrintfVariable">
+                <value name="NUM">
+                    <shadow type="Functions_Num">
+                    </shadow>
+                </value>
+            </block>
         </category>
         <!--定义-->
         <category name="" custom="VARIABLE"></category>

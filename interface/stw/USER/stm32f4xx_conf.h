@@ -42,13 +42,16 @@
 #include "servo.h"
 #include "nrfrc.h"
 #include "WS2812B.h"
-//#include "timer14.h"
+#include "random.h"
+#include "Lattice.h"
+#include "timer14.h"
+#include "Digital_Tube.h"
 //#include "rgbled4.h"
 //#include "leddisplay.h"
 //#include "oled.h"
 //#include "myiic.h"
-//#include "dht11.h"
-//#include "nec.h" 
+#include "dht11.h"
+#include "nec.h" 
 
 #ifdef  USE_FULL_ASSERT
   #define assert_param(expr) ((expr) ? (void)0 : assert_failed((uint8_t *)__FILE__, __LINE__))

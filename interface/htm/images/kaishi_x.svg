@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 20.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 147 74" style="enable-background:new 0 0 147 74;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#46CF4E;}
-	.st1{fill:#F9F9F9;}
-	.st2{font-family:'MicrosoftYaHeiLight';}
-	.st3{font-size:25.2914px;}
-	.st4{fill:#E5E5E5;}
-</style>
-<rect x="0.2" y="0.1" class="st0" width="146.7" height="73.7"/>
-<rect x="0.1" y="0.1" class="st0" width="5.4" height="74.1"/>
-<text transform="matrix(1 0 0 1 61.7905 45.7314)" class="st1 st2 st3">开始</text>
-<rect x="0.2" y="71.4" class="st4" width="146.7" height="2.7"/>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="125px" height="63px" viewBox="243.5 364.5 125 63" enable-background="new 243.5 364.5 125 63" xml:space="preserve">
+<rect x="243.5" y="364.5" fill="#3DBD7D" width="124.984" height="63"/>
+<text transform="matrix(1.0014 0 0 1 296.022 403.2959)" fill="#F9F9F9" font-family="'MicrosoftYaHeiLight'" font-size="21.5028">开始</text>
+<rect x="243.5" y="425.118" fill="#E5E5E5" width="124.984" height="2.382"/>
 <g>
-	<path class="st1" d="M37.5,51.9c-7.8,0-14.1-6.4-14.1-14.2s6.4-14.1,14.1-14.1S51.7,30,51.7,37.8S45.3,51.9,37.5,51.9z M37.5,26.5
-		c-6.4,0-11.4,5.1-11.4,11.4s5.1,11.4,11.4,11.4S49,44.3,49,37.9S43.8,26.5,37.5,26.5z"/>
-	<polygon class="st1" points="45.5,37.8 33.1,30.6 33.1,44.9 	"/>
+	<path fill="#F9F9F9" d="M275.342,408.541c-6.641,0-12.005-5.442-12.005-12.074s5.449-11.988,12.005-11.988
+		c6.555,0,12.089,5.441,12.089,12.074C287.432,403.184,281.983,408.541,275.342,408.541z M275.342,386.945
+		c-5.449,0-9.707,4.336-9.707,9.692c0,5.356,4.342,9.692,9.707,9.692c5.363,0,9.791-4.251,9.791-9.692
+		S280.706,386.945,275.342,386.945z"/>
+	<polygon fill="#F9F9F9" points="282.153,396.554 271.596,390.431 271.596,402.589 	"/>
 </g>
 </svg>

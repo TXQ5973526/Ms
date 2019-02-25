@@ -48,7 +48,7 @@ void WLOUTState(uint8_t pin, uint8_t State)
 		uint32_t PINx = GetPin(2, pin);
 		if (PinOutUseFlag[pin] != 2) {
 			PinOutUseFlag[pin] = 2;
-			RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD | RCC_AHB1Periph_GPIOE, ENABLE);
+			RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOE, ENABLE);
 			GPIO_Set(GPIOx, PINx, GPIO_Mode_OUT, GPIO_OType_PP, GPIO_Speed_100MHz, GPIO_PuPd_UP);
 		}
 		if (State == 0) {

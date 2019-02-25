@@ -449,7 +449,8 @@ Blockly.Blocks.lists_split = {
     }
 };
 Blockly.Blocks.math = {};
-Blockly.Blocks.math.HUE = 230;
+Blockly.Blocks.math.HUE = 45;
+//yjw
 Blockly.Blocks.math_number = {
     init: function() {
         this.setHelpUrl(Blockly.Msg.MATH_NUMBER_HELPURL);
@@ -777,8 +778,10 @@ Blockly.Blocks.math_random_float = {
     }
 };
 Blockly.Blocks.variables = {};
-Blockly.Blocks.variables.HUE = 330;
-
+Blockly.Blocks.variables.HUE = 45;
+//yjw
+//goog.color.hsvToHex(a, Blockly.HSV_SATURATION, 255 * Blockly.HSV_VALUE)
+//goog.color.hsvToRgb
 Blockly.Blocks.variables_get = {
     init: function() {
         this.setHelpUrl(Blockly.Msg.VARIABLES_GET_HELPURL);

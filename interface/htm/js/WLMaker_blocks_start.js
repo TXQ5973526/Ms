@@ -9,18 +9,91 @@ Blockly.Blocks['Start_MainStart'] = {
         this.jsonInit({
             "message0": "程序开始",
             "nextStatement": null,
-            "colour": "#48cf4f",
-            "tooltip": "",
+            "colour": "#3dbd7d",
+            "tooltip": "https://www.kancloud.cn/walimaker/wiki/635763",
             "helpUrl": ""
         })
     }
 };
 Blockly.JavaScript['Start_MainStart'] = function(block) {
-    // TODO: Assemble JavaScript into code variable.
     return '#include "WaLi.h"\n';
 };
-
-
+//--------------------------------------------------------------------
+Blockly.Blocks['Start_Timer'] = {
+    init: function() {
+        this.jsonInit({
+            "message0": "定时器开始",
+            "nextStatement": null,
+            "colour": "#3dbd7d",
+            "tooltip": "",
+            "helpUrl": ""
+        })
+    }
+};
+Blockly.JavaScript['Start_Timer'] = function(block) {
+    return 'TimStart:';
+};
+Blockly.Blocks['Start_TimerInit'] = {
+    init: function() {
+        this.appendValueInput("SETSTATE")
+            .appendField("定时器间隔")
+            .setCheck("Number");
+        this.appendDummyInput()
+            .appendField("毫秒");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour("#3dbd7d");
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+Blockly.Blocks['Start_TimerInitNumber'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldNumber(1, 1, 1000, 1), "NUM");
+        this.setOutput(true, null);
+        this.setColour(230);
+        this.setColour("#3dbd7d");
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+Blockly.JavaScript['Start_TimerInitNumber'] = function(block) {
+    var number = block.getFieldValue('NUM');
+    return [number, Blockly.JavaScript.ORDER_NONE];
+};
+Blockly.JavaScript['Start_TimerInit'] = function(block) {
+    var number = Blockly.JavaScript.valueToCode(this, 'SETSTATE', Blockly.JavaScript.ORDER_ATOMIC);
+    return 'TimerInit(' + number + ');\n';
+};
+Blockly.Blocks['Start_TimerStart'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("打开定时器");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour("#3dbd7d");
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+Blockly.JavaScript['Start_TimerStart'] = function(block) {
+    return 'TimerStart();\n';
+};
+Blockly.Blocks['Start_TimerStop'] = {
+    init: function() {
+        this.appendDummyInput()
+            .appendField("关闭定时器");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour("#3dbd7d");
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+Blockly.JavaScript['Start_TimerStop'] = function(block) {
+    return 'TimerStop();\n';
+};
 //--------------------------------------------------------------------
 Blockly.Blocks['PerPinIn'] = {
     init: function() {
@@ -36,7 +109,7 @@ Blockly.Blocks['PerPinIn'] = {
                 ["IN8", "IN8"]
             ]), "PINNUM");
         this.setOutput(true, "Number");
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
     }
 };
@@ -54,7 +127,7 @@ Blockly.Blocks['PerPinUART'] = {
                 ["U3", "U3"]
             ]), "PINNUM");
         this.setOutput(true, "Number");
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
     }
 };
@@ -72,7 +145,7 @@ Blockly.Blocks['PerHaveNot'] = {
                 ["无", "1"]
             ]), "IOSTATE");
         this.setOutput(true, "Boolean");
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
     }
 };
@@ -89,7 +162,7 @@ Blockly.Blocks['PerNotHave'] = {
                 ["无", "0"]
             ]), "IOSTATE");
         this.setOutput(true, "Boolean");
-        this.setColour("#00ceba");
+        this.setColour("#3db8c1");
         this.setTooltip("");
     }
 };
@@ -114,7 +187,7 @@ Blockly.Blocks['MovPinOut'] = {
                 ["OUT8", "OUT8"]
             ]), "PINNUM");
         this.setOutput(true, "Number");
-        this.setColour("#21c1fb");
+        this.setColour("#49a9ee");
         this.setTooltip("");
     }
 };
@@ -128,12 +201,12 @@ Blockly.Blocks['Movement_0_100'] = {
             .appendField(new Blockly.FieldNumber(100, 0, 100, 1), "NUM");
         this.setOutput(true, null);
         this.setColour(230);
-        this.setColour("#21c1fb");
+        this.setColour("#49a9ee");
         this.setTooltip("");
         this.setHelpUrl("");
     }
 };
 Blockly.JavaScript['Movement_0_100'] = function(block) {
-  var number = block.getFieldValue('NUM');
-  return [number, Blockly.JavaScript.ORDER_NONE];
+    var number = block.getFieldValue('NUM');
+    return [number, Blockly.JavaScript.ORDER_NONE];
 };
