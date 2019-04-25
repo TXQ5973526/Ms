@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>btree – 简单B树数据库 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="MicroPython 函数库" href="index.html"/>
+        <link rel="next" title="framebuf — 帧缓冲区操作" href="framebuf.html"/>
+        <link rel="prev" title="uzlib – zlib解压缩" href="uzlib.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">btree</span></code> – 简单B树数据库</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="framebuf.html"><code class="docutils literal"><span class="pre">framebuf</span></code> — 帧缓冲区操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> — 硬件相关的函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="micropython.html"><code class="docutils literal"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部构件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network.html"><code class="docutils literal"><span class="pre">network</span></code> — 网络配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uctypes.html"><code class="docutils literal"><span class="pre">uctypes</span></code> – 以结构化的方式访问二进制数据</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">btree</span></code> – 简单B树数据库</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/btree.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="btree-b">
+<h1><code class="xref py py-mod docutils literal"><span class="pre">btree</span></code> – 简单B树数据库<a class="headerlink" href="#btree-b" title="永久链接至标题">¶</a></h1>
+<p>该模块基于著名的BerkelyDB 库的1.xx版本。</p>
+<p>示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">btree</span>
+
+<span class="c1"># First, we need to open a stream which holds a database 首先，我们需要打开一个包含数据库的流</span>
+<span class="c1"># This is usually a file, but can be in-memory database 这通常是一个文件，也可能是一个内存数据库</span>
+<span class="c1"># using uio.BytesIO, a raw flash partition, etc. 使用uio.BytesIO，一个原始闪分区</span>
+<span class="c1"># Oftentimes, you want to create a database file if it doesn&#39;t</span>
+<span class="c1"># exist and open if it exists. Idiom below takes care of this.</span>
+<span class="c1"># 通常，若不存在数据库文件，则您需要创建一个；若已存在，则只需打开。以下的习语考虑到了这一点。</span>
+<span class="c1"># DO NOT open database with &quot;a+b&quot; access mode. 请勿打开带有&quot;a+b&quot;访问编码的数据库。</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mydb&quot;</span><span class="p">,</span> <span class="s2">&quot;r+b&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;mydb&quot;</span><span class="p">,</span> <span class="s2">&quot;w+b&quot;</span><span class="p">)</span>
+
+<span class="c1"># Now open a database itself 现在打开一个数据库</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">btree</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># The keys you add will be sorted internally in the database 您添加的键将在数据库进行内部排序</span>
+<span class="n">db</span><span class="p">[</span><span class="sa">b</span><span class="s2">&quot;3&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;three&quot;</span>
+<span class="n">db</span><span class="p">[</span><span class="sa">b</span><span class="s2">&quot;1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;one&quot;</span>
+<span class="n">db</span><span class="p">[</span><span class="sa">b</span><span class="s2">&quot;2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;two&quot;</span>
+
+<span class="c1"># Assume that any changes are cached in memory unless</span>
+<span class="c1"># explicitly flushed (or database closed). Flush database</span>
+<span class="c1"># at the end of each &quot;transaction&quot;.</span>
+<span class="c1"># 除非显式刷新（或数据库关闭），否则假设任何更改都缓存在内存中。在每次“处理”结束时都刷新数据库。</span>
+<span class="n">db</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+<span class="c1"># Prints b&#39;two&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="p">[</span><span class="sa">b</span><span class="s2">&quot;2&quot;</span><span class="p">])</span>
+
+<span class="c1"># Iterate over sorted keys in the database, starting from b&quot;2&quot;</span>
+<span class="c1"># until the end of the database, returning only values.</span>
+<span class="c1"># 在数据库中对已排序的键进行迭代，从b“2”开始到数据库结束，只返回值。</span>
+<span class="c1"># Mind that arguments passed to values() method are *key* values. 注意传递给values()方法的参数为*key*值</span>
+<span class="c1"># Prints:</span>
+<span class="c1">#   b&#39;two&#39;</span>
+<span class="c1">#   b&#39;three&#39;</span>
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">db</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;2&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+<span class="k">del</span> <span class="n">db</span><span class="p">[</span><span class="sa">b</span><span class="s2">&quot;2&quot;</span><span class="p">]</span>
+
+<span class="c1"># No longer true, prints False 不正确，打印False</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;2&quot;</span> <span class="ow">in</span> <span class="n">db</span><span class="p">)</span>
+
+<span class="c1"># Prints:</span>
+<span class="c1">#  b&quot;1&quot;</span>
+<span class="c1">#  b&quot;3&quot;</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">db</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Don&#39;t forget to close the underlying stream! 请一定记得关闭基础流！</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="open">
+<code class="descname">open</code><span class="sig-paren">(</span><em>stream</em>, <em>*</em>, <em>flags=0</em>, <em>cachesize=0</em>, <em>pagesize=0</em>, <em>minkeypage=0</em><span class="sig-paren">)</span><a class="headerlink" href="#open" title="永久链接至目标">¶</a></dt>
+<dd><p>从随机存取的 <a href="#id2"><span class="problematic" id="id3">``</span></a>stream``（类似一个打开的文件）中打开一个数据库。所有其他的参数都是可选的，且都只为关键字，并允许对数据库操作的高级参数进行调整（大多数用户并不会需要这个）:</p>
+<ul class="simple">
+<li><em>flags</em> - 当前未使用的</li>
+<li><em>cachesize</em> - 以字节计的建议最大内存缓存大小。对于一个由充足内存的板而言，使用更大值或许可以提高性能。该值只是推荐值，若该值设置过低，则模块可能会占用更多内存。</li>
+<li><em>pagesize</em> - B树中用于节点的页面大小。可接受范围为512-65536。若为0，则会使用基础I/O块的大小（内存使用和性能之间的最佳协调）。</li>
+<li><em>minkeypage</em> - 每个页面存储的键的最小数量。默认值为0等于2。</li>
+</ul>
+<p>返回一个B树对象，该对象实现一个字典协议（方法集）和下述的一些附加方法。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h2>方法<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="btree.close">
+<code class="descclassname">btree.</code><code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#btree.close" title="永久链接至目标">¶</a></dt>
+<dd><p>关闭数据库。处理结束时关闭数据库是强制性的，因为某些未写入的数据可能仍留在缓存中。注意：这并不会关闭随数据库打开的基础流，基础流应单独关闭（这也是强制性的，以确保从缓冲区中刷新的数据进入底层储存）。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="btree.flush">
+<code class="descclassname">btree.</code><code class="descname">flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#btree.flush" title="永久链接至目标">¶</a></dt>
+<dd><p>将缓存中的任何数据刷新到底层流。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="btree.__getitem__">
+<code class="descclassname">btree.</code><code class="descname">__getitem__</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#btree.__getitem__" title="永久链接至目标">¶</a></dt>
+<dt id="btree.get">
+<code class="descclassname">btree.</code><code class="descname">get</code><span class="sig-paren">(</span><em>key</em>, <em>default=None</em><span class="sig-paren">)</span><a class="headerlink" href="#btree.get" title="永久链接至目标">¶</a></dt>
+<dt id="btree.__setitem__">
+<code class="descclassname">btree.</code><code class="descname">__setitem__</code><span class="sig-paren">(</span><em>key</em>, <em>val</em><span class="sig-paren">)</span><a class="headerlink" href="#btree.__setitem__" title="永久链接至目标">¶</a></dt>
+<dt id="btree.__detitem__">
+<code class="descclassname">btree.</code><code class="descname">__detitem__</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#btree.__detitem__" title="永久链接至目标">¶</a></dt>
+<dt id="btree.__contains__">
+<code class="descclassname">btree.</code><code class="descname">__contains__</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="headerlink" href="#btree.__contains__" title="永久链接至目标">¶</a></dt>
+<dd><p>标准字典方法。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="btree.__iter__">
+<code class="descclassname">btree.</code><code class="descname">__iter__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#btree.__iter__" title="永久链接至目标">¶</a></dt>
+<dd><p>B树对象可被直接迭代（与字典相似）以按顺序访问所有键。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="btree.keys">
+<code class="descclassname">btree.</code><code class="descname">keys</code><span class="sig-paren">(</span><span class="optional">[</span><em>start_key</em><span class="optional">[</span>, <em>end_key</em><span class="optional">[</span>, <em>flags</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#btree.keys" title="永久链接至目标">¶</a></dt>
+<dt id="btree.values">
+<code class="descclassname">btree.</code><code class="descname">values</code><span class="sig-paren">(</span><span class="optional">[</span><em>start_key</em><span class="optional">[</span>, <em>end_key</em><span class="optional">[</span>, <em>flags</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#btree.values" title="永久链接至目标">¶</a></dt>
+<dt id="btree.items">
+<code class="descclassname">btree.</code><code class="descname">items</code><span class="sig-paren">(</span><span class="optional">[</span><em>start_key</em><span class="optional">[</span>, <em>end_key</em><span class="optional">[</span>, <em>flags</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#btree.items" title="永久链接至目标">¶</a></dt>
+<dd><p>这些方法类似于标准字典方法，但也可使用可选参数来迭代一个键子范围，而不是整个数据库。
+注意：这三种方法中， <em>start_key</em> 和 <em>end_key</em>&nbsp;参数都代表键值。例如， <code class="docutils literal"><span class="pre">values()</span></code> 方法将迭代与给定键范围对应的值。
+无 <em>start_key</em>&nbsp;值即意为“从首个键”，无 <em>end_key</em> 值或其值为None则意为“直到数据库结束”。
+默认情况下，范围包括 <em>start_key</em> ，而不包括 <em>end_key</em> ，您可以通过传递 <code class="xref any docutils literal"><span class="pre">btree.INCL</span></code> 的标记来将 <em>end_key</em> 包括在迭代中。
+您可以通过传递 <code class="xref any docutils literal"><span class="pre">btree.DESC</span></code> 的标记来按照下行键方向进行迭代。标记值可同为ORed。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h2>常量<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="INCL">
+<code class="descname">INCL</code><a class="headerlink" href="#INCL" title="永久链接至目标">¶</a></dt>
+<dd><p><a class="reference internal" href="#btree.keys" title="btree.keys"><code class="xref any py py-meth docutils literal"><span class="pre">keys()</span></code></a>, <a class="reference internal" href="#btree.values" title="btree.values"><code class="xref any py py-meth docutils literal"><span class="pre">values()</span></code></a>, <a class="reference internal" href="#btree.items" title="btree.items"><code class="xref any py py-meth docutils literal"><span class="pre">items()</span></code></a> 方法的标记, 指定扫描应该包含结束键。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="DESC">
+<code class="descname">DESC</code><a class="headerlink" href="#DESC" title="永久链接至目标">¶</a></dt>
+<dd><p><a class="reference internal" href="#btree.keys" title="btree.keys"><code class="xref any py py-meth docutils literal"><span class="pre">keys()</span></code></a>, <a class="reference internal" href="#btree.values" title="btree.values"><code class="xref any py py-meth docutils literal"><span class="pre">values()</span></code></a>, <a class="reference internal" href="#btree.items" title="btree.items"><code class="xref any py py-meth docutils literal"><span class="pre">items()</span></code></a> 方法的标记, 指定扫描应按照键的下行方向进行。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="framebuf.html" class="btn btn-neutral float-right" title="framebuf — 帧缓冲区操作" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="uzlib.html" class="btn btn-neutral" title="uzlib – zlib解压缩" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. 切换、回调和中断 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../../index.html"/>
+        <link rel="up" title="pyboard的MicroPython教程" href="index.html"/>
+        <link rel="next" title="6. 加速度计" href="accel.html"/>
+        <link rel="prev" title="4. 点亮LED和基本Python概念" href="leds.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">pyboard基本信息</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">pyboard的MicroPython教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">1. pyboard 介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script.html">2. 运行您的首个脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repl.html">3. 进入一个MicroPython REPL命令行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leds.html">4. 点亮LED和基本Python概念</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 切换、回调和中断</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.1. 开关回调</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">5.2. 中断的技术细节</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">5.3. 扩展阅读</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="accel.html">6. 加速度计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reset.html">7. 安全模式和恢复出厂设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb_mouse.html">8. 将pyboard用作USB鼠标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timer.html">9. 定时器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assembler.html">10. 内联汇编</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_ctrl.html">11. 电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id1">需要额外的配件的教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">需要知道小技巧</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">pyboard的MicroPython教程</a> &raquo;</li>
+        
+      <li>5. 切换、回调和中断</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pyboard/tutorial/switch.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>5. 切换、回调和中断<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>Pyboard有2个小开关，名为USR和RST。RST开关是一个硬重置开关，若您点击此开关，则将从头开始重启pyboard，也就等同于关闭电源后重启。</p>
+<p>USR用于一般用途，通过一个Switch对象实现对其控制。制作Switch对象，请遵循以下指令:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sw</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Switch</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>请记住：若您遇到 <code class="docutils literal"><span class="pre">pyb</span></code> 不存在的错误，
+您需要输入 <code class="docutils literal"><span class="pre">import&nbsp;pyb</span></code> 。</p>
+<p>使用Switch对象，您可获得其状态:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sw</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>若按住开关，则会打印False；
+若松开开关，则会打印True。尝试在运行以上指令时按下USR开关。</p>
+<p>另外还有一个获取开关状态的简写表示，“调用”开关对象：:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sw</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h2>5.1. 开关回调<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>开关是一个非常单一的对象，但其有一个高级特性： <code class="docutils literal"><span class="pre">sw.callback()</span></code> 函数。 回调函数设置在按下开关时运行的内容，并使用中断。
+建议您在了解中断运行前，先从使用示例开始。尝试在提示符中运行以下指令:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sw</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;press!&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>这一指令要求在每次按下开关时打印 <code class="docutils literal"><span class="pre">press!</span></code> 。继续进行并尝试：按下USR开关并查看电脑上的输出。
+注意：打印将中断您正在输入的内容，且该打印是异步运行的中断例程的一个示例。</p>
+<p>另外一例是:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sw</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span><span class="n">pyb</span><span class="o">.</span><span class="n">LED</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">toggle</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>这将在每次按下开关时切换红色LED，且可在其他代码运行时一起工作。</p>
+<p>将 <code class="docutils literal"><span class="pre">None</span></code> 传递给回调函数以禁用开关回调:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sw</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>您可将任何函数（需要0参数）传递给开关回调。上面我们使用Python的 <code class="docutils literal"><span class="pre">lambda</span></code> 特性创建了一个匿名函数。但是我们也可以使用:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<span class="gp">... </span>  <span class="n">pyb</span><span class="o">.</span><span class="n">LED</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">toggle</span><span class="p">()</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sw</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这创建了一个名为 <code class="docutils literal"><span class="pre">f</span></code> 的函数，并将此函数赋值给开关回调。
+当您的函数比 <code class="docutils literal"><span class="pre">lambda</span></code> 所允许的更复杂时，您可以以这种方式进行。</p>
+<p>注意：您的回调函数不能分配任何内存（例如：他们无法创建一个元组或列表）。
+回调函数应相对简单。若您需要制作一个列表，请预先创建并将其存储在全局变量中（或使其成为本地并将其关闭）。
+若您需要进行较长且复杂的运算，则使用回调设置一个标记，其他代码会对其应答。</p>
+</div>
+<div class="section" id="id3">
+<h2>5.2. 中断的技术细节<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>我们来理顺与开关回调相关的细节。当您使用 <code class="docutils literal"><span class="pre">sw.callback()</span></code> 记录一个函数时，开关则在开关连接的引脚上设置一个外部中断触发（下降沿）。
+这也就意味着微控制器会监听引脚的任何变化，且以下情况将会出现:</p>
+<ol class="arabic simple">
+<li>按下开关时，引脚就发生了变化（引脚从低到高），且微控制器会记录这一变化。</li>
+<li>微控制器结束执行当前机器指令，停止执行，并保存当前状态（将寄存器推到堆栈上）。这将产生的影响是暂停编码，例如您正在运行的Python脚本。</li>
+<li>微控制器开始执行与开关的外部触发相关的特殊中断处理程序。此中断处理程序获取您使用 <code class="docutils literal"><span class="pre">sw.callback()</span></code> 记录的函数并执行。</li>
+<li>您的回调函数始终执行，直至完成为止，并将控制返还给开关中断处理程序。</li>
+<li>开关中断处理程序返回，微控制器被告知中断已被处理。</li>
+<li>微控制器恢复在步骤2中保存的状态。</li>
+<li>执行在开始时运行的代码。除暂停外，这一代码不会注意到已被中断。</li>
+</ol>
+<p>多个中断同时进行时，以上步骤的进行则会略有复杂。在这种情况下，具有最高优先级的中断首先发生，然后其他按优先级顺序排列。开关中断设置在最低优先级。</p>
+</div>
+<div class="section" id="id4">
+<h2>5.3. 扩展阅读<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>使用硬件中断的更多信息，请参见
+<a class="reference internal" href="../../reference/isr_rules.html#isr-rules"><span class="std std-ref">writing interrupt handlers</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="accel.html" class="btn btn-neutral float-right" title="6. 加速度计" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="leds.html" class="btn btn-neutral" title="4. 点亮LED和基本Python概念" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

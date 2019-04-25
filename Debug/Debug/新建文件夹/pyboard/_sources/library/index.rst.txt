@@ -1,0 +1,303 @@
+.. _micropython_lib:
+
+MicroPython 函数库
+=====================
+
+本文档全部内容由 `星瞳科技 <https://singtown.cc>`_ 翻译并发布。
+
+.. warning::
+
+   此部分的重要总结：
+
+   * MicroPython在每个模块中实现Python功能的一个子集。
+   * 为简化可扩展性，标准Python模块的MicroPython版本通常有 ``u`` (micro)前缀。
+   * 由于资源的限制，任何特定MicroPython变量或端口可能略去在此文档中描述的任何特性/功能。
+
+
+此章节描述内置于MicroPython的模块。有如下几种类型的模块：
+
+* 实现标准Python功能的子集且并不由用户进行扩展的模块。
+* 实现标准Python功能的子集且包括用户扩展的条款（通过Python编码）。
+* 对Python标准库实现MicroPython拓展的模块。
+* 特定于某一端口而不可移植的模块。
+
+注意模块及其内容的可用性：总体而言，该文件目的为描述在MicroPython中实现的所有模块和函数/类。
+但是，MicroPython为高度可配置的，且每个端口到一个特定的板/嵌入式系统仅提供MicroPython库的一个子集。
+对于官方支持的端口而言，目前正尽力实现过滤不适用项目或使用可用性来标记个别描述：描述提供给定特性的端口的子句。
+考虑到这一点，请注意在该文档中描述的模块中的函数/类可能在特定的板上特定的MicroPython的构建中不可用。
+寻找某个特定功能的可用性/不可用性的一般信息的最佳位置是“一般信息（General Information）”部分，其中包含与特定端口相关的信息。
+
+除了在此文件中描述的内置库外，Python标准库中的许多其他模块，以及对此其的MicroPython扩展，都可在 `micropython-lib` 中找到。
+
+Python标准库和micro-libraries
+---------------------------------------------
+
+下面的标准Python库已被微型化，以适应MicroPython的原理。这些库执行该模块的核心功能，并被设计作为标准Python库的替代选择。
+以下的某些模块使用标准的Python名，但带有“u”前缀，例如，其名称为 ``ujson`` 而不是 ``json`` 。
+这表示这样的一个模块是micro-library，即仅实现CPython模块功能的一个子集。通过以不同方式命名它们，
+用户可以选择编写Python级别的模块来扩展功能，从而更好地与CPython实现兼容（实际上，这正是由上述的 `micropython-lib` 实现的）。
+
+在一些嵌入式平台上，添加Python级别的包装器模块以实现与CPython的命名兼容非常麻烦，
+而微模块可通过其u命名和非u命名来使用。该非u命名可被您的包路径中的同名文件覆盖。
+例如， ``import json`` 将首先搜索一个文件 ``json.py`` 或目录 ``json`` ，若搜寻到相关内容，则加载该数据包。
+若未搜寻到目标信息，则后退以加载内置 ``ujson`` 模块。
+
+.. only:: port_unix
+
+    .. toctree::
+       :maxdepth: 1
+
+       builtins.rst
+       array.rst
+       cmath.rst
+       gc.rst
+       math.rst
+       sys.rst
+       ubinascii.rst
+       ucollections.rst
+       uerrno.rst
+       uhashlib.rst
+       uheapq.rst
+       uio.rst
+       ujson.rst
+       uos.rst
+       ure.rst
+       uselect.rst
+       usocket.rst
+       ustruct.rst
+       utime.rst
+       uzlib.rst
+
+.. only:: port_pyboard
+
+    .. toctree::
+       :maxdepth: 1
+
+       builtins.rst
+       array.rst
+       cmath.rst
+       gc.rst
+       math.rst
+       sys.rst
+       ubinascii.rst
+       ucollections.rst
+       uerrno.rst
+       uhashlib.rst
+       uheapq.rst
+       uio.rst
+       ujson.rst
+       uos.rst
+       ure.rst
+       uselect.rst
+       usocket.rst
+       ustruct.rst
+       utime.rst
+       uzlib.rst
+
+.. only:: port_wipy
+
+    .. toctree::
+       :maxdepth: 1
+
+       builtins.rst
+       array.rst
+       gc.rst
+       sys.rst
+       ubinascii.rst
+       ujson.rst
+       uos.rst
+       ure.rst
+       uselect.rst
+       usocket.rst
+       ussl.rst
+       utime.rst
+
+.. only:: port_esp8266
+
+    .. toctree::
+       :maxdepth: 1
+
+       builtins.rst
+       array.rst
+       gc.rst
+       math.rst
+       sys.rst
+       ubinascii.rst
+       ucollections.rst
+       uerrno.rst
+       uhashlib.rst
+       uheapq.rst
+       uio.rst
+       ujson.rst
+       uos.rst
+       ure.rst
+       uselect.rst
+       usocket.rst
+       ussl.rst
+       ustruct.rst
+       utime.rst
+       uzlib.rst
+
+.. only:: port_esp32
+
+    .. toctree::
+       :maxdepth: 1
+
+       builtins.rst
+       array.rst
+       gc.rst
+       math.rst
+       sys.rst
+       ubinascii.rst
+       ucollections.rst
+       uerrno.rst
+       uhashlib.rst
+       uheapq.rst
+       uio.rst
+       ujson.rst
+       uos.rst
+       ure.rst
+       uselect.rst
+       usocket.rst
+       ussl.rst
+       ustruct.rst
+       utime.rst
+       uzlib.rst
+
+.. only:: port_openmvcam
+
+    .. toctree::
+       :maxdepth: 1
+
+       builtins.rst
+       array.rst
+       gc.rst
+       math.rst
+       sys.rst
+       ubinascii.rst
+       ucollections.rst
+       uerrno.rst
+       uhashlib.rst
+       uheapq.rst
+       uio.rst
+       ujson.rst
+       uos.rst
+       ure.rst
+       uselect.rst
+       usocket.rst
+       ustruct.rst
+       utime.rst
+       uzlib.rst
+
+
+MicroPython特定的库
+------------------------------
+
+MicroPython实现的特定功能可在以下库中找到。
+
+.. only:: not port_openmvcam
+
+   .. toctree::
+      :maxdepth: 1
+
+      btree.rst
+      framebuf.rst
+      machine.rst
+      micropython.rst
+      network.rst
+      uctypes.rst
+
+.. only:: port_openmvcam
+
+   .. toctree::
+      :maxdepth: 1
+
+      btree.rst
+      machine.rst
+      micropython.rst
+      network.rst
+
+
+.. only:: port_pyboard
+
+   Libraries specific to the pyboard
+   ---------------------------------
+
+   The following libraries are specific to the pyboard.
+
+   .. toctree::
+      :maxdepth: 2
+
+      pyb.rst
+      lcd160cr.rst
+
+.. only:: port_wipy
+
+   Libraries specific to the WiPy
+   ---------------------------------
+
+   The following libraries are specific to the WiPy.
+
+   .. toctree::
+      :maxdepth: 2
+
+      wipy.rst
+
+
+.. only:: port_esp8266
+
+   Libraries specific to the ESP8266
+   ---------------------------------
+
+   The following libraries are specific to the ESP8266.
+
+   .. toctree::
+      :maxdepth: 2
+
+      esp.rst
+
+.. only:: port_esp32
+
+   Libraries specific to the ESP8266
+   ---------------------------------
+
+   The following libraries are specific to the ESP8266.
+
+   .. toctree::
+      :maxdepth: 2
+
+      esp.rst
+
+
+.. only:: port_openmvcam
+
+   特定于OpenMV Cam的库
+   ------------------------------------
+
+   以下库特定于OpenMV Cam.
+
+   .. toctree::
+      :maxdepth: 2
+
+      pyb.rst
+      pyb.ADC.rst
+      pyb.CAN.rst
+      pyb.DAC.rst
+      pyb.ExtInt.rst
+      pyb.I2C.rst
+      pyb.LED.rst
+      pyb.Pin.rst
+      pyb.RTC.rst
+      pyb.Servo.rst
+      pyb.SPI.rst
+      pyb.Timer.rst
+      pyb.UART.rst
+      pyb.USB_VCP.rst
+      omv.time.rst
+      omv.sensor.rst
+      omv.image.rst
+      omv.gif.rst
+      omv.mjpeg.rst
+      omv.lcd.rst
+      omv.fir.rst
+      omv.cpufreq.rst

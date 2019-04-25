@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lcd — lcd扩展板驱动 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">lcd</span></code> — lcd扩展板驱动</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/omv.lcd.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-lcd">
+<span id="lcd-lcd"></span><h1><a class="reference internal" href="#module-lcd" title="lcd: lcd扩展板驱动"><code class="xref py py-mod docutils literal"><span class="pre">lcd</span></code></a> — lcd扩展板驱动<a class="headerlink" href="#module-lcd" title="永久链接至标题">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">lcd</span></code> 模块用于控制lcd扩展板。</p>
+<p>用法示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sensor</span><span class="o">,</span> <span class="nn">lcd</span>
+
+<span class="c1"># Setup camera. 设置摄像机。</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">set_pixformat</span><span class="p">(</span><span class="n">sensor</span><span class="o">.</span><span class="n">RGB565</span><span class="p">)</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">set_framesize</span><span class="p">(</span><span class="n">sensor</span><span class="o">.</span><span class="n">QQVGA2</span><span class="p">)</span> <span class="c1"># special 128x160 lcd shield resolution.</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">skip_frames</span><span class="p">()</span>
+<span class="n">lcd</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="c1"># Show image. 显示图像</span>
+<span class="k">while</span><span class="p">(</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">lcd</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">sensor</span><span class="o">.</span><span class="n">snapshot</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="lcd.lcd.init">
+<code class="descclassname">lcd.</code><code class="descname">init</code><span class="sig-paren">(</span><em>type=1</em><span class="sig-paren">)</span><a class="headerlink" href="#lcd.lcd.init" title="永久链接至目标">¶</a></dt>
+<dd><p>使用I/O引脚P0, P2, P3, P6, P7, P8初始化附加的lcd扩展板。</p>
+<p><code class="docutils literal"><span class="pre">type</span></code> 表明lcd扩展板的类型（留待未来使用）:</p>
+<blockquote>
+<div><ul class="simple">
+<li>0: None</li>
+<li>1: lcd shield</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">type</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">type=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lcd.lcd.deinit">
+<code class="descclassname">lcd.</code><code class="descname">deinit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcd.lcd.deinit" title="永久链接至目标">¶</a></dt>
+<dd><p>反初始化lcd扩展板，释放I/O引脚。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lcd.lcd.width">
+<code class="descclassname">lcd.</code><code class="descname">width</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcd.lcd.width" title="永久链接至目标">¶</a></dt>
+<dd><p>返回lcd扩展板的宽度（水平分辨率）。</p>
+<blockquote>
+<div><ul class="simple">
+<li>None: 0 像素。</li>
+<li>lcd shield: 128 像素。</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="lcd.lcd.height">
+<code class="descclassname">lcd.</code><code class="descname">height</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcd.lcd.height" title="永久链接至目标">¶</a></dt>
+<dd><p>返回lcd扩展板的高度（垂直分辨率）。</p>
+<blockquote>
+<div><ul class="simple">
+<li>None: 0 像素。</li>
+<li>lcd shield: 160 像素。</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="lcd.lcd.type">
+<code class="descclassname">lcd.</code><code class="descname">type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcd.lcd.type" title="永久链接至目标">¶</a></dt>
+<dd><p>返回lcd扩展板的类型（留待未来使用）：</p>
+<blockquote>
+<div><ul class="simple">
+<li>0: None</li>
+<li>1: lcd Shield</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="lcd.lcd.set_backlight">
+<code class="descclassname">lcd.</code><code class="descname">set_backlight</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#lcd.lcd.set_backlight" title="永久链接至目标">¶</a></dt>
+<dd><p>设置lcd扩展板的背光状态（False为关，True为开）。关闭背光会大大降低lcd扩展板的能耗。</p>
+<p>默认情况下，lcd扩展板的背光引脚是上拉的，且控制背光的P6是浮动的。调用该函数使P6切换为开漏模式，以控制背光（False为低，True为浮动）。</p>
+<p>若您想在连接lcd扩展板时重新启用P6，则需在lcd扩展板上切断背光跳线（使背光始终打开）。只要不调用此函数，则释放P6。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lcd.lcd.get_backlight">
+<code class="descclassname">lcd.</code><code class="descname">get_backlight</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcd.lcd.get_backlight" title="永久链接至目标">¶</a></dt>
+<dd><p>若此前调用过返回 <code class="docutils literal"><span class="pre">set_backlight</span></code> ，则返回背光状态（False为关，True为开）。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lcd.lcd.display">
+<code class="descclassname">lcd.</code><code class="descname">display</code><span class="sig-paren">(</span><em>image</em>, <em>roi=Auto</em><span class="sig-paren">)</span><a class="headerlink" href="#lcd.lcd.display" title="永久链接至目标">¶</a></dt>
+<dd><p>在液晶屏上显示一张 <a href="#id2"><span class="problematic" id="id3">``</span></a>image``（GRAYSCALE或RGB565）。</p>
+<p><code class="docutils literal"><span class="pre">roi</span></code>&nbsp;是一个感兴趣区域的矩形元组(x, y, w, h)。若未指定，即为图像矩形</p>
+<p>若 <code class="docutils literal"><span class="pre">roi</span></code> 宽度小于lcd宽度，则用垂直的黑色边框使 <code class="docutils literal"><span class="pre">roi</span></code> 居于屏幕中心（即用黑色填充未占用区域）。</p>
+<p>若 <code class="docutils literal"><span class="pre">roi</span></code> 宽度大于lcd宽度，则 <code class="docutils literal"><span class="pre">roi</span></code> 居于屏幕中心，且不匹配像素不会显示（即液晶屏以窗口形态显示 <code class="docutils literal"><span class="pre">roi</span></code> 的中心）。</p>
+<p>若 <code class="docutils literal"><span class="pre">roi</span></code> 高度小于lcd高度，则用垂直的黑色边框使 <code class="docutils literal"><span class="pre">roi</span></code> 居于屏幕中心（即用黑色填充未占用区域）。</p>
+<p>若 <code class="docutils literal"><span class="pre">roi</span></code> 高度大于lcd高度，则 <code class="docutils literal"><span class="pre">roi</span></code> 居于屏幕中心，且不匹配像素不会显示（即液晶屏以窗口形态显示 <code class="docutils literal"><span class="pre">roi</span></code> 的中心）。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">roi=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="lcd.lcd.clear">
+<code class="descclassname">lcd.</code><code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lcd.lcd.clear" title="永久链接至目标">¶</a></dt>
+<dd><p>将液晶屏清空为黑色。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

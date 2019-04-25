@@ -1,0 +1,97 @@
+:mod:`lcd` --- lcd扩展板驱动
+================================
+
+.. module:: lcd
+   :synopsis: lcd扩展板驱动
+
+``lcd`` 模块用于控制lcd扩展板。
+
+用法示例::
+
+    import sensor, lcd
+
+    # Setup camera. 设置摄像机。
+    sensor.reset()
+    sensor.set_pixformat(sensor.RGB565)
+    sensor.set_framesize(sensor.QQVGA2) # special 128x160 lcd shield resolution.
+    sensor.skip_frames()
+    lcd.init()
+
+    # Show image. 显示图像
+    while(True):
+        lcd.display(sensor.snapshot())
+
+函数
+---------
+
+.. function:: lcd.init(type=1)
+
+   使用I/O引脚P0, P2, P3, P6, P7, P8初始化附加的lcd扩展板。
+
+   ``type`` 表明lcd扩展板的类型（留待未来使用）:
+
+      * 0: None
+      * 1: lcd shield
+
+   .. note::
+
+      ``type`` 是键值参数，必须在函数调用中通过写入 ``type=`` 来显式地调用。
+
+.. function:: lcd.deinit()
+
+   反初始化lcd扩展板，释放I/O引脚。
+
+.. function:: lcd.width()
+
+   返回lcd扩展板的宽度（水平分辨率）。
+
+      * None: 0 像素。
+      * lcd shield: 128 像素。
+
+.. function:: lcd.height()
+
+   返回lcd扩展板的高度（垂直分辨率）。
+
+      * None: 0 像素。
+      * lcd shield: 160 像素。
+
+.. function:: lcd.type()
+
+   返回lcd扩展板的类型（留待未来使用）：
+
+      * 0: None
+      * 1: lcd Shield
+
+.. function:: lcd.set_backlight(state)
+
+   设置lcd扩展板的背光状态（False为关，True为开）。关闭背光会大大降低lcd扩展板的能耗。
+
+   默认情况下，lcd扩展板的背光引脚是上拉的，且控制背光的P6是浮动的。调用该函数使P6切换为开漏模式，以控制背光（False为低，True为浮动）。
+
+   若您想在连接lcd扩展板时重新启用P6，则需在lcd扩展板上切断背光跳线（使背光始终打开）。只要不调用此函数，则释放P6。
+
+.. function:: lcd.get_backlight()
+
+   若此前调用过返回 ``set_backlight`` ，则返回背光状态（False为关，True为开）。
+
+.. function:: lcd.display(image, roi=Auto)
+
+   在液晶屏上显示一张 ``image``（GRAYSCALE或RGB565）。
+
+   ``roi`` 是一个感兴趣区域的矩形元组(x, y, w, h)。若未指定，即为图像矩形 
+
+   若 ``roi`` 宽度小于lcd宽度，则用垂直的黑色边框使 ``roi`` 居于屏幕中心（即用黑色填充未占用区域）。
+
+   若 ``roi`` 宽度大于lcd宽度，则 ``roi`` 居于屏幕中心，且不匹配像素不会显示（即液晶屏以窗口形态显示 ``roi`` 的中心）。
+
+   若 ``roi`` 高度小于lcd高度，则用垂直的黑色边框使 ``roi`` 居于屏幕中心（即用黑色填充未占用区域）。
+
+   若 ``roi`` 高度大于lcd高度，则 ``roi`` 居于屏幕中心，且不匹配像素不会显示（即液晶屏以窗口形态显示 ``roi`` 的中心）。
+
+   .. note::
+
+      ``roi`` 是键值参数，必须在函数调用中通过写入 ``roi=`` 来显式地调用。 
+
+.. function:: lcd.clear()
+
+   将液晶屏清空为黑色。

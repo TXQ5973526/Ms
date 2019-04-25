@@ -1,0 +1,607 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pin类 – 控制I/O 引脚 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="pyb — 板级功能" href="pyb.html"/>
+        <link rel="next" title="class RTC – 实时时钟" href="pyb.RTC.html"/>
+        <link rel="prev" title="LED类 – LED对象" href="pyb.LED.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id1">时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id2">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id3">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id4">电源相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id5">其他功能</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pyb.html#id6">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lcd160cr.html"><code class="docutils literal"><span class="pre">lcd160cr</span></code> — 控制LCD160CR显示屏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+          <li><a href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a> &raquo;</li>
+        
+      <li>Pin类 – 控制I/O 引脚</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/pyb.Pin.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pin-i-o">
+<span id="pyb-pin"></span><h1>Pin类 – 控制I/O 引脚<a class="headerlink" href="#pin-i-o" title="永久链接至标题">¶</a></h1>
+<p>引脚是控制I/O引脚的基本对象。引脚可设置引脚的模式（输入、输出等），并能设置数字逻辑层。对引脚的虚拟控制，请参见ADC类。</p>
+<p>应用模式:</p>
+<p>所有板上的引脚都预先定义为pyb.Pin.board.Name:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">x1_pin</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X1</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X1</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>与板上的引脚相对应的CPU引脚都可作为 <code class="docutils literal"><span class="pre">pyb.cpu.Name</span></code> 使用。CPU引脚的名称即为后跟引脚码的端口字母。
+在PYBv1.0中， <code class="docutils literal"><span class="pre">pyb.Pin.board.X1</span></code>&nbsp;和 <code class="docutils literal"><span class="pre">pyb.Pin.cpu.A0</span></code> 是同一引脚。</p>
+<p>您也可使用字符串:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;X1&#39;</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>使用者可添加自己的名称:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">MyMapperDict</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;LeftMotorDir&#39;</span> <span class="p">:</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">C12</span> <span class="p">}</span>
+<span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">dict</span><span class="p">(</span><span class="n">MyMapperDict</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="s2">&quot;LeftMotorDir&quot;</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_OD</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>也可查询映射:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pin</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="s2">&quot;LeftMotorDir&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>使用者还可添加自己的映射函数:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">MyMapper</span><span class="p">(</span><span class="n">pin_name</span><span class="p">):</span>
+   <span class="k">if</span> <span class="n">pin_name</span> <span class="o">==</span> <span class="s2">&quot;LeftMotorDir&quot;</span><span class="p">:</span>
+       <span class="k">return</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">A0</span>
+
+<span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">mapper</span><span class="p">(</span><span class="n">MyMapper</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>所以，若您要调用： <code class="docutils literal"><span class="pre">pyb.Pin(&quot;LeftMotorDir&quot;,</span> <span class="pre">pyb.Pin.OUT_PP)</span></code>
+则 <code class="docutils literal"><span class="pre">&quot;LeftMotorDir&quot;</span></code> 直接传递到映射函数。</p>
+<p>简而言之，以下顺序决定了名字如何被映射成一个引脚编号：</p>
+<ol class="arabic simple">
+<li>直接指定一个引脚对象</li>
+<li>用户提供映射函数</li>
+<li>用户提供映射（对象必须是可用的关键字）</li>
+<li>提供一个与板上引脚匹配的字符串</li>
+<li>提供一个与CPU端口/引脚匹配的字符串</li>
+</ol>
+<p>您可以设置 <code class="docutils literal"><span class="pre">pyb.Pin.debug(True)</span></code> ，以获得一些关于一个特定对象如何映射到一个引脚的调试信息。</p>
+<p>当引脚启用了 <code class="docutils literal"><span class="pre">Pin.PULL_UP</span></code> 或 <code class="docutils literal"><span class="pre">Pin.PULL_DOWN</span></code> 模式，该引脚有一个有效的40k欧姆的电阻把它牵引至3V3或GND（引脚Y5除外，该引脚电阻为11k欧姆）。</p>
+<p>每当在GPIO引脚中发现下降沿，该回调将被执行。注意：机械按钮有抖动，按下或松开一个开关通常会产生多次电平变化。</p>
+<p>详细解释与消除抖动的具体方法，请参见: <a class="reference external" href="http://www.eng.utah.edu/~cs5780/debouncing.pdf">http://www.eng.utah.edu/~cs5780/debouncing.pdf</a></p>
+<p>所有引脚对象都通过引脚映射器来生成一个GPIO引脚。</p>
+<div class="section" id="id1">
+<h2>构造函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="pyb.pyb.Pin">
+<em class="property">class </em><code class="descclassname">pyb.</code><code class="descname">Pin</code><span class="sig-paren">(</span><em>id</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pyb.Pin" title="永久链接至目标">¶</a></dt>
+<dd><p>创建一个与id关联的新的注脚对象。若给定其他参数，则用来初始化引脚。详见&nbsp;<code class="xref any docutils literal"><span class="pre">pin.init()</span></code> 。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="class-methods">
+<h2>Class methods<a class="headerlink" href="#class-methods" title="永久链接至标题">¶</a></h2>
+<dl class="classmethod">
+<dt id="pyb.Pin.debug">
+<em class="property">classmethod </em><code class="descclassname">Pin.</code><code class="descname">debug</code><span class="sig-paren">(</span><span class="optional">[</span><em>state</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.debug" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置调试状态( <code class="docutils literal"><span class="pre">True</span></code> 与 <code class="docutils literal"><span class="pre">False</span></code> 分别对应开和关)。</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pyb.Pin.dict">
+<em class="property">classmethod </em><code class="descclassname">Pin.</code><code class="descname">dict</code><span class="sig-paren">(</span><span class="optional">[</span><em>dict</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.dict" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置注脚映射库。</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="pyb.Pin.mapper">
+<em class="property">classmethod </em><code class="descclassname">Pin.</code><code class="descname">mapper</code><span class="sig-paren">(</span><span class="optional">[</span><em>fun</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.mapper" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置注脚映射器函数。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="pyb.Pin.init">
+<code class="descclassname">Pin.</code><code class="descname">init</code><span class="sig-paren">(</span><em>mode</em>, <em>pull=Pin.PULL_NONE</em>, <em>af=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.init" title="永久链接至目标">¶</a></dt>
+<dd><p>初始化注脚：</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><code class="docutils literal"><span class="pre">mode</span></code> 可为下列之一:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Pin.IN</span></code> - 配置用于输入的引脚；</li>
+<li><code class="docutils literal"><span class="pre">Pin.OUT_PP</span></code> - 使用推拉控制配置用于输出的引脚；</li>
+<li><code class="docutils literal"><span class="pre">Pin.OUT_OD</span></code> - 使用开漏控制配置用于输出的引脚；</li>
+<li><code class="docutils literal"><span class="pre">Pin.AF_PP</span></code> - 使用拉拉控制来配置用于替代函数的引脚；</li>
+<li><code class="docutils literal"><span class="pre">Pin.AF_OD</span></code> - 使用开漏控制配置用于替代函数的引脚</li>
+<li><code class="docutils literal"><span class="pre">Pin.ANALOG</span></code> - 配置用于虚拟的函数。</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">pull</span></code> 可为下列之一:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Pin.PULL_NONE</span></code> - 无上拉或下拉电阻；</li>
+<li><code class="docutils literal"><span class="pre">Pin.PULL_UP</span></code> - 启用上拉电阻；</li>
+<li><code class="docutils literal"><span class="pre">Pin.PULL_DOWN</span></code> - 启用下拉电阻。</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">当模式为 <code class="docutils literal"><span class="pre">Pin.AF_PP</span></code> 或 <code class="docutils literal"><span class="pre">Pin.AF_OD</span></code> ，AF可为与引脚相关联的一个替代函数的索引或名称。</p>
+</li>
+</ul>
+</div></blockquote>
+<p>返回: <code class="docutils literal"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Pin.value">
+<code class="descclassname">Pin.</code><code class="descname">value</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.value" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置引脚的数字逻辑级别:</p>
+<blockquote>
+<div><ul class="simple">
+<li>若无参数，返回0或1取决于引脚的逻辑级别。</li>
+<li>给定 <code class="docutils literal"><span class="pre">value</span></code> ，设置引脚的逻辑级别。 <code class="docutils literal"><span class="pre">value</span></code> 可为任何可转换成布尔值的值。若转换为 <code class="docutils literal"><span class="pre">True</span></code> ，引脚设置为高；否则设置为低。</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Pin.__str__">
+<code class="descclassname">Pin.</code><code class="descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.__str__" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个描述引脚对象的字符串。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Pin.af">
+<code class="descclassname">Pin.</code><code class="descname">af</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.af" title="永久链接至目标">¶</a></dt>
+<dd><p>返回引脚当前配置的替代函数。返回的整数将与用于初始化函数的AF参数的允许常量之一相匹配。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Pin.af_list">
+<code class="descclassname">Pin.</code><code class="descname">af_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.af_list" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns an array of alternate functions available for this pin.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Pin.gpio">
+<code class="descclassname">Pin.</code><code class="descname">gpio</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.gpio" title="永久链接至目标">¶</a></dt>
+<dd><p>返回与这一引脚相关联的GPIO数据块的基地址。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Pin.mode">
+<code class="descclassname">Pin.</code><code class="descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.mode" title="永久链接至目标">¶</a></dt>
+<dd><p>返回引脚的当前配置模式。返回的整数将与将与用于初始化函数的模式参数的允许常量之一相匹配。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Pin.name">
+<code class="descclassname">Pin.</code><code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.name" title="永久链接至目标">¶</a></dt>
+<dd><p>获取引脚名称。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Pin.names">
+<code class="descclassname">Pin.</code><code class="descname">names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.names" title="永久链接至目标">¶</a></dt>
+<dd><p>返回用于该引脚的CPU和插件名称。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Pin.pin">
+<code class="descclassname">Pin.</code><code class="descname">pin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.pin" title="永久链接至目标">¶</a></dt>
+<dd><p>获取引脚数量。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Pin.port">
+<code class="descclassname">Pin.</code><code class="descname">port</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.port" title="永久链接至目标">¶</a></dt>
+<dd><p>获取引脚端口。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Pin.pull">
+<code class="descclassname">Pin.</code><code class="descname">pull</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Pin.pull" title="永久链接至目标">¶</a></dt>
+<dd><p>返回引脚当前配置的pull。返回的整数将与将与用于初始化函数的pull参数的允许常量之一相匹配。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>常量<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="pyb.Pin.AF_OD">
+<code class="descclassname">Pin.</code><code class="descname">AF_OD</code><a class="headerlink" href="#pyb.Pin.AF_OD" title="永久链接至目标">¶</a></dt>
+<dd><p>使用开漏驱动来将引脚初始化为替换函数模式。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.Pin.AF_PP">
+<code class="descclassname">Pin.</code><code class="descname">AF_PP</code><a class="headerlink" href="#pyb.Pin.AF_PP" title="永久链接至目标">¶</a></dt>
+<dd><p>使用推拉驱动来将引脚初始化为替换函数模式。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.Pin.ANALOG">
+<code class="descclassname">Pin.</code><code class="descname">ANALOG</code><a class="headerlink" href="#pyb.Pin.ANALOG" title="永久链接至目标">¶</a></dt>
+<dd><p>将引脚初始化为虚拟模式。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.Pin.IN">
+<code class="descclassname">Pin.</code><code class="descname">IN</code><a class="headerlink" href="#pyb.Pin.IN" title="永久链接至目标">¶</a></dt>
+<dd><p>将引脚初始化为输入模式。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.Pin.OUT_OD">
+<code class="descclassname">Pin.</code><code class="descname">OUT_OD</code><a class="headerlink" href="#pyb.Pin.OUT_OD" title="永久链接至目标">¶</a></dt>
+<dd><p>使用开漏驱动将引脚初始化为输出模式。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.Pin.OUT_PP">
+<code class="descclassname">Pin.</code><code class="descname">OUT_PP</code><a class="headerlink" href="#pyb.Pin.OUT_PP" title="永久链接至目标">¶</a></dt>
+<dd><p>使用推拉驱动将引脚初始化为输出模式。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.Pin.PULL_DOWN">
+<code class="descclassname">Pin.</code><code class="descname">PULL_DOWN</code><a class="headerlink" href="#pyb.Pin.PULL_DOWN" title="永久链接至目标">¶</a></dt>
+<dd><p>在引脚上启用下拉电阻。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.Pin.PULL_NONE">
+<code class="descclassname">Pin.</code><code class="descname">PULL_NONE</code><a class="headerlink" href="#pyb.Pin.PULL_NONE" title="永久链接至目标">¶</a></dt>
+<dd><p>请勿在引脚上启用任何上拉或下拉电阻。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.Pin.PULL_UP">
+<code class="descclassname">Pin.</code><code class="descname">PULL_UP</code><a class="headerlink" href="#pyb.Pin.PULL_UP" title="永久链接至目标">¶</a></dt>
+<dd><p>在引脚上启用上拉电阻。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="class-pinaf">
+<h1>class PinAF – 引脚替代函数<a class="headerlink" href="#class-pinaf" title="永久链接至标题">¶</a></h1>
+<p>引脚意为微处理器上的物理引脚。每个引脚都可有一系列函数（GPIO、I2C SDA等）。每个AF引脚对象都代表一个引脚的特定函数。</p>
+<p>用法示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">x3</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X3</span>
+<span class="n">x3_af</span> <span class="o">=</span> <span class="n">x3</span><span class="o">.</span><span class="n">af_list</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>现在x3_af将包含一个在X3引脚上可用的AF引脚对象的数组。</p>
+<dl class="docutils">
+<dt>对于pyboard，x3_af包含:</dt>
+<dd>[Pin.AF1_TIM2, Pin.AF2_TIM5, Pin.AF3_TIM9, Pin.AF7_USART2]</dd>
+</dl>
+<p>通常情况下，每个外设都会自动配置af，但有时统一函数在多个引脚上可用，且需要更多控制。</p>
+<p>配置X3以显示TIM2_CH3，您可使用:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pin</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X3</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">AF_PP</span><span class="p">,</span> <span class="n">af</span><span class="o">=</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">AF1_TIM2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>或:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pin</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X3</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">AF_PP</span><span class="p">,</span> <span class="n">af</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id4">
+<h2>方法<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="pyb.pinaf.__str__">
+<code class="descclassname">pinaf.</code><code class="descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pinaf.__str__" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个描述替代函数的字符串。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.pinaf.index">
+<code class="descclassname">pinaf.</code><code class="descname">index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pinaf.index" title="永久链接至目标">¶</a></dt>
+<dd><p>返回替代函数索引。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.pinaf.name">
+<code class="descclassname">pinaf.</code><code class="descname">name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pinaf.name" title="永久链接至目标">¶</a></dt>
+<dd><p>返回替代函数的名称。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.pinaf.reg">
+<code class="descclassname">pinaf.</code><code class="descname">reg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pinaf.reg" title="永久链接至目标">¶</a></dt>
+<dd><p>返回与分配给此替代函数的外设相关的基址寄存器。例如，若替代函数为TIM2_CH3，则将返回stm.TIM2。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.RTC.html" class="btn btn-neutral float-right" title="class RTC – 实时时钟" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyb.LED.html" class="btn btn-neutral" title="LED类 – LED对象" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

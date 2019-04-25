@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 运行您的首个脚本 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../../index.html"/>
+        <link rel="up" title="pyboard的MicroPython教程" href="index.html"/>
+        <link rel="next" title="3. 进入一个MicroPython REPL命令行" href="repl.html"/>
+        <link rel="prev" title="1. pyboard 介绍" href="intro.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">pyboard基本信息</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">pyboard的MicroPython教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">1. pyboard 介绍</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. 运行您的首个脚本</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyboard">2.1. 连接您的pyboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyboard-usb">2.2. 打开pyboard USB驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.3. 编辑 <code class="docutils literal"><span class="pre">main.py</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.4. 重启 pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="repl.html">3. 进入一个MicroPython REPL命令行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leds.html">4. 点亮LED和基本Python概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">5. 切换、回调和中断</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accel.html">6. 加速度计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reset.html">7. 安全模式和恢复出厂设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb_mouse.html">8. 将pyboard用作USB鼠标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timer.html">9. 定时器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assembler.html">10. 内联汇编</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_ctrl.html">11. 电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id1">需要额外的配件的教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">需要知道小技巧</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">pyboard的MicroPython教程</a> &raquo;</li>
+        
+      <li>2. 运行您的首个脚本</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pyboard/tutorial/script.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. 运行您的首个脚本<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>不做赘述，我们于此开始在pyboard上运行Python脚本！</p>
+<div class="section" id="pyboard">
+<h2>2.1. 连接您的pyboard<a class="headerlink" href="#pyboard" title="永久链接至标题">¶</a></h2>
+<p>使用数据线将pyboard连接到您的个人电脑（Windows、Mac或Linux）。数据线连接的方式只有一种，所以你肯定不会出错。</p>
+<img alt="../../_images/pyboard_usb_micro.jpg" src="../../_images/pyboard_usb_micro.jpg" />
+<p>当pyboard连接到您的个人电脑时，将立即通电并进入启动过程。绿色LED将会点亮半秒钟（或更短时间），LED熄灭即表示启动过程结束。</p>
+</div>
+<div class="section" id="pyboard-usb">
+<h2>2.2. 打开pyboard USB驱动<a class="headerlink" href="#pyboard-usb" title="永久链接至标题">¶</a></h2>
+<p>您的个人电脑现在应识别到pyboard。下一步取决于您的个人电脑的类型：</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>Windows</strong>: 您的pyboard 将呈现为可移动的USB闪存驱动器。Windows将自动弹出一个窗口，或者您可能需要使用文件管理器进行这一步。</p>
+<p>Windows也会把pyboard视为一个串行设备，并会尝试自动配置该设备。若配置成功，则取消此步骤。我们将在下面的教程中运行此串行设备。</p>
+</li>
+<li><p class="first"><strong>Mac</strong>: 您的pyboard将在桌面上显示为可移动磁盘。也可能会显示为 “NONAME”。点击打开pyboard文件夹。Y</p>
+</li>
+<li><p class="first"><strong>Linux</strong>: 您的pyboard将会显示为可移动介质。在Ubuntu 上，将会自动安装并弹出一个带有pyboard文件夹的窗口。
+在其他Linux发行版中，pyboard可能会自动安装，也可能需要您手动安装。
+在终端命令行中输入 <code class="docutils literal"><span class="pre">lsblk</span></code> 即可看到连接的驱动的列表
+和 <code class="docutils literal"><span class="pre">mount</span> <span class="pre">/dev/sdb1</span></code> （使用适当的设备代替 <code class="docutils literal"><span class="pre">sdb1</span></code>）。您可能需要以root身份来完成这一步骤。</p>
+</li>
+</ul>
+</div></blockquote>
+<p>现在您应该已将pyboard（以USB闪存驱动器的形式）连接到个人电脑了，且有一个显示pyboard驱动上的文件的窗口（或命令行）。</p>
+<p>你所看到的驱动器即为pyboard所称的 <code class="docutils literal"><span class="pre">/flash</span></code> ，且此驱动应包含4个文件：</p>
+<ul class="simple">
+<li><a class="reference external" href="http://micropython.org/resources/fresh-pyboard/boot.py">boot.py</a> – 此脚本在pyboard启动时运行。其为pyboard设置了多种配置选项。</li>
+<li><a class="reference external" href="http://micropython.org/resources/fresh-pyboard/main.py">main.py</a> – 这里面是您的Python的主程序。其在boot.py后执行。</li>
+<li><a class="reference external" href="http://micropython.org/resources/fresh-pyboard/README.txt">README.txt</a> – 此文件包含一些启动pyboard的基本信息。</li>
+<li><a class="reference external" href="http://micropython.org/resources/fresh-pyboard/pybcdc.inf">pybcdc.inf</a> – 此为配置串行USB的Windows驱动文件。更多信息请查阅下一教程。</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>2.3. 编辑 <code class="docutils literal"><span class="pre">main.py</span></code><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>现在我们开始编写Python程序了，在文本编辑器中打开main.py文件。在Windows中您可使用记事本或其他编辑器。
+在Mac和Linux中，您可使用您最喜欢的文本编辑器。文件打开后，您将看到其中包含一行：</p>
+<blockquote>
+<div># main.py – put your code here!</div></blockquote>
+<p>这一行以#字符开始，表示 <em>注释</em>。这种行不会执行程序，您可在这里写下关于程序的注释。</p>
+<p>向此 <code class="docutils literal"><span class="pre">main.py</span></code> 文件中添加2行，使其形如下:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># main.py -- put your code here!</span>
+<span class="kn">import</span> <span class="nn">pyb</span>
+<span class="n">pyb</span><span class="o">.</span><span class="n">LED</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>添加的第一行表示我们想要使用 <code class="docutils literal"><span class="pre">pyb</span></code> 模块。此模块包括所有控制pyboard特性的函数和类。</p>
+<p>添加的第二行点亮蓝色LED：首先从pyb模块中获取 <a href="#id3"><span class="problematic" id="id4">``</span></a>LED``类，创建LED数字4,（蓝色LED），然后将其点亮。</p>
+</div>
+<div class="section" id="id5">
+<h2>2.4. 重启 pyboard<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>运行此小脚本，您需首先保存并关闭 <code class="docutils literal"><span class="pre">main.py</span></code> 文件，然后弹出（或卸载）pyboard USB驱动。
+进行此步骤时，可将其作为普通的USB闪存驱动器。</p>
+<p>驱动安全弹出（或卸载）后，就是最有趣的部分了：按下pyboard上的RST按键来重启和运行脚本。
+RST开关是板上USB接口下面位于右边边缘的黑色小按键。</p>
+<p>当您按下RST键，绿色LED将会快速闪烁，然后蓝色LED应亮起不灭。</p>
+<p>祝贺您！您已成功编写并运行您的首个MicroPython程序！</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="repl.html" class="btn btn-neutral float-right" title="3. 进入一个MicroPython REPL命令行" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="1. pyboard 介绍" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

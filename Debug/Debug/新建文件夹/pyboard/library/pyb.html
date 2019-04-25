@@ -1,0 +1,583 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyb — 板级功能 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="MicroPython 函数库" href="index.html"/>
+        <link rel="next" title="class Accel – 加速计控制" href="pyb.Accel.html"/>
+        <link rel="prev" title="uctypes – 以结构化的方式访问二进制数据" href="uctypes.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">电源相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">其他功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lcd160cr.html"><code class="docutils literal"><span class="pre">lcd160cr</span></code> — 控制LCD160CR显示屏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/pyb.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyb">
+<span id="pyb"></span><h1><a class="reference internal" href="#module-pyb" title="pyb: 板级功能"><code class="xref py py-mod docutils literal"><span class="pre">pyb</span></code></a> — 板级功能<a class="headerlink" href="#module-pyb" title="永久链接至标题">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">pyb</span></code> 模块包含与插件相关的特定函数。</p>
+<div class="section" id="id1">
+<h2>时间相关函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="pyb.delay">
+<code class="descclassname">pyb.</code><code class="descname">delay</code><span class="sig-paren">(</span><em>ms</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.delay" title="永久链接至目标">¶</a></dt>
+<dd><p>延迟给定的毫秒数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.udelay">
+<code class="descclassname">pyb.</code><code class="descname">udelay</code><span class="sig-paren">(</span><em>us</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.udelay" title="永久链接至目标">¶</a></dt>
+<dd><p>延迟给定的微秒数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.millis">
+<code class="descclassname">pyb.</code><code class="descname">millis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.millis" title="永久链接至目标">¶</a></dt>
+<dd><p>插件重置后，返回毫秒数。</p>
+<p>结果通常是一个Micropython小整数(31位有号数)，因此在2^30毫秒(约12.4天)后，这一数值将开始返回负数。</p>
+<p>注意：若 <a class="reference internal" href="#pyb.stop" title="pyb.stop"><code class="xref any py py-func docutils literal"><span class="pre">pyb.stop()</span></code></a> 发布，支持该功能的硬件计数器将在休眠状态期间暂停。这将影响 <a class="reference internal" href="#pyb.elapsed_millis" title="pyb.elapsed_millis"><code class="xref any py py-func docutils literal"><span class="pre">pyb.elapsed_millis()</span></code></a> 的结果。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.micros">
+<code class="descclassname">pyb.</code><code class="descname">micros</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.micros" title="永久链接至目标">¶</a></dt>
+<dd><p>插件重置后，返回微秒数。</p>
+<p>结果通常是一个Micropython小整数(31位有号数)，因此在2^30微秒(约17.8分钟)后，这一数值将开始返回负数。</p>
+<p>注意：若 <a class="reference internal" href="#pyb.stop" title="pyb.stop"><code class="xref any py py-func docutils literal"><span class="pre">pyb.stop()</span></code></a> 发布，支持该功能的硬件计数器将在休眠状态期间暂停。这将影响 <a class="reference internal" href="#pyb.elapsed_micros" title="pyb.elapsed_micros"><code class="xref any py py-func docutils literal"><span class="pre">pyb.elapsed_micros()</span></code></a> 的结果。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.elapsed_millis">
+<code class="descclassname">pyb.</code><code class="descname">elapsed_millis</code><span class="sig-paren">(</span><em>start</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.elapsed_millis" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">start</span></code> 后消耗的毫秒数。
+这个函数负责计数器换行，且总是返回一个正数。也就是说，该函数可用来测量长约12.4天的周期。</p>
+<p>例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">millis</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">pyb</span><span class="o">.</span><span class="n">elapsed_millis</span><span class="p">(</span><span class="n">start</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+    <span class="c1"># Perform some operation</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.elapsed_micros">
+<code class="descclassname">pyb.</code><code class="descname">elapsed_micros</code><span class="sig-paren">(</span><em>start</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.elapsed_micros" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">start</span></code> 后消耗的微秒数。</p>
+<p>这个函数负责计数器换行，且总是返回一个正数。也就是说，该函数可用来测量长约17.8分钟的周期。</p>
+<p>例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">micros</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">pyb</span><span class="o">.</span><span class="n">elapsed_micros</span><span class="p">(</span><span class="n">start</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+    <span class="c1"># Perform some operation</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>复位相关的函数<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="pyb.hard_reset">
+<code class="descclassname">pyb.</code><code class="descname">hard_reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.hard_reset" title="永久链接至目标">¶</a></dt>
+<dd><p>以类似于按下外部RESET按钮的方式重置pyboard或OpenMV Cam。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.bootloader">
+<code class="descclassname">pyb.</code><code class="descname">bootloader</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.bootloader" title="永久链接至目标">¶</a></dt>
+<dd><p>在不使用BOO T*引脚的情况下激活引导加载程序。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.fault_debug">
+<code class="descclassname">pyb.</code><code class="descname">fault_debug</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.fault_debug" title="永久链接至目标">¶</a></dt>
+<dd><p>启用或禁用硬故障调试。硬故障即发生在底层系统中的严重错误，例如内存访问失效。</p>
+<p>若value参数为 <code class="docutils literal"><span class="pre">False</span></code> ，则板子会在出现硬故障时自动重设。</p>
+<p>若value参数为 <code class="docutils literal"><span class="pre">True</span></code> ，板子出现硬故障时，则将打印寄存器和堆栈追踪，并无限循环LED。</p>
+<p>禁用默认值，即自动重设。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>中断相关的函数<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="pyb.disable_irq">
+<code class="descclassname">pyb.</code><code class="descname">disable_irq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.disable_irq" title="永久链接至目标">¶</a></dt>
+<dd><p>禁用中断请求。返回先前的IRQ状态： <code class="docutils literal"><span class="pre">False</span></code> / <code class="docutils literal"><span class="pre">True</span></code> （分别为禁用/启用IRQs）。这个返回值可被传递，以启用IRQ，使IRQ返回初始状态。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.enable_irq">
+<code class="descclassname">pyb.</code><code class="descname">enable_irq</code><span class="sig-paren">(</span><em>state=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.enable_irq" title="永久链接至目标">¶</a></dt>
+<dd><p>启用中断请求。若 <code class="docutils literal"><span class="pre">state</span></code> 为 <code class="docutils literal"><span class="pre">True``（默认值），则启用IRQ。该函数的最广泛应用为传递由</span> <span class="pre">``disable_irq</span></code>&nbsp;返回的值，以退出临界区。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h2>电源相关函数<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="pyb.freq">
+<code class="descclassname">pyb.</code><code class="descname">freq</code><span class="sig-paren">(</span><span class="optional">[</span><em>sysclk</em><span class="optional">[</span>, <em>hclk</em><span class="optional">[</span>, <em>pclk1</em><span class="optional">[</span>, <em>pclk2</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.freq" title="永久链接至目标">¶</a></dt>
+<dd><p>若未给出参数，则返回一个时钟脉冲频率元组：(sysclk, hclk, pclk1, pclk2)。这些对应:</p>
+<blockquote>
+<div><ul class="simple">
+<li>sysclk: CPU频率</li>
+<li>hclk: AHB总线、核心存储器和DMA的频率</li>
+<li>pclk1: APB1总线频率</li>
+<li>pclk2: APB2总线频率</li>
+</ul>
+</div></blockquote>
+<p>若给定任何参数，则该函数将设置CPU频率；若给出额外参数，则将设置总线。频率单位为赫兹。例：freq(120000000)即设置sysclk（CPU频率）为120MHz。注意：并非支持所有数值，小于或等于给定数值的最大支持频率会被选中。</p>
+<p>支持的sysclk频率为（单位：赫兹）：8, 16, 24, 30, 32, 36, 40, 42, 48, 54, 56, 60, 64, 72, 84, 96, 108, 120, 144, 168。</p>
+<p>Hclk的最大频率为168MHz，其中pclk1为42MHz ，pclk2为84MHz。请勿设置高于该值的频率。</p>
+<p>Hclk、pclk1和pclk2的频率使用预分频器从sysclk频率中获取。支持Hclk的预分频器为：1, 2, 4, 8, 16, 64, 128, 256, 512。支持pclk1和pclk2的预分频器为：1, 2, 4, 8。将选择一个预标量来匹配所请求的频率。</p>
+<p>8MHz的sysclk频率直接使用HSE(外部晶振)，16MHZ直接使用 HSI(内震荡器)。更高频率使用HSE来启动(锁相环路)，以使用PLL的输出</p>
+<p>注意：若您在启用USB时改变频率，USB可能受到损坏。最好在USB设备启动前，在boot.py中改变频率。在低于36MHz的sysclk频率下，USB无法正常工作。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.wfi">
+<code class="descclassname">pyb.</code><code class="descname">wfi</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.wfi" title="永久链接至目标">¶</a></dt>
+<dd><p>等待内部或外部中断。</p>
+<p>此处执行 <code class="docutils literal"><span class="pre">wfi</span></code> 指令，在任何中断（无论是内部或外部）出现前，该指令将减低MCU的能耗。此时将继续执行该指令。注意：系统节拍每毫秒（1000Hz）中断一次，因此该功能的停滞最长可达1毫秒。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.stop">
+<code class="descclassname">pyb.</code><code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.stop" title="永久链接至目标">¶</a></dt>
+<dd><p>将Pyboard或OpenMV Cam设置在睡眠状态。</p>
+<p>该设置将能耗降低到500uA以下。退出睡眠状态需外部中断或实时闹钟。退出睡眠状态后，系统将继续完成因睡眠而中止的任务。</p>
+<p>见 <code class="xref py py-meth docutils literal"><span class="pre">rtc.wakeup()</span></code> 配置一个实时时钟唤醒事件。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.standby">
+<code class="descclassname">pyb.</code><code class="descname">standby</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.standby" title="永久链接至目标">¶</a></dt>
+<dd><p>将Pyboard或OpenMV Cam设置在深度睡眠状态。</p>
+<p>该设置将能耗降低到50uA以下。退出睡眠状态需实时闹钟或在X1/X18的外部中断。退出睡眠状态后，系统进行硬复位。</p>
+<p>见 <code class="xref py py-meth docutils literal"><span class="pre">rtc.wakeup()</span></code> 配置一个实时时钟唤醒事件。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h2>其他功能<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="pyb.have_cdc">
+<code class="descclassname">pyb.</code><code class="descname">have_cdc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.have_cdc" title="永久链接至目标">¶</a></dt>
+<dd><p>如果USB作为串行设备连接，则返回True，否则返回False。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">此功能已弃用。使用pyb.USB_VCP().isconnected()来代替。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.hid">
+<code class="descclassname">pyb.</code><code class="descname">hid</code><span class="sig-paren">(</span><em>(buttons</em>, <em>x</em>, <em>y</em>, <em>z)</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.hid" title="永久链接至目标">¶</a></dt>
+<dd><p>采用4元组（或列表）并将其发送到USB主机（PC）以发出HID鼠标移动事件的信号。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">此功能已弃用。使用 <a class="reference internal" href="pyb.USB_HID.html#pyb.USB_HID.send" title="pyb.USB_HID.send"><code class="xref py py-meth docutils literal"><span class="pre">pyb.USB_HID.send()</span></code></a> 来代替。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.info">
+<code class="descclassname">pyb.</code><code class="descname">info</code><span class="sig-paren">(</span><span class="optional">[</span><em>dump_alloc_table</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.info" title="永久链接至目标">¶</a></dt>
+<dd><p>打印插件信息。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.main">
+<code class="descclassname">pyb.</code><code class="descname">main</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.main" title="永久链接至目标">¶</a></dt>
+<dd><p>设置boot.py完成后要运行的主脚本的文件名。如果未调用此函数，则将执行默认文件main.py。</p>
+<p>只有在boot.py中调用这个函数才有意义。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.mount">
+<code class="descclassname">pyb.</code><code class="descname">mount</code><span class="sig-paren">(</span><em>device</em>, <em>mountpoint</em>, <em>*</em>, <em>readonly=False</em>, <em>mkfs=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.mount" title="永久链接至目标">¶</a></dt>
+<dd><p>挂载一个块设备并使其作为文件系统的一部分运行。 <code class="docutils literal"><span class="pre">device</span></code> 须为一个提供块协议的对象：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">readblocks(self,</span> <span class="pre">blocknum,</span> <span class="pre">buf)</span></code></li>
+<li><code class="docutils literal"><span class="pre">writeblocks(self,</span> <span class="pre">blocknum,</span> <span class="pre">buf)</span></code> &nbsp;(任选)</li>
+<li><code class="docutils literal"><span class="pre">count(self)</span></code></li>
+<li><code class="docutils literal"><span class="pre">sync(self)</span></code> &nbsp;(任选)</li>
+</ul>
+</div></blockquote>
+<p><code class="docutils literal"><span class="pre">readblocks</span></code> 和 <code class="docutils literal"><span class="pre">writeblocks</span></code>&nbsp;应从设备上的块数量 <code class="docutils literal"><span class="pre">blocknum</span></code> 开始，
+在 <code class="docutils literal"><span class="pre">buf</span></code> 和块设备之间复制数据。 <code class="docutils literal"><span class="pre">buf</span></code> 为一个长度为512的字节数组。
+若 <code class="docutils literal"><span class="pre">writeblocks</span></code> 未定义，则设备为只读的。这两个函数的返回值被忽略。</p>
+<p><code class="docutils literal"><span class="pre">count</span></code> 应返回设备上可用的块数。 <code class="docutils literal"><span class="pre">Sync</span></code> 若运行，应同步设备上的数据。</p>
+<p>参数 <code class="docutils literal"><span class="pre">mountpoint</span></code>&nbsp;是在文件系统的根目录下安装设备的位置。该参数应以斜杠开始。</p>
+<p>若 <code class="docutils literal"><span class="pre">readonly</span></code> 为 <code class="docutils literal"><span class="pre">True</span></code>，则设备为只读，否则为可读写。</p>
+<p>若 <code class="docutils literal"><span class="pre">mkfs</span></code> 为 <code class="docutils literal"><span class="pre">True</span></code> ，且尚不存在文件系统，则会创建一个新文件系统。</p>
+<p>卸载设备，只需将设备设置为 <code class="docutils literal"><span class="pre">None</span></code> ，并将挂载位置设置为 <code class="docutils literal"><span class="pre">mountpoint</span></code> 。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.repl_uart">
+<code class="descclassname">pyb.</code><code class="descname">repl_uart</code><span class="sig-paren">(</span><em>uart</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.repl_uart" title="永久链接至目标">¶</a></dt>
+<dd><p>在REPL重复之处，获取或设置UART对象。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.rng">
+<code class="descclassname">pyb.</code><code class="descname">rng</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.rng" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个硬件产生的30位随机数值。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.sync">
+<code class="descclassname">pyb.</code><code class="descname">sync</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.sync" title="永久链接至目标">¶</a></dt>
+<dd><p>同步所有文件系统。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.unique_id">
+<code class="descclassname">pyb.</code><code class="descname">unique_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.unique_id" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个12字节的字符串（96位），即MCU的唯一ID。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyb.usb_mode">
+<code class="descclassname">pyb.</code><code class="descname">usb_mode</code><span class="sig-paren">(</span><span class="optional">[</span><em>modestr</em>, <span class="optional">]</span><em>vid=0xf055</em>, <em>pid=0x9801</em>, <em>hid=pyb.hid_mouse</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.usb_mode" title="永久链接至目标">¶</a></dt>
+<dd><p>若无参数调用，则作为字符串返回当前USB。</p>
+<p>若使用给定 <code class="docutils literal"><span class="pre">modestr</span></code> 调用，则尝试设置USB模式。仅在调用pyb.main()前从 <code class="docutils literal"><span class="pre">boot.py</span></code> 中调用才可实现。以下的 <code class="docutils literal"><span class="pre">modestr</span></code> 值被理解:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">None</span></code>: 禁用USB</li>
+<li><code class="docutils literal"><span class="pre">'VCP'</span></code>: 使用VCP接口启用（虚拟COM端口）</li>
+<li><code class="docutils literal"><span class="pre">'VCP+MSC'</span></code>: 使用VCP和MSC启用（大容量存储设备类）</li>
+<li><code class="docutils literal"><span class="pre">'VCP+HID'</span></code>: 使用VCP和HID启用（人工接口设备）</li>
+</ul>
+<p>为实现向后兼容， <code class="docutils literal"><span class="pre">'CDC'</span></code> 理解为
+<code class="docutils literal"><span class="pre">'VCP'</span></code> (对于 <code class="docutils literal"><span class="pre">'CDC+MSC'</span></code> 和 <code class="docutils literal"><span class="pre">'CDC+HID'</span></code> 也是类似的).</p>
+<p><code class="docutils literal"><span class="pre">vid</span></code> 和 <code class="docutils literal"><span class="pre">pid</span></code>&nbsp;参数允许您指定VID（供应商id）和PID（产品id）。</p>
+<p>若启用HID模式，您可能也需要通过传递 <code class="docutils literal"><span class="pre">hid</span></code> 关键参数来指定HID的具体细节。
+其需要一个（子类、协议、最大数据包长度、轮询间隔、报告描述符）的元组。默认情况下，其将为USB鼠标设置适当值。
+<code class="docutils literal"><span class="pre">pyb.hid_keyboard</span></code> 常量为USB键盘的适当元组。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id6">
+<h2>类<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyb.Accel.html">class Accel – 加速计控制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.ADC.html">ADC类 – 模数转换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.CAN.html">CAN类 –控制器区域网络通信总线</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.DAC.html">DAC类 – 数字模拟变换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.ExtInt.html">ExtInt类 – 配置I/O引脚以中断外部事件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.I2C.html">I2C类 – 二线串行协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.LCD.html">class LCD – 用于控制 带触摸传感器的lcd模块</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.LED.html">LED类 – LED对象</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.Pin.html">Pin类 – 控制I/O 引脚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.Pin.html#class-pinaf">class PinAF – 引脚替代函数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.RTC.html">class RTC – 实时时钟</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.Servo.html">Servo类 –三线hobby舵机驱动</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.SPI.html">SPI类 – 串行外设接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.Switch.html">class Switch – 开关对象</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.Timer.html">Timer类 – 控制内部定时器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.Timer.html#timerchannel">TimerChannel类 — 为定时器建立一个通道</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.UART.html">UART类 – 双向串行通信总线</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.USB_HID.html">class USB_HID – USB 人机接口设备 (HID)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyb.USB_VCP.html">USB_VCP 类– USB 虚拟通讯端口</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.Accel.html" class="btn btn-neutral float-right" title="class Accel – 加速计控制" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="uctypes.html" class="btn btn-neutral" title="uctypes – 以结构化的方式访问二进制数据" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

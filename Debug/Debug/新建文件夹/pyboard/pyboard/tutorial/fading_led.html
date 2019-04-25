@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. LED亮度渐变 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../../index.html"/>
+        <link rel="up" title="pyboard的MicroPython教程" href="index.html"/>
+        <link rel="next" title="3. LCD和触摸传感器" href="lcd_skin.html"/>
+        <link rel="prev" title="1. 控制hobby伺服电机" href="servo.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">pyboard基本信息</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">pyboard的MicroPython教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">1. pyboard 介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script.html">2. 运行您的首个脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repl.html">3. 进入一个MicroPython REPL命令行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leds.html">4. 点亮LED和基本Python概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">5. 切换、回调和中断</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accel.html">6. 加速度计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reset.html">7. 安全模式和恢复出厂设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb_mouse.html">8. 将pyboard用作USB鼠标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timer.html">9. 定时器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assembler.html">10. 内联汇编</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_ctrl.html">11. 电源管理</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id1">需要额外的配件的教程</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="servo.html">1. 控制hobby伺服电机</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2. LED亮度渐变</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">2.1. 元件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">2.2. 连线</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">2.3. 代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">2.4. 呼吸灯效果</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">2.5. 高级练习</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">2.6. 附录</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lcd_skin.html">3. LCD和触摸传感器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="amp_skin.html">4. AMP音频面板</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lcd160cr_skin.html">5. LCD160CR面板</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">需要知道小技巧</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">pyboard的MicroPython教程</a> &raquo;</li>
+        
+      <li>2. LED亮度渐变</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pyboard/tutorial/fading_led.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="led">
+<h1>2. LED亮度渐变<a class="headerlink" href="#led" title="永久链接至标题">¶</a></h1>
+<p>除开关LED外，也可使用 <a class="reference external" href="http://en.wikipedia.org/wiki/Pulse-width_modulation">Pulse-Width Modulation (PWM)</a>,
+控制LED的亮度，此为从数字引脚中获取输出变量的常用方法。运用此方法，我们可实现LED的亮度渐变:</p>
+<img alt="http://upload.wikimedia.org/wikipedia/commons/a/a9/Fade.gif" src="http://upload.wikimedia.org/wikipedia/commons/a/a9/Fade.gif" />
+<div class="section" id="id1">
+<h2>2.1. 元件<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>您需要:</p>
+<ul class="simple">
+<li>标准5或3mm的LED</li>
+<li>100 Ohm 电阻</li>
+<li>多条电线</li>
+<li><a class="reference external" href="http://en.wikipedia.org/wiki/Breadboard">面包板</a> (选用，但可方便工作)</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>2.2. 连线<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>此教程中我们将使用引脚 <code class="docutils literal"><span class="pre">X1</span></code> 。将电阻的一端连接到 <code class="docutils literal"><span class="pre">X1</span></code> ，另一端连接到LED的正极（即较长脚）。将LED的负极连接到地线。</p>
+<img alt="../../_images/fading_leds_breadboard_fritzing.png" src="../../_images/fading_leds_breadboard_fritzing.png" />
+</div>
+<div class="section" id="id4">
+<h2>2.3. 代码<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>查看 <a class="reference internal" href="../quickref.html#quickref"><span class="std std-ref">pyboard快速参考</span></a>, 我们即可发现 <code class="docutils literal"><span class="pre">X1</span></code> 连接到定时器5（ <code class="docutils literal"><span class="pre">TIM5&nbsp;CH1</span></code> ）的通道1。
+因此我们将创建一个用于定时器5的 <code class="docutils literal"><span class="pre">Timer</span></code> 对象，然后创建一个用于通道1的 <code class="docutils literal"><span class="pre">TimerChannel</span></code> 对象:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">Timer</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">sleep</span>
+
+<span class="c1"># timer 5 will be created with a frequency of 100 Hz 定时器将以100Hz的频率创建</span>
+<span class="n">tim</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">tchannel</span> <span class="o">=</span> <span class="n">tim</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Timer</span><span class="o">.</span><span class="n">PWM</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X1</span><span class="p">,</span> <span class="n">pulse_width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>脉宽调制（PWM）中的LED的亮度由更改脉宽来控制，即为LED在每个循环中所占的时间。
+定时器频率为100Hz时，每个循环耗时0.01秒（10毫秒）。</p>
+<p>实现本教程开始时展示的渐变效果，我们需将脉宽设置为一个较小值，然后慢慢增加脉宽来点亮LED，在到达最大亮度后重新开始:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># maximum and minimum pulse-width, which corresponds to maximum</span>
+<span class="c1"># and minimum brightness 与最大和最小亮度对应的最大和最小脉宽</span>
+<span class="n">max_width</span> <span class="o">=</span> <span class="mi">200000</span>
+<span class="n">min_width</span> <span class="o">=</span> <span class="mi">20000</span>
+
+<span class="c1"># how much to change the pulse-width by each step 每一步骤对脉宽改变的幅度</span>
+<span class="n">wstep</span> <span class="o">=</span> <span class="mi">1500</span>
+<span class="n">cur_width</span> <span class="o">=</span> <span class="n">min_width</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+  <span class="n">tchannel</span><span class="o">.</span><span class="n">pulse_width</span><span class="p">(</span><span class="n">cur_width</span><span class="p">)</span>
+
+  <span class="c1"># this determines how often we change the pulse-width. It is</span>
+  <span class="c1"># analogous to frames-per-second 此处决定我们改变脉宽的频率，类似于每秒帧数</span>
+  <span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+
+  <span class="n">cur_width</span> <span class="o">+=</span> <span class="n">wstep</span>
+
+  <span class="k">if</span> <span class="n">cur_width</span> <span class="o">&gt;</span> <span class="n">max_width</span><span class="p">:</span>
+    <span class="n">cur_width</span> <span class="o">=</span> <span class="n">min_width</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>2.4. 呼吸灯效果<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>若我们想要实现呼吸灯效果，即LED亮度由暗到亮再由亮到暗的变化，我们只需在到达最大亮度后反转 <code class="docutils literal"><span class="pre">wstep</span></code> 的信号，
+并在到达最小亮度时在此反转。因此我们将 <code class="docutils literal"><span class="pre">while</span></code> 循环更改为:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+  <span class="n">tchannel</span><span class="o">.</span><span class="n">pulse_width</span><span class="p">(</span><span class="n">cur_width</span><span class="p">)</span>
+
+  <span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+
+  <span class="n">cur_width</span> <span class="o">+=</span> <span class="n">wstep</span>
+
+  <span class="k">if</span> <span class="n">cur_width</span> <span class="o">&gt;</span> <span class="n">max_width</span><span class="p">:</span>
+    <span class="n">cur_width</span> <span class="o">=</span> <span class="n">max_width</span>
+    <span class="n">wstep</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+  <span class="k">elif</span> <span class="n">cur_width</span> <span class="o">&lt;</span> <span class="n">min_width</span><span class="p">:</span>
+    <span class="n">cur_width</span> <span class="o">=</span> <span class="n">min_width</span>
+    <span class="n">wstep</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>2.5. 高级练习<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>您可能已经注意到LED亮度变暗的速度较慢，但是亮度增加的速度很快。这一是因为我们的眼睛对亮度的反应呈对数形式 (<a class="reference external" href="http://www.telescope-optics.net/eye_intensity_response.htm">Weber’s Law</a>
+)，当LED的亮度呈线性改变时，即相同时长中改变的幅度相同。您将如何解决这一问题呢？（提示：对数函数的反函数是什么？）</p>
+</div>
+<div class="section" id="id7">
+<h2>2.6. 附录<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>我们也可使用数字模拟转换器（DAC）来达到同样效果。PWM方法有其优点：每次都以相同电流驱动LED，但是时长不同。
+这更好地实现了对亮度的控制，因为LED在驱动电流和亮度之间未必存在线性关系。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lcd_skin.html" class="btn btn-neutral float-right" title="3. LCD和触摸传感器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="servo.html" class="btn btn-neutral" title="1. 控制hobby伺服电机" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ADC类 – 模数转换 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="pyb — 板级功能" href="pyb.html"/>
+        <link rel="next" title="CAN类 –控制器区域网络通信总线" href="pyb.CAN.html"/>
+        <link rel="prev" title="class Accel – 加速计控制" href="pyb.Accel.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id1">时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id2">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id3">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id4">电源相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id5">其他功能</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pyb.html#id6">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lcd160cr.html"><code class="docutils literal"><span class="pre">lcd160cr</span></code> — 控制LCD160CR显示屏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+          <li><a href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a> &raquo;</li>
+        
+      <li>ADC类 – 模数转换</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/pyb.ADC.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="adc">
+<span id="pyb-adc"></span><h1>ADC类 – 模数转换<a class="headerlink" href="#adc" title="永久链接至标题">¶</a></h1>
+<p>使用:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyb</span>
+
+<span class="n">adc</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">ADC</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span>              <span class="c1"># create an analog object from a pin 从引脚中创建一个模拟对象</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">adc</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>                <span class="c1"># read an analog value 读取一个模拟对象</span>
+
+<span class="n">adc</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">ADCAll</span><span class="p">(</span><span class="n">resolution</span><span class="p">)</span>    <span class="c1"># create an ADCAll object 创建一个ADCALL对象</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">adc</span><span class="o">.</span><span class="n">read_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span> <span class="c1"># read the given channel 读取给定通道</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">adc</span><span class="o">.</span><span class="n">read_core_temp</span><span class="p">()</span>      <span class="c1"># read MCU temperature 读取MCU温度</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">adc</span><span class="o">.</span><span class="n">read_core_vbat</span><span class="p">()</span>      <span class="c1"># read MCU VBAT 读取MCU VBAT</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">adc</span><span class="o">.</span><span class="n">read_core_vref</span><span class="p">()</span>      <span class="c1"># read MCU VREF 读取MCU CREF</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>构造函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="pyb.pyb.ADC">
+<em class="property">class </em><code class="descclassname">pyb.</code><code class="descname">ADC</code><span class="sig-paren">(</span><em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pyb.ADC" title="永久链接至目标">¶</a></dt>
+<dd><p>创建一个与给定引脚相关联的ADC对象，然后您就可在引脚中读取模拟值。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="pyb.ADC.read">
+<code class="descclassname">ADC.</code><code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.ADC.read" title="永久链接至目标">¶</a></dt>
+<dd><p>在模拟引脚上读取值并返回。返回值应介于0至4095之间。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.ADC.read_timed">
+<code class="descclassname">ADC.</code><code class="descname">read_timed</code><span class="sig-paren">(</span><em>buf</em>, <em>timer</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.ADC.read_timed" title="永久链接至目标">¶</a></dt>
+<dd><p>以 <code class="docutils literal"><span class="pre">timer</span></code> 对象设定的比率将模拟值读取到 <code class="docutils literal"><span class="pre">buf</span></code> 中。</p>
+<p><code class="docutils literal"><span class="pre">buf</span></code> 可为字节数组或数组。ADC值有12位分辨率，其中元素大小大于等于16位时，直接储存到 <code class="docutils literal"><span class="pre">buf</span></code> 中。
+若 <code class="docutils literal"><span class="pre">buf</span></code> 仅有8位元素（例如一个字节元组），则样本分辨率将会降低到8位。</p>
+<p><code class="docutils literal"><span class="pre">timer</span></code> 应为一个定时器对象，定时器每次触发时，样本都会被读取。定时器须已初始化，且以预设的样本频率运行。</p>
+<p>为支持此函数之前的活动， <code class="docutils literal"><span class="pre">timer</span></code> 可为一个指定样本频率（以Hz为单位）的整数。在此种情况下，定时器（6）可自动配置为以给定频率运行。</p>
+<p>定时器对象用法示例（最佳方法）:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">adc</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">ADC</span><span class="p">(</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X19</span><span class="p">)</span>    <span class="c1"># create an ADC on pin X19 在X19引脚上创建一个ADC</span>
+<span class="n">tim</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>         <span class="c1"># create a timer running at 10Hz 创建一个以10Hz运行的定时器</span>
+<span class="n">buf</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>                <span class="c1"># creat a buffer to store the samples 创建一个储存样本的缓冲区</span>
+<span class="n">adc</span><span class="o">.</span><span class="n">read_timed</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">tim</span><span class="p">)</span>            <span class="c1"># sample 100 values, taking 10s 样本100个值，耗时10s</span>
+</pre></div>
+</div>
+<p>Example using an integer for the frequency:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">adc</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">ADC</span><span class="p">(</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X19</span><span class="p">)</span>    <span class="c1"># create an ADC on pin X19 在引脚X19上创建一个ADC</span>
+<span class="n">buf</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>                <span class="c1"># create a buffer of 100 bytes 创建100字节的缓冲区</span>
+<span class="n">adc</span><span class="o">.</span><span class="n">read_timed</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>             <span class="c1"># read analog values into buf at 10Hz 以10Hz将模拟值读取到缓冲区中</span>
+                                    <span class="c1">#   this will take 10 seconds to finish 耗时10s后结束</span>
+<span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">buf</span><span class="p">:</span>                     <span class="c1"># loop over all values 循环所有值</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>                      <span class="c1"># print the value out 打印值</span>
+</pre></div>
+</div>
+<p>此函数不分配任何内存。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="adcall">
+<h2>ADCAll对象<a class="headerlink" href="#adcall" title="永久链接至标题">¶</a></h2>
+<p>这一实例将所有ADC引脚转换为模拟输入。原始的MCU温度、VREF和VBAT数据可分别在ADC通道16、17和18中访问。需要适度的缩放。芯片上的温度传感器绝对精度不高，只适用于检测温度变化。</p>
+<p><code class="docutils literal"><span class="pre">ADCAll</span></code> &nbsp;<code class="docutils literal"><span class="pre">read_core_vbat()</span></code> 和 <code class="docutils literal"><span class="pre">read_core_vref()</span></code> 使用3.3 V电源作为参考，读取备用电池电压和(1.21 V)参考电压。
+假定 <code class="docutils literal"><span class="pre">ADCAll</span></code> 对象已通过 <code class="docutils literal"><span class="pre">adc&nbsp;=&nbsp;pyb.ADCAll(12)</span></code> 实例化，则3.3伏电源电压可计算为：</p>
+<p><code class="docutils literal"><span class="pre">v33</span> <span class="pre">=</span> <span class="pre">3.3</span> <span class="pre">*</span> <span class="pre">1.21</span> <span class="pre">/</span> <span class="pre">adc.read_core_vref()</span></code></p>
+<p>若3.3V电压正确，则 <code class="docutils literal"><span class="pre">adc.read_core_vbat()</span></code> 值有效。若电源电压降至3.3V以下，例如在在电池供电的放电电池系统中，该稳压器将无法保持3.3V电源，导致错误读取。此时若要产生一个有效值，请遵循以下步骤：</p>
+<p><code class="docutils literal"><span class="pre">vback</span> <span class="pre">=</span> <span class="pre">adc.read_core_vbat()</span> <span class="pre">*</span> <span class="pre">1.21</span> <span class="pre">/</span> <span class="pre">adc.read_core_vref()</span></code></p>
+<p>在不产生 <code class="docutils literal"><span class="pre">ADCAll</span></code> 副作用的前提下访问该值并非不可能:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">adcread</span><span class="p">(</span><span class="n">chan</span><span class="p">):</span>                              <span class="c1"># 16 temp 17 vbat 18 vref 温度16电池电压17参考电压18</span>
+    <span class="k">assert</span> <span class="n">chan</span> <span class="o">&gt;=</span> <span class="mi">16</span> <span class="ow">and</span> <span class="n">chan</span> <span class="o">&lt;=</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;Invalid ADC channel&#39;</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">millis</span><span class="p">()</span>
+    <span class="n">timeout</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">RCC</span> <span class="o">+</span> <span class="n">stm</span><span class="o">.</span><span class="n">RCC_APB2ENR</span><span class="p">]</span> <span class="o">|=</span> <span class="mh">0x100</span> <span class="c1"># enable ADC1 clock.0x4100</span>
+    <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC1</span> <span class="o">+</span> <span class="n">stm</span><span class="o">.</span><span class="n">ADC_CR2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>       <span class="c1"># Turn on ADC 启动ADC</span>
+    <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC1</span> <span class="o">+</span> <span class="n">stm</span><span class="o">.</span><span class="n">ADC_CR1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># 12 bit</span>
+    <span class="k">if</span> <span class="n">chan</span> <span class="o">==</span> <span class="mi">17</span><span class="p">:</span>
+        <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC1</span> <span class="o">+</span> <span class="n">stm</span><span class="o">.</span><span class="n">ADC_SMPR1</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x200000</span> <span class="c1"># 15 cycles 15周期</span>
+        <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">23</span>
+    <span class="k">elif</span> <span class="n">chan</span> <span class="o">==</span> <span class="mi">18</span><span class="p">:</span>
+        <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC1</span> <span class="o">+</span> <span class="n">stm</span><span class="o">.</span><span class="n">ADC_SMPR1</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x1000000</span>
+        <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xc00000</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC1</span> <span class="o">+</span> <span class="n">stm</span><span class="o">.</span><span class="n">ADC_SMPR1</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x40000</span>
+        <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">23</span>
+    <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC1</span> <span class="o">+</span> <span class="n">stm</span><span class="o">.</span><span class="n">ADC_SQR3</span><span class="p">]</span> <span class="o">=</span> <span class="n">chan</span>
+    <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC1</span> <span class="o">+</span> <span class="n">stm</span><span class="o">.</span><span class="n">ADC_CR2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">|</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">30</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># start conversion开始转换</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC1</span> <span class="o">+</span> <span class="n">stm</span><span class="o">.</span><span class="n">ADC_SR</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># wait for EOC</span>
+        <span class="k">if</span> <span class="n">pyb</span><span class="o">.</span><span class="n">elapsed_millis</span><span class="p">(</span><span class="n">start</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">timeout</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s1">&#39;ADC timout&#39;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC1</span> <span class="o">+</span> <span class="n">stm</span><span class="o">.</span><span class="n">ADC_DR</span><span class="p">]</span>     <span class="c1"># clear down EOC 清空EOC</span>
+    <span class="n">stm</span><span class="o">.</span><span class="n">mem32</span><span class="p">[</span><span class="n">stm</span><span class="o">.</span><span class="n">ADC1</span> <span class="o">+</span> <span class="n">stm</span><span class="o">.</span><span class="n">ADC_CR2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>       <span class="c1"># Turn off ADC 关闭ADC</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="k">def</span> <span class="nf">v33</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">4096</span> <span class="o">*</span> <span class="mf">1.21</span> <span class="o">/</span> <span class="n">adcread</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">vbat</span><span class="p">():</span>
+    <span class="k">return</span>  <span class="mf">1.21</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">adcread</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span> <span class="o">/</span> <span class="n">adcread</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>  <span class="c1"># 2:1 divider on Vbat channel Vbat通道的2:1分频器</span>
+
+<span class="k">def</span> <span class="nf">vref</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mf">3.3</span> <span class="o">*</span> <span class="n">adcread</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4096</span>
+
+<span class="k">def</span> <span class="nf">temperature</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">25</span> <span class="o">+</span> <span class="mi">400</span> <span class="o">*</span> <span class="p">(</span><span class="mf">3.3</span> <span class="o">*</span> <span class="n">adcread</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4096</span> <span class="o">-</span> <span class="mf">0.76</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.CAN.html" class="btn btn-neutral float-right" title="CAN类 –控制器区域网络通信总线" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyb.Accel.html" class="btn btn-neutral" title="class Accel – 加速计控制" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

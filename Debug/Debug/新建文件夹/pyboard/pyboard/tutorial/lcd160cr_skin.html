@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. LCD160CR面板 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../../index.html"/>
+        <link rel="up" title="pyboard的MicroPython教程" href="index.html"/>
+        <link rel="next" title="1. 引脚输入去抖" href="debounce.html"/>
+        <link rel="prev" title="4. AMP音频面板" href="amp_skin.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">pyboard基本信息</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">pyboard的MicroPython教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">1. pyboard 介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script.html">2. 运行您的首个脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repl.html">3. 进入一个MicroPython REPL命令行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leds.html">4. 点亮LED和基本Python概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">5. 切换、回调和中断</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accel.html">6. 加速度计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reset.html">7. 安全模式和恢复出厂设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb_mouse.html">8. 将pyboard用作USB鼠标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timer.html">9. 定时器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assembler.html">10. 内联汇编</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_ctrl.html">11. 电源管理</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id1">需要额外的配件的教程</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="servo.html">1. 控制hobby伺服电机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fading_led.html">2. LED亮度渐变</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lcd_skin.html">3. LCD和触摸传感器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="amp_skin.html">4. AMP音频面板</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5. LCD160CR面板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">5.1. 插入显示屏</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">5.2. 获取驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">5.3. 测试显示屏</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">5.4. 绘制图形</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">5.5. 使用触摸传感器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#micropython">5.6. 将MicroPython输入导向到显示屏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">需要知道小技巧</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">pyboard的MicroPython教程</a> &raquo;</li>
+        
+      <li>5. LCD160CR面板</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pyboard/tutorial/lcd160cr_skin.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lcd160cr">
+<h1>5. LCD160CR面板<a class="headerlink" href="#lcd160cr" title="永久链接至标题">¶</a></h1>
+<p>此教程展示了如何开始使用LCD160CR面板。</p>
+<a class="reference internal image-reference" href="http://micropython.org/resources/LCD160CRv10-positions.jpg"><img alt="LCD160CRv1.0 picture" src="http://micropython.org/resources/LCD160CRv10-positions.jpg" style="width: 800px;" /></a>
+<p>有关显示驱动程序的具体文件，请参见
+<a class="reference internal" href="../../library/lcd160cr.html#module-lcd160cr" title="lcd160cr: 控制LCD160CR显示屏"><code class="xref py py-mod docutils literal"><span class="pre">lcd160cr</span></code></a> 模块。</p>
+<div class="section" id="id1">
+<h2>5.1. 插入显示屏<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>此显示屏可直接插入pyboard（支持所有版本的pyboard）。您可将显示屏插入pyboard的顶部，X或Y位置均可。
+显示屏应覆盖pyboard的1/2。具体操作请参见上图，图片的左半部分显示X位置，右半部分为Y位置。</p>
+</div>
+<div class="section" id="id2">
+<h2>5.2. 获取驱动<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>您可使用电源/启用引脚和I2C总线直接控制显示器，但是使用 <a class="reference internal" href="../../library/lcd160cr.html#module-lcd160cr" title="lcd160cr: 控制LCD160CR显示屏"><code class="xref any py py-mod docutils literal"><span class="pre">lcd160cr</span></code></a> 模块提供的驱动更为方便。
+此驱动包含在最新版本的pyboard固件中 (见 <a class="reference external" href="http://micropython.org/download">此处</a>)。
+您也可在GitHub中 <a href="#id3"><span class="problematic" id="id4">`</span></a>这里 &lt;<a class="reference external" href="https://github.com/micropython/micropython/blob/master/drivers/display/lcd160cr.py">https://github.com/micropython/micropython/blob/master/drivers/display/lcd160cr.py</a>&gt;`__获取这一驱动；
+使用这一版本，您需将文件复制到您的板上一个通过导入查找的目录中（通常为lib/目录）。</p>
+<p>一旦您安装了驱动，您需要使用以下代码来导入:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lcd160cr</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>5.3. 测试显示屏<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>这是一个可用于检测显示屏特性的程序，也可用作开始创建使用LCD的代码的基础。此检测程序包含在最新版的pyboard固件中，也可在GitHub中获取
+<a class="reference external" href="https://github.com/micropython/micropython/blob/master/drivers/display/lcd160cr_test.py">这里</a>.</p>
+<p>从MicroPython提示符中运行此检测程序，请:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lcd160cr_test</span>
+</pre></div>
+</div>
+<p>它会打印出一些简短介绍。您需要知道您的显示屏连接的位置（X或Y），然后您即可运行（假设您的显示屏连接在X位置）:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">test_all</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>5.4. 绘制图形<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>您须首先实例化一个控制显示屏的LCD160CR对象。请使用:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lcd160cr</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lcd</span> <span class="o">=</span> <span class="n">lcd160cr</span><span class="o">.</span><span class="n">LCD160CR</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>此处假设您的显示屏连接在X位置上。若其在Y位置，则使用 <code class="docutils literal"><span class="pre">lcd</span> <span class="pre">=</span> <span class="pre">lcd160cr.LCD160CR('Y')</span></code> 替代.</p>
+<p>尝试使用以下代码清除屏幕并绘制一条线:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lcd</span><span class="o">.</span><span class="n">set_pen</span><span class="p">(</span><span class="n">lcd</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">lcd</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lcd</span><span class="o">.</span><span class="n">erase</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lcd</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>下一示例在屏幕上绘制任意矩形。您可通过在提示符中先输入“Ctrl-E”，然后再粘贴文本后点击“Ctrl-D”，将其复制粘贴到MicroPython提示符中。</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="k">import</span> <span class="n">randint</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">fg</span> <span class="o">=</span> <span class="n">lcd</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">255</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="n">lcd</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
+    <span class="n">lcd</span><span class="o">.</span><span class="n">set_pen</span><span class="p">(</span><span class="n">fg</span><span class="p">,</span> <span class="n">bg</span><span class="p">)</span>
+    <span class="n">lcd</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lcd</span><span class="o">.</span><span class="n">w</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lcd</span><span class="o">.</span><span class="n">h</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">),</span> <span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>5.5. 使用触摸传感器<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>显示屏包括一个可报告屏幕上基于强度的触控的位置（以像素为单位）的电阻式触控传感。使用以下代码查看屏幕上是否有触碰:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lcd</span><span class="o">.</span><span class="n">is_touched</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>此指令将返回 <code class="docutils literal"><span class="pre">False</span></code> 或 <code class="docutils literal"><span class="pre">True</span></code> 。触碰屏幕时运行此指令以查看结果。</p>
+<p>您可使用此函数获取触碰的位置:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lcd</span><span class="o">.</span><span class="n">get_touch</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>此指令将返回一个3元组，其中第一项为0或1取决于是否当前是否存在某物在触碰屏幕（若有，则为1），元组中的第二项和第三项即为当前（或最近的）触碰的x或y坐标。</p>
+</div>
+<div class="section" id="micropython">
+<h2>5.6. 将MicroPython输入导向到显示屏<a class="headerlink" href="#micropython" title="永久链接至标题">¶</a></h2>
+<p>显示屏支持来自UART的输入，并实现基本VT100指令，也就意味着其可用作一个简单的通用终端。现在我们将pyboard设置为将其输出重新导向到显示屏。</p>
+<p>首先您需创建一个UART对象:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uart</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">UART</span><span class="p">(</span><span class="s1">&#39;XA&#39;</span><span class="p">,</span> <span class="mi">115200</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>此指令假定您的显示屏连接到X位置。若其连接在Y位置，则使用 <code class="docutils literal"><span class="pre">uart</span> <span class="pre">=</span> <span class="pre">pyb.UART('YA',</span> <span class="pre">115200)</span></code> 替代.</p>
+<p>现在，将REPL输出连接到UART:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pyb</span><span class="o">.</span><span class="n">repl_uart</span><span class="p">(</span><span class="n">uart</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>现在开始，您在提示符中输入的和您接收的任何内容都将出现在显示屏上。</p>
+<p>运行此代码无需任何设置指令，您可将显示屏用于监测UART的输出（而不仅来自pyboard）。
+所需条件只有显示屏有电源线、地线和power/enable引脚置高。显示器UART输入的任何参数将打印到显示屏。
+您可使用 <a class="reference internal" href="../../library/lcd160cr.html#lcd160cr.LCD160CR.set_uart_baudrate" title="lcd160cr.LCD160CR.set_uart_baudrate"><code class="xref any py py-meth docutils literal"><span class="pre">set_uart_baudrate</span></code></a> 方法将UART的波特率从默认值115200更改为其他值。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="debounce.html" class="btn btn-neutral float-right" title="1. 引脚输入去抖" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="amp_skin.html" class="btn btn-neutral" title="4. AMP音频面板" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

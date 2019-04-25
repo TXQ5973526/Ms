@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cpufreq — 简便cpu频率控制 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">cpufreq</span></code> —  简便cpu频率控制</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/omv.cpufreq.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-cpufreq">
+<span id="cpufreq-cpu"></span><h1><a class="reference internal" href="#module-cpufreq" title="cpufreq: 简便cpu频率控制"><code class="xref py py-mod docutils literal"><span class="pre">cpufreq</span></code></a> —  简便cpu频率控制<a class="headerlink" href="#module-cpufreq" title="永久链接至标题">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">cpufreq</span></code> 模块用来简便地控制cpu频率。该模块使得您可以轻松地超频或降频您的OpenMV Cam。</p>
+<p>用法示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cpufreq</span>
+
+<span class="n">cpufreq</span><span class="o">.</span><span class="n">set_frequency</span><span class="p">(</span><span class="n">cpufreq</span><span class="o">.</span><span class="n">CPUFREQ_216MHZ</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>OpenMV Cam M4的默认频率为180MHz。
+OpenMV Cam M7的默认频率Wie216MHz。</p>
+<div class="section" id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="cpufreq.cpufreq.get_frequency">
+<code class="descclassname">cpufreq.</code><code class="descname">get_frequency</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#cpufreq.cpufreq.get_frequency" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个包含下列内容的元组：</p>
+<blockquote>
+<div><ul class="simple">
+<li>[0] - sysclk: CPU频率(int).</li>
+<li>[1] - hclk: AHB总线、磁芯存储器和DMA的频率 (int).</li>
+<li>[2] - pclk1: APB1的频率(int).</li>
+<li>[3] - pclk2: APB2的频率(int).</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="cpufreq.cpufreq.set_frequency">
+<code class="descclassname">cpufreq.</code><code class="descname">set_frequency</code><span class="sig-paren">(</span><em>freq</em><span class="sig-paren">)</span><a class="headerlink" href="#cpufreq.cpufreq.set_frequency" title="永久链接至目标">¶</a></dt>
+<dd><p>改变cpu频率。 <code class="docutils literal"><span class="pre">freq</span></code> 可为下列之一：</p>
+<blockquote>
+<div><ul class="simple">
+<li>cpufreq.CPUFREQ_120MHZ</li>
+<li>cpufreq.CPUFREQ_144MHZ</li>
+<li>cpufreq.CPUFREQ_168MHZ</li>
+<li>cpufreq.CPUFREQ_192MHZ</li>
+<li>cpufreq.CPUFREQ_216MHZ</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>变量<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="cpufreq.cpufreq.CPUFREQ_120MHZ">
+<code class="descclassname">cpufreq.</code><code class="descname">CPUFREQ_120MHZ</code><a class="headerlink" href="#cpufreq.cpufreq.CPUFREQ_120MHZ" title="永久链接至目标">¶</a></dt>
+<dd><p>将频率设置为 120 MHz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="cpufreq.cpufreq.CPUFREQ_144MHZ">
+<code class="descclassname">cpufreq.</code><code class="descname">CPUFREQ_144MHZ</code><a class="headerlink" href="#cpufreq.cpufreq.CPUFREQ_144MHZ" title="永久链接至目标">¶</a></dt>
+<dd><p>将频率设置为 144 MHz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="cpufreq.cpufreq.CPUFREQ_168MHZ">
+<code class="descclassname">cpufreq.</code><code class="descname">CPUFREQ_168MHZ</code><a class="headerlink" href="#cpufreq.cpufreq.CPUFREQ_168MHZ" title="永久链接至目标">¶</a></dt>
+<dd><p>将频率设置为 168 MHz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="cpufreq.cpufreq.CPUFREQ_192MHZ">
+<code class="descclassname">cpufreq.</code><code class="descname">CPUFREQ_192MHZ</code><a class="headerlink" href="#cpufreq.cpufreq.CPUFREQ_192MHZ" title="永久链接至目标">¶</a></dt>
+<dd><p>将频率设置为 192 MHz.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="cpufreq.cpufreq.CPUFREQ_216MHZ">
+<code class="descclassname">cpufreq.</code><code class="descname">CPUFREQ_216MHZ</code><a class="headerlink" href="#cpufreq.cpufreq.CPUFREQ_216MHZ" title="永久链接至目标">¶</a></dt>
+<dd><p>将频率设置为 216 MHz.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

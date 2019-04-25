@@ -1,0 +1,61 @@
+:mod:`cpufreq` ---  简便cpu频率控制
+=============================================
+
+.. module:: cpufreq
+   :synopsis:  简便cpu频率控制
+
+``cpufreq`` 模块用来简便地控制cpu频率。该模块使得您可以轻松地超频或降频您的OpenMV Cam。
+
+用法示例::
+
+    import cpufreq
+
+    cpufreq.set_frequency(cpufreq.CPUFREQ_216MHZ)
+
+OpenMV Cam M4的默认频率为180MHz。
+OpenMV Cam M7的默认频率Wie216MHz。
+
+函数
+---------
+
+.. function:: cpufreq.get_frequency()
+
+   返回一个包含下列内容的元组：
+
+      * [0] - sysclk: CPU频率(int).
+      * [1] - hclk: AHB总线、磁芯存储器和DMA的频率 (int).
+      * [2] - pclk1: APB1的频率(int).
+      * [3] - pclk2: APB2的频率(int).
+
+.. function:: cpufreq.set_frequency(freq)
+
+   改变cpu频率。 ``freq`` 可为下列之一：
+
+      * cpufreq.CPUFREQ_120MHZ
+      * cpufreq.CPUFREQ_144MHZ
+      * cpufreq.CPUFREQ_168MHZ
+      * cpufreq.CPUFREQ_192MHZ
+      * cpufreq.CPUFREQ_216MHZ
+
+变量
+---------
+
+.. data:: cpufreq.CPUFREQ_120MHZ
+
+   将频率设置为 120 MHz.
+
+.. data:: cpufreq.CPUFREQ_144MHZ
+
+   将频率设置为 144 MHz.
+
+.. data:: cpufreq.CPUFREQ_168MHZ
+
+   将频率设置为 168 MHz.
+
+.. data:: cpufreq.CPUFREQ_192MHZ
+
+   将频率设置为 192 MHz.
+
+.. data:: cpufreq.CPUFREQ_216MHZ
+
+   将频率设置为 216 MHz.

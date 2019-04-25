@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. 将pyboard用作USB鼠标 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../../index.html"/>
+        <link rel="up" title="pyboard的MicroPython教程" href="index.html"/>
+        <link rel="next" title="9. 定时器" href="timer.html"/>
+        <link rel="prev" title="7. 安全模式和恢复出厂设置" href="reset.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">pyboard基本信息</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">pyboard的MicroPython教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">1. pyboard 介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script.html">2. 运行您的首个脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repl.html">3. 进入一个MicroPython REPL命令行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leds.html">4. 点亮LED和基本Python概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">5. 切换、回调和中断</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accel.html">6. 加速度计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reset.html">7. 安全模式和恢复出厂设置</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8. 将pyboard用作USB鼠标</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">8.1. 手动发送鼠标事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">8.2. 使用加速度计制作一个鼠标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyboard">8.3. 将pyboard恢复至常态</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="timer.html">9. 定时器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assembler.html">10. 内联汇编</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_ctrl.html">11. 电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id1">需要额外的配件的教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">需要知道小技巧</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">pyboard的MicroPython教程</a> &raquo;</li>
+        
+      <li>8. 将pyboard用作USB鼠标</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pyboard/tutorial/usb_mouse.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pyboardusb">
+<h1>8. 将pyboard用作USB鼠标<a class="headerlink" href="#pyboardusb" title="永久链接至标题">¶</a></h1>
+<p>Pyboard是一个USB设备，可配置为代替默认USB闪存驱动器的鼠标。</p>
+<p>要实现这一功能，首先我们需编辑 <code class="docutils literal"><span class="pre">boot.py</span></code> 文件来改变USB配置。
+若您从未接触过您的 <code class="docutils literal"><span class="pre">boot.py</span></code> 文件，此文件应形似下示:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># boot.py -- run on boot-up 启动时运行</span>
+<span class="c1"># can run arbitrary Python, but best to keep it minimal 可运行任何Python，但最好保持其最小化</span>
+
+<span class="kn">import</span> <span class="nn">pyb</span>
+<span class="c1">#pyb.main(&#39;main.py&#39;) # main script to run after this one 在此之后运行的主要脚本</span>
+<span class="c1">#pyb.usb_mode(&#39;VCP+MSC&#39;) # act as a serial and a storage device 用作一个串行和储存设备</span>
+<span class="c1">#pyb.usb_mode(&#39;VCP+HID&#39;) # act as a serial device and a mouse 用作一个串行设备和鼠标</span>
+</pre></div>
+</div>
+<p>启用鼠标模式，取消文件最后一行的注释，使其形如:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pyb</span><span class="o">.</span><span class="n">usb_mode</span><span class="p">(</span><span class="s1">&#39;VCP+HID&#39;</span><span class="p">)</span> <span class="c1"># act as a serial device and a mouse 用作一个串行设备和鼠标</span>
+</pre></div>
+</div>
+<p>若您已更改您的 <code class="docutils literal"><span class="pre">boot.py</span></code> 文件，则其运行需要的最小代码为:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyb</span>
+<span class="n">pyb</span><span class="o">.</span><span class="n">usb_mode</span><span class="p">(</span><span class="s1">&#39;VCP+HID&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>此代码使pyboard在启动时将自身配置为VCP（虚拟COM端口，即串行端口）和HID（人机接口设备，在我们这种情况下即为鼠标）USB设备。</p>
+<p>使用RST开关弹出/卸载pyboard驱动并重置。您的个人电脑现在应扫描到显示为鼠标的pyboard！</p>
+<div class="section" id="id1">
+<h2>8.1. 手动发送鼠标事件<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>要使py-mouse正常工作，我们需要向个人电脑发送鼠标事件。首先我们使用REPL提示符手动进行。使用串行程序连接到您的pyboard，并输入以下内容:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hid</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">USB_HID</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hid</span><span class="o">.</span><span class="n">send</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>您的鼠标应向右移动10个像素！在以上指令中，您正在发送4条信息：按键状态、x、y和屏幕滚动。数字10即告知电脑鼠标在x方向上移动了10个像素。</p>
+<p>现在让鼠标左右摆动:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">osc</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<span class="gp">... </span>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">hid</span><span class="o">.</span><span class="n">send</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mi">20</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="n">pyb</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">osc</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">osc</span></code> 函数的首个参数为发送的鼠标事件的数量，第二个参数为事件间的延迟（以毫秒为单位）。尝试使用不同数字。</p>
+<p><strong>练习：使鼠标在圆圈内运动。</strong></p>
+</div>
+<div class="section" id="id2">
+<h2>8.2. 使用加速度计制作一个鼠标<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>现在使用加速度计，使鼠标以pyboard的角度移动。以下代码可直接在REPL提示符中输入，
+或放入 <code class="docutils literal"><span class="pre">main.py</span></code> 文件中。此处，我们选择后者。这样我们才可学习如何进入安全模式。</p>
+<p>此时，pyboard用作一个串行USB设备和HID（鼠标）。所以您无法访问文件系统来编辑您的 <code class="docutils literal"><span class="pre">main.py</span></code> 文件。</p>
+<p>您也无法编辑您的 <code class="docutils literal"><span class="pre">boot.py</span></code> 以退出HID模式并返回使用USB驱动的常规模式。</p>
+<p>退出这一模式，我们需返回安全模式。我们在【安全模式教程】（重置教程）中已对此进行说明，此处再作说明:</p>
+<ol class="arabic simple">
+<li>按下USR开关。</li>
+<li>按下USR开关，然后按下再松开RST开关。</li>
+<li>LED将循环亮起绿色、橙色再到绿色+橙色，然后再次循环。</li>
+<li>始终按住USR，直至仅橙色LED亮起，然后松开USR开关。</li>
+<li>橙色LED应快速闪烁4次，然后熄灭。</li>
+<li>现在您就处于安全模式了。</li>
+</ol>
+<p>在安全模式下， <code class="docutils literal"><span class="pre">boot.py</span></code> 和 <code class="docutils literal"><span class="pre">main.py</span></code> 文件未执行，因此pyboard以默认设置启动。
+这意味着现在您可访问文件系统（USB驱动应显示），且您可编辑 <code class="docutils literal"><span class="pre">main.py</span></code> 。
+（保持 <code class="docutils literal"><span class="pre">boot.py</span></code> 的原有状态，因为结束编辑 <code class="docutils literal"><span class="pre">main.py</span></code> 后我们仍要返回HID状态。）</p>
+<p>在 <code class="docutils literal"><span class="pre">main.py</span></code> 中输入以下代码:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyb</span>
+
+<span class="n">switch</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Switch</span><span class="p">()</span>
+<span class="n">accel</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Accel</span><span class="p">()</span>
+<span class="n">hid</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">USB_HID</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">switch</span><span class="p">():</span>
+    <span class="n">hid</span><span class="o">.</span><span class="n">send</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">accel</span><span class="o">.</span><span class="n">x</span><span class="p">(),</span> <span class="n">accel</span><span class="o">.</span><span class="n">y</span><span class="p">(),</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">pyb</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>保存您的文件，弹出/卸载您的pyboard驱动，并使用RST开关重置。现在pyboard应用作鼠标，板的角度会使鼠标移动。试试您能否保持鼠标不动！</p>
+<p>按下USR开关以停止鼠标运动。</p>
+<p>您将注意到y轴是反的。这个问题很容易解决：在上面的 <code class="docutils literal"><span class="pre">hid.send()</span></code> 行中的y坐标前添加负号。</p>
+</div>
+<div class="section" id="pyboard">
+<h2>8.3. 将pyboard恢复至常态<a class="headerlink" href="#pyboard" title="永久链接至标题">¶</a></h2>
+<p>若您保持pyboard的状态不变，则每次插入时pyboard都会显示为鼠标。您可能想将其恢复至常态。
+首先您需要进入安全模式（见上），然后编辑 <code class="docutils literal"><span class="pre">boot.py</span></code> 文件。
+在 <code class="docutils literal"><span class="pre">boot.py</span></code> 文件中，为带有 <code class="docutils literal"><span class="pre">VCP+HID</span></code> 设置的行添加注释，其将形如:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#pyb.usb_mode(&#39;VCP+HID&#39;) # act as a serial device and a mouse 用作一个串行设备和鼠标</span>
+</pre></div>
+</div>
+<p>保存您的文件，弹出/卸载驱动，并重置pyboard。现在pyboard返回至正常运行模式。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="timer.html" class="btn btn-neutral float-right" title="9. 定时器" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="reset.html" class="btn btn-neutral" title="7. 安全模式和恢复出厂设置" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

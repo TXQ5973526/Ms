@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ExtInt类 – 配置I/O引脚以中断外部事件 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="pyb — 板级功能" href="pyb.html"/>
+        <link rel="next" title="I2C类 – 二线串行协议" href="pyb.I2C.html"/>
+        <link rel="prev" title="DAC类 – 数字模拟变换" href="pyb.DAC.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id1">时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id2">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id3">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id4">电源相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id5">其他功能</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pyb.html#id6">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lcd160cr.html"><code class="docutils literal"><span class="pre">lcd160cr</span></code> — 控制LCD160CR显示屏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+          <li><a href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a> &raquo;</li>
+        
+      <li>ExtInt类 – 配置I/O引脚以中断外部事件</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/pyb.ExtInt.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="extint-i-o">
+<span id="pyb-extint"></span><h1>ExtInt类 – 配置I/O引脚以中断外部事件<a class="headerlink" href="#extint-i-o" title="永久链接至标题">¶</a></h1>
+<p>共有22条中断线。其中16条来自GPIO引脚，其余6条来自内部资源。</p>
+<p>对于0-15线，一条给定的线可从任意端口映射到相应的线。所以0线可映射到Px0，此时x即A、B、C……1线可映射到Px1，此时x即A、B、C……</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;line =&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>注意：ExtInt自动将GPIO线配置为输入。</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">extint</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">ExtInt</span><span class="p">(</span><span class="n">pin</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">ExtInt</span><span class="o">.</span><span class="n">IRQ_FALLING</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>每在引脚上发现一个下降沿，就会调用这一回调函数。注意：机械按钮有反弹，按下或松开开关通常会产生多个沿。</p>
+<p>详细解释与消除抖动的具体方法，请参见: <a class="reference external" href="http://www.eng.utah.edu/~cs5780/debouncing.pdf">http://www.eng.utah.edu/~cs5780/debouncing.pdf</a> for a detailed</p>
+<p>在同一引脚上注册2个回调会引发异常。</p>
+<p>若将引脚作为整数传递，则假定它映射到其中一个内部中断源，且须在16-22之间。</p>
+<p>所有引脚对象通过引脚映射器来得到一个GPIO引脚。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">extint</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">ExtInt</span><span class="p">(</span><span class="n">pin</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">pull</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>有效模式为 pyb.ExtInt.IRQ_RISING, pyb.ExtInt.IRQ_FALLING,
+pyb.ExtInt.IRQ_RISING_FALLING, pyb.ExtInt.EVT_RISING,
+pyb.ExtInt.EVT_FALLING, and pyb.ExtInt.EVT_RISING_FALLING.</p>
+<p>只有IRQ_xxx模式经过测试。EVT_xxx模式与睡眠模式和WFE指令有关。</p>
+<p>有效拉力值为pyb.Pin.PULL_UP, pyb.Pin.PULL_DOWN, pyb.Pin.PULL_NONE。</p>
+<p>另有一个C API，因此需EXTI中断行的驱动程序也可使用该代码。有效函数，请参见extint.h，用法示例请参见usrsw.h。.</p>
+<div class="section" id="id1">
+<h2>构造函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="pyb.pyb.ExtInt">
+<em class="property">class </em><code class="descclassname">pyb.</code><code class="descname">ExtInt</code><span class="sig-paren">(</span><em>pin</em>, <em>mode</em>, <em>pull</em>, <em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pyb.ExtInt" title="永久链接至目标">¶</a></dt>
+<dd><p>创建一个ExtInt对象：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">pin</span></code> 是激活中断的引脚（可为一个引脚对象或任何有效名）。</li>
+<li><code class="docutils literal"><span class="pre">mode</span></code> 可为下列之一:
+- <code class="docutils literal"><span class="pre">ExtInt.IRQ_RISING</span></code> - 触发上升沿;
+- <code class="docutils literal"><span class="pre">ExtInt.IRQ_FALLING</span></code> - 触发下降沿;
+- <code class="docutils literal"><span class="pre">ExtInt.IRQ_RISING_FALLING</span></code> - 触发上升或下降沿.</li>
+<li><code class="docutils literal"><span class="pre">pull</span></code> 可为下列之一:
+- <code class="docutils literal"><span class="pre">pyb.Pin.PULL_NONE</span></code> - 无上拉或下拉电阻;
+- <code class="docutils literal"><span class="pre">pyb.Pin.PULL_UP</span></code> - 启用上拉电阻;
+- <code class="docutils literal"><span class="pre">pyb.Pin.PULL_DOWN</span></code> - 启用下拉电阻.</li>
+<li><code class="docutils literal"><span class="pre">callback</span></code> 是中断触发时调用的函数。回调函数必须接受确切的1个参数，即触发中断的线。</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="class-methods">
+<h2>Class methods<a class="headerlink" href="#class-methods" title="永久链接至标题">¶</a></h2>
+<dl class="classmethod">
+<dt id="pyb.ExtInt.regs">
+<em class="property">classmethod </em><code class="descclassname">ExtInt.</code><code class="descname">regs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.ExtInt.regs" title="永久链接至目标">¶</a></dt>
+<dd><p>转储EXTI寄存器的值。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="pyb.ExtInt.disable">
+<code class="descclassname">ExtInt.</code><code class="descname">disable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.ExtInt.disable" title="永久链接至目标">¶</a></dt>
+<dd><p>禁用与ExtInt对象关联的中断。这可能对消除抖动有关有帮助。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.ExtInt.enable">
+<code class="descclassname">ExtInt.</code><code class="descname">enable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.ExtInt.enable" title="永久链接至目标">¶</a></dt>
+<dd><p>启用禁用的中断。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.ExtInt.line">
+<code class="descclassname">ExtInt.</code><code class="descname">line</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.ExtInt.line" title="永久链接至目标">¶</a></dt>
+<dd><p>返回引脚映射的行号。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.ExtInt.swint">
+<code class="descclassname">ExtInt.</code><code class="descname">swint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.ExtInt.swint" title="永久链接至目标">¶</a></dt>
+<dd><p>从软件触发回调。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>常量<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="pyb.ExtInt.IRQ_FALLING">
+<code class="descclassname">ExtInt.</code><code class="descname">IRQ_FALLING</code><a class="headerlink" href="#pyb.ExtInt.IRQ_FALLING" title="永久链接至目标">¶</a></dt>
+<dd><p>中断下降沿。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.ExtInt.IRQ_RISING">
+<code class="descclassname">ExtInt.</code><code class="descname">IRQ_RISING</code><a class="headerlink" href="#pyb.ExtInt.IRQ_RISING" title="永久链接至目标">¶</a></dt>
+<dd><p>中断上升沿。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.ExtInt.IRQ_RISING_FALLING">
+<code class="descclassname">ExtInt.</code><code class="descname">IRQ_RISING_FALLING</code><a class="headerlink" href="#pyb.ExtInt.IRQ_RISING_FALLING" title="永久链接至目标">¶</a></dt>
+<dd><p>中断上升或下降沿。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.I2C.html" class="btn btn-neutral float-right" title="I2C类 – 二线串行协议" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyb.DAC.html" class="btn btn-neutral" title="DAC类 – 数字模拟变换" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

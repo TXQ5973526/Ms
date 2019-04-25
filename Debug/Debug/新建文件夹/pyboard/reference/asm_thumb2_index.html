@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Thumb2架构的内联汇编 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="MicroPython语言" href="index.html"/>
+        <link rel="next" title="1. 寄存器移位指令" href="asm_thumb2_mov.html"/>
+        <link rel="prev" title="微控制器中的MicroPython" href="constrained.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython语言</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repl.html">MicroPython的交互式解释器模式 （又称REPL）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="isr_rules.html">编写中断处理程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speed_python.html">最大化MicroPython速度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constrained.html">微控制器中的MicroPython</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Thumb2架构的内联汇编</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">文件规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">指令分类</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_mov.html">1. 寄存器移位指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_ldr.html">2. 从内存中加载寄存器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_str.html">3. 将寄存器存入内存</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_logical_bit.html">4. 逻辑&amp;位运算指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_arith.html">5. 算法指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_compare.html">6. 比对指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_label_branch.html">7. 分支指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_stack.html">8. 入栈和出栈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_misc.html">9. 各种指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_float.html">10. 浮点数指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_directives.html">11. 汇编指令</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">用法示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_hints_tips.html">1. 代码分支和子程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_hints_tips.html#id2">2. 传输和返回参数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_hints_tips.html#id5">3. 命名常量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_hints_tips.html#id6">4. 汇编代码作为类方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_hints_tips.html#id7">5. 使用不支持的指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_hints_tips.html#micropython">6. 克服MicroPython的整数限制</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">参考目录</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython语言</a> &raquo;</li>
+        
+      <li>Thumb2架构的内联汇编</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/reference/asm_thumb2_index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="thumb2">
+<span id="asm-thumb2-index"></span><h1>Thumb2架构的内联汇编<a class="headerlink" href="#thumb2" title="永久链接至标题">¶</a></h1>
+<p>本文件假定您熟悉汇编语言编程，故您应在学习教程（ <a class="reference internal" href="../pyboard/tutorial/assembler.html#pyboard-tutorial-assembler"><span class="std std-ref">tutorial</span></a>）后阅读本文件。
+有关指令集的详细说明，请参阅《体系结构参考手册》。内联汇编器支持此处介绍的ARM Thumb-2指令集的一个子集。
+该语法尝试尽可能接近上述ARM手册中定义的转换为Python函数调用的语法。</p>
+<p>除非另作说明，否则指令对32位有符号整数数据进行操作。大多数支持的指令仅在寄存器 <code class="docutils literal"><span class="pre">R0-R7</span></code> 上运行：
+若支持 <code class="docutils literal"><span class="pre">R8-R15</span></code> ，则作说明。从函数返回前，寄存器 <code class="docutils literal"><span class="pre">R8-R12</span></code> 必须恢复到其初始值。寄存器 <code class="docutils literal"><span class="pre">R13-R15</span></code> 分别构成链接寄存器、堆栈指针和程序计数器。</p>
+<div class="section" id="id1">
+<h2>文件规范<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>在可能情况下，每条指令的行为都在Python中进行介绍，例如</p>
+<ul class="simple">
+<li>add(Rd, Rn, Rm) <code class="docutils literal"><span class="pre">Rd</span> <span class="pre">=</span> <span class="pre">Rn</span> <span class="pre">+</span> <span class="pre">Rm</span></code></li>
+</ul>
+<p>这支持在Python中演示指令的效果。在某些情况下，这并不具有可行性，因为Python不支持间接法等概念。在相关页面中介绍了在此情况下使用的虚拟程序代码。</p>
+</div>
+<div class="section" id="id2">
+<h2>指令分类<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>以下部分详细介绍了MicroPython支持的ARM Thumb-2指令集的子集。</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_mov.html">1. 寄存器移位指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_ldr.html">2. 从内存中加载寄存器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_str.html">3. 将寄存器存入内存</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_logical_bit.html">4. 逻辑&amp;位运算指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_arith.html">5. 算法指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_compare.html">6. 比对指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_label_branch.html">7. 分支指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_stack.html">8. 入栈和出栈</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_misc.html">9. 各种指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_float.html">10. 浮点数指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_directives.html">11. 汇编指令</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>用法示例<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>这部分提供使用汇编程序的更多代码示例和提示。</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_hints_tips.html">1. 代码分支和子程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_hints_tips.html#id2">2. 传输和返回参数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_hints_tips.html#id5">3. 命名常量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_hints_tips.html#id6">4. 汇编代码作为类方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_hints_tips.html#id7">5. 使用不支持的指令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="asm_thumb2_hints_tips.html#micropython">6. 克服MicroPython的整数限制</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>参考目录<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>汇编程序教程 <a class="reference internal" href="../pyboard/tutorial/assembler.html#pyboard-tutorial-assembler"><span class="std std-ref">Assembler Tutorial</span></a></li>
+<li><a class="reference external" href="http://wiki.micropython.org/platforms/boards/pyboard/assembler">Wiki提示与技巧</a></li>
+<li><a class="reference external" href="https://github.com/micropython/micropython/blob/master/py/emitinlinethumb.c">uPy内联汇编源代码，
+emitinlinethumb.c</a></li>
+<li><a class="reference external" href="http://infocenter.arm.com/help/topic/com.arm.doc.qrc0001l/QRC0001_UAL.pdf">ARM Thumb2指令集快速参考卡</a></li>
+<li><a class="reference external" href="http://www.google.ae/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;sqi=2&amp;ved=0CBoQFjAA&amp;url=http%3A%2F%2Fwww.st.com%2Fst-web-ui%2Fstatic%2Factive%2Fen%2Fresource%2Ftechnical%2Fdocument%2Freference_manual%2FDM00031020.pdf&amp;ei=G0rSU66xFeuW0QWYwoD4CQ&amp;usg=AFQjCNFuW6TgzE4QpahO_U7g3f3wdwecAg&amp;sig2=iET-R0y9on_Pbflzf9aYDw&amp;bvm=bv.71778758,bs.1,d.bGQ">RM0090参考指南</a></li>
+<li>ARM v7-M 构造参考手册（在ARM网站简单注册即可获取，也可在学术网站上获取，请注意过期版本）</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="asm_thumb2_mov.html" class="btn btn-neutral float-right" title="1. 寄存器移位指令" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="constrained.html" class="btn btn-neutral" title="微控制器中的MicroPython" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

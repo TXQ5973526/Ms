@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>machine — 硬件相关的函数 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="MicroPython 函数库" href="index.html"/>
+        <link rel="next" title="Pin类 – 控制I/O引脚" href="machine.Pin.html"/>
+        <link rel="prev" title="framebuf — 帧缓冲区操作" href="framebuf.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="btree.html"><code class="docutils literal"><span class="pre">btree</span></code> – 简单B树数据库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framebuf.html"><code class="docutils literal"><span class="pre">framebuf</span></code> — 帧缓冲区操作</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">machine</span></code> — 硬件相关的函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">电源相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">其他功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#machine-constants">常量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="micropython.html"><code class="docutils literal"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部构件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network.html"><code class="docutils literal"><span class="pre">network</span></code> — 网络配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uctypes.html"><code class="docutils literal"><span class="pre">uctypes</span></code> – 以结构化的方式访问二进制数据</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">machine</span></code> — 硬件相关的函数</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/machine.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-machine">
+<span id="machine"></span><h1><a class="reference internal" href="#module-machine" title="machine: 硬件相关的函数"><code class="xref py py-mod docutils literal"><span class="pre">machine</span></code></a> — 硬件相关的函数<a class="headerlink" href="#module-machine" title="永久链接至标题">¶</a></h1>
+<p>模块包含与硬件相关的特定函数。</p>
+<p id="machine-callbacks">请使用 <code class="docutils literal"><span class="pre">pyb</span></code> 模块函数/方法来控制您的OpenMV Cam。 <code class="docutils literal"><span class="pre">machine</span></code> 模块是为理解为其他MicroPython板编写的其他MicroPython代码。</p>
+<div class="section" id="id1">
+<h2>复位相关的函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="machine.reset">
+<code class="descclassname">machine.</code><code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.reset" title="永久链接至目标">¶</a></dt>
+<dd><p>重置设备，其方式与按下外部RESET按钮类似。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.reset_cause">
+<code class="descclassname">machine.</code><code class="descname">reset_cause</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.reset_cause" title="永久链接至目标">¶</a></dt>
+<dd><p>获取重置的原因。 见 <a class="reference internal" href="#machine-constants"><span class="std std-ref">constants</span></a> 查看可能的返回值。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>中断相关的函数<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="machine.disable_irq">
+<code class="descclassname">machine.</code><code class="descname">disable_irq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.disable_irq" title="永久链接至目标">¶</a></dt>
+<dd><p>禁用中断请求。返回先前的IRQ状态： <code class="docutils literal"><span class="pre">False</span></code> / <code class="docutils literal"><span class="pre">True</span></code> 分别对应禁用/启用IRQ。这个返回值可被传递，以使irq将IRQ恢复到初始状态。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.enable_irq">
+<code class="descclassname">machine.</code><code class="descname">enable_irq</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.enable_irq" title="永久链接至目标">¶</a></dt>
+<dd><p>启用中断请求。
+若 <code class="docutils literal"><span class="pre">state</span></code> 为 <code class="docutils literal"><span class="pre">True``（默认值），则启用IRQ。</span>
+<span class="pre">若</span> <span class="pre">``state</span></code> 为 <code class="docutils literal"><span class="pre">False</span></code> ，则禁用IRQ。该函数最常见用途为使 <code class="docutils literal"><span class="pre">disable_irq</span></code> 返回的值退出关键部分。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>电源相关的函数<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="machine.freq">
+<code class="descclassname">machine.</code><code class="descname">freq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.freq" title="永久链接至目标">¶</a></dt>
+<dd><p>见 <code class="docutils literal"><span class="pre">pyb.freq()</span></code> 。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.idle">
+<code class="descclassname">machine.</code><code class="descname">idle</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.idle" title="永久链接至目标">¶</a></dt>
+<dd><p>把时钟拨到中央处理器上，有助于在短时间或长时间内减少电力消耗。一旦触发任何中断，外围设备继续工作和执行恢复（在许多端口上，这包括按毫秒级定时间隔进行的系统定时器中断）。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.sleep">
+<code class="descclassname">machine.</code><code class="descname">sleep</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.sleep" title="永久链接至目标">¶</a></dt>
+<dd><p>终止cpu并禁用除WLAN外的所有外围设备。从请求睡眠的时间点开始执行回复。为实现唤醒，应首先配置唤醒源。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.deepsleep">
+<code class="descclassname">machine.</code><code class="descname">deepsleep</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.deepsleep" title="永久链接至目标">¶</a></dt>
+<dd><p>终止cpu和所有外围设备（包括网络接口）。与复位相同，从主脚本开始恢复执行。为实现唤醒，应首先配置唤醒源，
+如 <code class="docutils literal"><span class="pre">Pin</span></code> 变化或 <code class="docutils literal"><span class="pre">RTC</span></code> 超时。重置原因可用以检查以知晓我们来自 <code class="docutils literal"><span class="pre">machine.DEEPSLEEP</span></code> 。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id4">
+<h2>其他功能<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="machine.unique_id">
+<code class="descclassname">machine.</code><code class="descname">unique_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.unique_id" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个具有板子/SoC唯一标识符的字节字符串。若基础硬件允许，板子/ SOC的实例各个不同。长度根据硬件不同而不同（若您想要一个较短的ID，请使用具有完整值的子字符串）。在一些MicroPython端口中，ID与网络MAC地址相对应。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="machine.time_pulse_us">
+<code class="descclassname">machine.</code><code class="descname">time_pulse_us</code><span class="sig-paren">(</span><em>pin</em>, <em>pulse_level</em>, <em>timeout_us=1000000</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.time_pulse_us" title="永久链接至目标">¶</a></dt>
+<dd><p>在给定引脚上为脉冲计时，并返回以微秒计的脉冲持续时长。为低脉冲计时时，pulse_level参数应为0；为高脉冲计时时，该参数应为1。</p>
+<p>若引脚的当前输入值与pulse_level不同，该函数首先(*)需等待，直至引脚输入与pulse_level相等；然后为引脚与pulse_level相等的时段计时。若引脚已与pulse_level相等，则计时立即开始。</p>
+<p>若有正在等待在上方标记有(*)情况的超时，则函数将返回-2，若在上方标记有(**)的主度量中有超时，则函数返回-1。这两种情况中的超时相同，且由timeout_us给定（以微秒计）。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="machine-constants">
+<span id="id5"></span><h2>常量<a class="headerlink" href="#machine-constants" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="machine.machine.IDLE">
+<code class="descclassname">machine.</code><code class="descname">IDLE</code><a class="headerlink" href="#machine.machine.IDLE" title="永久链接至目标">¶</a></dt>
+<dt id="machine.machine.SLEEP">
+<code class="descclassname">machine.</code><code class="descname">SLEEP</code><a class="headerlink" href="#machine.machine.SLEEP" title="永久链接至目标">¶</a></dt>
+<dt id="machine.machine.DEEPSLEEP">
+<code class="descclassname">machine.</code><code class="descname">DEEPSLEEP</code><a class="headerlink" href="#machine.machine.DEEPSLEEP" title="永久链接至目标">¶</a></dt>
+<dd><p>IRQ 唤醒值。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.PWRON_RESET">
+<code class="descclassname">machine.</code><code class="descname">PWRON_RESET</code><a class="headerlink" href="#machine.machine.PWRON_RESET" title="永久链接至目标">¶</a></dt>
+<dt id="machine.machine.HARD_RESET">
+<code class="descclassname">machine.</code><code class="descname">HARD_RESET</code><a class="headerlink" href="#machine.machine.HARD_RESET" title="永久链接至目标">¶</a></dt>
+<dt id="machine.machine.WDT_RESET">
+<code class="descclassname">machine.</code><code class="descname">WDT_RESET</code><a class="headerlink" href="#machine.machine.WDT_RESET" title="永久链接至目标">¶</a></dt>
+<dt id="machine.machine.DEEPSLEEP_RESET">
+<code class="descclassname">machine.</code><code class="descname">DEEPSLEEP_RESET</code><a class="headerlink" href="#machine.machine.DEEPSLEEP_RESET" title="永久链接至目标">¶</a></dt>
+<dt id="machine.machine.SOFT_RESET">
+<code class="descclassname">machine.</code><code class="descname">SOFT_RESET</code><a class="headerlink" href="#machine.machine.SOFT_RESET" title="永久链接至目标">¶</a></dt>
+<dd><p>重置原因。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="machine.machine.WLAN_WAKE">
+<code class="descclassname">machine.</code><code class="descname">WLAN_WAKE</code><a class="headerlink" href="#machine.machine.WLAN_WAKE" title="永久链接至目标">¶</a></dt>
+<dt id="machine.machine.PIN_WAKE">
+<code class="descclassname">machine.</code><code class="descname">PIN_WAKE</code><a class="headerlink" href="#machine.machine.PIN_WAKE" title="永久链接至目标">¶</a></dt>
+<dt id="machine.machine.RTC_WAKE">
+<code class="descclassname">machine.</code><code class="descname">RTC_WAKE</code><a class="headerlink" href="#machine.machine.RTC_WAKE" title="永久链接至目标">¶</a></dt>
+<dd><p>唤醒原因。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id6">
+<h2>类<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="machine.Pin.html">Pin类 – 控制I/O引脚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.Signal.html">Signal类 – 控制和感应外部I/O设备</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.UART.html">UART类 – 双工串行通信总线</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.SPI.html">SPI类 – 串行外设接口总线协议(主机)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.I2C.html">I2C类 – 双线串行协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.RTC.html">RTC类 – 实时时钟</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.Timer.html">定时器类 – 控制硬件定时器</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine.WDT.html">WDT类 – 看门狗定时器</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="machine.Pin.html" class="btn btn-neutral float-right" title="Pin类 – 控制I/O引脚" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="framebuf.html" class="btn btn-neutral" title="framebuf — 帧缓冲区操作" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+:mod:`mjpeg` --- mjpeg录制 
+================================
+
+.. module:: mjpeg
+   :synopsis: mjpeg录制 
+
+``mjpeg`` 模块用于mjpeg录制。
+
+Mjpeg类 -- Mjpeg录制
+=============================
+
+您可以使用mjpeg模块来记录长视频剪辑。注意：mjpeg文件保存的是未压缩图像数据。因此，非常适合记录您想分享的长视频剪辑。使用 ``gif`` 进行短视频剪辑。
+
+用法示例::
+
+    import sensor, mjpeg, time
+
+    # 设置摄像机。
+    sensor.reset()
+    sensor.set_pixformat(sensor.RGB565)
+    sensor.set_framesize(sensor.QVGA)
+    sensor.skip_frames()
+    c = time.clock()
+
+    # Create the mjpeg object. 创建mjpeg对象。
+    m = mjpeg.Mjpeg("example.mjpeg")
+
+    # Add frames. 添加帧。
+    for i in range(100):
+        c.tick()
+        m.add_frame(sensor.snapshot())
+
+    # Finalize. 完成。
+    m.close(c.fps())
+
+构造函数
+------------
+
+.. class:: mjpeg.Mjpeg(filename, width=Auto, height=Auto)
+
+   创建一个可添加帧的mjpeg对象。 ``filename`` 是保存录制的mjpeg的路径。
+
+   ``width`` 自动设置为图像传感器水平分辨率（除非显式覆盖）。
+
+   ``height`` 自动设置为图像传感器垂直分辨率（除非显式覆盖）。
+
+   .. note::
+
+      ``width`` 和 ``height`` 是键值参数，必须在函数调用中通过写入 ``width=`` 和 ``height=`` 来显式地调用。
+
+方法
+-------
+
+.. method:: mjpeg.width()
+
+   返回mjpeg对象的宽度（水平分辨率）。
+
+.. method:: mjpeg.height()
+
+   返回mjpeg对象的高度（垂直分辨率）。
+
+.. method:: mjpeg.size()
+
+   返回mjpeg目前的文件大小。该值在添加帧后更新。
+
+.. method:: mjpeg.add_frame(image, quality=50)
+
+   将一张图像添加到mjpeg记录中。图像的宽度、高度和颜色模式必须与mjpeg构造函数中使用的宽度、高度和颜色模式相同。
+
+   ``quality`` 是在非jpeg格式下用以压缩图像的jepg的压缩质量(RGB565 或GRAYSCALE 格式)。
+
+   .. note::
+
+      ``quality`` 是键值参数，必须在函数调用中通过写入 ``quality=`` 来显式地调用。
+
+.. method:: mjpeg.close(fps)
+
+   结束mjpeg录制。须在记录完成后调用此方法，以使文件可查看。
+
+   ``fps`` 是mjpeg录制时的帧速率。

@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>network — 网络配置 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="MicroPython 函数库" href="index.html"/>
+        <link rel="next" title="uctypes – 以结构化的方式访问二进制数据" href="uctypes.html"/>
+        <link rel="prev" title="micropython – 访问和控制MicroPython内部构件" href="micropython.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="btree.html"><code class="docutils literal"><span class="pre">btree</span></code> – 简单B树数据库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framebuf.html"><code class="docutils literal"><span class="pre">framebuf</span></code> — 帧缓冲区操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> — 硬件相关的函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="micropython.html"><code class="docutils literal"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部构件</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">network</span></code> — 网络配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">常见的网络适配器接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-cc3k">class CC3K</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-wiznet5k">class WIZNET5K</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="uctypes.html"><code class="docutils literal"><span class="pre">uctypes</span></code> – 以结构化的方式访问二进制数据</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">network</span></code> — 网络配置</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/network.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-network">
+<span id="network"></span><h1><a class="reference internal" href="#module-network" title="network: 网络配置"><code class="xref py py-mod docutils literal"><span class="pre">network</span></code></a> — 网络配置<a class="headerlink" href="#module-network" title="永久链接至标题">¶</a></h1>
+<p>该模块提供网络驱动程序和路由配置。特定硬件的网络驱动程序可以在此模块中使用，并用于配置硬件网络接口。然后可通过socket模块使用配置的接口。要使用该模块，必须安装固件的网络构建。</p>
+<p>例如:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># connect/ show IP config a specific network interface 配置一个特定的网络接口</span>
+<span class="c1"># see below for examples of specific drivers 特定驱动示例见下</span>
+<span class="kn">import</span> <span class="nn">network</span>
+<span class="kn">import</span> <span class="nn">utime</span>
+<span class="n">nic</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">Driver</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">nic</span><span class="o">.</span><span class="n">isconnected</span><span class="p">():</span>
+    <span class="n">nic</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waiting for connection...&quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">nic</span><span class="o">.</span><span class="n">isconnected</span><span class="p">():</span>
+        <span class="n">utime</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nic</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">())</span>
+
+<span class="c1"># now use usocket as usual 现在正常使用socket</span>
+<span class="kn">import</span> <span class="nn">usocket</span> <span class="k">as</span> <span class="nn">socket</span>
+<span class="n">addr</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;micropython.org&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;GET / HTTP/1.1</span><span class="se">\r\n</span><span class="s1">Host: micropython.org</span><span class="se">\r\n\r\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>常见的网络适配器接口<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>本节描述针对不同硬件的MicroPython不同端口实现的所有网络接口类的一个(隐含的)抽象基类。
+这也就意味着MicroPython实际上不会提供 <a class="reference internal" href="#network.AbstractNIC" title="network.AbstractNIC"><code class="xref any py py-class docutils literal"><span class="pre">AbstractNIC</span></code></a> 类，但是正如以下部分中所述，任何实际的NIC类实现此处所述的方法。</p>
+<dl class="class">
+<dt id="network.AbstractNIC">
+<em class="property">class </em><code class="descclassname">network.</code><code class="descname">AbstractNIC</code><span class="sig-paren">(</span><em>id=None</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#network.AbstractNIC" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<p>将一个网络接口对象实例化。参数取决于网络接口。若同种类接口超过一个，则首个参数应为 <a class="reference internal" href="builtins.html#id" title="id"><code class="xref any py py-func docutils literal"><span class="pre">id</span></code></a> 。</p>
+<blockquote>
+<div><dl class="method">
+<dt id="network.active">
+<code class="descclassname">network.</code><code class="descname">active</code><span class="sig-paren">(</span><span class="optional">[</span><em>is_active</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#network.active" title="永久链接至目标">¶</a></dt>
+<dd><p>若布尔值参数被传递，则激活（“up”）或禁用（“down”）网络接口。否则若未提供参数，则查询当前状态。
+大多数其他方法需要一个激活接口（在未激活接口上的回调行为尚未定义）。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.connect">
+<code class="descclassname">network.</code><code class="descname">connect</code><span class="sig-paren">(</span><span class="optional">[</span><em>service_id</em>, <em>key=None</em>, <em>*</em>, <em>...</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#network.connect" title="永久链接至目标">¶</a></dt>
+<dd><p>将接口连接到网络。该方法为可选的，且仅适用于不为“总是连接”的接口。若未给定任何参数，
+则连接到默认设备（或唯一设备）。若给定一个参数，即为连接的设备的主要标识符。
+可能附带一个访问该服务的密钥（密码）。根据网络介质类型和/或特定设备，可有更多任意关键字参数。
+参数可用于：a）指定可选的服务标识符种类；b）提供额外的连接参数。对于不同媒介种类，有不同的预定义/推荐参数集，其中：</p>
+<ul class="simple">
+<li>WiFi: 由BSSID（MAC地址）连接的bssid密钥，而非访问点名称</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.disconnect">
+<code class="descclassname">network.</code><code class="descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network.disconnect" title="永久链接至目标">¶</a></dt>
+<dd><p>断开网络连接。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.isconnected">
+<code class="descclassname">network.</code><code class="descname">isconnected</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network.isconnected" title="永久链接至目标">¶</a></dt>
+<dd><p>若连接到网络，则返回 <code class="docutils literal"><span class="pre">True</span></code> ，否则返回 <code class="docutils literal"><span class="pre">False</span></code> 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.scan">
+<code class="descclassname">network.</code><code class="descname">scan</code><span class="sig-paren">(</span><em>*</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#network.scan" title="永久链接至目标">¶</a></dt>
+<dd><p>扫描可用的网络设备/连接。返回一个发现的设备参数的元组列表。对于不同的网络媒介，有不同的预定义/推荐元组格式，其中：</p>
+<ul class="simple">
+<li>WiFi: (ssid, bssid, channel, RSSI, authmode, hidden). 可能有特定于某一设备的进一步的域。</li>
+</ul>
+<p>该函数可能接受附加关键字参数以过滤扫描结果（例如：在特定通道上扫描某一种特定服务等），
+并影响扫描持续时间和其他参数。在可能之处，参数名称应与connect()中的相匹配。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.status">
+<code class="descclassname">network.</code><code class="descname">status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network.status" title="永久链接至目标">¶</a></dt>
+<dd><p>返回接口的具体状态，值取决于网络介质/技术。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.ifconfig">
+<code class="descclassname">network.</code><code class="descname">ifconfig</code><span class="sig-paren">(</span><span class="optional">[</span><em>(ip</em>, <em>subnet</em>, <em>gateway</em>, <em>dns)</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#network.ifconfig" title="永久链接至目标">¶</a></dt>
+<dd><p>获取/设置IP-层的网络接口参数：IP地址、子网掩码、网关。DNS服务器。当无参数调用时，
+该方法返回一个包含上述信息的4元组。设置上述值，请使用所需信息传递一个4元组。例如:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">nic</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">((</span><span class="s1">&#39;192.168.0.4&#39;</span><span class="p">,</span> <span class="s1">&#39;255.255.255.0&#39;</span><span class="p">,</span> <span class="s1">&#39;192.168.0.1&#39;</span><span class="p">,</span> <span class="s1">&#39;8.8.8.8&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.config">
+<code class="descclassname">network.</code><code class="descname">config</code><span class="sig-paren">(</span><em>'param'</em><span class="sig-paren">)</span><a class="headerlink" href="#network.config" title="永久链接至目标">¶</a></dt>
+<dt>
+<code class="descclassname">network.</code><code class="descname">config</code><span class="sig-paren">(</span><em>param=value</em>, <em>...</em><span class="sig-paren">)</span></dt>
+<dd><p>获取或设置网络接口参数。这些方法允许处理标准IP配置（由 <a class="reference internal" href="#network.ifconfig" title="network.ifconfig"><code class="xref any py py-meth docutils literal"><span class="pre">ifconfig()</span></code></a> 处理）外的额外参数。
+这些参数包括特定于网络和特定于硬件的参数以及状态值。设置参数，应使用关键字参数语法，
+且多个参数应一次设置。查询时参数名称应作为一个字符串查询，且一次只能查询一个参数:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Set WiFi access point name (formally known as ESSID) and WiFi channel 设置WiFi访问点名称（常称为ESSID）和WiFi通道</span>
+<span class="n">ap</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">essid</span><span class="o">=</span><span class="s1">&#39;My AP&#39;</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="c1"># Query params one by one 一个一个查询参数</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ap</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s1">&#39;essid&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ap</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s1">&#39;channel&#39;</span><span class="p">))</span>
+<span class="c1"># Extended status information also available this way 扩展状态信息也用此方式</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sta</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s1">&#39;rssi&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div></blockquote>
+<span class="target" id="network-wlan"></span></div>
+<div class="section" id="class-cc3k">
+<h2>class CC3K<a class="headerlink" href="#class-cc3k" title="永久链接至标题">¶</a></h2>
+<p>该类提供CC3000 WiFi模块的驱动。用法示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">network</span>
+<span class="n">nic</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">CC3K</span><span class="p">(</span><span class="n">pyb</span><span class="o">.</span><span class="n">SPI</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">Y5</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">Y4</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">Y3</span><span class="p">)</span>
+<span class="n">nic</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;your-ssid&#39;</span><span class="p">,</span> <span class="s1">&#39;your-password&#39;</span><span class="p">)</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">nic</span><span class="o">.</span><span class="n">isconnected</span><span class="p">():</span>
+    <span class="n">pyb</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nic</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">())</span>
+
+<span class="c1"># now use socket as usual 现在像往常一样使用socket</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>为使此例运行，CC3000模块需包含以下连接:</p>
+<blockquote>
+<div><ul class="simple">
+<li>MOSI 连接到 Y8</li>
+<li>MISO 连接到 Y7</li>
+<li>CLK 连接到 Y6</li>
+<li>CS 连接到 Y5</li>
+<li>VBEN 连接到 Y4</li>
+<li>IRQ 连接到 Y3</li>
+</ul>
+</div></blockquote>
+<p>使用其他SPI总线并将其他引脚用于CS、VBEN和IRQ都是可行的。</p>
+<div class="section" id="id2">
+<h3>构造函数<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<dl class="class">
+<dt id="network.CC3K">
+<em class="property">class </em><code class="descclassname">network.</code><code class="descname">CC3K</code><span class="sig-paren">(</span><em>spi</em>, <em>pin_cs</em>, <em>pin_en</em>, <em>pin_irq</em><span class="sig-paren">)</span><a class="headerlink" href="#network.CC3K" title="永久链接至目标">¶</a></dt>
+<dd><p>创建一个CC3K驱动对象，使用给定SPI总线和引脚初始化CC3000模块，并返回CC3K对象。</p>
+<p>参数为:</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>spi</em> is an <a class="reference internal" href="pyb.SPI.html#pyb-spi"><span class="std std-ref">SPI object</span></a> 是一个SPI对象，即CC3000连接到的SPI总线（MOSI、MISO和CLK引脚）。</li>
+<li><em>pin_cs</em> is a <a class="reference internal" href="pyb.Pin.html#pyb-pin"><span class="std std-ref">Pin object</span></a> 是一个引脚对象，即连接到CC3000 CS引脚的引脚。</li>
+<li><em>pin_en</em> is a <a class="reference internal" href="pyb.Pin.html#pyb-pin"><span class="std std-ref">Pin object</span></a> 是一个引脚对象，即连接到CC3000 VBEN引脚的引脚。</li>
+<li><em>pin_irq</em> is a <a class="reference internal" href="pyb.Pin.html#pyb-pin"><span class="std std-ref">Pin object</span></a> 是一个引脚对象，即连接到CC3000 IRQ引脚的引脚。</li>
+</ul>
+</div></blockquote>
+<p>所有对象将由驱动初始化，因此无需您手动进行。例如，您可使用:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">nic</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">CC3K</span><span class="p">(</span><span class="n">pyb</span><span class="o">.</span><span class="n">SPI</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">Y5</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">Y4</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">Y3</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="methods">
+<h3>Methods<a class="headerlink" href="#methods" title="永久链接至标题">¶</a></h3>
+<dl class="method">
+<dt id="network.cc3k.connect">
+<code class="descclassname">cc3k.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>ssid</em>, <em>key=None</em>, <em>*</em>, <em>security=WPA2</em>, <em>bssid=None</em><span class="sig-paren">)</span><a class="headerlink" href="#network.cc3k.connect" title="永久链接至目标">¶</a></dt>
+<dd><p>使用给定SSID和其他安全参数连接到WiFi访问点。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.cc3k.disconnect">
+<code class="descclassname">cc3k.</code><code class="descname">disconnect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network.cc3k.disconnect" title="永久链接至目标">¶</a></dt>
+<dd><p>断开与WiFi访问点的连接。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.cc3k.isconnected">
+<code class="descclassname">cc3k.</code><code class="descname">isconnected</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network.cc3k.isconnected" title="永久链接至目标">¶</a></dt>
+<dd><p>若连接到访问点且有一个有效IP地址，则返回True，否则则返回False。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.cc3k.ifconfig">
+<code class="descclassname">cc3k.</code><code class="descname">ifconfig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network.cc3k.ifconfig" title="永久链接至目标">¶</a></dt>
+<dd><p>使用（ip、子网掩码、网关、DNS服务器、DHCP服务器、MAC地址、SSID）返回一个7元组。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.cc3k.patch_version">
+<code class="descclassname">cc3k.</code><code class="descname">patch_version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network.cc3k.patch_version" title="永久链接至目标">¶</a></dt>
+<dd><p>返回CC3000上的补丁程序（固件）的版本。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.cc3k.patch_program">
+<code class="descclassname">cc3k.</code><code class="descname">patch_program</code><span class="sig-paren">(</span><em>'pgm'</em><span class="sig-paren">)</span><a class="headerlink" href="#network.cc3k.patch_program" title="永久链接至目标">¶</a></dt>
+<dd><p>将当前固件上传到CC3000。为使上传正常进行，您必须将“pgm”作为首个参数传递。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h3>常量<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<dl class="data">
+<dt id="network.CC3K.WEP">
+<code class="descclassname">CC3K.</code><code class="descname">WEP</code><a class="headerlink" href="#network.CC3K.WEP" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="network.CC3K.WPA">
+<code class="descclassname">CC3K.</code><code class="descname">WPA</code><a class="headerlink" href="#network.CC3K.WPA" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="network.CC3K.WPA2">
+<code class="descclassname">CC3K.</code><code class="descname">WPA2</code><a class="headerlink" href="#network.CC3K.WPA2" title="永久链接至目标">¶</a></dt>
+<dd><p>使用的安全类型</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="class-wiznet5k">
+<h2>class WIZNET5K<a class="headerlink" href="#class-wiznet5k" title="永久链接至标题">¶</a></h2>
+<p>该类允许您控制基于W5200和W5500芯片组的WIZnet5x00以太网适配器（仅W5200经过测试）。</p>
+<p>用法示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">network</span>
+<span class="n">nic</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WIZNET5K</span><span class="p">(</span><span class="n">pyb</span><span class="o">.</span><span class="n">SPI</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X5</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nic</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">())</span>
+
+<span class="c1"># now use socket as usual 现在像往常一样使用socket</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>为使此例运行，WIZnet5x00模块需具有以下连接:</p>
+<blockquote>
+<div><ul class="simple">
+<li>MOSI 连接到 X8</li>
+<li>MISO 连接到 X7</li>
+<li>SCLK 连接到 X6</li>
+<li>nSS 连接到 X5</li>
+<li>nRESET 连接到 X4</li>
+</ul>
+</div></blockquote>
+<p>使用其他SPI总线并将其他引脚用于nSS和nRESET都是可行的.</p>
+<div class="section" id="id4">
+<h3>构造函数<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<dl class="class">
+<dt id="network.WIZNET5K">
+<em class="property">class </em><code class="descclassname">network.</code><code class="descname">WIZNET5K</code><span class="sig-paren">(</span><em>spi</em>, <em>pin_cs</em>, <em>pin_rst</em><span class="sig-paren">)</span><a class="headerlink" href="#network.WIZNET5K" title="永久链接至目标">¶</a></dt>
+<dd><p>创建一个WIZNET5K驱动对象，使用给定SPI总线和引脚初始化WIZnet5x00模块，并返回WIZNET5K对象。</p>
+<p>参数为:</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>spi</em> is an <a class="reference internal" href="pyb.SPI.html#pyb-spi"><span class="std std-ref">SPI object</span></a> 是一个SPI对象，即WIZnet5x00连接到的SPI总线（MOSI、MISO和CLK引脚）。</li>
+<li><em>pin_cs</em> is a <a class="reference internal" href="pyb.Pin.html#pyb-pin"><span class="std std-ref">Pin object</span></a> 是一个引脚对象，即连接到WIZnet5x00 nSS引脚的引脚。</li>
+<li><em>pin_rst</em> is a <a class="reference internal" href="pyb.Pin.html#pyb-pin"><span class="std std-ref">Pin object</span></a> 是一个引脚对象，即连接到WIZnet5x00 nRESET引脚的引脚。</li>
+</ul>
+</div></blockquote>
+<p>所有引脚都由驱动初始化，因此无需您手动进行。例如，您可使用:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">nic</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WIZNET5K</span><span class="p">(</span><span class="n">pyb</span><span class="o">.</span><span class="n">SPI</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X5</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X4</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h3>方法<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<dl class="method">
+<dt id="network.wiznet5k.ifconfig">
+<code class="descclassname">wiznet5k.</code><code class="descname">ifconfig</code><span class="sig-paren">(</span><span class="optional">[</span><em>(ip</em>, <em>subnet</em>, <em>gateway</em>, <em>dns)</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#network.wiznet5k.ifconfig" title="永久链接至目标">¶</a></dt>
+<dd><p>获取/设置IP地址、子网掩码、网关和DNS。</p>
+<p>当无参数调用时，此类函数返回一个带有上述信息的4元组。</p>
+<p>设置上述值，请使用所需信息传递一个4元组。例如:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">nic</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">((</span><span class="s1">&#39;192.168.0.4&#39;</span><span class="p">,</span> <span class="s1">&#39;255.255.255.0&#39;</span><span class="p">,</span> <span class="s1">&#39;192.168.0.1&#39;</span><span class="p">,</span> <span class="s1">&#39;8.8.8.8&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="network.wiznet5k.regs">
+<code class="descclassname">wiznet5k.</code><code class="descname">regs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network.wiznet5k.regs" title="永久链接至目标">¶</a></dt>
+<dd><p>转储WIZnet5x00寄存器。用于调试。</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="uctypes.html" class="btn btn-neutral float-right" title="uctypes – 以结构化的方式访问二进制数据" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="micropython.html" class="btn btn-neutral" title="micropython – 访问和控制MicroPython内部构件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

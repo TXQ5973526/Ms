@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Signal类 – 控制和感应外部I/O设备 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="machine — 硬件相关的函数" href="machine.html"/>
+        <link rel="next" title="UART类 – 双工串行通信总线" href="machine.UART.html"/>
+        <link rel="prev" title="Pin类 – 控制I/O引脚" href="machine.Pin.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="btree.html"><code class="docutils literal"><span class="pre">btree</span></code> – 简单B树数据库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framebuf.html"><code class="docutils literal"><span class="pre">framebuf</span></code> — 帧缓冲区操作</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> — 硬件相关的函数</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="machine.html#id1">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#id2">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#id3">电源相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#id4">其他功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="machine.html#machine-constants">常量</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="machine.html#id6">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="micropython.html"><code class="docutils literal"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部构件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network.html"><code class="docutils literal"><span class="pre">network</span></code> — 网络配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uctypes.html"><code class="docutils literal"><span class="pre">uctypes</span></code> – 以结构化的方式访问二进制数据</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+          <li><a href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> — 硬件相关的函数</a> &raquo;</li>
+        
+      <li>Signal类 – 控制和感应外部I/O设备</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/machine.Signal.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="signal-i-o">
+<span id="machine-signal"></span><h1>Signal类 – 控制和感应外部I/O设备<a class="headerlink" href="#signal-i-o" title="永久链接至标题">¶</a></h1>
+<p>信号类是引脚类的简单延伸。信号类增加了对引脚功能的逻辑反转支持。虽然这看起来只是简单的补充，
+但这正是支持通过不同板进行移植的多种简单数字设备所需要的，这也是MicroPython的主要目标之一。
+无论不同用户是否有低电平有效或高电平有效的LED，常开或常闭的继电器—您都可开发一个单独的、外观漂亮的应用程序，
+此程序可与每个应用程序一起运行，并在应用程序的配置文件的几行中捕捉硬件配置的差异。</p>
+<p>以下为信号vs引脚的使用指南:</p>
+<ul class="simple">
+<li>使用信号: 若您想要控制一个类似LED、多段指示器、继电器、蜂鸣器等的简单开/关（包括软件PWM！）设备，
+或读取类似常开或常闭按钮、拉高或拉低、磁簧开关、水分/火焰检测器等简单的二进制传感器。总之，
+若您有一个需要GPIO访问的真实的物理设备/传感器，您可能需要使用信号。</li>
+<li>使用引脚: 若您实现一个更高水平的协议或总线以与更多复杂设备通信时。</li>
+</ul>
+<p>引脚与信号的差异来自上述使用情况和MicroPython架构：引脚可实现最低开销，这对位拆裂协议十分重要。
+但是信号在引脚基础上更具灵活性，尽管这种灵活性是以低开销为代价的（远远小于您在Python中手动实现高电平有效vs低电平有效设备差异！）
+引脚是一个需要每种支持板实现的低电平对象，而新信号是一个高电平对象，且在实现引脚后免费。</p>
+<p>若您仍存疑，请尝试信号！再次强调：其开发目的是帮助开发人员减少诸如处理像低电平有效vs高电平有效信号这种无用的差异，
+并允许其他用户共享您的应用程序，而不会因为他们的LED或继电器的连线方式稍有不同而使应用程序无法运行而沮丧。</p>
+<div class="section" id="id1">
+<h2>构造函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="machine.Signal">
+<em class="property">class </em><code class="descclassname">machine.</code><code class="descname">Signal</code><span class="sig-paren">(</span><em>pin_obj</em>, <em>invert=False</em><span class="sig-paren">)</span><a class="headerlink" href="#machine.Signal" title="永久链接至目标">¶</a></dt>
+<dt>
+<em class="property">class </em><code class="descclassname">machine.</code><code class="descname">Signal</code><span class="sig-paren">(</span><em>pin_arguments...</em>, <em>*</em>, <em>invert=False</em><span class="sig-paren">)</span></dt>
+<dd><p>创建一个信号对象。有两种创建方式:</p>
+<ul class="simple">
+<li>通过包裹现有的引脚对象 — 适用于任何板的通用方法.</li>
+<li>通过将所需引脚参数直接传递到信号构造函数，避开创建引脚对象的中间环节。在许多板上可使用此方法，但并非在所有板上可用。</li>
+</ul>
+<p>参数为:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">pin_obj</span></code> 为现有的引脚对象。</li>
+<li><code class="docutils literal"><span class="pre">pin_arguments</span></code> 即为可被传递到引脚构造函数的同个参数。</li>
+<li><code class="docutils literal"><span class="pre">invert</span></code> - 若为True，则信号将被反转（低电平有效）。</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="machine.Signal.value">
+<code class="descclassname">Signal.</code><code class="descname">value</code><span class="sig-paren">(</span><span class="optional">[</span><em>x</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Signal.value" title="永久链接至目标">¶</a></dt>
+<dd><p>此方法允许设置或获取信号的值，这取决于是否提供了参数 <code class="docutils literal"><span class="pre">x</span></code> 。</p>
+<p>若参数被省略，则此函数获取信号电平，1意为信号有效，0为信号无效。</p>
+<p>若提供了参数，则类函数设置信号电平。 <code class="docutils literal"><span class="pre">x</span></code> 参数可为可转换为布尔值的任何数值。若其转换为 <code class="docutils literal"><span class="pre">True</span></code> ，则信号有效，否则信号无效。</p>
+<p>信号有效与底层引脚上的实际逻辑电平之间的对应关系取决于信号是否反相（低电平有效）。
+对于非反相信号，有效状态对应逻辑1，无效状态对应逻辑0。对于反相/低电平有效信号，有效状态对应逻辑0，无效状态对应逻辑1。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Signal.on">
+<code class="descclassname">Signal.</code><code class="descname">on</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Signal.on" title="永久链接至目标">¶</a></dt>
+<dd><p>激活信号。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="machine.Signal.off">
+<code class="descclassname">Signal.</code><code class="descname">off</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#machine.Signal.off" title="永久链接至目标">¶</a></dt>
+<dd><p>关闭信号。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="machine.UART.html" class="btn btn-neutral float-right" title="UART类 – 双工串行通信总线" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="machine.Pin.html" class="btn btn-neutral" title="Pin类 – 控制I/O引脚" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

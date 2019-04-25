@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>uctypes – 以结构化的方式访问二进制数据 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="MicroPython 函数库" href="index.html"/>
+        <link rel="next" title="pyb — 板级功能" href="pyb.html"/>
+        <link rel="prev" title="network — 网络配置" href="network.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="btree.html"><code class="docutils literal"><span class="pre">btree</span></code> – 简单B树数据库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="framebuf.html"><code class="docutils literal"><span class="pre">framebuf</span></code> — 帧缓冲区操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machine.html"><code class="docutils literal"><span class="pre">machine</span></code> — 硬件相关的函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="micropython.html"><code class="docutils literal"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部构件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="network.html"><code class="docutils literal"><span class="pre">network</span></code> — 网络配置</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">uctypes</span></code> – 以结构化的方式访问二进制数据</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">定义结构布局</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">模块内容</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">结构描述符和实例化结构对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">结构对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">局限性</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">uctypes</span></code> – 以结构化的方式访问二进制数据</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/uctypes.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-uctypes">
+<span id="uctypes"></span><h1><a class="reference internal" href="#module-uctypes" title="uctypes: access binary data in a structured way"><code class="xref py py-mod docutils literal"><span class="pre">uctypes</span></code></a> – 以结构化的方式访问二进制数据<a class="headerlink" href="#module-uctypes" title="永久链接至标题">¶</a></h1>
+<p>该模块实现MicroPython的“外部数据接口”。其背后的设想与CPython的 <code class="docutils literal"><span class="pre">ctypes</span></code> 模块相似，
+但是实际的API与之不同，简化并针对小规模进行了优化。该模块的基本设想是定义数据结构布局，
+其功能与C语言所允许大致相同，并使用熟悉的点语法来引用子字段。</p>
+<div class="admonition seealso">
+<p class="first admonition-title">参见</p>
+<dl class="last docutils">
+<dt>Module <a class="reference internal" href="ustruct.html#module-ustruct" title="ustruct: 打包和解压缩原始数据类型"><code class="xref py py-mod docutils literal"><span class="pre">ustruct</span></code></a></dt>
+<dd>访问二进制数据结构的标准Python方法（不太适合大而复杂的结构）。</dd>
+</dl>
+</div>
+<div class="section" id="id1">
+<h2>定义结构布局<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>结构布局由“描述符”定义—一个将字段名编码为键和其他属性，以将其作为关联值访问。
+目前，uctype需明确规范每个字段的偏移量。偏移量是从结构开始以字节给出。</p>
+<p>以下为不同字段类型的编码示例:</p>
+<ul>
+<li><p class="first">标量类型:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;field_name&quot;</span><span class="p">:</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT32</span> <span class="o">|</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>换言之，值为从结构起始处的字段偏移量（以字节为单位）与标量类型标识符ORed进行或运算。</p>
+</li>
+<li><p class="first">递归布局:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;sub&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s2">&quot;b0&quot;</span><span class="p">:</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span> <span class="o">|</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;b1&quot;</span><span class="p">:</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span> <span class="o">|</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>即：值为一个2元组，元组中第一项为偏移量，第二项为结构描述符词典（注意：递归描述符中的偏移量与其定义的结构相对）。</p>
+</li>
+<li><p class="first">原始类型数组:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;arr&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">uctypes</span><span class="o">.</span><span class="n">ARRAY</span> <span class="o">|</span> <span class="mi">0</span><span class="p">,</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span> <span class="o">|</span> <span class="mi">2</span><span class="p">),</span>
+</pre></div>
+</div>
+<p>即：值为一个2元组，元组中第一项为ARRAY标记与偏移量进行或运算，第二项为数组元素的标量元素类型ORed数。</p>
+</li>
+<li><p class="first">集合类型的数组:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;arr2&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">uctypes</span><span class="o">.</span><span class="n">ARRAY</span> <span class="o">|</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span> <span class="o">|</span> <span class="mi">0</span><span class="p">}),</span>
+</pre></div>
+</div>
+<p>即：值为一个3元组，元组中第一项为ARRAY标记与偏移量进行或运算，第二项为数组中元素的数量，第三项为元素类型的描述符。</p>
+</li>
+<li><p class="first">指向原始类型的指针:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;ptr&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">uctypes</span><span class="o">.</span><span class="n">PTR</span> <span class="o">|</span> <span class="mi">0</span><span class="p">,</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span><span class="p">),</span>
+</pre></div>
+</div>
+<p>即：值为一个2元组，元组中第一项为PTR标记与偏移量进行或运算，第二项为标量元素类型。</p>
+</li>
+<li><p class="first">指向集合类型的指针:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;ptr2&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">uctypes</span><span class="o">.</span><span class="n">PTR</span> <span class="o">|</span> <span class="mi">0</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">UINT8</span> <span class="o">|</span> <span class="mi">0</span><span class="p">}),</span>
+</pre></div>
+</div>
+<p>即：值为一个2元组，元组中第一项为PTR标记与偏移量进行或运算，第二项为指向的描述符类型。</p>
+</li>
+<li><p class="first">位字段:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;bitf0&quot;</span><span class="p">:</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BFUINT16</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">|</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_POS</span> <span class="o">|</span> <span class="mi">8</span> <span class="o">&lt;&lt;</span> <span class="n">uctypes</span><span class="o">.</span><span class="n">BF_LEN</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>即：值为包含给定位字段的标量值的类型（类型名称与标量类型相似，但是带有“BF”前缀），与包含位字段的标量值进行或运算，
+并与位偏移量的值和标量值内的位字段的位长度（分别由BF_POS和BF_LEN位置转换而来）进行或运算。
+位字段位置是从最低有效位开始计数，且为字段的最右位的数字（换言之，标量需右移至额外位字段，位字段位置即为右移的位数）。</p>
+<p>在以上示例中，第一个UINT16值将在偏移量0处提取（访问硬件寄存器时，即需特定的访问大小和对齐，此细节便不容忽视），
+位域的最右位是该UINT16的最低位，其长度是8位，此位将被提取—这实际上将访问UINT16的最低有效字节。</p>
+<p>注意：位域操作与目标字节的字节顺序无关，特别地，以上示例将以低位有限和高位优先结构访问UINT16的最低有效字节。
+但其取决于编号为0的最低有效位。某些目标可能在其本地ABI中使用不同编号，但 <code class="docutils literal"><span class="pre">uctypes</span></code> 始终使用上述规范化编号。</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>模块内容<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="uctypes.struct">
+<em class="property">class </em><code class="descclassname">uctypes.</code><code class="descname">struct</code><span class="sig-paren">(</span><em>addr</em>, <em>descriptor</em>, <em>layout_type=NATIVE</em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.struct" title="永久链接至目标">¶</a></dt>
+<dd><p>根据内存中的结构地址、描述符（编码为字典）和布局类型（请参见下文）实例化“外部数据结构”对象。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="uctypes.LITTLE_ENDIAN">
+<code class="descclassname">uctypes.</code><code class="descname">LITTLE_ENDIAN</code><a class="headerlink" href="#uctypes.LITTLE_ENDIAN" title="永久链接至目标">¶</a></dt>
+<dd><p>低位优先包装结构的布局类型。（包装即表示每个字段所占字节与描述符中定义的完全契合，也就是说，对其为1）。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="uctypes.BIG_ENDIAN">
+<code class="descclassname">uctypes.</code><code class="descname">BIG_ENDIAN</code><a class="headerlink" href="#uctypes.BIG_ENDIAN" title="永久链接至目标">¶</a></dt>
+<dd><p>高位优先包装结构的布局类型。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="uctypes.NATIVE">
+<code class="descclassname">uctypes.</code><code class="descname">NATIVE</code><a class="headerlink" href="#uctypes.NATIVE" title="永久链接至目标">¶</a></dt>
+<dd><p>本地结构的布局类型—数据的字节顺序和对齐符合MicroPython运行的系统的ABI</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uctypes.sizeof">
+<code class="descclassname">uctypes.</code><code class="descname">sizeof</code><span class="sig-paren">(</span><em>struct</em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.sizeof" title="永久链接至目标">¶</a></dt>
+<dd><p>返回以字节为单位的数据结构的大小。参数可为结构类或特定实例化结构对象（或其聚合字段）。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uctypes.addressof">
+<code class="descclassname">uctypes.</code><code class="descname">addressof</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.addressof" title="永久链接至目标">¶</a></dt>
+<dd><p>返回对象的地址。参数应为字节、字节数组或其他支持缓冲区协议（返回的即为此缓冲区的地址）。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uctypes.bytes_at">
+<code class="descclassname">uctypes.</code><code class="descname">bytes_at</code><span class="sig-paren">(</span><em>addr</em>, <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.bytes_at" title="永久链接至目标">¶</a></dt>
+<dd><p>在给定地址和以给定大小捕捉内存为字节对象。因为字节对象为可变的，内存实际上被复制到字节对象中，所以内存内容稍后有所更改，被创建的对象保留初始值。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uctypes.bytearray_at">
+<code class="descclassname">uctypes.</code><code class="descname">bytearray_at</code><span class="sig-paren">(</span><em>addr</em>, <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#uctypes.bytearray_at" title="永久链接至目标">¶</a></dt>
+<dd><p>在给定地址和以给定大小捕捉内存为字节数组对象。与上述bytes_at()函数不同，内存是通过引用捕获的，因此其也可被写入。您将在给定内存地址访问当前值。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>结构描述符和实例化结构对象<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>给定一个结构描述符和其层次类型，您可在给定内存地址使用 <a class="reference internal" href="#uctypes.struct" title="uctypes.struct"><code class="xref py py-class docutils literal"><span class="pre">uctypes.struct()</span></code></a> 实例化一个特定结构实例。内存地址通常来自以下来源:</p>
+<ul class="simple">
+<li>预定义的地址，当在baremental系统中访问硬件寄存器时。在关于特定MCU/SoC的数据表中查找这些地址。</li>
+<li>作为从FFI函数（外来函数接口）调用返回的值。</li>
+<li>从uctypes.addressof()中，当您要将参数传递给FFI函数时，或者为I/O访问某些数据（例如，从文件中或网络socket中读取的数据）。</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>结构对象<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>结构对象允许使用标准点记法访问单个字段: <code class="docutils literal"><span class="pre">my_struct.substruct1.field1</span></code>。
+若一字段为标量类型的，获取其将生成一个与字段中包含的值相对应的初始值（Python整数或浮动值）。一个标量字段也可被赋值。</p>
+<p>若字段为一个数组，则可使用标准下标运算符 <code class="docutils literal"><span class="pre">[]</span></code> 访问其单个元素—可被读取或赋值。</p>
+<p>若字段为一个指针，则可使用 <code class="docutils literal"><span class="pre">[0]</span></code> 语法（与C <code class="docutils literal"><span class="pre">*</span></code> 运算符相对应，尽管 <code class="docutils literal"><span class="pre">[0]</span></code> 也在C中运行）来消除引用。
+使用其他整数值对指针进行下标（也支持0），与C中具有相同语义。</p>
+<p>总而言之，当您需使用 <code class="docutils literal"><span class="pre">[0]</span></code> 运算符而非 <code class="docutils literal"><span class="pre">*</span></code> 时，除指针解除引用外，访问结构字段一般遵循C语法。</p>
+</div>
+<div class="section" id="id5">
+<h2>局限性<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>访问非标量字段会导致分配中间对象来表示它们。这就意味着在内存分配禁用时（例如：从中断中），应特别注意需访问的布局结构。我们建议您:</p>
+<ul class="simple">
+<li>避免嵌套结构。例如，避免
+<code class="docutils literal"><span class="pre">mcu_registers.peripheral_a.register1</span></code>，为每个外设定义单独的布局描述符，作为
+<a href="#id6"><span class="problematic" id="id7">``</span></a>peripheral_a.register1``访问。</li>
+<li>避免其他非标量数据，如数组。例如，使用 <code class="docutils literal"><span class="pre">peripheral_a.register0</span></code> 而
+非 <code class="docutils literal"><span class="pre">peripheral_a.register[0]</span></code> 。</li>
+</ul>
+<p>注意：这些建议会导致布局的可读性和简洁性下降，因此仅在预计需在无分配时访问无结构字段情况下使用
+（甚至可以定义2个并行布局—一个用于常规使用，一个用于禁止内存分配时使用）。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.html" class="btn btn-neutral float-right" title="pyb — 板级功能" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="network.html" class="btn btn-neutral" title="network — 网络配置" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

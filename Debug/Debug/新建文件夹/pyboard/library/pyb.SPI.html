@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SPI类 – 串行外设接口 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="pyb — 板级功能" href="pyb.html"/>
+        <link rel="next" title="class Switch – 开关对象" href="pyb.Switch.html"/>
+        <link rel="prev" title="Servo类 –三线hobby舵机驱动" href="pyb.Servo.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id1">时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id2">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id3">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id4">电源相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id5">其他功能</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pyb.html#id6">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lcd160cr.html"><code class="docutils literal"><span class="pre">lcd160cr</span></code> — 控制LCD160CR显示屏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+          <li><a href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a> &raquo;</li>
+        
+      <li>SPI类 – 串行外设接口</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/pyb.SPI.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spi">
+<span id="pyb-spi"></span><h1>SPI类 – 串行外设接口<a class="headerlink" href="#spi" title="永久链接至标题">¶</a></h1>
+<p>SSPI是由主机驱动的串行协议。其物理层包括3道线：SCK、MOSI、MISO。</p>
+<p>请参见I2C的用法示例；SPI十分类似。主要区别在于初始化SPI总线的参数:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">SPI</span>
+<span class="n">spi</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">SPI</span><span class="o">.</span><span class="n">MASTER</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">600000</span><span class="p">,</span> <span class="n">polarity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">crc</span><span class="o">=</span><span class="mh">0x7</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>仅需参数为模式，SPI.MASTER或SPI.SLAVE。极性可为0或1，且为空闲时钟线所在的水平。
+相位可为0或1，分别在第一或第二时钟沿采样数据。无CRC时Crc可为None或一个多项式说明符。</p>
+<p>SPI的其他方法:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">spi</span><span class="o">.</span><span class="n">send_recv</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;1234&#39;</span><span class="p">)</span>        <span class="c1"># send 4 bytes and receive 4 bytes 发送4字节并接收4字节</span>
+<span class="n">buf</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">spi</span><span class="o">.</span><span class="n">send_recv</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;1234&#39;</span><span class="p">,</span> <span class="n">buf</span><span class="p">)</span>          <span class="c1"># send 4 bytes and receive 4 into buf 发送4字节，接收4字节到缓冲区</span>
+<span class="n">spi</span><span class="o">.</span><span class="n">send_recv</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">buf</span><span class="p">)</span>              <span class="c1"># send/recv 4 bytes from/to buf 发送/接收4字节到/从缓冲区中</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>构建函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="pyb.pyb.SPI">
+<em class="property">class </em><code class="descclassname">pyb.</code><code class="descname">SPI</code><span class="sig-paren">(</span><em>bus</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pyb.SPI" title="永久链接至目标">¶</a></dt>
+<dd><p>在给定总线上创建一个SPI对象。可为2。无附加参数的情况下，SPI对象可创建但未进行初始化（若存在，其设置来自总线的最后一次初始化）。初始化参数参见 <code class="docutils literal"><span class="pre">init</span></code> 。</p>
+<p>SPI总线的物理引脚为：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">SPI(1)</span></code> is on the X position: <code class="docutils literal"><span class="pre">(NSS,</span> <span class="pre">SCK,</span> <span class="pre">MISO,</span> <span class="pre">MOSI)</span> <span class="pre">=</span> <span class="pre">(X5,</span> <span class="pre">X6,</span> <span class="pre">X7,</span> <span class="pre">X8)</span> <span class="pre">=</span> <span class="pre">(PA4,</span> <span class="pre">PA5,</span> <span class="pre">PA6,</span> <span class="pre">PA7)</span></code></li>
+<li><code class="docutils literal"><span class="pre">SPI(2)</span></code> is on the Y position: <code class="docutils literal"><span class="pre">(NSS,</span> <span class="pre">SCK,</span> <span class="pre">MISO,</span> <span class="pre">MOSI)</span> <span class="pre">=</span> <span class="pre">(Y5,</span> <span class="pre">Y6,</span> <span class="pre">Y7,</span> <span class="pre">Y8)</span> <span class="pre">=</span> <span class="pre">(PB12,</span> <span class="pre">PB13,</span> <span class="pre">PB14,</span> <span class="pre">PB15)</span></code></li>
+</ul>
+</div></blockquote>
+<p>此时，NSS引脚并未被SPI驱动占用，为可用状态。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="pyb.SPI.deinit">
+<code class="descclassname">SPI.</code><code class="descname">deinit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.SPI.deinit" title="永久链接至目标">¶</a></dt>
+<dd><p>关闭SPI总线。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.SPI.init">
+<code class="descclassname">SPI.</code><code class="descname">init</code><span class="sig-paren">(</span><em>mode</em>, <em>baudrate=328125</em>, <em>*</em>, <em>prescaler</em>, <em>polarity=1</em>, <em>phase=0</em>, <em>bits=8</em>, <em>firstbit=SPI.MSB</em>, <em>ti=False</em>, <em>crc=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.SPI.init" title="永久链接至目标">¶</a></dt>
+<dd><p>使用给定参数初始化SPI总线:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">mode</span></code> 须为 <code class="docutils literal"><span class="pre">SPI.MASTER</span></code> 或 <code class="docutils literal"><span class="pre">SPI.SLAVE</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">baudrate</span></code> 为SCK时钟频率。</li>
+<li><code class="docutils literal"><span class="pre">prescaler</span></code> 从APB总线频率中派生SCK所使用的的前置分频器；
+<code class="docutils literal"><span class="pre">prescaler</span></code> 的使用覆盖 <code class="docutils literal"><span class="pre">baudrate</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">polarity</span></code> 可为0或1，为空闲时钟线所在的水平。</li>
+<li><code class="docutils literal"><span class="pre">phase</span></code> 可为0或1，分别在第一或第二时钟沿上采样数据。</li>
+<li><code class="docutils literal"><span class="pre">bits</span></code> 可为8或16，且为每个传输词的位数。</li>
+<li><code class="docutils literal"><span class="pre">firstbit</span></code> 可为 <code class="docutils literal"><span class="pre">SPI.MSB</span></code> 或 <code class="docutils literal"><span class="pre">SPI.LSB</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">crc</span></code> 在无CRC时可为None，或一个多项式说明符。</li>
+</ul>
+</div></blockquote>
+<p>注意：SPI时钟线未必是符合要求的波特率。硬件仅支持APB总线频率除以预分频器的波特率（见pyb.freq()），
+可为2、4、8、16、32、64、128和256。SPI(1)在AHB2上，SPI(2)在AHB1上。若要对SPI时钟频率进行精准控制，
+则需指定 <code class="docutils literal"><span class="pre">prescaler</span></code> ，而非 <code class="docutils literal"><span class="pre">baudrate</span></code> 。</p>
+<p>打印SPI对象将显示计算波特率和所选预分频器。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.SPI.recv">
+<code class="descclassname">SPI.</code><code class="descname">recv</code><span class="sig-paren">(</span><em>recv</em>, <em>*</em>, <em>timeout=5000</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.SPI.recv" title="永久链接至目标">¶</a></dt>
+<dd><p>在总线上接收数据：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">recv</span></code> 可为一个整数，即接收字节的数量，或为一个使用收到的字节来填充的可变缓冲区。</li>
+<li><code class="docutils literal"><span class="pre">timeout</span></code> 是以毫秒计的等待接收的超时时长。</li>
+</ul>
+</div></blockquote>
+<p>返回值：若 <code class="docutils literal"><span class="pre">recv</span></code>&nbsp;为一个整数，则有一个新的字节缓冲区来接收，否则这一缓冲区将传递给 <code class="docutils literal"><span class="pre">recv</span></code> 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.SPI.send">
+<code class="descclassname">SPI.</code><code class="descname">send</code><span class="sig-paren">(</span><em>send</em>, <em>*</em>, <em>timeout=5000</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.SPI.send" title="永久链接至目标">¶</a></dt>
+<dd><p>在总线上发送数据：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">send</span></code> 是要发送的数据（一个整数或一个缓冲区对象）。</li>
+<li><code class="docutils literal"><span class="pre">timeout</span></code> 是以毫秒计的等待接收的超时时长。</li>
+</ul>
+</div></blockquote>
+<p>返回值： <code class="docutils literal"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.SPI.send_recv">
+<code class="descclassname">SPI.</code><code class="descname">send_recv</code><span class="sig-paren">(</span><em>send</em>, <em>recv=None</em>, <em>*</em>, <em>timeout=5000</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.SPI.send_recv" title="永久链接至目标">¶</a></dt>
+<dd><p>同时在总线上发送和接收数据：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">send</span></code> 是要发送的数据（一个整数或一个缓冲区对象）。</li>
+<li><code class="docutils literal"><span class="pre">recv</span></code> 是一个使用收到的字节来填充的可变缓冲区。可与 <code class="docutils literal"><span class="pre">send</span></code> 相同或省略。若省略，则创建一个新的缓冲区。</li>
+<li><code class="docutils literal"><span class="pre">timeout</span></code> 是以毫秒计的等待接收的超时时长。</li>
+</ul>
+</div></blockquote>
+<p>返回值：内含接收字节的缓冲区。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>常量<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="pyb.SPI.MASTER">
+<code class="descclassname">SPI.</code><code class="descname">MASTER</code><a class="headerlink" href="#pyb.SPI.MASTER" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="pyb.SPI.SLAVE">
+<code class="descclassname">SPI.</code><code class="descname">SLAVE</code><a class="headerlink" href="#pyb.SPI.SLAVE" title="永久链接至目标">¶</a></dt>
+<dd><p>将SPI总线初始化为主模式或从模式。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.SPI.LSB">
+<code class="descclassname">SPI.</code><code class="descname">LSB</code><a class="headerlink" href="#pyb.SPI.LSB" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="pyb.SPI.MSB">
+<code class="descclassname">SPI.</code><code class="descname">MSB</code><a class="headerlink" href="#pyb.SPI.MSB" title="永久链接至目标">¶</a></dt>
+<dd><p>将首位设置为最小或最重要的位。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.Switch.html" class="btn btn-neutral float-right" title="class Switch – 开关对象" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyb.Servo.html" class="btn btn-neutral" title="Servo类 –三线hobby舵机驱动" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

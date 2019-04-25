@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyboard快速参考 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="next" title="pyboard基本信息" href="general.html"/>
+        <link rel="prev" title="MicroPython中文文档和参考" href="../pyboard_index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pyboard快速参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">通用硬件控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">延时和时间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#led">LED 发光二极管</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pins-and-gpio">Pins and GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">舵机控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">外部中断</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">定时器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pwm">PWM脉宽调制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adc">ADC (模数转换)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dac">DAC (数模转换)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uart">UART (串行总线)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spi">SPI总线</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i2c-bus">I2C bus</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>pyboard快速参考</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/pyboard/quickref.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pyboard">
+<span id="quickref"></span><h1>pyboard快速参考<a class="headerlink" href="#pyboard" title="永久链接至标题">¶</a></h1>
+<p>下面的引脚图是 PYBv1.0.  pyboard其他版本的见：
+<a class="reference external" href="http://micropython.org/resources/pybv11-pinout.jpg">PYBv1.1</a>
+<a class="reference external" href="http://micropython.org/resources/pyblitev10ac-pinout.jpg">PYBLITEv1.0-AC</a>
+<a class="reference external" href="http://micropython.org/resources/pyblitev10-pinout.jpg">PYBLITEv1.0</a>.</p>
+<a class="reference internal image-reference" href="http://micropython.org/resources/pybv10-pinout.jpg"><img alt="PYBv1.0 pinout" src="http://micropython.org/resources/pybv10-pinout.jpg" style="width: 700px;" /></a>
+<div class="section" id="id1">
+<h2>通用硬件控制<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.html#module-pyb" title="pyb: 板级功能"><code class="xref py py-mod docutils literal"><span class="pre">pyb</span></code></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyb</span>
+
+<span class="n">pyb</span><span class="o">.</span><span class="n">repl_uart</span><span class="p">(</span><span class="n">pyb</span><span class="o">.</span><span class="n">UART</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9600</span><span class="p">))</span> <span class="c1"># duplicate REPL on UART(1)在UART（1）上重置REPL</span>
+<span class="n">pyb</span><span class="o">.</span><span class="n">wfi</span><span class="p">()</span> <span class="c1"># pause CPU, waiting for interrupt 暂停cpu，等待中断</span>
+<span class="n">pyb</span><span class="o">.</span><span class="n">freq</span><span class="p">()</span> <span class="c1"># get CPU and bus frequencies 获得CPU频率</span>
+<span class="n">pyb</span><span class="o">.</span><span class="n">freq</span><span class="p">(</span><span class="mi">60000000</span><span class="p">)</span> <span class="c1"># set CPU freq to 60MHz 设置CPU频率</span>
+<span class="n">pyb</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span> <span class="c1"># stop CPU, waiting for external interrupt 停止cpu，等待外部中断</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>延时和时间<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>Use the <a class="reference internal" href="../library/utime.html#module-utime" title="utime: 时间相关的函数"><code class="xref py py-mod docutils literal"><span class="pre">time</span></code></a> module:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>           <span class="c1"># sleep for 1 second 延时1s</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>      <span class="c1"># sleep for 500 milliseconds 延时500ms</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep_us</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>       <span class="c1"># sleep for 10 microseconds 延时10us</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">()</span> <span class="c1"># get value of millisecond counter 获取毫秒计数器的值</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">(),</span> <span class="n">start</span><span class="p">)</span> <span class="c1"># compute time difference 计算时间差</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="led">
+<h2>LED 发光二极管<a class="headerlink" href="#led" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.LED.html#pyb-led"><span class="std std-ref">pyb.LED</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">LED</span>
+
+<span class="n">led</span> <span class="o">=</span> <span class="n">LED</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 红色 led</span>
+<span class="n">led</span><span class="o">.</span><span class="n">toggle</span><span class="p">()</span>
+<span class="n">led</span><span class="o">.</span><span class="n">on</span><span class="p">()</span>
+<span class="n">led</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pins-and-gpio">
+<h2>Pins and GPIO<a class="headerlink" href="#pins-and-gpio" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.Pin.html#pyb-pin"><span class="std std-ref">pyb.Pin</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">Pin</span>
+
+<span class="n">p_out</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;X1&#39;</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">)</span>
+<span class="n">p_out</span><span class="o">.</span><span class="n">high</span><span class="p">()</span>
+<span class="n">p_out</span><span class="o">.</span><span class="n">low</span><span class="p">()</span>
+
+<span class="n">p_in</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;X2&#39;</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
+<span class="n">p_in</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="c1"># get value, 0 or 1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>舵机控制<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.Servo.html#pyb-servo"><span class="std std-ref">pyb.Servo</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">Servo</span>
+
+<span class="n">s1</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># servo on position 1 (X1, VIN, GND) 位置1的servo(X1)</span>
+<span class="n">s1</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="c1"># move to 45 degrees</span>
+<span class="n">s1</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">1500</span><span class="p">)</span> <span class="c1"># move to -60 degrees in 1500ms 在1500ms内移动到-60度</span>
+<span class="n">s1</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="c1"># for continuous rotation servos 连续旋转舵机</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>外部中断<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.ExtInt.html#pyb-extint"><span class="std std-ref">pyb.ExtInt</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">ExtInt</span>
+
+<span class="n">callback</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;intr&quot;</span><span class="p">)</span>
+<span class="n">ext</span> <span class="o">=</span> <span class="n">ExtInt</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;Y1&#39;</span><span class="p">),</span> <span class="n">ExtInt</span><span class="o">.</span><span class="n">IRQ_RISING</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">PULL_NONE</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>定时器<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.Timer.html#pyb-timer"><span class="std std-ref">pyb.Timer</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">Timer</span>
+
+<span class="n">tim</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">counter</span><span class="p">()</span> <span class="c1"># get counter value 获取计时器值</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">freq</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1"># 0.5 Hz</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">pyb</span><span class="o">.</span><span class="n">LED</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">toggle</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pwm">
+<h2>PWM脉宽调制<a class="headerlink" href="#pwm" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.Pin.html#pyb-pin"><span class="std std-ref">pyb.Pin</span></a> and <a class="reference internal" href="../library/pyb.Timer.html#pyb-timer"><span class="std std-ref">pyb.Timer</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">Timer</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;X1&#39;</span><span class="p">)</span> <span class="c1"># X1 has TIM2, CH1</span>
+<span class="n">tim</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ch</span> <span class="o">=</span> <span class="n">tim</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Timer</span><span class="o">.</span><span class="n">PWM</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+<span class="n">ch</span><span class="o">.</span><span class="n">pulse_width_percent</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adc">
+<h2>ADC (模数转换)<a class="headerlink" href="#adc" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.Pin.html#pyb-pin"><span class="std std-ref">pyb.Pin</span></a> and <a class="reference internal" href="../library/pyb.ADC.html#pyb-adc"><span class="std std-ref">pyb.ADC</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">ADC</span>
+
+<span class="n">adc</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;X19&#39;</span><span class="p">))</span>
+<span class="n">adc</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="c1"># read value,读取值 0-4095</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dac">
+<h2>DAC (数模转换)<a class="headerlink" href="#dac" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.Pin.html#pyb-pin"><span class="std std-ref">pyb.Pin</span></a> and <a class="reference internal" href="../library/pyb.DAC.html#pyb-dac"><span class="std std-ref">pyb.DAC</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">DAC</span>
+
+<span class="n">dac</span> <span class="o">=</span> <span class="n">DAC</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;X5&#39;</span><span class="p">))</span>
+<span class="n">dac</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">120</span><span class="p">)</span> <span class="c1"># 输出介于0-255</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uart">
+<h2>UART (串行总线)<a class="headerlink" href="#uart" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.UART.html#pyb-uart"><span class="std std-ref">pyb.UART</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">UART</span>
+
+<span class="n">uart</span> <span class="o">=</span> <span class="n">UART</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9600</span><span class="p">)</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># read up to 5 bytes 读取5个字节</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="spi">
+<h2>SPI总线<a class="headerlink" href="#spi" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.SPI.html#pyb-spi"><span class="std std-ref">pyb.SPI</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">SPI</span>
+
+<span class="n">spi</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">SPI</span><span class="o">.</span><span class="n">MASTER</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span> <span class="n">polarity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">spi</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<span class="n">spi</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># receive 5 bytes on the bus 在总线上接收5个字节</span>
+<span class="n">spi</span><span class="o">.</span><span class="n">send_recv</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span> <span class="c1"># send and receive 5 bytes 发送5个字节</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="i2c-bus">
+<h2>I2C bus<a class="headerlink" href="#i2c-bus" title="永久链接至标题">¶</a></h2>
+<p>See <a class="reference internal" href="../library/pyb.I2C.html#pyb-i2c"><span class="std std-ref">pyb.I2C</span></a>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">I2C</span>
+
+<span class="n">i2c</span> <span class="o">=</span> <span class="n">I2C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">I2C</span><span class="o">.</span><span class="n">MASTER</span><span class="p">,</span> <span class="n">baudrate</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+<span class="n">i2c</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span> <span class="c1"># returns list of slave addresses 返回一个从属设备地址的列表</span>
+<span class="n">i2c</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="mh">0x42</span><span class="p">)</span> <span class="c1"># send 5 bytes to slave with address 0x42 使用0x42地址向从属设备发送5个字节</span>
+<span class="n">i2c</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mh">0x42</span><span class="p">)</span> <span class="c1"># receive 5 bytes from slave 从从属设备上接收5个字节</span>
+<span class="n">i2c</span><span class="o">.</span><span class="n">mem_read</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mh">0x42</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">)</span> <span class="c1"># read 2 bytes from slave 0x42, slave memory 0x10 从地址为0x42从属设备上接收2个字节，从属存储器为0x10</span>
+<span class="n">i2c</span><span class="o">.</span><span class="n">mem_write</span><span class="p">(</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="mh">0x42</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">)</span> <span class="c1"># write 2 bytes to slave 0x42, slave memory 0x10 向地址为0x42的从属设备写入2个字节，从属存储器为0x10</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="general.html" class="btn btn-neutral float-right" title="pyboard基本信息" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../pyboard_index.html" class="btn btn-neutral" title="MicroPython中文文档和参考" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>概述 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜索" href="search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="#"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>概述</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+
+  <h1>MicroPython 和 pyboard 中文文档</h1>
+
+  <p>
+    本文档全部内容由 <a class="biglink" href="https://singtown.cc">星瞳科技</a> 翻译并发布.<br/>
+  </p>
+
+  
+  <p>
+      <a class="biglink" href="https://singtown.cc">pyboard产品信息</a><br/>
+      <a class="biglink" href="https://kaizhi-xu.taobao.com/">星瞳科技购买pyboard淘宝店铺</a><br/>
+      <a class="biglink" href="https://kaizhi-xu.taobao.com/">pyboard MicroPython QQ交流群：待添加</a><br/>
+  </p>
+  
+
+  <p>
+    欢迎使用！这是MicroPython的文档
+    v1.9.2, 最新更新于 17 3月 2018.
+  </p>
+
+  <p>
+    MicroPython可在各种系统上运行，每种都附有具体的说用说明。您正在阅读的为用于
+    <strong>pyboard</strong>的文档.
+  </p>
+
+  <!--p>
+    Documentation for other systems are available:
+    
+      <a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a>, 
+    
+      <a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a>, 
+    
+      <a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a>
+    .
+  </p-->
+
+  <p><strong>MicroPython和pyboard的使用说明:</strong></p>
+
+  <table class="contentstable"><tr>
+    <td width="40%" style="padding-left:2em;">
+      
+        <p class="biglink">
+          <a class="biglink" href="pyboard/quickref.html">pyboard快速入门</a><br/>
+          <span class="linkdescr">pyboard和有用代码片段的引脚分配 </span>
+        </p>
+        <p class="biglink">
+          <a class="biglink" href="pyboard/general.html">pyboard的基本信息</a><br/>
+          <span class="linkdescr">阅读这里进行快速了解</span>
+        </p>
+        <p class="biglink">
+          <a class="biglink" href="pyboard/tutorial/index.html">教程和示例代码</a><br/>
+          <span class="linkdescr">由此开始</span>
+        </p>
+      
+      <p class="biglink">
+        <a class="biglink" href="library/index.html">函数库</a><br/>
+        
+          <span class="linkdescr">MicroPython函数库</span>
+        
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="genrst/index.html">MicroPython的不同</a><br/>
+        <span class="linkdescr">MicroPython与CPython的不同之处</span>
+      </p>
+    </td>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+        <a class="biglink" href="reference/index.html">语言参考</a><br/>
+        <span class="linkdescr">有关MicroPython特定语言特性的信息</span>
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="license.html">License</a><br/>
+        <span class="linkdescr">MicroPython许可证信息</span>
+      </p>
+    </td>
+  </tr></table>
+
+  <p><strong>索引与目录：</strong></p>
+  <table class="contentstable"><tr>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+        <a class="biglink" href="py-modindex.html">模块索引</a><br/>
+        <span class="linkdescr">快速访问所有模块</span>
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="genindex.html">全文索引</a><br/>
+        <span class="linkdescr">所有函数、类、常量</span>
+      </p>
+    </td>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+        <a class="biglink" href="reference/glossary.html">术语表</a><br/>
+        <span class="linkdescr">MicroPython术语解释</span>
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="pyboard_index.html">内容目录</a><br/>
+        <span class="linkdescr">所有部分和分部的列表</span>
+      </p>
+    </td></tr>
+  </table>
+
+  <p><strong>外部链接：</strong></p>
+  
+
+  <table class="contentstable"><tr>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+        <a class="biglink" href="https://github.com/openmv">OpenMV的GitHub</a><br/>
+        <span class="linkdescr">在GitHub上贡献源代码 </span>
+      </p>
+    </td>
+  </tr></table>
+  <table class="contentstable"><tr>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+      <a class="biglink" href="http://micropython.org">MicroPython美国官方主页</a><br/>
+        <span class="linkdescr">MicroPython官方网站</span>
+      </p>
+      <p class="biglink">
+        <a class="biglink" href="http://forum.micropython.org">MicroPython美国官方论坛</a><br/>
+        <span class="linkdescr">讨论MicroPython相关的所有内容</span>
+      </p>
+    </td>
+    <td width="40%" style="padding-left:2em;">
+      <p class="biglink">
+        <a class="biglink" href="https://github.com/micropython">MicroPython的GitHub</a><br/>
+        <span class="linkdescr">在GitHub上贡献源代码</span>
+      </p>
+    </td>
+  </tr></table>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DAC类 – 数字模拟变换 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="pyb — 板级功能" href="pyb.html"/>
+        <link rel="next" title="ExtInt类 – 配置I/O引脚以中断外部事件" href="pyb.ExtInt.html"/>
+        <link rel="prev" title="CAN类 –控制器区域网络通信总线" href="pyb.CAN.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id1">时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id2">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id3">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id4">电源相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id5">其他功能</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pyb.html#id6">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lcd160cr.html"><code class="docutils literal"><span class="pre">lcd160cr</span></code> — 控制LCD160CR显示屏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+          <li><a href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a> &raquo;</li>
+        
+      <li>DAC类 – 数字模拟变换</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/pyb.DAC.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dac">
+<span id="pyb-dac"></span><h1>DAC类 – 数字模拟变换<a class="headerlink" href="#dac" title="永久链接至标题">¶</a></h1>
+<p>DAC用于在引脚X5或X6上输出模拟值（一个特定电压）。电压介于0至3.3V之间。</p>
+<p><em>此模块将会对API进行更改。</em></p>
+<p>用法示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">DAC</span>
+
+<span class="n">dac</span> <span class="o">=</span> <span class="n">DAC</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>            <span class="c1"># create DAC 1 on pin X5 在引脚X5上创建DAC1</span>
+<span class="n">dac</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span>          <span class="c1"># write a value to the DAC (makes X5 1.65V) 将一个值写入DAC（使X5为1.65V）</span>
+
+<span class="n">dac</span> <span class="o">=</span> <span class="n">DAC</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bits</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>   <span class="c1"># use 12 bit resolution 使用12位分辨率</span>
+<span class="n">dac</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">4095</span><span class="p">)</span>         <span class="c1"># output maximum value, 3.3V 输出最大值，3.3V</span>
+</pre></div>
+</div>
+<p>输出连续正弦波:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">DAC</span>
+
+<span class="c1"># create a buffer containing a sine-wave 创建一个包含正弦波的缓冲区</span>
+<span class="n">buf</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">buf</span><span class="p">)):</span>
+    <span class="n">buf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">128</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="mi">127</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">buf</span><span class="p">)))</span>
+
+<span class="c1"># output the sine-wave at 400Hz 以400Hz输出正弦波</span>
+<span class="n">dac</span> <span class="o">=</span> <span class="n">DAC</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dac</span><span class="o">.</span><span class="n">write_timed</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">400</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">DAC</span><span class="o">.</span><span class="n">CIRCULAR</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>以12位分辨率输出连续正弦波:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">array</span> <span class="k">import</span> <span class="n">array</span>
+<span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">DAC</span>
+
+<span class="c1"># create a buffer containing a sine-wave, using half-word samples 使用半字样本创建一个包含正弦波的缓冲区</span>
+<span class="n">buf</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="mi">2048</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="mi">2047</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">128</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">128</span><span class="p">))</span>
+
+<span class="c1"># output the sine-wave at 400Hz 以400Hz输出正弦波</span>
+<span class="n">dac</span> <span class="o">=</span> <span class="n">DAC</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bits</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">dac</span><span class="o">.</span><span class="n">write_timed</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">400</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">DAC</span><span class="o">.</span><span class="n">CIRCULAR</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>构造函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="pyb.pyb.DAC">
+<em class="property">class </em><code class="descclassname">pyb.</code><code class="descname">DAC</code><span class="sig-paren">(</span><em>port</em>, <em>bits=8</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pyb.DAC" title="永久链接至目标">¶</a></dt>
+<dd><p>构造一个新的DAC对象。</p>
+<p><code class="docutils literal"><span class="pre">port</span></code> 可为一个引脚对象，或一个整数（1或2）。DAC(1)位于引脚X5上，DAC(2)位于引脚X6。</p>
+<p><code class="docutils literal"><span class="pre">bits</span></code> 为一个指定分辨率的整数，可为8或12。write和write_timed函数的最大值为
+2**``bits``-1.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="pyb.DAC.init">
+<code class="descclassname">DAC.</code><code class="descname">init</code><span class="sig-paren">(</span><em>bits=8</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.DAC.init" title="永久链接至目标">¶</a></dt>
+<dd><p>重新启动DAC。 <code class="docutils literal"><span class="pre">bits</span></code> 可为8或12。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.DAC.noise">
+<code class="descclassname">DAC.</code><code class="descname">noise</code><span class="sig-paren">(</span><em>freq</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.DAC.noise" title="永久链接至目标">¶</a></dt>
+<dd><p>生成一个伪随机噪声信号。以给定频率将一个新的随机样本写入DAC输出。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.DAC.triangle">
+<code class="descclassname">DAC.</code><code class="descname">triangle</code><span class="sig-paren">(</span><em>freq</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.DAC.triangle" title="永久链接至目标">¶</a></dt>
+<dd><p>生成一个三角形波。DAC输出值以给定频率变化。重复三角形波的频率为2048倍。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.DAC.write">
+<code class="descclassname">DAC.</code><code class="descname">write</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.DAC.write" title="永久链接至目标">¶</a></dt>
+<dd><p>直接访问DAC输出。最小值为0。最大值为2** <code class="docutils literal"><span class="pre">bits</span></code> -1，当创建DAC对象或使用 <code class="docutils literal"><span class="pre">init</span></code> 方法时在此设定bits。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.DAC.write_timed">
+<code class="descclassname">DAC.</code><code class="descname">write_timed</code><span class="sig-paren">(</span><em>data</em>, <em>freq</em>, <em>*</em>, <em>mode=DAC.NORMAL</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.DAC.write_timed" title="永久链接至目标">¶</a></dt>
+<dd><p>使用DMA传输启动RAM到DAC的突发。输入数据以8位模式的字节数组和12位模式下的无符号半字（类型编码“H”）数组形式处理。</p>
+<p><code class="docutils literal"><span class="pre">freq</span></code> 可为指定使用定时器(6)写入DAC样本的频率的整数。其也可为一个用来触发DAC样本的已初始化定时器对象。有效定时器为2、4、5、6、7和8。</p>
+<p><code class="docutils literal"><span class="pre">mode</span></code> 可为 <code class="docutils literal"><span class="pre">DAC.NORMAL</span></code> 或 <code class="docutils literal"><span class="pre">DAC.CIRCULAR</span></code>.</p>
+<p>同时使用DAC的示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dac1</span> <span class="o">=</span> <span class="n">DAC</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dac2</span> <span class="o">=</span> <span class="n">DAC</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">dac1</span><span class="o">.</span><span class="n">write_timed</span><span class="p">(</span><span class="n">buf1</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">DAC</span><span class="o">.</span><span class="n">CIRCULAR</span><span class="p">)</span>
+<span class="n">dac2</span><span class="o">.</span><span class="n">write_timed</span><span class="p">(</span><span class="n">buf2</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">200</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="n">DAC</span><span class="o">.</span><span class="n">CIRCULAR</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.ExtInt.html" class="btn btn-neutral float-right" title="ExtInt类 – 配置I/O引脚以中断外部事件" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyb.CAN.html" class="btn btn-neutral" title="CAN类 –控制器区域网络通信总线" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>10. 内联汇编 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../../index.html"/>
+        <link rel="up" title="pyboard的MicroPython教程" href="index.html"/>
+        <link rel="next" title="11. 电源管理" href="power_ctrl.html"/>
+        <link rel="prev" title="9. 定时器" href="timer.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">pyboard基本信息</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">pyboard的MicroPython教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">1. pyboard 介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script.html">2. 运行您的首个脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repl.html">3. 进入一个MicroPython REPL命令行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leds.html">4. 点亮LED和基本Python概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">5. 切换、回调和中断</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accel.html">6. 加速度计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reset.html">7. 安全模式和恢复出厂设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb_mouse.html">8. 将pyboard用作USB鼠标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timer.html">9. 定时器</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10. 内联汇编</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">10.1. 返回一个值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">10.2. 访问外设</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">10.3. 接受参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">10.4. 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">10.5. 扩展阅读</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="power_ctrl.html">11. 电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id1">需要额外的配件的教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">需要知道小技巧</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">pyboard的MicroPython教程</a> &raquo;</li>
+        
+      <li>10. 内联汇编</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pyboard/tutorial/assembler.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pyboard-tutorial-assembler">
+<span id="id1"></span><h1>10. 内联汇编<a class="headerlink" href="#pyboard-tutorial-assembler" title="永久链接至标题">¶</a></h1>
+<p>此章节中，您将学习如何在MicroPython中写入内联汇编。</p>
+<p><strong>Note</strong>: 此章节是为已对微控制器和汇编语言有所了解的用户的进阶级教程。</p>
+<p>MicroPython可以内联汇编，其允许您将汇编程序作为Python函数写入，其命名方式类似于常规Python函数的命名。</p>
+<div class="section" id="id2">
+<h2>10.1. 返回一个值<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>内联汇编函数由一个特殊的函数装饰器表示。我们从最简单的示例开始:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@micropython</span><span class="o">.</span><span class="n">asm_thumb</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">():</span>
+    <span class="n">movw</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>您可在脚本或REPL中键入此。此函数无需任何参数，并返回数字42。 <code class="docutils literal"><span class="pre">r0</span></code> 为一个寄存器，且函数返回的此寄存器中的值即为返回值。
+MicroPython通常将 <code class="docutils literal"><span class="pre">r0</span></code> 解译为一个整数，并为调用方将其转换为一个整数对象。</p>
+<p>若您运行 <code class="docutils literal"><span class="pre">print(fun())</span></code> ，您将看到其打印出42。</p>
+</div>
+<div class="section" id="id3">
+<h2>10.2. 访问外设<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>对于略微复杂的内容，我们先打开一个LED:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@micropython</span><span class="o">.</span><span class="n">asm_thumb</span>
+<span class="k">def</span> <span class="nf">led_on</span><span class="p">():</span>
+    <span class="n">movwt</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">stm</span><span class="o">.</span><span class="n">GPIOA</span><span class="p">)</span>
+    <span class="n">movw</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">13</span><span class="p">)</span>
+    <span class="n">strh</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="p">[</span><span class="n">r0</span><span class="p">,</span> <span class="n">stm</span><span class="o">.</span><span class="n">GPIO_BSRRL</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>这一代码使用了一些新概念:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">stm</span></code> 是一个为轻松访问pyboard的微控制器的寄存器提供了一系列常量的模块。
+尝试运行``import stm`` ，然后在REPL中
+运行 <code class="docutils literal"><span class="pre">help(stm)</span></code> 。其功能为提供所有可用常量的列表。</li>
+<li><code class="docutils literal"><span class="pre">stm.GPIOA</span></code> 是GPIOA外设的地址。在pyboard中，红色LED在端口A、引脚PA13。</li>
+<li><code class="docutils literal"><span class="pre">movwt</span></code> 将一个32位的数字移入寄存器。
+这是一个可轻松转换为2个thumb指令的函数：先是 <code class="docutils literal"><span class="pre">movw</span></code> ，
+然后是 <code class="docutils literal"><span class="pre">movt</span></code>.
+<code class="docutils literal"><span class="pre">movt</span></code> 也会将当前值右移16位。</li>
+<li><code class="docutils literal"><span class="pre">strh</span></code> 储存了一个半字（16位）。
+上述指令将 <code class="docutils literal"><span class="pre">r1</span></code> 较低的16位存入内存中的 <code class="docutils literal"><span class="pre">r0&nbsp;+&nbsp;stm.GPIO_BSRRL</span></code> 位置。其作用为将所有端口A上的引脚设置为高，
+即 <code class="docutils literal"><span class="pre">r0</span></code> 中的相应位所设置的。在上述示例中，
+<code class="docutils literal"><span class="pre">r0</span></code> 中的第13位已设置，因此PA13被拉高。这就点亮了红色LED。</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id4">
+<h2>10.3. 接受参数<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>内联汇编函数可接受多达4个参数。若使用这4个参数，则须将之命名为 <code class="docutils literal"><span class="pre">r0</span></code>, <code class="docutils literal"><span class="pre">r1</span></code>, <code class="docutils literal"><span class="pre">r2</span></code> 和 <code class="docutils literal"><span class="pre">r3</span></code> ，以反映寄存器和调用惯例。</p>
+<p>这是一个添加参数的函数:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@micropython</span><span class="o">.</span><span class="n">asm_thumb</span>
+<span class="k">def</span> <span class="nf">asm_add</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">):</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>此即执行计算 <code class="docutils literal"><span class="pre">r0</span> <span class="pre">=</span> <span class="pre">r0</span> <span class="pre">+</span> <span class="pre">r1</span></code>。由于结果
+写作 <code class="docutils literal"><span class="pre">r0</span></code>，此即返回的结果。尝试 <code class="docutils literal"><span class="pre">asm_add(1,</span> <span class="pre">2)</span></code>，其应返回3。</p>
+</div>
+<div class="section" id="id5">
+<h2>10.4. 循环<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>我们可用 <code class="docutils literal"><span class="pre">label(my_label)</span></code> 为标签赋值，并使用 <code class="docutils literal"><span class="pre">b(my_label)</span></code> 或
+类似于 <code class="docutils literal"><span class="pre">bgt(my_label)</span></code> 的条件分支将其分化为支。</p>
+<p>以下示例使绿色LED闪烁 <code class="docutils literal"><span class="pre">r0</span></code> 次。</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@micropython</span><span class="o">.</span><span class="n">asm_thumb</span>
+<span class="k">def</span> <span class="nf">flash_led</span><span class="p">(</span><span class="n">r0</span><span class="p">):</span>
+    <span class="c1"># get the GPIOA address in r1 获取r1中的GPIOA地址</span>
+    <span class="n">movwt</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">stm</span><span class="o">.</span><span class="n">GPIOA</span><span class="p">)</span>
+
+    <span class="c1"># get the bit mask for PA14 (the pin LED #2 is on) 获取PA14的位掩码（LED #2所在的引脚）</span>
+    <span class="n">movw</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">14</span><span class="p">)</span>
+
+    <span class="n">b</span><span class="p">(</span><span class="n">loop_entry</span><span class="p">)</span>
+
+    <span class="n">label</span><span class="p">(</span><span class="n">loop1</span><span class="p">)</span>
+
+    <span class="c1"># turn LED on 开启LED</span>
+    <span class="n">strh</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="p">[</span><span class="n">r1</span><span class="p">,</span> <span class="n">stm</span><span class="o">.</span><span class="n">GPIO_BSRRL</span><span class="p">])</span>
+
+    <span class="c1"># delay for a bit</span>
+    <span class="n">movwt</span><span class="p">(</span><span class="n">r4</span><span class="p">,</span> <span class="mi">5599900</span><span class="p">)</span>
+    <span class="n">label</span><span class="p">(</span><span class="n">delay_on</span><span class="p">)</span>
+    <span class="n">sub</span><span class="p">(</span><span class="n">r4</span><span class="p">,</span> <span class="n">r4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">cmp</span><span class="p">(</span><span class="n">r4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">bgt</span><span class="p">(</span><span class="n">delay_on</span><span class="p">)</span>
+
+    <span class="c1"># turn LED off</span>
+    <span class="n">strh</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="p">[</span><span class="n">r1</span><span class="p">,</span> <span class="n">stm</span><span class="o">.</span><span class="n">GPIO_BSRRH</span><span class="p">])</span>
+
+    <span class="c1"># delay for a bit 延迟1位</span>
+    <span class="n">movwt</span><span class="p">(</span><span class="n">r4</span><span class="p">,</span> <span class="mi">5599900</span><span class="p">)</span>
+    <span class="n">label</span><span class="p">(</span><span class="n">delay_off</span><span class="p">)</span>
+    <span class="n">sub</span><span class="p">(</span><span class="n">r4</span><span class="p">,</span> <span class="n">r4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">cmp</span><span class="p">(</span><span class="n">r4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">bgt</span><span class="p">(</span><span class="n">delay_off</span><span class="p">)</span>
+
+    <span class="c1"># loop r0 times</span>
+    <span class="n">sub</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">label</span><span class="p">(</span><span class="n">loop_entry</span><span class="p">)</span>
+    <span class="nb">cmp</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">bgt</span><span class="p">(</span><span class="n">loop1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>10.5. 扩展阅读<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>更多关于内联汇编支持的指令的信息，请参考 <a class="reference internal" href="../../reference/asm_thumb2_index.html#asm-thumb2-index"><span class="std std-ref">reference documentation</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="power_ctrl.html" class="btn btn-neutral float-right" title="11. 电源管理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="timer.html" class="btn btn-neutral" title="9. 定时器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

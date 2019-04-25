@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sys – 系统相关函数 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="MicroPython 函数库" href="index.html"/>
+        <link rel="next" title="ubinascii – 二进制/ASCII转换" href="ubinascii.html"/>
+        <link rel="prev" title="math – 数学函数" href="math.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="builtins.html">内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="array.html"><code class="docutils literal"><span class="pre">array</span></code> – 数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmath.html"><code class="docutils literal"><span class="pre">cmath</span></code> – 复数的数学函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gc.html"><code class="docutils literal"><span class="pre">gc</span></code> – 控制垃圾回收器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="math.html"><code class="docutils literal"><span class="pre">math</span></code> – 数学函数</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">sys</span></code> – 系统相关函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ubinascii.html"><code class="docutils literal"><span class="pre">ubinascii</span></code> – 二进制/ASCII转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ucollections.html"><code class="docutils literal"><span class="pre">ucollections</span></code> – 容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uerrno.html"><code class="docutils literal"><span class="pre">uerrno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uhashlib.html"><code class="docutils literal"><span class="pre">uhashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uheapq.html"><code class="docutils literal"><span class="pre">uheapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uio.html"><code class="docutils literal"><span class="pre">uio</span></code> – 输入/输出流</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ujson.html"><code class="docutils literal"><span class="pre">ujson</span></code> – JSON编码与解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uos.html"><code class="docutils literal"><span class="pre">uos</span></code> – 基本“操作系统”服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ure.html"><code class="docutils literal"><span class="pre">ure</span></code> – 正则表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uselect.html"><code class="docutils literal"><span class="pre">uselect</span></code> – 在一组流中等待事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usocket.html"><code class="docutils literal"><span class="pre">usocket</span></code> – socket模块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ustruct.html"><code class="docutils literal"><span class="pre">ustruct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utime.html"><code class="docutils literal"><span class="pre">utime</span></code> – 时间相关的函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uzlib.html"><code class="docutils literal"><span class="pre">uzlib</span></code> – zlib解压缩</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">sys</span></code> – 系统相关函数</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/sys.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-sys">
+<span id="sys"></span><h1><a class="reference internal" href="#module-sys" title="sys: 系统相关函数"><code class="xref py py-mod docutils literal"><span class="pre">sys</span></code></a> – 系统相关函数<a class="headerlink" href="#module-sys" title="永久链接至标题">¶</a></h1>
+<p>该模块实现相应CPython模块的子集，如下所示。更多信息，请参见
+<a href="#id3"><span class="problematic" id="id4">|CPython文档|</span></a> <a class="reference external" href="https://docs.python.org/3/library/sys.html#module-sys" title="(在 Python v3.6)"><code class="docutils literal"><span class="pre">sys</span></code></a>.</p>
+<div class="section" id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="sys.exit">
+<code class="descclassname">sys.</code><code class="descname">exit</code><span class="sig-paren">(</span><em>retval=0</em><span class="sig-paren">)</span><a class="headerlink" href="#sys.exit" title="永久链接至目标">¶</a></dt>
+<dd><p>使用给定的退出代码终止当前程序。该函数出现 <a class="reference internal" href="builtins.html#SystemExit" title="SystemExit"><code class="xref any py py-exc docutils literal"><span class="pre">SystemExit</span></code></a> 异常。若给定一个参数，该值作为 <a class="reference internal" href="builtins.html#SystemExit" title="SystemExit"><code class="xref any py py-exc docutils literal"><span class="pre">SystemExit</span></code></a> 的参数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sys.print_exception">
+<code class="descclassname">sys.</code><code class="descname">print_exception</code><span class="sig-paren">(</span><em>exc</em>, <em>file=sys.stdout</em><span class="sig-paren">)</span><a class="headerlink" href="#sys.print_exception" title="永久链接至目标">¶</a></dt>
+<dd><p>打印异常，并返回到一个类似 <em>file</em> 的对象文件（或默认的 <a class="reference internal" href="#sys.stdout" title="sys.stdout"><code class="xref any py py-data docutils literal"><span class="pre">sys.stdout</span></code></a> ）。</p>
+<div class="attention admonition">
+<p class="first admonition-title">Difference to CPython</p>
+<p class="last">该函数出现在CPython的 <code class="docutils literal"><span class="pre">traceback</span></code> 模块中。 与 <code class="docutils literal"><span class="pre">traceback.print_exception()</span></code> 不同，
+该函数只接受异常值，而不接受异常类型、异常值和回溯对象；文件参数应为位置参数；
+不支持更多参数。与CPython兼容的 <code class="docutils literal"><span class="pre">traceback</span></code> 模块可在 <a class="reference internal" href="../reference/glossary.html#term-micropython-lib"><code class="xref any std std-term docutils literal"><span class="pre">micropython-lib</span></code></a> 中找到。</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>常量<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="sys.argv">
+<code class="descclassname">sys.</code><code class="descname">argv</code><a class="headerlink" href="#sys.argv" title="永久链接至目标">¶</a></dt>
+<dd><p>当前程序由一个可变的参数列表开始。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sys.byteorder">
+<code class="descclassname">sys.</code><code class="descname">byteorder</code><a class="headerlink" href="#sys.byteorder" title="永久链接至目标">¶</a></dt>
+<dd><p>系统的字节顺序（ <code class="docutils literal"><span class="pre">“小端”</span></code> 或 <code class="docutils literal"><span class="pre">“大端”</span></code> ）。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sys.implementation">
+<code class="descclassname">sys.</code><code class="descname">implementation</code><a class="headerlink" href="#sys.implementation" title="永久链接至目标">¶</a></dt>
+<dd><p>具有有关当前Python实现的信息的对象。对于MicroPython而言，具有以下属性;</p>
+<ul class="simple">
+<li><em>name</em> - string “micropython”</li>
+<li><em>version</em> - tuple (major, minor, micro), e.g. (1, 7, 0)</li>
+</ul>
+<p>该对象是将MicroPython与其他Python实现区分开来的推荐方法(注意：该对象仍可能不存在于极小的端口中)。</p>
+<div class="attention admonition">
+<p class="first admonition-title">Difference to CPython</p>
+<p class="last">CPython为此对象提供更多属性，但是实际有用的最小值是在MicroPython中实现的。</p>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="sys.maxsize">
+<code class="descclassname">sys.</code><code class="descname">maxsize</code><a class="headerlink" href="#sys.maxsize" title="永久链接至目标">¶</a></dt>
+<dd><p>一个本地整数类型可在当前平台上保留的最大值，或MicroPython 整数类型所能表示的最大值，若其小于平台最大值（此即Micropython端口在没有长整数支持下的情况）。</p>
+<p>这个属性对于探测平台的位度非常有用（32位vs 64位）。建议不要直接将该属性与某个值进行比较，而是计算其中的比特数;</p>
+<blockquote>
+<div><p>bits = 0
+v = sys.maxsize
+while v:</p>
+<blockquote>
+<div>bits += 1
+v &gt;&gt;= 1</div></blockquote>
+<dl class="docutils">
+<dt>if bits &gt; 32:</dt>
+<dd># 64-bit (or more) platform
+…</dd>
+<dt>else:</dt>
+<dd># 32-bit (or less) platform
+# Note that on 32-bit platform, value of bits may be less than 32
+# (e.g. 31) due to peculiarities described above, so use “&gt; 16”,
+# “&gt; 32”, “&gt; 64” style of comparisons.</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="data">
+<dt id="sys.modules">
+<code class="descclassname">sys.</code><code class="descname">modules</code><a class="headerlink" href="#sys.modules" title="永久链接至目标">¶</a></dt>
+<dd><p>加载模块库。在某些端口上，可能不包括内置模块。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sys.path">
+<code class="descclassname">sys.</code><code class="descname">path</code><a class="headerlink" href="#sys.path" title="永久链接至目标">¶</a></dt>
+<dd><p>用于搜索导入模块的目录的可变列表。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sys.platform">
+<code class="descclassname">sys.</code><code class="descname">platform</code><a class="headerlink" href="#sys.platform" title="永久链接至目标">¶</a></dt>
+<dd><p>MicroPython运行的平台。对于OS/RTOS端口而言，通常为OS的标识符，例如： <code class="docutils literal"><span class="pre">&quot;linux&quot;</span></code> 。
+对于裸金属板而言，通常是插件的标识符，例如：原始参考板即对应“pyboard”。可用于将板与板区分开来。
+若您需要检查您的程序是否在MicroPython（vs其他Python实现）上运行，请使用 <a class="reference internal" href="#sys.implementation" title="sys.implementation"><code class="xref any py py-data docutils literal"><span class="pre">sys.implementation</span></code></a> 。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sys.stderr">
+<code class="descclassname">sys.</code><code class="descname">stderr</code><a class="headerlink" href="#sys.stderr" title="永久链接至目标">¶</a></dt>
+<dd><p>标准错误流。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sys.stdin">
+<code class="descclassname">sys.</code><code class="descname">stdin</code><a class="headerlink" href="#sys.stdin" title="永久链接至目标">¶</a></dt>
+<dd><p>标准输入流。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sys.stdout">
+<code class="descclassname">sys.</code><code class="descname">stdout</code><a class="headerlink" href="#sys.stdout" title="永久链接至目标">¶</a></dt>
+<dd><p>标准输出流。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sys.version">
+<code class="descclassname">sys.</code><code class="descname">version</code><a class="headerlink" href="#sys.version" title="永久链接至目标">¶</a></dt>
+<dd><p>该实现所遵照的Python语言版本，字符串形式。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sys.version_info">
+<code class="descclassname">sys.</code><code class="descname">version_info</code><a class="headerlink" href="#sys.version_info" title="永久链接至目标">¶</a></dt>
+<dd><p>该实现所遵照的Python语言版本，整数元组形式。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ubinascii.html" class="btn btn-neutral float-right" title="ubinascii – 二进制/ASCII转换" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="math.html" class="btn btn-neutral" title="math – 数学函数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

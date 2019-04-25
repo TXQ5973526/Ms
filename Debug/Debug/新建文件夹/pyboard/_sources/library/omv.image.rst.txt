@@ -1,0 +1,2205 @@
+:mod:`image` --- 机器视觉
+===============================
+
+.. module:: image
+   :synopsis: machine vision
+
+ ``image`` 模块用于计算机视觉技术的应用。
+
+函数
+---------
+
+.. function:: image.rgb_to_lab(rgb_tuple)
+
+   返回RGB888格式的元组 ``rgb_tuple`` (r, g, b)对应的LAB格式的元组(l, a, b)。
+
+   .. note::
+
+      RGB888是指红、绿、蓝各8位（0-255）。在LAB中，L的取值范围为0-100，a/b 的取值范围为-128到127。
+
+.. function:: image.lab_to_rgb(lab_tuple)
+
+   返回LAB格式的元组 ``lab_tuple`` (l, a, b)对应的RGB888格式的元组(r, g, b)。
+
+   .. note::
+
+      RGB888是指红、绿、蓝各8位（0-255）。在LAB中，L的取值范围为0-100，a/b 的取值范围为-128到127。
+
+.. function:: image.rgb_to_grayscale(rgb_tuple)
+
+   返回RGB888格式的元组 ``rgb_tuple`` (r, g, b)对应的灰度值。
+
+   .. note::
+
+      RGB888是指红、绿、蓝各8位（0-255）。灰度值取值于0-255。
+
+.. function:: image.grayscale_to_rgb(g_value)
+
+   返回灰度值 ``g_value`` 对应的RGB888格式的元组(r, g, b)。
+
+   .. note::
+
+       RGB888是指红、绿、蓝各8位（0-255）。灰度值取值于0-255。
+
+.. function:: image.load_decriptor(path)
+   从磁盘上加载一个描述符对象(descriptor object).
+
+   ``path`` 是描述符文件保存的路径。
+
+.. function:: image.save_descriptor(path, descriptor)
+
+   保存描述符对象 ``descriptor`` 到磁盘。
+   
+   ``path`` 是描述符文件保存的路径。
+
+.. function:: image.match_descriptor(descritor0, descriptor1, threshold=70, filter_outliers=False)
+
+
+   对于LBP描述符来说，这个函数返回的是一个体现两个描述符之间区别的整数。这一距离测度尤为必要。这个距离是对相似度的一个度量。这个测度值越接近0，LBPF特征点匹配得就越好。
+   对于ORB描述符来说，这个函数返回的是kptmatch对象。见上。
+    ``threshold`` 是用来为ORB键点过滤不明确匹配服务的。
+   一个较低的 ``threshold`` 值将紧扣关键点匹配算法。
+   ``threshold`` 值位于0-100 (int)。默认值为70。
+   ``filter_outliers`` 是用来为ORB键点过滤异常值服务的。
+   特征点允许用户提高 ``threshold`` 值。默认设置为False。
+
+   .. note::
+      ``threshold`` 和 ``filter_outliers`` 是键值参数，必须在函数调用中通过写入 ``threshold=`` 和 ``filter_outliers=`` 来显式地调用。
+
+HaarCascade 类 -- 特征描述符
+=======================================
+
+Haar Cascade特征描述符用于image.find_features() 方法。它没有供用户调用的方法。
+
+构造函数
+------------
+
+.. class:: image.HaarCascade(path, stages=Auto)
+    
+    从一个Haar Cascade二进制文件（适合OpenMV Cam的格式）加载一个Haar Cascade。
+    如果您传递“frontalface”字符串 而非一条路径，这个构造函数将会把一个内置的正脸Haar Cascade载入内存。
+    此外，您也可以通过“eye”来把Haar Cascade载入内存。
+    最后，这个方法会返回载入的Haar Cascade对象，用来使用image.find_features()。
+
+    stages 默认值为Haar Cascade中的阶段数。然而，您可以指定一个较低的数值来加速运行特征检测器，当然这会带来较高的误报率。
+
+    .. note:: 
+    
+        您可以制作自己的Haar Cascades 来配合您的OpenMV Cam 使用。
+        首先，使用谷歌搜索“<thing> Haar Cascade”，检测是否有人已经为您想要检测的对象制作了OpenCV Haar Cascade。
+        如果没有，那您需要自己动手制作（工作量巨大）。
+        关于如何制作自己的Haar Cascade，`见此 <http://coding-robin.de/2013/07/22/train-your-own-opencv-haar-classifier.html>`_
+        关于如何把OpenCV Haar Cascades转化成您的OpenMV Cam可以读取的模式，
+        `见此script <https://github.com/openmv/openmv/blob/master/usr/openmv-cascade.py>`_
+    
+   
+
+    问：Haar Cascade 是什么？
+
+    答：Haar Cascade是一系列用来确定一个对象是否存在于图像中的对比检查。
+    这一系列的对比检查分成了多个阶段，后一阶段的运行以先前阶段的完成为前提。
+    对比检查并不复杂，不过是像检查图像的中心垂直是否比边缘更轻微之类的过程。
+    大范围的检查在前期阶段首先进行，在后期进行更多更小的区域检查。
+    
+    问：Haar Cascades 是如何制作而成的？
+    
+    答：Haar Cascades通过标有正负的图像对发生器算法进行训练。
+    比如，用数百张含有猫（已被标记为内含猫）的图片和数百张不含有猫形物的图片（已作出不同标记）来训练这个生成算法。
+    这个生成算法最后会产生一个用来检测猫的Haar Cascades。
+
+    .. note::r
+
+      ``stages`` 是键值参数，
+      必须在函数调用中通过写入 ``stages=`` 来显式地调用。
+
+
+Histogram 类 -- 直方图对象
+===================================
+
+直方图对象是由 ``image.get_histogram`` 返回。 灰度直方图有一个包含多个二进制的通道。
+所有二进制都进行标准化，使其总和为1。
+RGB565有三个包含多个二进制的通道。所有二进制都进行标准化，使其总和为1。
+
+方法
+-------
+
+.. method:: histogram.bins()
+
+   返回灰度直方图的浮点数列表。
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: histogram.l_bins()
+
+   返回RGB565直方图LAB的L通道的浮点数列表。
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: histogram.a_bins()
+
+   返回RGB565直方图LAB的A通道的浮点数列表。
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: histogram.b_bins()
+
+   返回RGB565直方图LAB的B通道的浮点数列表。
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: histogram.get_percentile(percentile)
+
+   计算直方图频道的CDF，返回一个传递 ``percentile`` (0.0 - 1.0) (浮点数)中的直方图的值。
+
+   因此，若您进入0.1，该方法会告知您，当累加入累加器时，哪一个二进制会使累加器跨过0.1。
+
+   在没有异常效用破坏您的自适应色跟踪结果时，这对于确定颜色分布的最小值(0.1)和max(0.9)甚是有效。
+
+.. method:: histogram.get_statistics()
+
+   计算直方图中每个颜色通道的平均值、中值、众值、标准差、最小值、最大值、下四分值和上四分值，
+   并返回一个statistics对象。
+   您也可以使用 ``histogram.statistics()`` 和 ``histogram.get_stats()`` 作为这个方法的别名。
+
+Percentile 类 -- 百分比值对象
+=====================================
+
+百分比值对象由histogram.get_percentile 返回。
+灰度百分比值有一个通道。不使用 ``l_*`` 、 ``a_*`` 或 ``b_*`` 方法。
+RGB565百分比值有三个通道。使用 ``l_*`` 、 ``a_*`` 和 ``b_*`` 方法。
+
+方法
+-------
+
+.. method:: percentile.value()
+
+   返回灰度百分比值（取值区间为0-255）。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: percentile.l_value()
+
+   返回RGB565 LAB 的L通道的百分比值（取值区间为0-100）。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: percentile.a_value()
+
+   返回RGB565 LAB 的A通道的百分比值（取值区间为-128-127）。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: percentile.b_value()
+
+   返回RGB565 LAB 的B通道的百分比值（取值区间为-128-127）。
+
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+
+class Statistics -- 统计数据对象
+=====================================
+
+统计数据对象是由 ``histogram.get_statistics`` 
+或 ``image.get_statistics`` 返回的。
+
+灰度统计数据有一个通道，使用非 ``l_*`` 、 ``a_*`` 或 ``b_*`` 方法。
+
+RGB565百分比值有三个通道。使用 ``l_*`` 、 ``a_*`` 和 ``b_*`` 方法。
+
+方法
+-------
+
+.. method:: statistics.mean()
+
+   返回灰度均值(0-255) (int)。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: statistics.median()
+
+   返回灰度中值(0-255) (int)。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: statistics.mode()
+
+   返回灰度众值(0-255) (int)。
+   
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: statistics.stdev()
+
+   返回灰度标准差(0-255) (int)。
+
+   您也可以通过索引 ``[3]`` 取得这个值。
+
+.. method:: statistics.min()
+
+   返回灰度最小值(0-255) (int)。
+   
+   您也可以通过索引 ``[4]`` 取得这个值。
+
+
+.. method:: statistics.max()
+
+   返回灰度最大值(0-255) (int)。
+
+   您也可以通过索引 ``[5]`` 取得这个值。
+
+
+.. method:: statistics.lq()
+
+   返回灰度下四分值(0-255) (int)。
+
+   您也可以通过索引 ``[6]`` 取得这个值。
+
+.. method:: statistics.uq()
+
+   返回灰度上四分值(0-255) (int)。
+
+   您也可以通过索引 ``[7]`` 取得这个值。
+
+.. method:: statistics.l_mean()
+
+   返回RGB5656 LAB 中L的均值(0-255) (int)。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: statistics.l_median()
+
+   返回RGB5656 LAB 中L的中值(0-255) (int)。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: statistics.l_mode()
+
+   返回RGB5656 LAB 中L的众值(0-255) (int)。
+
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: statistics.l_stdev()
+
+   返回RGB5656 LAB 中L的标准偏差值(0-255) (int)。
+
+   您也可以通过索引 ``[3]`` 取得这个值。
+
+.. method:: statistics.l_min()
+
+   返回RGB5656 LAB 中L的最小值(0-255) (int)。
+
+   您也可以通过索引 ``[4]`` 取得这个值。
+
+.. method:: statistics.l_max()
+
+   返回RGB5656 LAB 中L的最大值(0-255) (int)。
+
+   您也可以通过索引 ``[5]`` 取得这个值。
+
+.. method:: statistics.l_lq()
+
+   返回RGB5656 LAB 中L的下四分值(0-255) (int)。
+
+   您也可以通过索引 ``[6]`` 取得这个值。
+
+.. method:: statistics.l_uq()
+
+   返回RGB5656 LAB 中L的上四分值(0-255) (int)。
+
+   您也可以通过索引 ``[7]`` 取得这个值。
+
+.. method:: statistics.a_mean()
+
+   返回RGB5656 LAB 中A的均值(0-255) (int)。
+
+   您也可以通过索引 ``[8]`` 取得这个值。
+
+.. method:: statistics.a_median()
+
+   返回RGB5656 LAB 中A的中值(0-255) (int)。
+
+   您也可以通过索引 ``[9]`` 取得这个值。
+
+.. method:: statistics.a_mode()
+
+   返回RGB5656 LAB 中A的众值(0-255) (int)。
+
+   您也可以通过索引 ``[10]`` 取得这个值。
+
+.. method:: statistics.a_stdev()
+
+   返回RGB5656 LAB 中A的标准偏差值(0-255) (int)。
+
+   您也可以通过索引 ``[11]`` 取得这个值。
+
+.. method:: statistics.a_min()
+
+   返回RGB5656 LAB 中A的最小值(0-255) (int)。
+
+   您也可以通过索引 ``[12]`` 取得这个值。
+
+.. method:: statistics.a_max()
+
+   返回RGB5656 LAB 中A的最大值(0-255) (int)。
+
+   您也可以通过索引 ``[13]`` 取得这个值。
+
+.. method:: statistics.a_lq()
+
+   返回RGB5656 LAB 中A的下四分值(0-255) (int)。
+
+   您也可以通过索引 ``[14]`` 取得这个值。
+
+.. method:: statistics.a_uq()
+
+   返回RGB5656 LAB 中A的上四分值(0-255) (int)。
+
+   您也可以通过索引 ``[15]`` 取得这个值。
+
+.. method:: statistics.b_mean()
+
+   返回RGB5656 LAB 中B的均值(0-255) (int)。
+
+   您也可以通过索引 ``[16]`` 取得这个值。
+
+.. method:: statistics.b_median()
+
+   返回RGB5656 LAB 中B的中值(0-255) (int)。
+
+   您也可以通过索引 ``[17]`` 取得这个值。
+
+.. method:: statistics.b_mode()
+
+   返回RGB5656 LAB 中B的众值(0-255) (int)。
+
+   您也可以通过索引 ``[18]`` 取得这个值。
+
+.. method:: statistics.b_stdev()
+
+   返回RGB5656 LAB 中B的标准差值(0-255) (int)。
+
+   您也可以通过索引 ``[19]`` 取得这个值。
+
+.. method:: statistics.b_min()
+
+   返回RGB5656 LAB 中B的最小值(0-255) (int)。
+
+   您也可以通过索引 ``[20]`` 取得这个值。
+
+.. method:: statistics.b_max()
+
+   返回RGB5656 LAB 中B的最大值(0-255) (int)。
+
+   您也可以通过索引 ``[21]`` 取得这个值。
+
+.. method:: statistics.b_lq()
+
+   返回RGB5656 LAB 中B的下四分值(0-255) (int)。
+
+   您也可以通过索引 ``[22]`` 取得这个值。
+
+.. method:: statistics.b_uq()
+
+   返回RGB5656 LAB 中B的上四分值(0-255) (int)。
+
+   您也可以通过索引 ``[23]`` 取得这个值。
+
+Blob 类 -- 色块对象
+=========================
+
+色块对象是由 ``image.find_blobs`` 返回的。
+
+方法
+-------
+r
+.. method:: blob.rect()
+
+   返回一个矩形元组(x, y, w, h) ，用于如色块边界框的 ``image.draw_rectangle`` 等
+   其他的 ``image`` 方法。
+
+.. method:: blob.x()
+
+   返回色块的边界框的x坐标(int)。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: blob.y()
+
+   返回色块的边界框的y坐标(int)。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: blob.w()
+
+   返回色块的边界框的w坐标(int)。
+
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: blob.h()
+
+   返回色块的边界框的h坐标(int)。
+
+   您也可以通过索引 ``[3]`` 取得这个值。
+
+.. method:: blob.pixels()
+
+   返回从属于色块(int)一部分的像素数量。
+
+   您也可以通过索引 ``[4]`` 取得这个值。
+
+.. method:: blob.cx()
+
+   返回色块(int)的中心x位置。
+
+   您也可以通过索引 ``[5]`` 取得这个值。
+
+.. method:: blob.cy()
+
+   返回色块(int)的中心x位置。
+
+   您也可以通过索引 ``[6]`` 取得这个值。
+
+.. method:: blob.rotation()
+
+   返回色块的旋转（单位：弧度）。如果色块类似铅笔或钢笔，那么这个值就是介于0-180之间的唯一值。
+   如果这个色块圆的，那么这个值就没有效用。如果这个色块完全不具有对称性，您只能由此得到0-360度的旋转。
+
+   您也可以通过索引 ``[7]`` 取得这个值。
+
+.. method:: blob.code()
+
+   返回一个16位的二进制数字，其中为每个颜色阈值设置一个位，这是色块的一部分。
+   例如，如果您通过 ``image.find_blobs`` 来寻找三个颜色阈值，这个色块可以设置为0/1/2位。
+   注意：除非以 ``merge=True`` 
+   调用 ``image.find_blobs`` ，否则每个色块只能设置一位。
+   那么颜色阈值不同的多个色块就可以合并在一起了。
+   您也可以用这个方法以及多个阈值来实现颜色代码跟踪。
+
+   您也可以通过索引 ``[8]`` 取得这个值。
+
+.. method:: blob.count()
+
+   返回合并为这一色块的多个色块的数量。只有您以 ``merge=True`` 
+   调用 ``image.find_blobs`` 时，这个数字才不是1。
+
+   您也可以通过索引 ``[9]`` 取得这个值。
+
+.. method:: blob.area()
+
+   返回色块周围的边框面积(w * h)
+
+.. method:: blob.density()
+
+   返回这个色块的密度比。这是在色块边界框区域内的像素点的数量。
+   总的来说，较低的密度比意味着这个对象的锁定得不是很好。
+
+Line类 – 直线对象
+=========================
+
+直线对象是由 ``image.find_lines`` , ``image.find_line_segments `` 或  ``image.get_regression`` 返回的。
+
+方法
+-------
+
+.. method:: line.line()
+
+   返回一个直线元组(x1, y1, x2, y2) ，用于如``image.draw_line``等其他的``image``方法。
+
+.. method:: line.x1()
+
+   返回直线的p1顶点 x坐标分量。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: line.y1()
+
+   返回直线的p1 y分量。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: line.x2()
+
+   返回直线的p2 x分量。
+
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: line.y2()
+
+   返回直线的p2 y分量。
+
+   您也可以通过索引 ``[3]`` 取得这个值。
+
+.. method:: line.length()
+
+   返回直线长度即 sqrt(((x2-x1)^2) + ((y2-y1)^2).
+
+   您也可以通过索引 ``[4]`` 取得这个值。
+
+.. method:: line.magnitude()
+
+   返回霍夫变换后的直线的长度。
+
+   您也可以通过索引 ``[5]`` 取得这个值。
+
+.. method:: line.theta()
+
+   返回霍夫变换后的直线的角度（0-179度）。
+
+   您也可以通过索引 ``[7]`` 取得这个值。
+
+.. method:: line.rho()
+
+   返回霍夫变换后的直线p值。
+
+   您也可以通过索引 ``[8]`` 取得这个值。
+
+Circle类 –圆形对象
+=============================
+
+圆形对象是由 ``image.find_circles`` 返回的。
+
+
+方法
+-------
+
+.. method:: circle.x()
+
+   返回圆的x位置。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: circle.y()
+
+   返回圆的y位置。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: circle.r()
+
+   返回圆的半径。
+
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: circle.magnitude()
+
+   返回圆的大小。
+
+   您也可以通过索引 ``[3]`` 取得这个值。
+
+Rect类 – 矩形对象
+==============================
+
+矩形对象是由` `image.find_rects`` 返回的。
+
+方法
+-------
+
+.. method:: rect.corners()
+
+   返回一个由矩形对象的四个角组成的四个元组(x,y)的列表。四个角通常是按照从左上角开始沿顺时针顺序返回的。
+
+.. method:: rect.rect()
+
+   返回一个矩形元组(x, y, w, h)，用于如 矩形的边界框的 ``image.draw_rectangle`` 等其他的 ``image`` 方法。
+
+.. method:: rect.x()
+
+   返回矩形的左上角的x位置。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: rect.y()
+
+   返回矩形的左上角的y位置。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: rect.w()
+
+   返回矩形的宽度。
+
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: rect.h()
+
+   返回矩形的高度。
+
+   您也可以通过索引 ``[3]`` 取得这个值。
+
+.. method:: rect.magnitude()
+
+   返回矩形的大小。
+
+   您也可以通过索引 ``[4]`` 取得这个值。
+
+QRCode类 – 二维码对象
+=============================
+
+二维码对象是由 ``image.find_qrcodes`` 返回的。
+
+方法
+-------
+
+.. method:: qrcode.corners()
+
+   返回一个由该对象的四个角组成的四个元组(x,y)的列表。四个角通常是按照从左上角开始沿顺时针顺序返回的。
+
+.. method:: qrcode.rect()
+
+   返回一个矩形元组(x, y, w, h)，用于如二维码的边界框的 ``image.draw_rectangle`` 等其他的 ``image`` 方法。
+
+.. method:: qrcode.x()
+
+   返回二维码的边界框的x坐标(int)。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: qrcode.y()
+
+   返回二维码的边界框的y坐标(int)。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: qrcode.w()
+
+   返回二维码的边界框的w坐标(int)。
+
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: qrcode.h()
+
+   返回二维码的边界框的h坐标(int)。
+
+   您也可以通过索引 ``[3]`` 取得这个值。
+
+.. method:: qrcode.payload()
+
+   返回二维码有效载荷的字符串，例如URL 。
+
+   您也可以通过索引 ``[4]`` 取得这个值。
+
+.. method:: qrcode.version()
+
+   返回二维码的版本号(int)。
+
+   您也可以通过索引 ``[5]`` 取得这个值。
+
+.. method:: qrcode.ecc_level()
+
+   返回二维码的ECC水平(int)。
+
+   您也可以通过索引 ``[6]`` 取得这个值。
+
+.. method:: qrcode.mask()
+
+   返回二维码的掩码(int)。
+
+   您也可以通过索引 ``[7]`` 取得这个值。
+
+.. method:: qrcode.data_type()
+
+   返回二维码的数据类型。
+
+   您也可以通过索引 ``[8]`` 取得这个值。
+
+.. method:: qrcode.eci()
+
+   返回二维码的ECI。ECI储存了QR码中存储数据字节的编码。若您想要处理包含超过标准ASCII文本的二维码，您需要查看这一数值。
+
+   您也可以通过索引 ``[9]`` 取得这个值。
+
+.. method:: qrcode.is_numeric()
+
+   若二维码的数据类型为数字式，则返回True。
+
+.. method:: qrcode.is_alphanumeric()
+
+   若二维码的数据类型为文字数字式，则返回True。
+
+.. method:: qrcode.is_binary()
+
+   若二维码的数据类型为二进制式，则返回True。如果您认真处理所有类型的文本，则需要检查eci是否为True，以确定数据的文本编码。通常它只是标准的ASCII，但是它也可能是有两个字节字符的UTF8。
+
+.. method:: qrcode.is_kanji()
+
+   若二维码的数据类型为日本汉字，则返回True。设置为True后，您就需要自行解码字符串，因为日本汉字符号每个字符是10位，而MicroPython不支持解析这类文本。
+
+AprilTag类 – AprilTag对象
+=================================
+
+AprilTag对象是由 ``image.find_apriltags`` 返回的。
+
+方法
+-------
+
+.. method:: apriltag.corners()
+
+   返回一个由该对象的四个角组成的四个元组(x,y)的列表。四个角通常是按照从左上角开始沿顺时针顺序返回的。
+
+.. method:: apriltag.rect()
+
+   返回一个矩形元组(x, y, w, h)，用于如AprilTag边界框的 ``image.draw_rectangle`` 等其他的 ``image`` 方法。
+
+.. method:: apriltag.x()
+
+   返回AprilTag边界框的x坐标(int)。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: apriltag.y()
+
+   返回AprilTag边界框的y坐标(int)。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: apriltag.w()
+
+   返回AprilTag边界框的w坐标(int)。
+
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: apriltag.h()
+
+   返回AprilTag边界框的h坐标(int)。
+
+   您也可以通过索引 ``[3]`` 取得这个值。
+
+.. method:: apriltag.id()
+
+   返回AprilTag的数字ID。
+
+     * TAG16H5 -> 0 to 29
+     * TAG25H7 -> 0 to 241
+     * TAG25H9 -> 0 to 34
+     * TAG36H10 -> 0 to 2319
+     * TAG36H11 -> 0 to 586
+     * ARTOOLKIT -> 0 to 511
+
+   您也可以通过索引 ``[4]`` 取得这个值。
+
+.. method:: apriltag.family()
+
+   返回AprilTag的数字家庭。
+
+     * image.TAG16H5
+     * image.TAG25H7
+     * image.TAG25H9
+     * image.TAG36H10
+     * image.TAG36H11
+     * image.ARTOOLKIT
+
+   您也可以通过索引 ``[5]`` 取得这个值。
+
+.. method:: apriltag.cx()
+
+   返回AprilTag的中心x位置(int)。
+
+   您也可以通过索引 ``[6]`` 取得这个值。
+
+.. method:: apriltag.cy()
+
+   返回AprilTag的中心y位置(int)。
+
+   您也可以通过索引 ``[7]`` 取得这个值。
+
+.. method:: apriltag.rotation()
+
+   返回以弧度计的AprilTag的旋度(int)。
+
+   您也可以通过索引 ``[8]`` 取得这个值。
+
+.. method:: apriltag.decision_margin()
+
+   返回AprilTag匹配的色饱和度（取值0.0 - 1.0），其中1.0为最佳。
+
+   您也可以通过索引 ``[9]`` 取得这个值。
+
+.. method:: apriltag.hamming()
+
+   返回AprilTag的可接受的数位误差数值。
+
+     * TAG16H5 -> 0 bit errors will be accepted
+     * TAG25H7 -> up to 1 bit error may be accepted
+     * TAG25H9 -> up to 3 bit errors may be accepted
+     * TAG36H10 -> up to 3 bit errors may be accepted
+     * TAG36H11 -> up to 4 bit errors may be accepted
+     * ARTOOLKIT -> 0 bit errors will be accepted
+
+   您也可以通过索引 ``[10]`` 取得这个值。
+
+.. method:: apriltag.goodness()
+
+   返回AprilTag图像的色饱和度（取值0.0 - 1.0），其中1.0为最佳。
+
+   .. note::
+
+      目前这一数值通常是0.0。未来我们可以启用一个称为“标签细化”的功能，以实现对更小的AprilTag的检测。然而，现在这个功能将帧速率降低到1 FPS以下。
+
+   您也可以通过索引 ``[11]`` 取得这个值。
+
+.. method:: apriltag.x_translation()
+
+   返回距离摄像机x方向的变换，距离的单位未知。
+
+   这个方法对于确定远离摄像机的AprilTag的位置很有用。但是，AprilTag的大小以及您使用的镜头等因素都会影响X单元归属的确定。为使用方便，我们推荐您使用查找表将该方法的输出转换为对您的应用程序有用的信息。
+
+   注意：此处的方向为从左至右。
+
+   您也可以通过索引 ``[12]`` 取得这个值。
+
+.. method:: apriltag.y_translation()
+
+   返回距离摄像机y方向的变换，距离的单位未知。
+
+   这个方法对于确定远离摄像机的AprilTag的位置很有用。但是，AprilTag的大小以及您使用的镜头等因素都会影响Y单元归属的确定。为使用方便，我们推荐您使用查找表将该方法的输出转换为对您的应用程序有用的信息。
+
+   注意：此处的方向为从上至下。
+
+   您也可以通过索引 ``[13]`` 取得这个值。
+
+.. method:: apriltag.z_translation()
+
+   返回距离摄像机z方向的变换，距离的单位未知。
+
+   T这个方法对于确定远离摄像机的AprilTag的位置很有用。但是，AprilTag的大小以及您使用的镜头等因素都会影响Z单元归属的确定。为使用方便，我们推荐您使用查找表将该方法的输出转换为对您的应用程序有用的信息。
+
+   注意：此处的方向为从前至后。
+
+   您也可以通过索引 ``[14]`` 取得这个值。
+
+.. method:: apriltag.x_rotation()
+
+   返回以弧度计的AprilTag在X平面上的旋度。例：目视AprilTag，从左至右移动摄像头。
+
+   您也可以通过索引 ``[15]`` 取得这个值。
+
+.. method:: apriltag.y_rotation()
+
+   返回以弧度计的AprilTag在Y平面上的旋度。例：目视AprilTag，从上至下移动摄像头。
+
+   您也可以通过索引 ``[16]`` 取得这个值。
+
+.. method:: apriltag.z_rotation()
+
+   返回以弧度计的AprilTag在Z平面上的旋度。例：目视AprilTag，旋转摄像头。
+
+   注意：这只是 ``apriltag.rotation()`` 的重命名版本。
+
+   您也可以通过索引 ``[17]`` 取得这个值。
+
+DataMatrix类 – 数据矩阵对象
+=====================================
+
+数据矩阵对象是由i ``mage.find_datamatrices`` 返回的。
+
+方法
+-------
+
+.. method:: datamatrix.corners()
+
+   返回一个由该对象的四个角组成的四个元组(x,y)的列表。四个角通常是按照从左上角开始沿顺时针顺序返回的。
+
+.. method:: datamatrix.rect()
+
+   返回一个矩形元组(x, y, w, h)，用于如数据矩阵的边界框的 ``image.draw_rectangle`` 等其他的 ``image`` 方法。
+
+.. method:: datamatrix.x()
+
+   返回数据矩阵的边界框的x坐标(int)。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: datamatrix.y()
+
+   返回数据矩阵的边界框的y坐标(int)。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: datamatrix.w()
+
+   返回数据矩阵的边界框的w宽度。
+
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: datamatrix.h()
+
+   返回数据矩阵的边界框的h高度。
+
+   您也可以通过索引 ``[3]`` 取得这个值。
+
+.. method:: datamatrix.payload()
+
+   返回数据矩阵的有效载荷的字符串。例：字符串。
+
+   您也可以通过索引 ``[4]`` 取得这个值。
+
+.. method:: datamatrix.rotation()
+
+   返回以弧度计的数据矩阵的旋度(浮点数)。
+
+   您也可以通过索引 ``[5]`` 取得这个值。
+
+.. method:: datamatrix.rows()
+
+   返回数据矩阵的行数(int)。
+
+   您也可以通过索引 ``[6]`` 取得这个值。
+
+.. method:: datamatrix.columns()
+
+   返回数据矩阵的列数(int)。
+
+   您也可以通过索引 ``[7]`` 取得这个值。
+
+.. method:: datamatrix.capacity()
+
+   返回这一数据矩阵所能容纳的字符的数量。
+
+   您也可以通过索引 ``[8]`` 取得这个值。
+
+.. method:: datamatrix.padding()
+
+   返回这一数据矩阵中未使用的字符的数量。
+
+   您也可以通过索引 ``[9]`` 取得这个值。
+
+BarCode类 – 条形码对象
+===============================
+
+条形码对象是由 ``image.find_barcodes`` 返回的。
+
+方法
+-------
+
+.. method:: barcode.corners()
+
+   返回一个由该对象的四个角组成的四个元组(x,y)的列表。四个角通常是按照从左上角开始沿顺时针顺序返回的。
+
+.. method:: barcode.rect()
+
+   返回一个矩形元组(x, y, w, h)，用于如数据矩阵的边界框的 ``image.draw_rectangle`` 等其他的 ``image`` 方法。
+
+.. method:: barcode.x()
+
+   返回条形码的边界框的x坐标(int)。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: barcode.y()
+
+   返回条形码的边界框的y坐标(int)。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: barcode.w()
+
+   返回条形码的边界框的w宽度(int)。
+
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: barcode.h()
+
+   返回条形码的边界框的h高度(int)。
+
+   您也可以通过索引 ``[3]`` 取得这个值。
+
+.. method:: barcode.payload()
+
+   返回条形码的有效载荷的字符串。例：数量。
+
+   您也可以通过索引 ``[4]`` 取得这个值。
+
+.. method:: barcode.type()
+
+   返回条形码的列举类型 (int)。
+
+   您也可以通过索引 ``[5]`` 取得这个值。
+
+     * image.EAN2
+     * image.EAN5
+     * image.EAN8
+     * image.UPCE
+     * image.ISBN10
+     * image.UPCA
+     * image.EAN13
+     * image.ISBN13
+     * image.I25
+     * image.DATABAR
+     * image.DATABAR_EXP
+     * image.CODABAR
+     * image.CODE39
+     * image.PDF417 - Future (e.g. doesn't work right now).
+     * image.CODE93
+     * image.CODE128
+
+.. method:: barcode.rotation()
+
+   返回以弧度计的条形码的旋度(浮点数)。
+
+   您也可以通过索引 ``[6]`` 取得这个值。
+
+.. method:: barcode.quality()
+
+   返回条形码在图像中被检测到的次数(int)。
+
+   扫描条形码时，每一条新的扫描线都能解码相同的条形码。每次进行这一过程，条形码的值都会随之增加。
+
+   您也可以通过索引 ``[7]`` 取得这个值。
+
+Kptmatch类 – 特征点对象
+=================================
+
+特征点对象是由 ``image.match_descriptor`` 返回的。
+
+方法
+-------
+
+.. method:: kptmatch.rect()
+
+   返回一个矩形元组(x, y, w, h)，用于如特征点的边界框的 ``image.draw_rectangle`` 等其他的 ``image`` 方法。
+
+.. method:: kptmatch.cx()
+
+   返回特征点的中心x位置(int)。
+
+   您也可以通过索引 ``[0]`` 取得这个值。
+
+.. method:: kptmatch.cy()
+
+   返回特征点的中心y位置(int)。
+
+   您也可以通过索引 ``[1]`` 取得这个值。
+
+.. method:: kptmatch.x()
+
+   返回特征点边界框的x坐标(int)。
+
+   您也可以通过索引 ``[2]`` 取得这个值。
+
+.. method:: kptmatch.y()
+
+   返回特征点边界框的y坐标(int)。
+
+   您也可以通过索引 ``[3]`` 取得这个值。
+
+.. method:: kptmatch.w()
+
+   返回特征点边界框的w宽度(int)。
+
+   您也可以通过索引 ``[4]`` 取得这个值。
+
+.. method:: kptmatch.h()
+
+   返回特征点边界框的h高度(int)。
+
+   您也可以通过索引 ``[5]`` 取得这个值。
+
+.. method:: kptmatch.match()
+
+   返回匹配的特征点的数量(int)。
+
+   您也可以通过索引 ``[6]`` 取得这个值。
+
+.. method:: kptmatch.theta()
+
+   返回估计的特征点的旋度(int)。
+
+   您也可以通过索引 ``[7]`` 取得这个值。
+
+ImageWriter类 – ImageWriter对象
+=======================================
+
+ImageWriter对象使得您可以快速地将未压缩的图像写入磁盘。 
+
+构造函数
+------------
+
+.. class:: image.ImageWriter(path)
+
+   创建一个ImageWriter对象，您就可以以用于OpenMV Cams的简单文件格式将未压缩的图像写到磁盘上。然后未压缩的图像可以使用ImageReader重新读取。
+
+方法
+-------
+
+.. method:: imagewriter.size()
+
+   返回正在写入的文件的大小。
+
+.. method:: imagewriter.add_frame(img)
+
+   将一张图像写入磁盘。由于图像未被压缩，因此执行迅速，但会占用大量磁盘空间。
+
+.. method:: imagewriter.close()
+
+   关闭图像流文件。您必须关闭文件，否则文件会损坏。
+
+ImageReader 类– ImageReader对象
+=======================================
+
+ImageReader对象使得您可以快速地从磁盘中读取未压缩的图像。
+
+构造函数
+------------
+
+.. class:: image.ImageReader(path)
+
+   创建一个ImageReader对象，用来回放由ImageWriter对象编写的图像数据。ImageWriter对象回放的帧会在与写入磁盘时相同的FPS下回放。
+
+方法
+-------
+
+.. method:: imagereader.size()
+
+   返回正在读取的文件的大小。
+
+.. method:: imagereader.next_frame([copy_to_fb=True, loop=True])
+
+   从ImageWriter写就的文件中返回图像对象。若 ``copy_to_fb`` 为True，图像对象将被直接加载到帧缓冲区中。否则图像对象将被放入堆中。注意：除非图像很小，否则堆可能没有足够的空间来存储图像对象。若loop 为True，流的最后一个图像读取之后，回放将重新开始。否则所有帧被读取后，这个方法将返回None。
+   注意：下一帧尽量在读取帧后通过暂停播放来限制回放速度，以与帧记录的速度相匹配。否则，这个方法会以200+FPS的速度图像快读播放所有图像。
+
+
+.. method:: imagereader.close()
+
+   关闭正在读取的文件。您需要进行这一操作，以防imagereader 对象受损。但由于是只读文件，文件不会在未关闭时受损。
+
+Image类 – 图像对象
+===========================
+
+图像对象是机器视觉操作的基本对象。
+
+构造函数
+------------
+
+.. class:: image.Image(path, copy_to_fb=False)
+
+   从 ``path`` 中的文件中创建一个新的图像对象。
+   
+   支持bmp/pgm/ppm/jpg/jpeg格式的图像文件。
+   
+   若 ``copy_to_fb`` 为True，图像会直接载入帧缓冲区，您就可以加载大幅图片了。若为False，图像会载入MicroPython的堆中，堆远比帧缓冲区小。
+
+
+      *
+        在OpenMV Cam M4中，若 ``copy_to_fb`` 为False，您应该尽量把图像大小控制在8KB以下。若为True，则图像最大可为160KB。
+
+      *
+        在OpenMV Cam M7中，若 ``copy_to_fb`` 为False，您应该尽量把图像大小控制在16KB以下。若为True，则图像最大可为320KB。
+
+   图像支持“[]”记法。 令 ``image[index] = 8/16-bit value`` ， 以便分配图像像素或 ``image[index]`` ，并得到一个图像像素，若是用于RGB图像的16位RGB565值的灰度图像，
+   这一像素则为8位。
+   
+   对于JPEG图像而言，“[]”使得您可以访问压缩的节数组形式的JPEG图像色块。由于JPEG图像是压缩的字节流形式，因而对数据组的读取和写入是不透明的。
+      
+   图像还支持读缓冲区操作。您可以把图像当作节数组对象，将图像输入所有类型的MicroPython函数。若您想传送一个图像，可以将它传递给UART /SPI/ I2C写入函数，可实现自动传送。
+
+
+   .. note::
+
+      ``copy_to_fb`` 是键值参数，必须在函数调用中通过写入 ``copy_to_fb=`` 来显式地调用。
+
+
+方法
+-------
+
+.. method:: image.copy(roi=Auto)
+
+   创建一个图像对象的副本。
+
+   ``Roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即复制整个图像的图像矩形。但这不适用于JPEG图像。
+
+   请记住图像副本储存在MicroPython 堆中而不是帧缓冲区。同样，您需要将图像副本大小控制在8KB以下（OpenMV）或16KB以下（OpenMV Cam M7）
+   如果您想使用一个复制操作来使用所有的堆空间，这个函数会出现异常。过大的图像极易触发异常。
+
+   .. note::
+
+      ``roi`` 是键值参数，必须在函数调用中通过写入 ``roi=`` 来显式地调用。
+
+.. method:: image.save(path, roi=Auto, quality=50)
+
+   将图像的副本保存到 ``path`` 中的文件系统。 
+
+   支持bmp/pgm/ppm/jpg/jpeg格式的图像文件。注意：您无法将jpeg格式的压缩图像保存成未压缩的格式。
+
+   ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即复制整个图像的图像矩形。但这不适用于JPEG图像。
+
+   ``quality`` 指在图像尚未被压缩时将图像保存为JPEG格式的JPEG压缩质量。
+
+   .. note::
+
+      ``roi`` 和 ``quality`` 是键值参数，必须在函数调用中通过写入 ``roi=`` 或 ``quality=`` 来显式地调用。
+
+.. method:: image.compress(quality=50)
+
+   JPEG对图像进行适当压缩。使用这种方法与 ``compressed`` 保存堆空间相比，使用更高quality的压缩率是以破坏原始图像为代价的。
+
+   ``quality`` 是压缩质量（0-100）（int）。
+
+   .. note::
+
+      ``quality`` 是键值参数，必须在函数调用中通过写入quality=来显式地调用。
+
+   只在灰度图与RGB565图像中调用。
+
+.. method:: image.compress_for_ide(quality=50)
+
+   JPEG对图像进行适当压缩。使用这种方法与 ``compressed`` 保存堆空间相比，使用更高quality的压缩率是以破坏原始图像为代价的。
+
+   这个方法压缩图像，然后通过将每6比特编码为128 - 191之间的字节将JPEG数据格式化，转换为OpenMV IDE，以便显示。进行这一步是为防止JPEG数据被误认为是字节流中的其他文本数据。
+      
+   您需要使用这一方法来格式化图像数据，以便在OpenMV IDE中通过“开放终端”创建的终端窗口中显示。
+
+   ``quality`` 是压缩质量（0-100）（int）。
+
+   .. note::
+
+      ``quality`` 是键值参数，必须在函数调用中通过写入quality=来显式地调用。
+
+   只在灰度图与RGB565图像中调用。
+
+.. method:: image.compressed(quality=50)
+
+   返回一个JPEG压缩图像—原始图像未经处理。但是，这个方法需要堆空间的大分配，所以图像压缩质量和图像分辨率必须很低。
+   ``quality`` 是压缩质量（0-100）（int）。
+
+   .. note::
+
+      ``quality`` 是键值参数，必须在函数调用中通过写入q ``uality=`` 来显式地调用。
+
+
+   只在灰度图与RGB565图像中调用。
+
+.. method:: image.compressed_for_ide(quality=50)
+
+   返回一个JPEG压缩图像—原始图像未经处理。但是，这个方法需要堆空间的大分配，所以图像压缩质量和图像分辨率必须很低。
+
+   这个方法压缩图像，然后通过将每6比特编码为128 - 191之间的字节将JPEG数据格式化，转换为OpenMV IDE，以便显示。进行这一步是为防止JPEG数据被误认为是字节流中的其他文本数据。
+
+   您需要使用这一方法来格式化图像数据，以便在OpenMV IDE中通过“开放终端”创建的终端窗口中显示。
+
+   ``quality`` 是压缩质量（0-100）（int）。
+
+   .. note::
+
+      ``quality`` 是键值参数，必须在函数调用中通过写入quality=来显式地调用。
+
+   只在灰度图与RGB565图像中调用。
+
+.. method:: image.width()
+
+   返回以像素计的图像的宽度。
+
+.. method:: image.height()
+
+   返回以像素计的图像的高度。
+
+.. method:: image.format()
+
+   返回用于灰度图的 ``sensor.GRAYSCALE`` 、用于RGB图像的 ``sensor.RGB565`` 和用于JPEG图像的 ``sensor.JPEG`` 。
+
+.. method:: image.size()
+
+   返回以字节计的图像大小。
+
+.. method:: image.clear()
+
+   将灰度图和RGB565图像中的所有字节都归零。请勿在JPEG图像中调用此。
+
+.. method:: image.get_pixel(x, y)
+
+   灰度图：返回(x, y)位置的灰度像素值。
+   
+   RGB565l：返回(x, y)位置的RGB888像素元组(r, g, b)。 
+
+   不支持压缩图像。
+
+.. method:: image.set_pixel(x, y, pixel)
+
+   灰度图：将(x, y) 位置的像素设置为灰度值 ``pixel`` 。
+   
+   RGB图像：将(x, y) 位置的像素设置为RGB888元组(r, g, b) ``pixel`` 。
+
+   不支持压缩图像。
+
+
+.. method:: image.draw_line(line_tuple, color=White)
+
+   在图像上用从(x0, y0)到(x1, y1)的 ``line_tuple`` (x0, y0, x1, y1)画一条直线。 
+
+   对灰度图而言，``color`` 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``color`` 是键值参数，必须在函数调用中通过写入color=来显式地调用。
+
+.. method:: image.draw_rectangle(rect_tuple, color=White)
+
+   在图像上用 ``rect_tuple`` (x, y, w, h)画一个不填充的矩形。
+
+   对灰度图而言，``color`` 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``color`` 是键值参数，必须在函数调用中通过写入 ``color=`` 来显式地调用。
+
+.. method:: image.draw_circle(x, y, radius, color=White)
+
+   在图像上( ``x`` , ``y`` )位置用整数半径 ``radius`` 画一个不填充的圆圈。
+
+   对灰度图而言，``color`` 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``color`` 是键值参数，必须在函数调用中通过写入 ``color=`` 来显式地调用。
+
+.. method:: image.draw_string(x, y, text, color=White)
+
+   在图像上的( ``x`` , ``y`` )位置用 ``text`` 画一个8x10的文本框。``\n`` 、 ``\r`` 和 ``\r\n`` 结束符将光标移至下一行。
+
+   对灰度图而言， ``color`` 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。
+
+   不支持压缩图像。
+
+
+   .. note::
+
+      ``color`` 是键值参数，必须在函数调用中通过写入 ``color=`` 来显式地调用。
+
+.. method:: image.draw_cross(x, y, size=5, color=White)
+
+   在图像上的( ``x`` , ``y`` )位置画一个边长为 ``size`` (int)的十字。
+
+   对灰度图而言， ``color`` 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``size`` 和 ``color`` 是键值参数，必须在函数调用中通过写入 ``size=`` 和 ``color=`` 来显式地调用。
+
+
+.. method:: image.draw_keypoints(keypoints, size=Auto, color=White)
+
+   在图像上画出一个特征点对象的各个点。 ``size`` 控制特征点的大小，通过缩放或扩展来使特征点在图像上看起来适当（被覆盖除外）。
+
+   对灰度图而言， ``color`` 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``size`` 和 ``color`` 是键值参数，必须在函数调用中通过写入 ``size=`` 和 ``color=`` 来显式地调用。
+
+.. method:: image.binary(thresholds, invert=False)
+
+   对于灰度图而言， ``thresholds`` 是一个用来分割图像的(下方的、上方的)灰度像素阈值的列表。这种分割将所有阈值内的像素转为1（白色），所有阈值外的像素转为0（黑色）。
+
+   对于RGB图像而言，是一个用来分割图像的(l_lo, l_hi, a_lo, a_hi, b_lo, b_hi) LAB像素阈值的列表。这种分割使得所有阈值内的像素转为1（白色），所有阈值外的像素转为0（黑色）。
+
+   变化的Lo/Hi阈值进行自动处理。 
+
+    ``Invert`` 对分割操作的结果进行转化。
+
+   不支持压缩图片。
+
+   .. note::
+
+      ``invert`` 是键值参数，必须在函数调用中通过写入 ``Invert`` 来显式地调用。
+
+.. method:: image.invert()
+
+   将二进制图像0（黑色）变为1（白色），1（白色）变为0（黑色）。
+
+   不支持压缩图像。
+
+.. method:: image.b_and(image)
+
+   用另一图像与这一图像进行逻辑与运算。
+
+    ``mage`` 可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。
+
+   图像须为同样大小和同种类型(grayscale/rgb)。
+
+   不支持压缩图像。
+
+
+.. method:: image.b_or(image)
+
+   用另一图像与这一图像进行逻辑或运算。
+
+    ``mage`` 可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。
+
+   图像须为同样大小和同种类型(grayscale/rgb)。
+
+   不支持压缩图像。
+
+.. method:: image.b_nand(image)
+
+   用另一图像与这一图像进行逻辑与非运算。
+
+    ``mage`` 可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。
+
+   图像须为同样大小和同种类型(grayscale/rgb)。
+
+   不支持压缩图像。
+
+.. method:: image.b_nor(image)
+
+   用另一图像与这一图像进行逻辑或非运算。
+
+    ``mage`` 可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。
+
+   图像须为同样大小和同种类型(grayscale/rgb)。
+
+   不支持压缩图像。
+
+.. method:: image.b_xor(image)
+
+   用另一图像与这一图像进行逻辑异或运算。
+
+    ``mage`` 可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。
+
+   图像须为同样大小和同种类型(grayscale/rgb)。
+
+   不支持压缩图像。
+
+.. method:: image.b_xnor(image)
+
+   用另一图像与这一图像进行逻辑同或运算。
+
+    ``mage`` 可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。
+
+   图像须为同样大小和同种类型(grayscale/rgb)。
+
+   不支持压缩图像。
+
+.. method:: image.erode(size, threshold=Auto)
+
+   从分割区域的边缘删除像素。
+
+   这一方法通过卷积图像上((size*2)+1)x((size*2)+1)像素的核心来实现，如果相邻像素集的总和小于 ``threshold`` ，则对内核的中心像素进行归零。
+
+   若 ``threshold`` 未设定，这个方法的功能如标准腐蚀方法一样。若threshold设定，您就可以指定腐蚀的特定像素，例如：设置低于2个的像素周围阈值为2。
+
+   不支持压缩图像。这个方法设计用来处理二进制图像。
+   
+   .. note::
+
+      ``threshold`` 是键值参数，必须在函数调用中通过写入 ``threshold=`` 来显式地调用。
+
+
+.. method:: image.dilate(size, threshold=Auto)
+
+   将像素添加到分割区域的边缘中。
+
+   这一方法通过卷积图像上((size*2)+1)x((size*2)+1)像素的核心来实现，如果相邻像素集的总和大于 ``threshold`` ，则将内核的中心像素进行设置。
+
+   若 ``threshold`` 未设定，这个方法的功能如标准扩展方法一样。若阈值设定，您就可以指定扩展的特定像素，例如：设置多于2个的像素周围阈值为2。
+
+   不支持压缩图像。这个方法设计用来处理二进制图像。
+
+   .. note::
+
+      ``threshold`` 是键值参数，必须在函数调用中通过写入 ``threshold=`` 来显式地调用。
+
+.. method:: image.negate()
+
+   对每个颜色通道的像素值进行数值转换。例： (255 - pixel).
+
+   不支持压缩图像。
+
+.. method:: image.difference(image)
+
+   从这一图像中减去另一图像。例：对于每个颜色通道而言，将每个像素替换为ABS(this.pixel-image.pixel)。
+
+    ``image`` 可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。
+
+   图像须为同样大小和同种类型(grayscale/rgb)。
+
+   不支持压缩图像。
+
+   .. note:: 这个函数适用于帧差法，您可以用这种方法来做运动监测。在运行统计函数前，您可以使用NAND/NOR 来屏蔽生成的图像。
+
+.. method:: image.replace(image)
+
+   用 ``image`` 来替代这一图像（这一操作远比混合图像省时）。
+
+   图像须为同样大小和同种类型(grayscale/rgb)。
+
+   不支持压缩图像。
+
+.. method:: image.blend(image, alpha=128)
+
+   将另外一张图像 ``image`` 与这一图像融合。
+
+    ``image`` 可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。
+
+    ``alpha`` 控制透明度。不透明覆盖层为256，透明为0。
+
+   两张图像须为同样大小和同种类型(grayscale/rgb)。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``alpha`` 是键值参数，必须在函数调用中通过写入 ``alpha=`` 来显式地调用。
+
+.. method:: image.morph(size, kernel, mul=Auto, add=0)
+
+   通过过滤器内核对图像进行卷积。
+
+   ``size`` 将内核的大小控制为((size*2)+1)x((size*2)+1)像素。
+
+   ``kernel`` 用来卷积图像的内核，可为一个元组或一个取值[-128:127]的列表。
+
+   ``mul`` 是用以与卷积像素结果相乘的数字。若不设置，则默认一个值，该值将防止卷积输出中的缩放。
+
+   ``add`` 是用来与每个像素卷积结果相加的数值。
+
+   ``mul`` 可进行全局对比度调整，add可进行全局亮度调整。
+
+   .. note::
+
+      ``mul`` and ``add`` 是键值参数，必须在函数调用中通过写入 ``mul=`` 和 ``add=`` 来显式地调用。
+
+.. method:: image.midpoint(size, bias=0.5)
+
+   在图像上运行中点滤波。
+
+   ``size`` 是内核的大小。取1 (3x3 内核)、2 (5x5 内核)或更高值。
+
+   ``bias`` 控制图像混合的最小/最大程度。0只适用于最小滤波，1仅用于最大滤波。您可以通过对图像进行最小/最大化过滤。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``bias`` 是键值参数，必须在函数调用中通过写入 ``bias=`` 来显式地调用。
+
+.. method:: image.mean(size)
+
+   标准均值滤波（较变换图像更为省时）。
+
+   ``Size`` 是内核的大小。取1 (3x3 内核)、2 (5x5 内核)或更高值。
+
+   不支持压缩图像。
+
+.. method:: median(size, percentile=0.5)
+
+   在图像上运行中值滤波。在保留边缘的条件下，中值滤波是用来平滑表面的最佳滤波，但是运行速度极慢。
+
+   ``Size`` 是内核的大小。取1 (3x3 内核)、2 (5x5 内核)或更高值。
+
+   ``percentile`` 控制内核中所使用值的百分位数。默认情况下，每个像素都使用相邻的第五十个百分位数（中心）替换。使用最小滤波时，您可将此值设置为0，使用下四分位数滤波时设置为0.25，使用上四分位数滤波时设置为0.75，使用最大滤波时设置为1。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``percentile`` 是键值参数，必须在函数调用中通过写入 ``percentile=`` 来显式地调用。
+
+.. method:: image.mode(size)
+
+   在图像上运行众数滤波，用相邻像素的模式替换每个像素。这一方法在灰度图上运行效果良好。但由于这一操作的非线性特性，会在RGB图像边缘上产生许多工件。
+
+   ``Size`` 是内核的大小。取1 (3x3 内核)、2 (5x5 内核)。
+
+   不支持压缩图像。
+
+.. method:: image.gaussian(size)
+
+   用高斯内核平滑图像。对于3x3或5x5内核而言，大小可取3或5。
+
+   不支持压缩图像。
+
+.. method:: image.histeq()
+
+   在图像上运行直方图均衡化算法。直方图均衡化使得图像的对比度和亮度标准化。
+
+   不支持压缩图像。
+
+.. method:: image.lens_corr(strength=1.8, zoom=1.0)
+
+   进行镜头畸变校正，以去除镜头造成的图像鱼眼效果。
+
+   ``strength`` 是一个浮动值，该值确定了对图像进行去Fisheye效果的程度。在默认情况下，首先试用取值1.8，然后调整这一数值使图像显示最佳效果。
+
+   ``zoom`` 是在对图像进行缩放的数值。默认值为1。
+
+.. method:: img.rotation_corr(x_rotation=0.0, y_rotation=0.0, z_rotation=0.0, x_translation=0.0, y_translation=0.0, zoom=1.0)
+
+   通过执行帧缓冲区的3D旋转来纠正图像中的透视问题。
+
+   ``x_rotation`` 是围绕x轴在帧缓冲器中旋转图像的度数（这使图像上下旋转）。
+
+   ``y_rotation`` 是帧缓冲区中围绕y轴旋转图像的度数（即左右旋转图像）。
+
+   ``z_rotation`` 是围绕z轴在帧缓冲器中旋转图像的度数（即，使图像旋转到适当位置）。
+
+   ``x_translation`` 是旋转后将图像移动到左侧或右侧的单位数。因为这个变换是应用在三维空间的，单位不是像素...
+
+   ``y_translation`` 是旋转后将图像上移或下移的单位数。因为这个变换是应用在三维空间的，单位不是像素...
+
+   ``zoom`` 是通过图像缩放的量。默认情况下1.0。
+
+.. method:: image.get_histogram(roi=Auto, bins=Auto, l_bins=Auto, a_bins=Auto, b_bins=Auto)
+
+   在 ``roi`` 的所有颜色通道上进行标准化直方图运算，并返回 ``histogram`` 对象。请观察 ``histogram`` 对象以获取更多信息。您也可以使用 ``image.get_hist`` 或 ``image.histogram`` 来调用这一方法。
+
+   通常情况下请使用 ``image.get_statistics`` 方法，除非您需要对色彩数据进行高级处理，请勿将这一方法用于查看图像中像素区域。
+
+    ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即复制整个图像的图像矩形。
+   操作范围仅限于 ``roi`` 区域内的像素。
+
+    ``bin_count`` 等是用于直方图通道的。灰度图使用
+    ``bin_count`` ，RGB565图像的每个通道都使用其他数值。每个通道的 ``bin_count`` 需大于2。而且，设置比每个通道的唯一像素值更大的 ``bin_count`` 并无意义。
+   
+   不支持压缩图像。
+
+   .. note::
+
+      ``roi`` , ``bin_count``是键值参数，必须在函数调用中通过写入 ``roi=`` 等来显式地调用。
+
+.. method:: image.get_statistics(roi=Auto, bins=Auto, l_bins=Auto, a_bins=Auto, b_bins=Auto)
+
+   计算 ``roi`` 中每个颜色通道的平均值、中值、众值、标准偏差、最小值、最大值、下四分值和上四分值，并返回一个数据对象。请观察 ``statistics`` 对象以获取更多信息。
+   您也可以使用 ``image.get_stats`` 
+   或 ``image.statistics`` 来调用这一方法。
+
+   您可以在需要获取图像中一个像素区域信息时使用这一方法。例如：若您想用帧差法来检测运动时，您需要使用这一方法来确定图像颜色通道的变化，从而触发运动检测阈值。
+
+    ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定， ``ROI`` 即复制整个图像的图像矩形。操作范围仅限于roi区域内的像素。
+
+    ``bin_count`` 及其他是用于直方图通道的二进制数量。灰度图使用 ``bin_count`` ，RGB565图像的每个通道都使用其他数值。
+   每个通道的 ``bin_count`` 需大于2。而且，设置比每个通道的唯一像素值更大的 ``bin_count`` 并无意义。
+
+   不支持压缩图像。
+
+   .. note::
+
+       ``roi``, ``bin_count`` 是键值参数，必须在函数调用中通过写入 ``roi=`` 等来显式地调用。
+
+.. method:: image.get_regression(thresholds, [roi=Auto, x_stride=2, y_stride=1, invert=False, robust=False])
+
+   对图像所有阈值像素进行线性回归计算。这一计算通过最小二乘法进行，通常速度较快，但不能处理任何异常值。若 ``robust`` 为True，则将使用泰尔指数。泰尔指数计算图像中所有阈值像素间的所有斜率的中值。若在阈值转换后设定太多像素，即使在80x60的图像上，这一N^2操作也可能将您的FPS降到5以下。但是，只要阈值转换后的进行设置的像素数量较少，即使在超过30%的阈值像素为异常值的情况下，线性回归也依然有效。
+
+   这一方法返回的是一个 ``line`` 对象。如何轻松运用直线对象，详见下博文： https://openmv.io/blogs/news/linear-regression-line-following
+
+   ``thresholds`` 须为一个标明您想追踪的颜色的元组列表``[(lo, hi), (lo, hi), ..., (lo, hi)]`` 您可能在一次 ``image.find_blobs`` 调用中传递16个阈值元组。灰度图的每个元组需包括两个值：一个最小灰度值与一个最大灰度值。只考虑落在两个阈值间的像素区域。RGB565图像的每个元组需要包括六个值(l_lo, l_hi, a_lo, a_hi, b_lo, b_hi)，分别为LAB中的L、A、B通道的最大值与最小值。为方便使用，这一函数会自动修复交换的最大与最小值。而且，若一个元组大于这六个值，那么其余部分将被忽略不计。相反，若元组过小，阈值的剩余部分会假定为0。
+
+
+   .. note::
+      
+      获取所跟踪对象的阈值，只需在IDE帧缓冲区中选择（单击并拖动）跟踪对象。直方图会相应地更新到所在区域。然后只需写下颜色分布在每个直方图通道中起始与下降位置。
+      该数据将作为阈值的低值与高值。由于上下四分位数据相差微小，故手动确定阈值为佳。
+
+      最新版本的OpenMV IDE特有一个阈值编辑器，可协助您轻松选择阈值。使用滑块来控制阈值，您就可以看到阈值是如何分段的。
+
+   ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即复制整个图像的图像矩形。操作范围仅限于 ``roi`` 区域内的像素。
+
+   ``x_stride`` 是查找某色块时需要跳过的x像素的数量。找到色块后，直线填充算法将精确像素。若已知色块较大，可增加 ``x_stride`` 来提高查找色块的速度。
+ 
+   ``y_stride`` 是查找某色块时需要跳过的y像素的数量。找到色块后，直线填充算法将精确像素。若已知色块较大，可增加 ``y_stride`` 来提高查找色块的速度。
+
+   ``Invert`` 反转阈值操作，像素在已知颜色范围之外进行匹配，而非在已知颜色范围内。
+
+   不支持压缩图像。
+
+   .. note::
+
+      除 ``thresholds`` 之外的所有参数都是键值参数，须在函数调用中通过写入参数名称和一个加号来显式地调用。
+
+.. method:: image.find_blobs(thresholds, [roi=Auto, x_stride=2, y_stride=1, invert=False, area_threshold=10, pixels_threshold=10, merge=False, margin=0, threshold_cb=None, merge_cb=None])
+
+   查找图像中所有色块，并返回一个包括每个色块的色块对象的列表。请观察 ``blob`` 对象以获取更多信息
+
+    ``thresholds`` 须为一个标明您想追踪的颜色的元组列表 ``[(lo, hi), (lo, hi), ..., (lo, hi)]`` 。您可能在一次 ``image.find_blobs`` 调用中传递16个阈值元组。灰度图的每个元组需包括两个值：一个最小灰度值与一个最大灰度值。只考虑落在两个阈值间的像素区域。RGB565图像的每个元组需要包括六个值(l_lo, l_hi, a_lo, a_hi, b_lo, b_hi)，分别为LAB中的L、A、B通道的最大值与最小值。为方便使用，这一函数会自动修复交换的最大与最小值。而且，若一个元组大于这六个值，那么其余部分将被忽略不计。相反，若元组过小，阈值的剩余部分会假定为0。
+
+   .. note::
+
+      获取所跟踪对象的阈值，只需在IDE帧缓冲区中选择（单击并拖动）跟踪对象。直方图会相应地更新到所在区域。然后只需写下颜色分布在每个直方图通道中起始与下降位置。该数据将作为阈值的低值与高值。由于上下四分位数据相差微小，故手动确定阈值为佳。
+      
+      最新版本的OpenMV IDE特有一个阈值编辑器，可协助您轻松选择阈值。使用滑块来控制阈值，您就可以看到阈值是如何分段的。
+
+   ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定， ``ROI`` 即图像矩形。操作范围仅限于roi区域内的像素。
+
+   ``x_stride`` 是查找某色块时需要跳过的x像素的数量。找到色块后，直线填充算法将精确像素。若已知色块较大，可增加
+   ``x_stride`` 来提高查找色块的速度。
+
+   ``y_stride`` 是查找某色块时需要跳过的y像素的数量。找到色块后，直线填充算法将精确像素。若已知色块较大，可增加
+   ``y_stride`` 来提高查找色块的速度。
+
+   ``Invert`` 反转阈值操作，像素在已知颜色范围之外进行匹配，而非在已知颜色范围内。
+
+   若一个色块的边界框区域小于 ``area_threshold`` ，则会被过滤掉。
+
+   若一个色块的像素数小于 ``pixel_threshold`` ，则会被过滤掉。
+
+
+   ``merge`` 若True合并了所有没有被过滤掉的色块，这些色块的边界矩形互相交错。``Margin`` 可在相交测试中用来增大或减小色块边界矩形的大小。例如：边缘为1、相互间边界矩形为1的色块将被合并。
+   
+   合并色块使颜色代码追踪得以实现。每个色块对象有一个代码值 ``code`` ，该值为一个位向量。例如：若您在 ``image.find_blobs`` 中输入两个颜色阈值，则第一个阈值代码为1，第二个代码为2（第三个代码为4，第四个代码为8，以此类推）。将所有代码合理合并，您即可知道这些代码是由哪种颜色生成的。这使得您可以追踪两个颜色，若您用两种颜色得到一个色块对象，则可能是一种颜色代码。
+
+   若您使用严格的颜色范围，无法完全追踪目标对象的所有像素，您可能需要合并色块。
+   
+   最后，若您想要合并色块，但不想合并两色块阈值，只需分别使用阈值两次调用 ``image.find_blobs`` ，色块就不会被合并。
+
+   ``threshold_cb`` 可设置为用以调用阈值筛选后的每个色块的函数，以便将其中将要合并的色块列表中过滤出来。回调函数将收到一个参数：要被筛选的色块对象。然后回调函数需返回True以保留色块或返回False以过滤色块。
+
+   ``merge_cb`` 可设置为用以调用两个即将合并的色块的函数，以禁止或准许合并。回调函数将收到两个参数—两个色块对象将被合并。回调函数须返回True以合并色块，或返回False以防止色块合并。 
+
+   不支持压缩图像。
+
+   .. note::
+
+      除 ``thresholds`` 之外的所有参数都是键值参数，须在函数调用中通过写入参数名称和一个等号来显式地调用。
+
+.. method:: image.find_lines(roi=Auto, x_stride=2, y_stride=1, threshold=1000, theta_margin=25, rho_margin=25)
+
+    使用霍夫变换查找图像中的所有直线。返回一个 ``line`` 对象的列表（见上）。
+
+    ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定， ``ROI`` 即图像矩形。操作范围仅限于roi区域内的像素。
+
+    ``x_stride`` 是霍夫变换时需要跳过的x像素的数量。若已知直线较大，可增加 ``x_stride`` 。
+
+    ``y_stride`` 是霍夫变换时需要跳过的y像素的数量。若已知直线较大，可增加 ``y_stride`` 。
+
+    ``threshold`` 控制从霍夫变换中监测到的直线。只返回大于或等于阈值的直线。应用程序的阈值正确值取决于图像。注意：一条直线的大小是组成直线所有索贝尔滤波像素大小的总和。
+
+    ``theta_margin`` 控制所监测的直线的合并。直线角度为
+    ``theta_margin`` 的部分和直线p值为 ``rho_margin`` 的部分合并.
+
+    ``rho_margin`` 控制所监测的直线的合并。直线角度为
+    ``theta_margin`` 的部分和直线p值为 ``rho_margin`` 的部分合并.
+
+    该方法通过在图像上运行索贝尔滤波器，并利用该滤波器的幅值和梯度响应来进行霍夫变换。无需对图像进行任何预处理。但是，清理图像过滤器可得到更为稳定的结果。
+
+    .. note::
+
+      所有参数都是键值参数，须在函数调用中通过写入参数名称和一个加号来显式地调用。
+
+.. method:: image.find_line_segments(roi=Auto, merge_distance=0, max_theta_difference=15)
+
+    使用霍夫转换来查找图像中的线段。返回一个 ``line`` 对象的列表（见上）。
+
+    ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定， ``ROI`` 即图像矩形。操作范围仅限于roi区域内的像素。
+
+    ``merge_distance`` 指定两条线段之间的可以相互分开而不被合并的最大像素数。
+
+    ``max_theta_difference`` 是上面要合并的 ``merge_distancede`` 的两个线段的最大角度差值。
+
+    此方法使用LSD库（也被OpenCV使用）来查找图像中的线段。这有点慢，但是非常准确，线段不会跳跃。
+
+    只支持OpenMV Cam M7， M4的RAM不够用。
+
+    .. note::
+
+      所有参数都是键值参数，须在函数调用中通过写入参数名称和一个加号来显式地调用。
+
+.. method:: image.find_circles([roi=Auto, x_stride=2, y_stride=1, threshold=1600, x_margin=10, y_margin=10, r_margin=10])
+
+   使用霍夫变换在图像中查找圆。返回一个 ``circle`` 对象列表（见上）。
+
+   ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定， ``ROI`` 即图像矩形。操作范围仅限于roi区域内的像素。
+
+   ``x_stride`` 是霍夫变换时需要跳过的x像素的数量。若已知圆较大，可增加 ``x_stride`` 。
+
+    ``y_stride`` 是霍夫变换时需要跳过的y像素的数量。若已知圆较大，可增加 ``y_stride`` 。
+
+   ``threshold`` 控制从霍夫变换中监测到的圆。只返回大于或等于阈值的圆。应用程序的阈值正确值取决于图像。注意：一条圆的大小是组成圆所有索贝尔滤波像素大小的总和。 
+
+   ``x_margin`` 控制所检测的圆的合并。 圆像素为 ``x_margin`` 、 ``y_margin`` 和 ``r_margin`` 的部分合并。
+
+   ``y_margin`` 控制所检测的圆的合并。 圆像素为 ``x_margin`` 、 ``y_margin`` 和 ``r_margin`` 的部分合并。
+
+   ``r_margin`` 控制所检测的圆的合并。 圆像素为 ``x_margin`` 、 ``y_margin`` 和 ``r_margin`` 的部分合并。
+
+   .. note::
+
+      所有参数都是键值参数，须在函数调用中通过写入参数名称和一个加号来显式地调用。
+
+   .. note::
+
+      该方法只适用于OpenMV Cam M7。
+
+.. method:: image.find_rects([roi=Auto, threshold=10000])
+
+   使用四元检测算法来查找图像中的矩形。最适用与背景形成鲜明对比的矩形。AprilTag四轴检测算法可以处理任意缩放/旋转/剪切的矩形。返回一个 ``rect`` 对象的列表（见上）。
+
+    ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，z
+    ``ROI`` 即图像矩形。操作范围仅限于 ``roi`` 区域内的像素。
+
+   边界大小（通过在矩形边缘上的所有像素上滑动索贝尔算子并相加该值）小于 ``threshold`` 的矩形会从返回列表中过滤出来。 ``threshold`` 的正确值取决于您的应用程序/领域。
+
+   .. note::
+
+      所有参数都是键值参数，须在函数调用中通过写入参数名称和一个加号来显式地调用。
+
+   .. note::
+
+      该方法只适用于OpenMV Cam M7。
+
+.. method:: image.find_qrcodes(roi=Auto)
+
+   查找 ``roi`` 内的所有二维码并返回一个 ``qrcode`` 对象的列表。请观察 ``qrcode`` 对象以获取更多信息。
+
+   为使这一方法成功运行，图像上二维码需比较平展。通过使用 ``sensor.set_windowing`` 函数在镜头中心放大、 ``image.lens_corr`` 函数来消解镜头的桶形畸变或通过更换视野较为狭小的镜头，
+   您可得到一个不受镜头扭曲变形影响的更为平展的二维码。有些机器视觉透镜不会造成桶形失真，但是其造价远比OpenMV提供的标准镜片高，这种镜头为无畸变镜头。
+
+    ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。
+   操作范围仅限于 ``roi`` 区域内的像素。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``roi`` 是键值参数，须在函数调用中通过写入 ``roi=`` 来显式地调用。
+
+.. method:: image.find_apriltags(roi=Auto, families=image.TAG36H11, fx=Auto, fy=Auto, cx=Auto, cy=Auto)
+
+   查找 ``roi`` 内的所有AprilTag, 并返回一个 ``apriltag`` 对象的列表。请观察 ``apriltag``对象以获取更多信息。
+
+   与二维码相比，AprilTags可在更远距离、较差光线和更扭曲的图像环境下被检测到。AprilTags可应对所有种类的图像失真问题，而二维码并不能。也就是说，AprilTags只能将数字ID编码作为其有效载荷。
+
+   AprilTags也可用于本地化。每个 ``apriltag`` 对象都从摄像机返回其平动和转动。平动单元由 ``fx`` 、 ``fy`` 、 ``cx`` 和 ``cy`` 决定，分别为X和Y方向上图像的焦距和中心点。
+
+   .. note::
+
+      使用内置的标签生成器工具来创建AprilTags。标签生成器可创建可打印的8.5“x11”AprilTags。
+
+    ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。
+   操作范围仅限于 ``roi`` 区域内的像素。
+
+   ``families`` 标签解码的位掩码。是一个逻辑或：
+
+     * image.TAG16H5
+     * image.TAG25H7
+     * image.TAG25H9
+     * image.TAG36H10
+     * image.TAG36H11
+     * image.ARTOOLKIT
+
+   默认设置为最适用于标签群的 ``image.TAG36H11`` 。注意：每启用一个标签群， ``find_apriltags`` 的速度都会略有放慢。
+
+   ``fx`` 是以像素计的X摄像机的焦距。标准OpenMV Cam的值为(2.8 / 3.984) * 656，该值通过毫米计的焦距值除以X方向上摄像机传感器的长度，再乘以X方向上相机传感器像素数量得来（对OV7725摄像机而言）。
+
+   ``fy`` 是以像素计的Y摄像机的焦距。标准OpenMV Cam的值为(2.8 / 2.952) * 488，该值通过毫米计的焦距值除以Y方向上摄像机传感器的长度，再乘以Y方向上相机传感器像素数量得来（对OV7725摄像机而言）。
+
+   ``cx`` 是图像的中心，即 ``image.width()/2`` ，而非 ``roi.w()/2`` 。
+
+   ``cy`` 是图像的中心，即 ``image.height()/2``，而非 ``roi.h()/2`` 。
+
+   不支持压缩图像。
+
+   只支持OpenMV Cam M7或更高版本（M4不具备足够RAM）。
+
+   .. note::
+
+      ``roi``, ``families``, ``fx``, ``fy``, ``cx``, and ``cy`` 是键值参数，须在函数调用中通过写入 ``roi=``, ``families=``, ``fx=``, ``fy=``, ``cx=``, and ``cy=`` 来显式地调用。.
+
+.. method:: image.find_datamatrices(roi=Auto, effort=200)
+
+   查找 ``roi`` 内的所有数据矩阵并返回一个 ``datamatrix`` 对象的列表。请观察 ``datamatrix`` 对象以获取更多信息。
+
+   为使这一方法成功运行，图像上矩形码需比较平展。通过使用 ``sensor.set_windowing`` 函数在镜头中心放大、 ``image.lens_corr`` 函数来消解镜头的桶形畸变或通过更换视野较为狭小的镜头，您可得到一个不受镜头扭曲变形影响的更为平展的矩形码。有些机器视觉透镜不会造成桶形失真，但是其造价远比OpenMV提供的标准镜片高，这种镜头是无畸变镜头。
+
+   ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。操作范围仅限于 ``roi`` 区域内的像素。
+
+   ``effort`` 控制用于查找数据矩阵匹配的时间。默认值为200使用于所有用例。但是您也可能以帧速率为代价增加检测，或以检测为代价增加帧速率。注意：若 ``effort`` 设置在约160以下，您就无法进行任何检测；相反，您可将将设置为您需要的任何高值，但是若设置值高于240，检测率将不会继续随之提高。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``roi`` and ``effort`` 是键值参数，须在函数调用中通过写入 ``roi=`` and/or ``effort=``来显式地调用。
+
+.. method:: image.find_barcodes(roi=Auto)
+
+   查找 ``roi`` 内所有一维条形二维码并返回一个 ``barcode`` 对象列表。请观察 ``barcode`` 对象以获取更多信息。
+
+   为了获得最佳效果，请使用640／40/80／160窗口。垂直程度越低，运行速度越快。由于条形码是线性一维图像，所以只需在一个方向上有较高分辨率，
+   而在另一方向上只需较低分辨率。注意：该函数进行水平和垂直扫描，所以您可使用40/80／160／480的窗口。最后，请一定调整镜头，这样条形码会定位在焦距产生最清晰图像的地方。模糊条码无法被解码。
+
+   该函数支持所有一维条形码：
+
+     * image.EAN2
+     * image.EAN5
+     * image.EAN8
+     * image.UPCE
+     * image.ISBN10
+     * image.UPCA
+     * image.EAN13
+     * image.ISBN13
+     * image.I25
+     * image.DATABAR (RSS-14)
+     * image.DATABAR_EXP (RSS-Expanded)
+     * image.CODABAR
+     * image.CODE39
+     * image.PDF417
+     * image.CODE93
+     * image.CODE128
+
+   ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。操作范围仅限于 ``roi`` 区域内的像素。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``roi`` 是键值参数，须在函数调用中通过写入 ``roi=`` 显式地调用。
+
+.. method:: image.midpoint_pooled(x_div, y_div, bias=0.5)
+
+   在图像中找到 ``x_div`` * ``y_div`` 正方形的中点，并返回一个由每个正方形中点组成的新图像。
+
+   0的 ``bias`` 返回每个区域的最小值，而1的 ``bias`` 返回每个区域的最大值。
+
+   该方法对于制备相位相关的图像甚是有用。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``bias`` 是键值参数，须在函数调用中通过写入 ``bias=`` 显式地调用。
+
+.. method:: image.mean_pooled(x_div, y_div, bias=0.5)
+
+   在图像中找到  ``x_div`` * ``y_div`` 正方形的均值，并返回一个由每个正方形均值组成的新图像。
+
+   该方法对于制备相位相关的图像甚是有用。
+
+   不支持压缩图像。
+
+.. method:: image.find_template(template, threshold, roi=Auto, step=2, search=image.SEARCH_EX)
+
+   尝试在模板匹配使用归一化互相关的图像中找到第一个位置。返回用于匹配位置的一个边界框元组(x, y, w, h)。
+
+   ``template`` 是一个与这以图像对象相匹配的小图像对象。注意：两图像须都为灰度图。
+
+   ``threshold`` 是一个浮点数(0.0-1.0)，对该浮点数而言，较高阈值可防止假阳性值，并降低检测率，而较低阈值作用则相反。
+
+   ``roi`` 是一个用于搜索的感兴趣矩形(x, y, w, h)。
+
+   ``step`` 是查找模板时需要跳过的像素数量。跳过像素可大大提高算法运行的速度。该方法只适用于SERACH_EX模式下的算法。
+
+   ``search`` 可为 ``image.SEARCH_DS`` or ``image.SEARCH_EX``.
+   ``image.SEARCH_DS`` 搜索模板所用算法较 ``image.SEARCH_EX`` 更快，但若模板位于图像边缘周围，可能无法成功搜索。
+   ``image.SEARCH_EX`` 可对图像进行较为详尽的搜索，但其运行速度远低于 ``image.SEARCH_DS`` 。
+
+   .. note::
+
+      ``roi``, ``step``, and ``search`` 是键值参数，须在函数调用中通过写入 ``roi=`` 、 ``step=`` 和 ``search=`` 显式地调用。
+
+.. method:: image.find_displacement(template)
+
+   从模板中找到图像的平移偏移量。该方法可用于光流。该方法返回含有三个值的元组(x_offset, y_offset, response)。
+    ``x_offset`` 是图像间x像素平移的浮点值。 ``y_offset`` 是图像间y像素平移的浮点值。 ``response`` 是介于0.0到1.0的浮点置信值。
+   置信值降低时，您应相应地降低对 ``x_offset`` 和 ``y_offset`` 的信任。一般而言，只要 ``response`` 高于0.2，就大可放心。 ``response`` 一旦开始降低，下降速度是很快的。
+
+   注意：这一算法需要大量临时内存来进行转换，故对OpenMV Cam M4而言，无法在大于32x32像素的图像上运行。但您可以在OpenMV Cam M7上处理更大的图像。在调用此方法得到位移之前，您应使用池化函数来缩小这两个图像。
+
+.. method:: image.find_features(cascade, roi=Auto, threshold=0.5, scale=1.5)
+
+   这个方法搜索与Haar Cascade匹配的所有区域的图像，并返回一个关于这些特征的边界框矩形元组(x，y，w，h)的列表。若未发现任何特征，则返回一个空白列表。
+
+   ``cascade`` 是一个Haar Cascade对象。详细信息请查看 `` for more
+   details.
+
+   ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。
+
+   ``threshold`` 是介于0.0-1.0的阈值，较低值会同时提高检出率和假阳性率。相反，较高值会同时降低检出率和假阳性率。
+
+   ``scale`` 是一个必须大于1.0的浮点。is a float that must be greater than 1.0. 较高的比例因子运行更快，但其图像匹配相应较差。理想值介于1.35-1.5之间。
+
+   不支持压缩图像。
+
+   .. note::
+
+      ``roi``, ``threshold`` and ``scale`` 是键值参数，须在函数调用中通过写入 ``roi=`` 、 ``threshold=`` 和 ``scale=`` 显式地调用。
+
+.. method:: image.find_eye(roi)
+
+   在眼睛周围的感兴趣区域(x, y, w, h)查找瞳孔。返回一个包含图像中瞳孔(x，y)位置的元组。若未发现瞳孔，则返回(0,0)。
+
+   使用这一函数之前，需首先使用 ``image.find_features`` 和 ``frontalface`` 来搜索某人面部。
+   然后使用 ``image.find_features`` 和 ``eye`` HaarCascade在面部搜索眼睛。最后，在图像返回的每个眼睛ROI上调用这一方法，以得到瞳孔的坐标。
+
+   只适用于灰度图。
+
+.. method:: image.find_lbp(roi)
+
+   从ROI元组(x, y, w, h)中提取LBP（局部二值模式）键点。您可以使用 ``image.match_descriptor`` 函数来比较两组要点，以获取匹配距离。 
+
+   只适用于灰度图。
+
+.. method:: image.find_keypoints(roi=Auto, threshold=20, normalized=False, scale_factor=1.5, max_keypoints=100, corner_detector=CORNER_AGAST)
+
+   从ROI元组(x, y, w, h)中提取ORB键点。您可以使用 ``image.match_descriptor`` 函数来比较两组要点，以获取匹配区域。若未发现键点，则返回None。 
+
+   ``threshold`` 是控制提取角点的数量的数字（取值0-255）。对于默认的AGAST角点检测器，该值应在20左右。对于FAST角点检测器，该值约为60-80。阈值越低，您提取的角点越多。
+   
+   ``normalized`` 是布尔值。若为True，在多分辨率下关闭提取键点。若您不关心处理扩展问题，且希望算法运行更快，就将之设置为True。
+
+   ``scale_factor`` 是一个必须大于1.0的浮点。is a float that must be greater than 1.0. 较高的比例因子运行更快，但其图像匹配相应较差。理想值介于1.35-1.5之间。
+
+   ``max_keypoints`` 是一个键点对象所能容纳的键点最大数量。若键点对象过大导致内存问题，请降低该值。
+
+   ``corner_detector`` 是从图像中提取键点所使用的角点检测器算法。可为 ``image.FAST`` 或 ``image.AGAST`` 。角点检测器运行速度更快，但其准确度较低。
+
+   只适用于灰度图。
+
+   .. note::
+
+      ``roi``, ``threshold``, ``normalized`` m ``scale_factor``, ``max_keypoints``,
+      and ``corner_detector`` 是键值参数，须在函数调用中通过写入 ``roi=`` 、 ``threshold=`` 等显式地调用。
+
+.. method:: image.find_lines(roi=Auto, threshold=50)
+
+   只适用于灰度图。使用霍夫变换在边缘检测图像中搜索直线。返回一个直线元组(x0, y0, x1, y1)列表。
+
+   ``roi`` 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。
+
+   ``threshold`` 取值介于0-255。阈值越低，从图像中提取的直线越多。
+
+   只适用于灰度图。
+
+   .. note::
+
+      ``roi`` and ``threshold`` 是键值参数，须在函数调用中通过写入 ``roi=`` 和 ``threshold=`` 显式地调用。
+
+.. method:: image.find_edges(edge_type, threshold=[100,200])
+
+   只适用于灰度图。在图像上进行边缘检测，并使用只有边缘的图像来代替这一图像。 ``edge_type`` 可为：
+
+      * image.EDGE_SIMPLE - 简单的阈值高通滤波算法
+      * image.EDGE_CANNY - Canny边缘检测算法
+
+   ``threshold`` 是一个包含一个低阈值和一个高阈值的二值元组。您可以通过调整该值来控制边缘质量。
+
+   只适用于灰度图。
+
+   .. note::
+
+      ``threshold`` 是键值参数，须在函数调用中通过写入 ``threshold=`` 显式地调用。
+
+常量
+---------
+
+.. data:: image.LBP
+
+   切换为LBP的描述符函数。
+
+.. data:: image.ORB
+
+   切换为ORB的描述符函数。
+
+.. data:: image.SEARCH_EX
+
+   详尽的模板匹配搜索。
+
+.. data:: image.SEARCH_DS
+
+   更快的模板匹配搜索。
+
+.. data:: image.EDGE_CANNY
+
+   使用Canny边缘检测算法对图像进行边缘检测。
+
+.. data:: image.EDGE_SIMPLE
+
+   使用阈值高通滤波算法对图像进行边缘检测。
+
+.. data:: image.CORNER_FAST
+
+   用于ORB键点的高速低准确率角点检测算法
+
+.. data:: image.CORNER_AGAST
+
+   用于ORB键点的低速高准确率算法。
+
+.. data:: image.TAG16H5
+
+   TAG1H5标签群的位掩码枚举。用于AprilTags。
+
+.. data:: image.TAG25H7
+
+   TAG25H7标签群的位掩码枚举。用于AprilTags。
+
+.. data:: image.TAG25H9
+
+   TAG25H9标签群的位掩码枚举。用于AprilTags。
+
+.. data:: image.TAG36H10
+
+   TAG36H10标签群的位掩码枚举。用于AprilTags。
+
+.. data:: image.TAG36H11
+
+   TAG36H11标签群的位掩码枚举。用于AprilTags。
+
+.. data:: image.ARTOOLKIT
+
+   ARTOOLKIT标签群的位掩码枚举。用于AprilTags。
+
+.. data:: image.EAN2
+
+   EAN2条形码类型枚举。
+
+.. data:: image.EAN5
+
+   EAN5条形码类型枚举。
+
+.. data:: image.EAN8
+
+   EAN8条形码类型枚举。
+
+.. data:: image.UPCE
+
+   UPCE条形码类型枚举。
+
+.. data:: image.ISBN10
+
+   ISBN10条形码类型枚举。
+
+.. data:: image.UPCA
+
+   UPCA条形码类型枚举。
+
+.. data:: image.EAN13
+
+   EAN13条形码类型枚举。
+
+.. data:: image.ISBN13
+
+   ISBN13条形码类型枚举。
+
+.. data:: image.I25
+
+   I25条形码类型枚举。
+
+.. data:: image.DATABAR
+
+   DATABAR条形码类型枚举。
+
+.. data:: image.DATABAR_EXP
+
+   DATABAR_EXP条形码类型枚举。
+
+.. data:: image.CODABAR
+
+   CODABAR条形码类型枚举。
+
+.. data:: image.CODE39
+
+   CODE39条形码类型枚举。
+
+.. data:: image.PDF417
+
+   PDF417条形码类型枚举（目前尚不能运行）。
+
+.. data:: image.CODE93
+
+   CODE93条形码类型枚举。
+
+.. data:: image.CODE128
+
+   CODE128条形码类型枚举。

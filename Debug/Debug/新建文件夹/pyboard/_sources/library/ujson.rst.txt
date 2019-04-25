@@ -1,0 +1,21 @@
+:mod:`ujson` -- JSON编码与解码
+==========================================
+
+.. module:: ujson
+   :synopsis: JSON编码与解码
+
+该模块实现相应 `CPython` 模块的子集，如下所示。更多信息，请参见
+|CPython文档| :mod:`python:json`.
+
+该模块允许Python对象和JSON数据格式之间的转换。
+
+函数
+---------
+
+.. function:: dumps(obj)
+
+   返回表示为JSON字符串的 ``obj`` 。
+
+.. function:: loads(str)
+
+   解析JSON ``str`` 并返回一个对象。若该字符串未正确排列，则会引发示值误差。

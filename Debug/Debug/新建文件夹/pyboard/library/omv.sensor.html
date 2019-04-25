@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sensor — 感光元件 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">sensor</span></code> — 感光元件</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/omv.sensor.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-sensor">
+<span id="sensor"></span><h1><a class="reference internal" href="#module-sensor" title="sensor: 感光元件"><code class="xref py py-mod docutils literal"><span class="pre">sensor</span></code></a> — 感光元件<a class="headerlink" href="#module-sensor" title="永久链接至标题">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">sensor</span></code> 模块用于拍摄照片。</p>
+<p>用法示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sensor</span>
+
+<span class="c1"># Setup camera. 设置相机</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">set_pixformat</span><span class="p">(</span><span class="n">sensor</span><span class="o">.</span><span class="n">RGB565</span><span class="p">)</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">set_framesize</span><span class="p">(</span><span class="n">sensor</span><span class="o">.</span><span class="n">QVGA</span><span class="p">)</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">skip_frames</span><span class="p">()</span>
+
+<span class="c1"># Take pictures. 拍照。</span>
+<span class="k">while</span><span class="p">(</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">sensor</span><span class="o">.</span><span class="n">snapshot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="sensor.sensor.reset">
+<code class="descclassname">sensor.</code><code class="descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.reset" title="永久链接至目标">¶</a></dt>
+<dd><p>初始化相机传感器。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.flush">
+<code class="descclassname">sensor.</code><code class="descname">flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.flush" title="永久链接至目标">¶</a></dt>
+<dd><p>将帧缓冲区中的内容复制到IDE中。若其未运行无限循环的脚本，您应调用该方法来显示您的OpenMV Cam拍摄的最后一张照片。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.snapshot">
+<code class="descclassname">sensor.</code><code class="descname">snapshot</code><span class="sig-paren">(</span><em>line_filter=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.snapshot" title="永久链接至目标">¶</a></dt>
+<dd><p>使用相机拍摄一张照片，并返回 <code class="docutils literal"><span class="pre">image</span></code> 对象。</p>
+<p><code class="docutils literal"><span class="pre">line_filter</span></code> 可能为用于处理从相机中传入的每一行像素的python函数回调。例如:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># This callback just copies the src to dst. 该回调将src复制到dst中。</span>
+<span class="c1"># Note source is YUYV destination is 1BPP Grayscale 注意：来源为YUYV，目的为1BPP灰度</span>
+<span class="k">def</span> <span class="nf">line_filter_call_back</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">src</span><span class="p">)):</span>
+    <span class="n">dst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">src</span><span class="p">[</span><span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">line_filter</span><span class="o">=</span><span class="n">line_filter_call_back</span><span class="p">)</span>
+
+<span class="c1"># This callback copies and thresholds src to dst. 该回调将src复制到dst中。</span>
+<span class="c1"># Note source is YUYV destination is 1BPP Grayscale 注意：来源为YUYV，目的为1BPP灰度</span>
+<span class="k">def</span> <span class="nf">line_filter_call_back_2</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">src</span><span class="p">)):</span>
+    <span class="n">dst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">if</span> <span class="n">src</span><span class="p">[</span><span class="n">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">128</span> <span class="n">then</span> <span class="mh">0xFF</span> <span class="ow">or</span> <span class="mh">0x00</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">snapshot</span><span class="p">(</span><span class="n">line_filter</span><span class="o">=</span><span class="n">line_filter_call_back_2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">OpenMV Cam M4的速度不足以在大图像的每行执行行过滤函数。请勿使用。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">line_filter</span></code> 是键值参数，需通过写入 <code class="docutils literal"><span class="pre">line_filter=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.skip_frames">
+<code class="descclassname">sensor.</code><code class="descname">skip_frames</code><span class="sig-paren">(</span><span class="optional">[</span><em>n</em>, <em>time</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.skip_frames" title="永久链接至目标">¶</a></dt>
+<dd><p>使用 <code class="docutils literal"><span class="pre">n</span></code> 个快照，让相机图像在改变相机设置后稳定下来。 <code class="docutils literal"><span class="pre">n</span></code> 作为普通参数传输，
+例如： <code class="docutils literal"><span class="pre">skip_frames(10)</span></code> 跳过 <code class="docutils literal"><span class="pre">10</span></code> 帧。您应在改变相机设置后调用该函数。</p>
+<p>或者，您可通过关键字参数 <code class="docutils literal"><span class="pre">time</span></code> 来跳过几毫秒的帧数，例如： <code class="docutils literal"><span class="pre">kip_frames(time&nbsp;=&nbsp;2000)</span></code> ，跳过2000毫秒的帧。</p>
+<p>若 <code class="docutils literal"><span class="pre">n</span></code> 和 <code class="docutils literal"><span class="pre">time</span></code>&nbsp;皆未指定，该方法跳过300毫秒的帧。</p>
+<p>若二者皆指定，该方法会跳过 <code class="docutils literal"><span class="pre">n</span></code> 数量的帧，但将在 <code class="docutils literal"><span class="pre">time</span></code> 毫秒后超时。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.width">
+<code class="descclassname">sensor.</code><code class="descname">width</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.width" title="永久链接至目标">¶</a></dt>
+<dd><p>返回传感器的分辨率宽度。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.height">
+<code class="descclassname">sensor.</code><code class="descname">height</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.height" title="永久链接至目标">¶</a></dt>
+<dd><p>返回传感器的分辨率高度。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.get_fb">
+<code class="descclassname">sensor.</code><code class="descname">get_fb</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.get_fb" title="永久链接至目标">¶</a></dt>
+<dd><p>(获取帧缓冲区)返回由先前调用的 <code class="docutils literal"><span class="pre">sensor.snapshot()</span></code> 所返回的图像对象。 若此前未调用过 <code class="docutils literal"><span class="pre">sensor.snapshot()</span></code> ，则返回 <code class="docutils literal"><span class="pre">None</span></code> 。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.get_id">
+<code class="descclassname">sensor.</code><code class="descname">get_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.get_id" title="永久链接至目标">¶</a></dt>
+<dd><p>返回相机模块ID。</p>
+<blockquote>
+<div><ul class="simple">
+<li>sensor.OV2640: 旧传感器模块</li>
+<li>sensor.OV7725: 新传感器模块</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_pixformat">
+<code class="descclassname">sensor.</code><code class="descname">set_pixformat</code><span class="sig-paren">(</span><em>pixformat</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_pixformat" title="永久链接至目标">¶</a></dt>
+<dd><p>设置相机模块的像素模式。</p>
+<blockquote>
+<div><ul class="simple">
+<li>sensor.GRAYSCALE: 每像素8位。</li>
+<li>sensor.RGB565: 每像素16位。</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.sleep">
+<code class="descclassname">sensor.</code><code class="descname">sleep</code><span class="sig-paren">(</span><em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.sleep" title="永久链接至目标">¶</a></dt>
+<dd><p>将相机置于睡眠模式。这节省了大约40毫安。重置自动清除。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_framerate">
+<code class="descclassname">sensor.</code><code class="descname">set_framerate</code><span class="sig-paren">(</span><em>rate</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_framerate" title="永久链接至目标">¶</a></dt>
+<dd><p>设置相机模块的帧速率。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">弃用。请勿使用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_framesize">
+<code class="descclassname">sensor.</code><code class="descname">set_framesize</code><span class="sig-paren">(</span><em>framesize</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_framesize" title="永久链接至目标">¶</a></dt>
+<dd><p>设置相机模块的帧大小。</p>
+<blockquote>
+<div><ul class="simple">
+<li>sensor.QQCIF: 88x72</li>
+<li>sensor.QCIF: 176x144</li>
+<li>sensor.CIF: 352x288</li>
+<li>sensor.QQSIF: 88x60</li>
+<li>sensor.QSIF: 176x120</li>
+<li>sensor.SIF: 352x240</li>
+<li>sensor.QQQQVGA: 40x30</li>
+<li>sensor.QQQVGA: 80x60</li>
+<li>sensor.QQVGA: 160x120</li>
+<li>sensor.QVGA: 320x240</li>
+<li>sensor.VGA: 640x480</li>
+<li>sensor.HQQQVGA: 80x40</li>
+<li>sensor.HQQVGA: 160x80</li>
+<li>sensor.HQVGA: 240x160</li>
+<li>sensor.LCD: 128x160  (与lcd扩展板结合使用)</li>
+<li>sensor.QQVGA2: 128x160 (与lcd扩展板结合使用)</li>
+<li>sensor.B40x30: 160x120 (与 <code class="docutils literal"><span class="pre">image.find_displacement</span></code> 结合使用)</li>
+<li>sensor.B64x32: 160x120 (与 <code class="docutils literal"><span class="pre">image.find_displacement</span></code> 结合使用)</li>
+<li>sensor.B64x64: 160x120 (与 <code class="docutils literal"><span class="pre">image.find_displacement</span></code> 结合使用)</li>
+<li>sensor.SVGA: 800x600 (只在OV2640传感器的JPEG模式下)</li>
+<li>sensor.SXGA: 1280x1024 (只在OV2640传感器的JPEG模式下)</li>
+<li>sensor.UXGA: 1600x1200 (只在OV2640传感器的JPEG模式下)</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_windowing">
+<code class="descclassname">sensor.</code><code class="descname">set_windowing</code><span class="sig-paren">(</span><em>roi</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_windowing" title="永久链接至目标">¶</a></dt>
+<dd><p>将相机的分辨率设置为当前分辨率的子分辨率。例如：将分辨率设置为sensor.VGA，然后将windowing设置为(120, 140, 200, 200)，
+设置sensor.snapshot()以捕捉由相机传感器输出的VGA分辨率的200x200中心像素。您可使用窗口来获得定制的分辨率。另外，
+当你在更大分辨率下使用窗口时，实际上是进行数字缩放。</p>
+<p><code class="docutils literal"><span class="pre">roi</span></code> 是一个矩形元组(x, y, w, h)。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_gainceiling">
+<code class="descclassname">sensor.</code><code class="descname">set_gainceiling</code><span class="sig-paren">(</span><em>gainceiling</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_gainceiling" title="永久链接至目标">¶</a></dt>
+<dd><p>设置相机图像增益上限。2, 4, 8, 16, 32, 64, 128。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">您无需调用该函数。请勿使用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_contrast">
+<code class="descclassname">sensor.</code><code class="descname">set_contrast</code><span class="sig-paren">(</span><em>constrast</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_contrast" title="永久链接至目标">¶</a></dt>
+<dd><p>设置相机图像对比度。-3至+3。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">您无需调用该函数。请勿使用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_brightness">
+<code class="descclassname">sensor.</code><code class="descname">set_brightness</code><span class="sig-paren">(</span><em>brightness</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_brightness" title="永久链接至目标">¶</a></dt>
+<dd><p>设置相机图像亮度。-3至+3。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">您无需调用该函数。请勿使用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_saturation">
+<code class="descclassname">sensor.</code><code class="descname">set_saturation</code><span class="sig-paren">(</span><em>saturation</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_saturation" title="永久链接至目标">¶</a></dt>
+<dd><p>设置相机图像饱和度。-3至+3。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">您无需调用该函数。请勿使用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_quality">
+<code class="descclassname">sensor.</code><code class="descname">set_quality</code><span class="sig-paren">(</span><em>quality</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_quality" title="永久链接至目标">¶</a></dt>
+<dd><p>设置相机图像JPEG压缩质量。0-100。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">是用于OV2640相机。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_colorbar">
+<code class="descclassname">sensor.</code><code class="descname">set_colorbar</code><span class="sig-paren">(</span><em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_colorbar" title="永久链接至目标">¶</a></dt>
+<dd><p>打开（True）或关闭（False）彩色模式。默认关闭。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_auto_gain">
+<code class="descclassname">sensor.</code><code class="descname">set_auto_gain</code><span class="sig-paren">(</span><em>enable</em>, <em>value=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_auto_gain" title="永久链接至目标">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">enable</span></code> 打开（True）或关闭（False）自动增益。默认打开。 <code class="docutils literal"><span class="pre">value</span></code>&nbsp;强迫增益值。更多细节请参见摄像头数据表。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">若您想追踪颜色，则需关闭白平衡。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">value</span></code> 是键值参数，需通过写入 <code class="docutils literal"><span class="pre">value=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_auto_exposure">
+<code class="descclassname">sensor.</code><code class="descname">set_auto_exposure</code><span class="sig-paren">(</span><em>enable</em>, <em>value=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_auto_exposure" title="永久链接至目标">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">enable</span></code> 打开（True）或关闭（False）自动曝光。默认打开。 <code class="docutils literal"><span class="pre">Value</span></code> 强制曝光值。更多细节请参见摄像头数据表。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">value</span></code> 是键值参数，需通过写入 <code class="docutils literal"><span class="pre">value=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_auto_whitebal">
+<code class="descclassname">sensor.</code><code class="descname">set_auto_whitebal</code><span class="sig-paren">(</span><em>enable</em>, <em>value=(-1</em>, <em>-1</em>, <em>-1)</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_auto_whitebal" title="永久链接至目标">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">enable</span></code> 打开（True）或关闭（False）自动白平衡。默认打开。 <code class="docutils literal"><span class="pre">value</span></code> 强制白平衡值。更多细节请参见摄像头数据表。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">若您想追踪颜色，则需关闭白平衡。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">value</span></code> 是键值参数，需通过写入 <code class="docutils literal"><span class="pre">value=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_hmirror">
+<code class="descclassname">sensor.</code><code class="descname">set_hmirror</code><span class="sig-paren">(</span><em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_hmirror" title="永久链接至目标">¶</a></dt>
+<dd><p>打开（True）或关闭（False）水平镜像模式。默认关闭。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_vflip">
+<code class="descclassname">sensor.</code><code class="descname">set_vflip</code><span class="sig-paren">(</span><em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_vflip" title="永久链接至目标">¶</a></dt>
+<dd><p>打开（True）或关闭（False）垂直翻转模式。默认关闭。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_special_effect">
+<code class="descclassname">sensor.</code><code class="descname">set_special_effect</code><span class="sig-paren">(</span><em>effect</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_special_effect" title="永久链接至目标">¶</a></dt>
+<dd><p>设置相机图像的特殊效果：</p>
+<blockquote>
+<div><ul class="simple">
+<li>sensor.NORMAL: 常规图像</li>
+<li>sensor.NEGATIVE: Negative Image</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">禁用。请勿使用。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_lens_correction">
+<code class="descclassname">sensor.</code><code class="descname">set_lens_correction</code><span class="sig-paren">(</span><em>enable</em>, <em>radi</em>, <em>coef</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_lens_correction" title="永久链接至目标">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">enable</span></code> True为启用，False为禁用（布尔值）。
+<code class="docutils literal"><span class="pre">radi</span></code> 像素的整数半径调整（int）。
+<code class="docutils literal"><span class="pre">coef</span></code> 功率校正(int)。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.set_vsync_output">
+<code class="descclassname">sensor.</code><code class="descname">set_vsync_output</code><span class="sig-paren">(</span><em>pin_object</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.set_vsync_output" title="永久链接至目标">¶</a></dt>
+<dd><p>用 <code class="docutils literal"><span class="pre">pyb.Pin</span></code> 创建 <code class="docutils literal"><span class="pre">pin_object</span></code> 。相机上的VSYNC信号将会在此引脚上生成，从而在另一个OpenMV Cam上实现FSIN，
+从而同步相机图像流，以用于立体视觉应用。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.__write_reg">
+<code class="descclassname">sensor.</code><code class="descname">__write_reg</code><span class="sig-paren">(</span><em>address</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.__write_reg" title="永久链接至目标">¶</a></dt>
+<dd><p>在 <code class="docutils literal"><span class="pre">address(int)</span></code> 向相机寄存器中写入 <code class="docutils literal"><span class="pre">value&nbsp;(int)</span></code> 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">请参阅摄像头数据表以获得注册信息。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="sensor.sensor.__read_reg">
+<code class="descclassname">sensor.</code><code class="descname">__read_reg</code><span class="sig-paren">(</span><em>address</em><span class="sig-paren">)</span><a class="headerlink" href="#sensor.sensor.__read_reg" title="永久链接至目标">¶</a></dt>
+<dd><p>在 <code class="docutils literal"><span class="pre">address</span></code> (int)上读取摄像头数据表。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">请参阅摄像头数据表以获得注册信息。</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>常量<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="sensor.sensor.GRAYSCALE">
+<code class="descclassname">sensor.</code><code class="descname">GRAYSCALE</code><a class="headerlink" href="#sensor.sensor.GRAYSCALE" title="永久链接至目标">¶</a></dt>
+<dd><p>GRAYSCALE像素模式(Y from YUV422)。每像素为8位、1字节。</p>
+<p>我们所有的计算机视觉算法在灰度图像上比在RGB565图像上运行更快。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.RGB565">
+<code class="descclassname">sensor.</code><code class="descname">RGB565</code><a class="headerlink" href="#sensor.sensor.RGB565" title="永久链接至目标">¶</a></dt>
+<dd><p>RGB565像素模式。每像素为16位、2字节。5位用于红色，6位用于绿色，5位用于蓝色。</p>
+<p>我们所有的计算机视觉算法在RGB565图像上比在灰度图像上运行更慢。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.JPEG">
+<code class="descclassname">sensor.</code><code class="descname">JPEG</code><a class="headerlink" href="#sensor.sensor.JPEG" title="永久链接至目标">¶</a></dt>
+<dd><p>JPEG模式。只适用于OV2640相机。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.YUV422">
+<code class="descclassname">sensor.</code><code class="descname">YUV422</code><a class="headerlink" href="#sensor.sensor.YUV422" title="永久链接至目标">¶</a></dt>
+<dd><p>禁用。请勿使用。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.OV9650">
+<code class="descclassname">sensor.</code><code class="descname">OV9650</code><a class="headerlink" href="#sensor.sensor.OV9650" title="永久链接至目标">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">sensor.get_id()</span></code> 返回此以适用于OV9650 相机。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.OV2640">
+<code class="descclassname">sensor.</code><code class="descname">OV2640</code><a class="headerlink" href="#sensor.sensor.OV2640" title="永久链接至目标">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">sensor.get_id()</span></code> 返回此以适用于OV2640相机。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.OV7725">
+<code class="descclassname">sensor.</code><code class="descname">OV7725</code><a class="headerlink" href="#sensor.sensor.OV7725" title="永久链接至目标">¶</a></dt>
+<dd><p><code class="docutils literal"><span class="pre">sensor.get_id()</span></code> 返回此以适用于OV7725相机。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.QQCIF">
+<code class="descclassname">sensor.</code><code class="descname">QQCIF</code><a class="headerlink" href="#sensor.sensor.QQCIF" title="永久链接至目标">¶</a></dt>
+<dd><p>88x72 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.QCIF">
+<code class="descclassname">sensor.</code><code class="descname">QCIF</code><a class="headerlink" href="#sensor.sensor.QCIF" title="永久链接至目标">¶</a></dt>
+<dd><p>176x144 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.CIF">
+<code class="descclassname">sensor.</code><code class="descname">CIF</code><a class="headerlink" href="#sensor.sensor.CIF" title="永久链接至目标">¶</a></dt>
+<dd><p>352x288 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.QQSIF">
+<code class="descclassname">sensor.</code><code class="descname">QQSIF</code><a class="headerlink" href="#sensor.sensor.QQSIF" title="永久链接至目标">¶</a></dt>
+<dd><p>88x60 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.QSIF">
+<code class="descclassname">sensor.</code><code class="descname">QSIF</code><a class="headerlink" href="#sensor.sensor.QSIF" title="永久链接至目标">¶</a></dt>
+<dd><p>176x120 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.SIF">
+<code class="descclassname">sensor.</code><code class="descname">SIF</code><a class="headerlink" href="#sensor.sensor.SIF" title="永久链接至目标">¶</a></dt>
+<dd><p>352x240 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.QQQQVGA">
+<code class="descclassname">sensor.</code><code class="descname">QQQQVGA</code><a class="headerlink" href="#sensor.sensor.QQQQVGA" title="永久链接至目标">¶</a></dt>
+<dd><p>40x30 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.QQQVGA">
+<code class="descclassname">sensor.</code><code class="descname">QQQVGA</code><a class="headerlink" href="#sensor.sensor.QQQVGA" title="永久链接至目标">¶</a></dt>
+<dd><p>80x60 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.QQVGA">
+<code class="descclassname">sensor.</code><code class="descname">QQVGA</code><a class="headerlink" href="#sensor.sensor.QQVGA" title="永久链接至目标">¶</a></dt>
+<dd><p>160x120 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.QVGA">
+<code class="descclassname">sensor.</code><code class="descname">QVGA</code><a class="headerlink" href="#sensor.sensor.QVGA" title="永久链接至目标">¶</a></dt>
+<dd><p>320x240 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.VGA">
+<code class="descclassname">sensor.</code><code class="descname">VGA</code><a class="headerlink" href="#sensor.sensor.VGA" title="永久链接至目标">¶</a></dt>
+<dd><p>640x480 分辨率的相机传感器。
+只适用于OV2640相机或OpenMV Cam M7。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.HQQQVGA">
+<code class="descclassname">sensor.</code><code class="descname">HQQQVGA</code><a class="headerlink" href="#sensor.sensor.HQQQVGA" title="永久链接至目标">¶</a></dt>
+<dd><p>60x40 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.HQQVGA">
+<code class="descclassname">sensor.</code><code class="descname">HQQVGA</code><a class="headerlink" href="#sensor.sensor.HQQVGA" title="永久链接至目标">¶</a></dt>
+<dd><p>120x80 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.HQVGA">
+<code class="descclassname">sensor.</code><code class="descname">HQVGA</code><a class="headerlink" href="#sensor.sensor.HQVGA" title="永久链接至目标">¶</a></dt>
+<dd><p>240x160 分辨率的相机传感器。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.LCD">
+<code class="descclassname">sensor.</code><code class="descname">LCD</code><a class="headerlink" href="#sensor.sensor.LCD" title="永久链接至目标">¶</a></dt>
+<dd><p>128x160 分辨率的相机传感器 （与lcd扩展板结合使用）。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.QQVGA2">
+<code class="descclassname">sensor.</code><code class="descname">QQVGA2</code><a class="headerlink" href="#sensor.sensor.QQVGA2" title="永久链接至目标">¶</a></dt>
+<dd><p>128x160 分辨率的相机传感器 （与lcd扩展板结合使用）。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.B40x30">
+<code class="descclassname">sensor.</code><code class="descname">B40x30</code><a class="headerlink" href="#sensor.sensor.B40x30" title="永久链接至目标">¶</a></dt>
+<dd><p>40x30 分辨率的相机传感器 （与 <code class="docutils literal"><span class="pre">image.find_displacement</span></code> 结合使用）。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.B64x32">
+<code class="descclassname">sensor.</code><code class="descname">B64x32</code><a class="headerlink" href="#sensor.sensor.B64x32" title="永久链接至目标">¶</a></dt>
+<dd><p>64x32 分辨率的相机传感器 （与 <code class="docutils literal"><span class="pre">image.find_displacement</span></code> 结合使用）。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.B64x64">
+<code class="descclassname">sensor.</code><code class="descname">B64x64</code><a class="headerlink" href="#sensor.sensor.B64x64" title="永久链接至目标">¶</a></dt>
+<dd><p>64x64 分辨率的相机传感器 （与 <code class="docutils literal"><span class="pre">image.find_displacement</span></code> 结合使用）。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.SVGA">
+<code class="descclassname">sensor.</code><code class="descname">SVGA</code><a class="headerlink" href="#sensor.sensor.SVGA" title="永久链接至目标">¶</a></dt>
+<dd><p>800x600 分辨率的相机传感器。 只适用于OV2640相机。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.SXGA">
+<code class="descclassname">sensor.</code><code class="descname">SXGA</code><a class="headerlink" href="#sensor.sensor.SXGA" title="永久链接至目标">¶</a></dt>
+<dd><p>1280x1024 分辨率的相机传感器。 只适用于OV2640相机。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.UXGA">
+<code class="descclassname">sensor.</code><code class="descname">UXGA</code><a class="headerlink" href="#sensor.sensor.UXGA" title="永久链接至目标">¶</a></dt>
+<dd><p>1600x1200 分辨率的相机传感器。 只适用于OV2640相机。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.NORMAL">
+<code class="descclassname">sensor.</code><code class="descname">NORMAL</code><a class="headerlink" href="#sensor.sensor.NORMAL" title="永久链接至目标">¶</a></dt>
+<dd><p>将特殊效果滤波器设置为正常。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sensor.sensor.NEGATIVE">
+<code class="descclassname">sensor.</code><code class="descname">NEGATIVE</code><a class="headerlink" href="#sensor.sensor.NEGATIVE" title="永久链接至目标">¶</a></dt>
+<dd><p>将特殊效果滤波器设置为负。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

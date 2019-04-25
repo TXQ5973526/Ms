@@ -1,0 +1,57 @@
+:mod:`time` --- 跟踪运行时间
+=====================================
+
+.. module:: time
+   :synopsis: tracking elapsed time
+
+``time`` 模块用于追踪运行时间。 ``import utime`` 用于标准python时间模块。
+
+函数
+---------
+
+.. function:: time.ticks()
+
+   返回以毫秒计的通电后的运行时间。
+
+   .. note::
+
+      使用 `pyb.millis()` 而非该函数。
+
+.. function:: time.sleep(ms)
+
+   休眠 ``ms`` 毫秒数。
+
+   .. note::
+
+      使用 `pyb.delay()` 而非该函数。
+
+构造函数
+------------
+
+.. class:: time.clock()
+
+   返回一个时钟对象。
+
+Methods
+-------
+
+.. method:: clock.tick()
+
+   开始追踪运行时间。
+
+.. method:: clock.fps()
+
+   停止追踪运行时间，并返回当前FPS（每秒帧数）。
+   
+   在调用该函数前始终首先调用 ``tick`` 。
+
+.. method:: clock.avg()
+
+   停止追踪运行时间，并返回以毫秒计的当前平均运行时间。
+
+   在调用该函数前始终首先调用 ``tick`` 。
+
+.. method:: clock.reset()
+
+   重置时钟对象。
+

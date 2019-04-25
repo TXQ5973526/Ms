@@ -1,0 +1,434 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>uos – 基本“操作系统”服务 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="MicroPython 函数库" href="index.html"/>
+        <link rel="next" title="ure – 正则表达式" href="ure.html"/>
+        <link rel="prev" title="ujson – JSON编码与解码" href="ujson.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="builtins.html">内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="array.html"><code class="docutils literal"><span class="pre">array</span></code> – 数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmath.html"><code class="docutils literal"><span class="pre">cmath</span></code> – 复数的数学函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gc.html"><code class="docutils literal"><span class="pre">gc</span></code> – 控制垃圾回收器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="math.html"><code class="docutils literal"><span class="pre">math</span></code> – 数学函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sys.html"><code class="docutils literal"><span class="pre">sys</span></code> – 系统相关函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ubinascii.html"><code class="docutils literal"><span class="pre">ubinascii</span></code> – 二进制/ASCII转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ucollections.html"><code class="docutils literal"><span class="pre">ucollections</span></code> – 容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uerrno.html"><code class="docutils literal"><span class="pre">uerrno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uhashlib.html"><code class="docutils literal"><span class="pre">uhashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uheapq.html"><code class="docutils literal"><span class="pre">uheapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uio.html"><code class="docutils literal"><span class="pre">uio</span></code> – 输入/输出流</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ujson.html"><code class="docutils literal"><span class="pre">ujson</span></code> – JSON编码与解码</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">uos</span></code> – 基本“操作系统”服务</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ure.html"><code class="docutils literal"><span class="pre">ure</span></code> – 正则表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uselect.html"><code class="docutils literal"><span class="pre">uselect</span></code> – 在一组流中等待事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usocket.html"><code class="docutils literal"><span class="pre">usocket</span></code> – socket模块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ustruct.html"><code class="docutils literal"><span class="pre">ustruct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utime.html"><code class="docutils literal"><span class="pre">utime</span></code> – 时间相关的函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uzlib.html"><code class="docutils literal"><span class="pre">uzlib</span></code> – zlib解压缩</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">uos</span></code> – 基本“操作系统”服务</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/uos.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-uos">
+<span id="uos"></span><h1><a class="reference internal" href="#module-uos" title="uos: 基本“操作系统”服务"><code class="xref py py-mod docutils literal"><span class="pre">uos</span></code></a> – 基本“操作系统”服务<a class="headerlink" href="#module-uos" title="永久链接至标题">¶</a></h1>
+<p>该模块实现相应 <a class="reference internal" href="../reference/glossary.html#term-cpython"><code class="xref any std std-term docutils literal"><span class="pre">CPython</span></code></a> 模块的子集，如下所示。更多信息，请参见
+<a href="#id2"><span class="problematic" id="id3">|CPython文档|</span></a> <a class="reference external" href="https://docs.python.org/3/library/os.html#module-os" title="(在 Python v3.6)"><code class="docutils literal"><span class="pre">os</span></code></a>.</p>
+<p><code class="docutils literal"><span class="pre">uos</span></code> 模块包含用于文件系统访问的函数和 <code class="docutils literal"><span class="pre">urandom</span></code> 函数。</p>
+<div class="section" id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="uos.chdir">
+<code class="descclassname">uos.</code><code class="descname">chdir</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#uos.chdir" title="永久链接至目标">¶</a></dt>
+<dd><p>改变当前目录。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.getcwd">
+<code class="descclassname">uos.</code><code class="descname">getcwd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uos.getcwd" title="永久链接至目标">¶</a></dt>
+<dd><p>获取当前目录。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.ilistdir">
+<code class="descclassname">uos.</code><code class="descname">ilistdir</code><span class="sig-paren">(</span><span class="optional">[</span><em>dir</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uos.ilistdir" title="永久链接至目标">¶</a></dt>
+<dd><p>该函数返回一个迭代器，该迭代器将生成与它所列出目录中的条目相对应的3元组。无参数情况下，列出当前目录，否则列出由 <em>dir</em> 指定的目录。</p>
+<p>3元组的形式包括 <em>（名称、类型、索引节点）</em> :</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>name</em> 为一个字符串（若dir为一个字节对象，则名称为字节）且为条目的名称；</li>
+<li><em>type</em> 为一个指定条目类型的整数，其中目录为0x4000，常规文件为0x8000；</li>
+<li><em>inode</em> 为一个与文件的索引节点相对应的整数，而对于没有这种概念的文件系统来说，可能为0。</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.listdir">
+<code class="descclassname">uos.</code><code class="descname">listdir</code><span class="sig-paren">(</span><span class="optional">[</span><em>dir</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uos.listdir" title="永久链接至目标">¶</a></dt>
+<dd><p>若无参数，则列出当前目录；否则将列出给定目录。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.mkdir">
+<code class="descclassname">uos.</code><code class="descname">mkdir</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#uos.mkdir" title="永久链接至目标">¶</a></dt>
+<dd><p>创建一个新目录。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.remove">
+<code class="descclassname">uos.</code><code class="descname">remove</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#uos.remove" title="永久链接至目标">¶</a></dt>
+<dd><p>删除一个文件。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.rmdir">
+<code class="descclassname">uos.</code><code class="descname">rmdir</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#uos.rmdir" title="永久链接至目标">¶</a></dt>
+<dd><p>删除一个目录。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.rename">
+<code class="descclassname">uos.</code><code class="descname">rename</code><span class="sig-paren">(</span><em>old_path</em>, <em>new_path</em><span class="sig-paren">)</span><a class="headerlink" href="#uos.rename" title="永久链接至目标">¶</a></dt>
+<dd><p>重命名文件。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.stat">
+<code class="descclassname">uos.</code><code class="descname">stat</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#uos.stat" title="永久链接至目标">¶</a></dt>
+<dd><p>获取文件或目录的状态。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.statvfs">
+<code class="descclassname">uos.</code><code class="descname">statvfs</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#uos.statvfs" title="永久链接至目标">¶</a></dt>
+<dd><p>获取文件系统的状态。</p>
+<p>按照以下顺序返回一个具有文件系统信息的元组:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">f_bsize</span></code> – 文件系统块大小</li>
+<li><code class="docutils literal"><span class="pre">f_frsize</span></code> – 碎片大小</li>
+<li><code class="docutils literal"><span class="pre">f_blocks</span></code> – f_frsize单元中fs的大小</li>
+<li><code class="docutils literal"><span class="pre">f_bfree</span></code> – 空闲块的数量</li>
+<li><code class="docutils literal"><span class="pre">f_bavail</span></code> – 非特权用户的免费块数</li>
+<li><code class="docutils literal"><span class="pre">f_files</span></code> – 索引节点的数量</li>
+<li><code class="docutils literal"><span class="pre">f_ffree</span></code> – 空闲索引节点的数量</li>
+<li><code class="docutils literal"><span class="pre">f_favail</span></code> – 非特权用户的免费空闲索引节点的数量</li>
+<li><code class="docutils literal"><span class="pre">f_flag</span></code> – 挂载标志</li>
+<li><code class="docutils literal"><span class="pre">f_namemax</span></code> – 最大文件名长度</li>
+</ul>
+</div></blockquote>
+<p>与索引节点相关的参数： <code class="docutils literal"><span class="pre">f_files</span></code> 、 <code class="docutils literal"><span class="pre">f_ffree</span></code> 、 <code class="docutils literal"><span class="pre">f_avail</span></code> 、 <code class="docutils literal"><span class="pre">f_flags</span></code> 参数可能会返回0，因为它们在特定于端口的实现中不可用。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.sync">
+<code class="descclassname">uos.</code><code class="descname">sync</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uos.sync" title="永久链接至目标">¶</a></dt>
+<dd><p>同步所有文件系统。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.urandom">
+<code class="descclassname">uos.</code><code class="descname">urandom</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#uos.urandom" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个带有n个随机字节的字节对象，该对象由硬件随机数生成器生成。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uos.dupterm">
+<code class="descclassname">uos.</code><code class="descname">dupterm</code><span class="sig-paren">(</span><em>stream_object</em><span class="sig-paren">)</span><a class="headerlink" href="#uos.dupterm" title="永久链接至目标">¶</a></dt>
+<dd><p>在传递的类似流的对象上复制或切换MicroPython终端（REPL）。给定对象必须实现 <code class="docutils literal"><span class="pre">readinto()</span></code>
+和 <code class="docutils literal"><span class="pre">write()</span></code> 方法。若传递 <code class="docutils literal"><span class="pre">None</span></code> ，则先前设置的重定向被取消。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ure.html" class="btn btn-neutral float-right" title="ure – 正则表达式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ujson.html" class="btn btn-neutral" title="ujson – JSON编码与解码" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

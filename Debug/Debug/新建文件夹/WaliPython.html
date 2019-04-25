@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+  <meta charset="UTF-8" /> 
+  <title></title> 
+  <meta name="Description" content="OpenIOE 拥有此软件版权！禁止任何修改、重做！OpenIOE 保留侵权 法律处理的相关权利。" /> 
+  <!--  ==========  --> 
+  <!--  = 框架引入 =  --> 
+  <!--  ==========  --> 
+  <link rel="stylesheet" type="text/css" href="WaliPython_files/bootmetro.css" tppabs="http://www.marcellop.com/bootmetro/assets/css/bootmetro.css" /> 
+  <link rel="stylesheet" type="text/css" href="WaliPython_files/bootmetro-responsive.css" tppabs="http://www.marcellop.com/bootmetro/assets/css/bootmetro-responsive.css" /> 
+  <link rel="stylesheet" type="text/css" href="WaliPython_files/bootmetro-icons.css" tppabs="http://www.marcellop.com/bootmetro/assets/css/bootmetro-icons.css" /> 
+  <link rel="stylesheet" type="text/css" href="WaliPython_files/bootmetro-ui-light.css" tppabs="http://www.marcellop.com/bootmetro/assets/css/bootmetro-ui-light.css" /> 
+  <link rel="stylesheet" type="text/css" href="WaliPython_files/datepicker.css" tppabs="http://www.marcellop.com/bootmetro/assets/css/datepicker.css" /> 
+  <link rel="stylesheet" type="text/css" href="WaliPython_files/nbstrap.css" /> 
+  <link rel="stylesheet" type="text/css" href="WaliPython_files/bootstrap-switch.css" /> 
+  <link rel="stylesheet" href="WaliPython_files/editormd_002.css" /> 
+  <link rel="stylesheet" href="WaliPython_files/editormd.css" /> 
+  <style id="holderjs-style" type="text/css">.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}.holderjs-fluid {font-size:16px;font-weight:bold;text-align:center;font-family:sans-serif;margin:0}</style>
+  <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css" />
+  <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css" />
+  <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css" />
+ </head> 
+ <body> 
+  <div class="nb-window nb-layout" style="height: 881px;"> 
+    <div class="nb-layout" style="width: calc(200px); " onselectstart="return false;"> 
+     <ul class="nav metro-nav-list" id="moudleClass">
+      <li class="nb-titlebar-btn moudleClassLi active"><a>基本介绍</a>
+       <ul class="nav" id="qrcodeInfoId1451">
+        <li class="nb-titlebar-btn moudleTitle active" id="moudleTitle1211"><a onclick="getQrcodeDatassInfo(1211,1451)">语言简介</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1212"><a onclick="getQrcodeDatassInfo(1212,1451)">基本程序</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle2859"><a onclick="getQrcodeDatassInfo(2859,1451)">推荐硬件</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>基础语法</a>
+       <ul class="nav" id="qrcodeInfoId1452" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1431"><a onclick="getQrcodeDatassInfo(1431,1452)">经典之禅</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1213"><a onclick="getQrcodeDatassInfo(1213,1452)">编码方式</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1214"><a onclick="getQrcodeDatassInfo(1214,1452)">标识符号</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1215"><a onclick="getQrcodeDatassInfo(1215,1452)">保留字符</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1216"><a onclick="getQrcodeDatassInfo(1216,1452)">代码注释</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1217"><a onclick="getQrcodeDatassInfo(1217,1452)">行与缩进</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1218"><a onclick="getQrcodeDatassInfo(1218,1452)">多行语句</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1219"><a onclick="getQrcodeDatassInfo(1219,1452)">数据类型</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1220"><a onclick="getQrcodeDatassInfo(1220,1452)">字符类型</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1221"><a onclick="getQrcodeDatassInfo(1221,1452)">空行格式</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1222"><a onclick="getQrcodeDatassInfo(1222,1452)">同行语句</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1223"><a onclick="getQrcodeDatassInfo(1223,1452)">代码块组</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1224"><a onclick="getQrcodeDatassInfo(1224,1452)">打印输出</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1225"><a onclick="getQrcodeDatassInfo(1225,1452)">导入引入</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>数据类型</a>
+       <ul class="nav" id="qrcodeInfoId1453" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1226"><a onclick="getQrcodeDatassInfo(1226,1453)">无需声明</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1227"><a onclick="getQrcodeDatassInfo(1227,1453)">变量赋值</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1228"><a onclick="getQrcodeDatassInfo(1228,1453)">标准类型</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1241"><a onclick="getQrcodeDatassInfo(1241,1453)">数字数据</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1242"><a onclick="getQrcodeDatassInfo(1242,1453)">字符类型</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1243"><a onclick="getQrcodeDatassInfo(1243,1453)">列表类型</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1244"><a onclick="getQrcodeDatassInfo(1244,1453)">元组类型</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1245"><a onclick="getQrcodeDatassInfo(1245,1453)">字典类型</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1258"><a onclick="getQrcodeDatassInfo(1258,1453)">类型转换</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>内置函数</a>
+       <ul class="nav" id="qrcodeInfoId1454" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1282"><a onclick="getQrcodeDatassInfo(1282,1454)">函数 - hex() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1283"><a onclick="getQrcodeDatassInfo(1283,1454)">函数 - id()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1449"><a onclick="getQrcodeDatassInfo(1449,1454)">函数 - input() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1450"><a onclick="getQrcodeDatassInfo(1450,1454)">函数 - int() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1451"><a onclick="getQrcodeDatassInfo(1451,1454)">函数 - isinstance()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1452"><a onclick="getQrcodeDatassInfo(1452,1454)">函数 - issubclass()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1453"><a onclick="getQrcodeDatassInfo(1453,1454)">函数 - iter() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1454"><a onclick="getQrcodeDatassInfo(1454,1454)">函数 - len()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1455"><a onclick="getQrcodeDatassInfo(1455,1454)">函数 - list()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1456"><a onclick="getQrcodeDatassInfo(1456,1454)">函数 - locals() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1247"><a onclick="getQrcodeDatassInfo(1247,1454)">函数 - basestring()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1248"><a onclick="getQrcodeDatassInfo(1248,1454)">函数 - bin()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1257"><a onclick="getQrcodeDatassInfo(1257,1454)">函数 - delattr()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1261"><a onclick="getQrcodeDatassInfo(1261,1454)">函数 - divmod()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1263"><a onclick="getQrcodeDatassInfo(1263,1454)">函数 - enumerate()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1265"><a onclick="getQrcodeDatassInfo(1265,1454)">函数 - eval()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1266"><a onclick="getQrcodeDatassInfo(1266,1454)">函数 - execfile()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1267"><a onclick="getQrcodeDatassInfo(1267,1454)">函数 - file()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1269"><a onclick="getQrcodeDatassInfo(1269,1454)"> 函数 - filter()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1270"><a onclick="getQrcodeDatassInfo(1270,1454)">函数 - float()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1273"><a onclick="getQrcodeDatassInfo(1273,1454)">函数 - format</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1274"><a onclick="getQrcodeDatassInfo(1274,1454)">函数 - frozenset()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1275"><a onclick="getQrcodeDatassInfo(1275,1454)">函数 - getattr()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1276"><a onclick="getQrcodeDatassInfo(1276,1454)">函数 - globals() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1278"><a onclick="getQrcodeDatassInfo(1278,1454)">函数 - hasattr() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1279"><a onclick="getQrcodeDatassInfo(1279,1454)">函数 - hash() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1230"><a onclick="getQrcodeDatassInfo(1230,1454)">函数 - abs()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1231"><a onclick="getQrcodeDatassInfo(1231,1454)">函数 - all()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1246"><a onclick="getQrcodeDatassInfo(1246,1454)">函数 - any()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1249"><a onclick="getQrcodeDatassInfo(1249,1454)">函数 - bool() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1250"><a onclick="getQrcodeDatassInfo(1250,1454)">函数 - bytearray()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1251"><a onclick="getQrcodeDatassInfo(1251,1454)">函数 - callable() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1252"><a onclick="getQrcodeDatassInfo(1252,1454)">函数 - chr() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1253"><a onclick="getQrcodeDatassInfo(1253,1454)">函数 - classmethod</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1254"><a onclick="getQrcodeDatassInfo(1254,1454)">函数 - cmp()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1255"><a onclick="getQrcodeDatassInfo(1255,1454)"> 函数 - compile()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1256"><a onclick="getQrcodeDatassInfo(1256,1454)"> 函数 - complex()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1259"><a onclick="getQrcodeDatassInfo(1259,1454)">函数 - dict()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1260"><a onclick="getQrcodeDatassInfo(1260,1454)">函数 - dir()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1280"><a onclick="getQrcodeDatassInfo(1280,1454)">函数 - help() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1479"><a onclick="getQrcodeDatassInfo(1479,1454)"> 函数 - long()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1457"><a onclick="getQrcodeDatassInfo(1457,1454)">函数 - map()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1458"><a onclick="getQrcodeDatassInfo(1458,1454)">函数 - max()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1459"><a onclick="getQrcodeDatassInfo(1459,1454)">函数 - memoryview() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1480"><a onclick="getQrcodeDatassInfo(1480,1454)">函数 - min()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1481"><a onclick="getQrcodeDatassInfo(1481,1454)">函数 - next() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1482"><a onclick="getQrcodeDatassInfo(1482,1454)"> 函数 - oct()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1488"><a onclick="getQrcodeDatassInfo(1488,1454)">函数 - open()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1489"><a onclick="getQrcodeDatassInfo(1489,1454)">函数 - file</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1490"><a onclick="getQrcodeDatassInfo(1490,1454)">函数 - ord() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1491"><a onclick="getQrcodeDatassInfo(1491,1454)">函数 - pow() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1492"><a onclick="getQrcodeDatassInfo(1492,1454)">函数 - print() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1493"><a onclick="getQrcodeDatassInfo(1493,1454)">函数 - property() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1494"><a onclick="getQrcodeDatassInfo(1494,1454)">函数 - range() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1495"><a onclick="getQrcodeDatassInfo(1495,1454)">函数 - raw_input()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1496"><a onclick="getQrcodeDatassInfo(1496,1454)">函数 - reduce()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1497"><a onclick="getQrcodeDatassInfo(1497,1454)">函数 - reload() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1498"><a onclick="getQrcodeDatassInfo(1498,1454)"> 函数 - repr() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1499"><a onclick="getQrcodeDatassInfo(1499,1454)">方法 - List reverse()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1500"><a onclick="getQrcodeDatassInfo(1500,1454)">函数 - round() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1501"><a onclick="getQrcodeDatassInfo(1501,1454)">函数 - set() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1502"><a onclick="getQrcodeDatassInfo(1502,1454)">函数 - setattr() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1503"><a onclick="getQrcodeDatassInfo(1503,1454)">函数 - slice() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1504"><a onclick="getQrcodeDatassInfo(1504,1454)">函数 - sorted() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1505"><a onclick="getQrcodeDatassInfo(1505,1454)">函数 - staticmethod() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1506"><a onclick="getQrcodeDatassInfo(1506,1454)">函数- str()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1507"><a onclick="getQrcodeDatassInfo(1507,1454)">函数 - sum() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1508"><a onclick="getQrcodeDatassInfo(1508,1454)">函数 - super() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1509"><a onclick="getQrcodeDatassInfo(1509,1454)">方法 - Tuple(元组) tuple()</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1510"><a onclick="getQrcodeDatassInfo(1510,1454)">函数 - type() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1511"><a onclick="getQrcodeDatassInfo(1511,1454)">函数 - unichr() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1512"><a onclick="getQrcodeDatassInfo(1512,1454)">函数 - vars() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1513"><a onclick="getQrcodeDatassInfo(1513,1454)">函数 - xrange() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1514"><a onclick="getQrcodeDatassInfo(1514,1454)">函数 - zip() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1515"><a onclick="getQrcodeDatassInfo(1515,1454)">函数 - __import__() </a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1516"><a onclick="getQrcodeDatassInfo(1516,1454)">语句 - 内置exec </a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>面向对象</a>
+       <ul class="nav" id="qrcodeInfoId1455" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1232"><a onclick="getQrcodeDatassInfo(1232,1455)">技术简介</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1233"><a onclick="getQrcodeDatassInfo(1233,1455)">新类创建</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1234"><a onclick="getQrcodeDatassInfo(1234,1455)">实例对象</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1235"><a onclick="getQrcodeDatassInfo(1235,1455)">访问属性</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1236"><a onclick="getQrcodeDatassInfo(1236,1455)">内置属性</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1237"><a onclick="getQrcodeDatassInfo(1237,1455)">对象销毁</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1238"><a onclick="getQrcodeDatassInfo(1238,1455)">类的继承</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1239"><a onclick="getQrcodeDatassInfo(1239,1455)">方法重写</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1240"><a onclick="getQrcodeDatassInfo(1240,1455)">属性方法</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>类型详解</a>
+       <ul class="nav" id="qrcodeInfoId1462" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1292"><a onclick="getQrcodeDatassInfo(1292,1462)">字符类型</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1300"><a onclick="getQrcodeDatassInfo(1300,1462)">列表类型</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1302"><a onclick="getQrcodeDatassInfo(1302,1462)">元组类型</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1304"><a onclick="getQrcodeDatassInfo(1304,1462)">字典类型</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1229"><a onclick="getQrcodeDatassInfo(1229,1462)">数字类型</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>类型转换</a>
+       <ul class="nav" id="qrcodeInfoId1463" style="display:none ;"></ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>运算符号</a>
+       <ul class="nav" id="qrcodeInfoId1465" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1281"><a onclick="getQrcodeDatassInfo(1281,1465)">逻辑运算</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1284"><a onclick="getQrcodeDatassInfo(1284,1465)">成员运算</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1285"><a onclick="getQrcodeDatassInfo(1285,1465)">身份运算</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1286"><a onclick="getQrcodeDatassInfo(1286,1465)">运算优先</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1264"><a onclick="getQrcodeDatassInfo(1264,1465)">简要说明</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1268"><a onclick="getQrcodeDatassInfo(1268,1465)">算术运算</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1271"><a onclick="getQrcodeDatassInfo(1271,1465)">比较运算</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1272"><a onclick="getQrcodeDatassInfo(1272,1465)">赋值运算</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1277"><a onclick="getQrcodeDatassInfo(1277,1465)">按位运算</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>基础语法</a>
+       <ul class="nav" id="qrcodeInfoId1466" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1287"><a onclick="getQrcodeDatassInfo(1287,1466)">基础示例</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1288"><a onclick="getQrcodeDatassInfo(1288,1466)">条件控制</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1289"><a onclick="getQrcodeDatassInfo(1289,1466)">循环语句</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1290"><a onclick="getQrcodeDatassInfo(1290,1466)">循环控制</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>函数详解</a>
+       <ul class="nav" id="qrcodeInfoId1468" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1306"><a onclick="getQrcodeDatassInfo(1306,1468)">基本介绍</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1307"><a onclick="getQrcodeDatassInfo(1307,1468)">定义函数</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1308"><a onclick="getQrcodeDatassInfo(1308,1468)">函数调用</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1310"><a onclick="getQrcodeDatassInfo(1310,1468)">参数传递</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1311"><a onclick="getQrcodeDatassInfo(1311,1468)">参数规则</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1312"><a onclick="getQrcodeDatassInfo(1312,1468)">匿名函数</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1313"><a onclick="getQrcodeDatassInfo(1313,1468)">返回语句</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1314"><a onclick="getQrcodeDatassInfo(1314,1468)">变量范围</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>数据结构</a>
+       <ul class="nav" id="qrcodeInfoId1475" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1318"><a onclick="getQrcodeDatassInfo(1318,1475)">列表结构</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1319"><a onclick="getQrcodeDatassInfo(1319,1475)">列表堆栈</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1320"><a onclick="getQrcodeDatassInfo(1320,1475)">列表队列</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1321"><a onclick="getQrcodeDatassInfo(1321,1475)">列表推导</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1322"><a onclick="getQrcodeDatassInfo(1322,1475)">嵌套列表</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1323"><a onclick="getQrcodeDatassInfo(1323,1475)">删除语句</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1324"><a onclick="getQrcodeDatassInfo(1324,1475)">元组序列</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1325"><a onclick="getQrcodeDatassInfo(1325,1475)">集合结构</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1326"><a onclick="getQrcodeDatassInfo(1326,1475)">字典结构</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1327"><a onclick="getQrcodeDatassInfo(1327,1475)">遍历技巧</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>模块讲解</a>
+       <ul class="nav" id="qrcodeInfoId1476" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1328"><a onclick="getQrcodeDatassInfo(1328,1476)">基本介绍</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1331"><a onclick="getQrcodeDatassInfo(1331,1476)">引入介绍</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1332"><a onclick="getQrcodeDatassInfo(1332,1476)">引入顺序</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1333"><a onclick="getQrcodeDatassInfo(1333,1476)">指定引入</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1334"><a onclick="getQrcodeDatassInfo(1334,1476)">深入模块</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1335"><a onclick="getQrcodeDatassInfo(1335,1476)">属性控制</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1336"><a onclick="getQrcodeDatassInfo(1336,1476)">获取名称</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1337"><a onclick="getQrcodeDatassInfo(1337,1476)">标准模块</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1339"><a onclick="getQrcodeDatassInfo(1339,1476)">内包管理</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1340"><a onclick="getQrcodeDatassInfo(1340,1476)">包内引入</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1343"><a onclick="getQrcodeDatassInfo(1343,1476)">全量引入</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1429"><a onclick="getQrcodeDatassInfo(1429,1476)">外包管理</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>输入输出</a>
+       <ul class="nav" id="qrcodeInfoId1477" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1344"><a onclick="getQrcodeDatassInfo(1344,1477)">格式美化</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1345"><a onclick="getQrcodeDatassInfo(1345,1477)">旧式美化</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1346"><a onclick="getQrcodeDatassInfo(1346,1477)">读取输入</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>文件操作</a>
+       <ul class="nav" id="qrcodeInfoId1478" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1348"><a onclick="getQrcodeDatassInfo(1348,1478)">操作模式</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1351"><a onclick="getQrcodeDatassInfo(1351,1478)">读取文件</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1353"><a onclick="getQrcodeDatassInfo(1353,1478)">写入文件</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1352"><a onclick="getQrcodeDatassInfo(1352,1478)">关闭文件</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>错误异常</a>
+       <ul class="nav" id="qrcodeInfoId1479" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1354"><a onclick="getQrcodeDatassInfo(1354,1479)">默认标题</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1355"><a onclick="getQrcodeDatassInfo(1355,1479)">运行异常</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1356"><a onclick="getQrcodeDatassInfo(1356,1479)">异常处理</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1357"><a onclick="getQrcodeDatassInfo(1357,1479)">抛出异常</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1358"><a onclick="getQrcodeDatassInfo(1358,1479)">继承异常</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1359"><a onclick="getQrcodeDatassInfo(1359,1479)">定义清理</a></li>
+       </ul></li>
+      <li class="nb-titlebar-btn moudleClassLi "><a>基础示例</a>
+       <ul class="nav" id="qrcodeInfoId1483" style="display:none ;">
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1360"><a onclick="getQrcodeDatassInfo(1360,1483)">Hello World</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1361"><a onclick="getQrcodeDatassInfo(1361,1483)">数字求和</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1362"><a onclick="getQrcodeDatassInfo(1362,1483)">平方根</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1363"><a onclick="getQrcodeDatassInfo(1363,1483)">二次方程式</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1364"><a onclick="getQrcodeDatassInfo(1364,1483)">计算三角形面积</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1365"><a onclick="getQrcodeDatassInfo(1365,1483)">生成随机数</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1366"><a onclick="getQrcodeDatassInfo(1366,1483)">摄氏温度转华氏温度</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1367"><a onclick="getQrcodeDatassInfo(1367,1483)">交换变量</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1368"><a onclick="getQrcodeDatassInfo(1368,1483)"> if 语句</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1369"><a onclick="getQrcodeDatassInfo(1369,1483)">判断字符串是否为数字</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1370"><a onclick="getQrcodeDatassInfo(1370,1483)">判断奇数偶数</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1371"><a onclick="getQrcodeDatassInfo(1371,1483)">判断闰年</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1372"><a onclick="getQrcodeDatassInfo(1372,1483)">获取最大值函数</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1373"><a onclick="getQrcodeDatassInfo(1373,1483)">十进制转二、八、十六进制</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1374"><a onclick="getQrcodeDatassInfo(1374,1483)">阶乘实例</a></li>
+        <li class="nb-titlebar-btn moudleTitle" id="moudleTitle1375"><a onclick="getQrcodeDatassInfo(1375,1483)">基础卡尔曼滤波</a></li>
+       </ul></li>
+     </ul> 
+    </div> 
+    <div class="nb-layout" style="width: calc(100% - 201px); "> 
+     <div id="test-editormd-view2" style="width: calc(100% - 40px); padding-top: 20px;" class="markdown-body editormd-html-preview"> 
+      <p><img src="WaliPython_files/20171026053053k6OVCoUGP3X7svqBpython3.png" alt="" /></p> 
+      <p>MicroPython包含了诸如交互式提示，任意精度整数，关闭，列表解析，生成器，异常处理等高级功能。 足够精简，适合运行在只有256k的代码空间和16k的RAM的芯片上。</p> 
+      <p>MicroPython旨在尽可能与普通Python兼容，让您轻松将代码从桌面传输到微控制器或嵌入式系统。</p> 
+     </div> 
+    </div>
+  </div> 
+  <!--  ==========  --> 
+  <!--  = 框架引入 =  --> 
+  <!--  ==========  --> 
+  <script src="WaliPython_files/jquery-3.js"></script> 
+  <script src="WaliPython_files/marked.js"></script> 
+  <script src="WaliPython_files/prettify.js"></script> 
+  <script src="WaliPython_files/raphael.js"></script> 
+  <script src="WaliPython_files/underscore.js"></script> 
+  <script src="WaliPython_files/sequence-diagram.js"></script> 
+  <script src="WaliPython_files/flowchart.js"></script> 
+  <script src="WaliPython_files/jquery.js"></script> 
+  <script src="WaliPython_files/editormd.js"></script> 
+  <script type="text/javascript" src="WaliPython_files/bootstrap.js"></script> 
+  <script type="text/javascript" src="WaliPython_files/bootmetro-panorama.js"></script> 
+  <script type="text/javascript" src="WaliPython_files/bootmetro-pivot.js"></script> 
+  <script type="text/javascript" src="WaliPython_files/bootmetro-charms.js"></script> 
+  <script type="text/javascript" src="WaliPython_files/bootstrap-datepicker.js"></script> 
+  <script type="text/javascript" src="WaliPython_files/holder.js"></script> 
+  <script type="text/javascript" src="WaliPython_files/Chart.js"></script> 
+  <script src="WaliPython_files/nbstrap.js"></script> 
+  <script src="WaliPython_files/bootstrap-switch.js" type="text/javascript" charset="utf-8"></script> 
+  <script type="text/javascript">
+			$(".bootstrap-switch").bootstrapSwitch();
+		</script> 
+  <!--  ==========  --> 
+  <!--  = 个人引入 =  --> 
+  <!--  ==========  --> 
+  <script src="WaliPython_files/MicroPythonBookindex.js" type="text/javascript" charset="utf-8"></script> 
+ </body>
+</html>

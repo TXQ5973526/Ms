@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>gif — 录制gif动图 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">gif</span></code> — 录制gif动图</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/omv.gif.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-gif">
+<span id="gif-gif"></span><h1><a class="reference internal" href="#module-gif" title="gif: 录制gif动图"><code class="xref py py-mod docutils literal"><span class="pre">gif</span></code></a> — 录制gif动图<a class="headerlink" href="#module-gif" title="永久链接至标题">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">gif</span></code> 模块用于录制gif。</p>
+</div>
+<div class="section" id="id1">
+<h1>Gif类 – Gif录制器<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>您可以使用gif模块来记录短视频剪辑。注意：gif文件保存的是未压缩图像数据。因此，非常适合记录您想分享的短视频剪辑。使用 <code class="docutils literal"><span class="pre">mjpeg</span></code> 进行长视频剪辑。</p>
+<p>用法示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sensor</span><span class="o">,</span> <span class="nn">gif</span>
+
+<span class="c1"># Setup camera. 设置摄像机。</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">set_pixformat</span><span class="p">(</span><span class="n">sensor</span><span class="o">.</span><span class="n">GRAYSCALE</span><span class="p">)</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">set_framesize</span><span class="p">(</span><span class="n">sensor</span><span class="o">.</span><span class="n">QQVGA</span><span class="p">)</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">skip_frames</span><span class="p">()</span>
+
+<span class="c1"># Create the gif object. 创建一个gif对象。</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gif</span><span class="o">.</span><span class="n">Gif</span><span class="p">(</span><span class="s2">&quot;example.gif&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add frames. 添加帧。</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">add_frame</span><span class="p">(</span><span class="n">sensor</span><span class="o">.</span><span class="n">snapshot</span><span class="p">())</span>
+
+<span class="c1"># Finalize. 完成。</span>
+<span class="n">g</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h2>构造函数<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="gif.gif.Gif">
+<em class="property">class </em><code class="descclassname">gif.</code><code class="descname">Gif</code><span class="sig-paren">(</span><em>filename</em>, <em>width=Auto</em>, <em>height=Auto</em>, <em>color=Auto</em>, <em>loop=True</em><span class="sig-paren">)</span><a class="headerlink" href="#gif.gif.Gif" title="永久链接至目标">¶</a></dt>
+<dd><p>创建一个可添加帧的Gif对象。 <code class="docutils literal"><span class="pre">filename</span></code> 是保存录制的gif的路径。</p>
+<p><code class="docutils literal"><span class="pre">width</span></code> 自动设置为图像传感器水平分辨率（除非显式覆盖）。</p>
+<p><code class="docutils literal"><span class="pre">height</span></code> 自动设置为图像传感器垂直分辨率（除非显式覆盖）。</p>
+<p><code class="docutils literal"><span class="pre">color</span></code> 自动设置为图像传感器颜色模式（除非显式覆盖）：</p>
+<blockquote>
+<div><ul class="simple">
+<li>颜色False将生成一个7位灰度/像素的gif。</li>
+<li>颜色True将生成一个rgb232、7位/像素的gif。</li>
+</ul>
+</div></blockquote>
+<p><code class="docutils literal"><span class="pre">loop</span></code> 当True使gif自动循环播放时。默认值为True。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<dl class="last docutils">
+<dt><code class="docutils literal"><span class="pre">width</span></code>, <code class="docutils literal"><span class="pre">height</span></code>, <code class="docutils literal"><span class="pre">color</span></code>,  <code class="docutils literal"><span class="pre">loop</span></code> 是键值参数，必须在函数调用中通过写入</dt>
+<dd><code class="docutils literal"><span class="pre">width=</span></code> ,&nbsp;<code class="docutils literal"><span class="pre">height=</span></code> ,&nbsp;<code class="docutils literal"><span class="pre">color=</span></code> 和 <code class="docutils literal"><span class="pre">resolution=</span></code> 来显式地调用。</dd>
+</dl>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>方法<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="gif.gif.width">
+<code class="descclassname">gif.</code><code class="descname">width</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gif.gif.width" title="永久链接至目标">¶</a></dt>
+<dd><p>返回gif对象的宽度（水平分辨率）。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gif.gif.height">
+<code class="descclassname">gif.</code><code class="descname">height</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gif.gif.height" title="永久链接至目标">¶</a></dt>
+<dd><p>返回gif对象的高度（垂直分辨率）。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gif.gif.format">
+<code class="descclassname">gif.</code><code class="descname">format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gif.gif.format" title="永久链接至目标">¶</a></dt>
+<dd><p>如果是彩图返回&nbsp;<code class="docutils literal"><span class="pre">sensor.RGB565</span></code> ， 灰度图返回 <code class="docutils literal"><span class="pre">sensor.GRAYCSCALE</span></code> 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gif.gif.size">
+<code class="descclassname">gif.</code><code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gif.gif.size" title="永久链接至目标">¶</a></dt>
+<dd><p>返回gif目前的文件大小。该值在添加帧后更新。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gif.gif.loop">
+<code class="descclassname">gif.</code><code class="descname">loop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gif.gif.loop" title="永久链接至目标">¶</a></dt>
+<dd><p>若gif对象在其构造函数中设置了循环，则返回。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="gif.gif.add_frame">
+<code class="descclassname">gif.</code><code class="descname">add_frame</code><span class="sig-paren">(</span><em>image</em>, <em>delay=10</em><span class="sig-paren">)</span><a class="headerlink" href="#gif.gif.add_frame" title="永久链接至目标">¶</a></dt>
+<dd><p>将一张图像添加到gif记录中。图像的宽度、高度和颜色模式必须与gif构造函数中使用的宽度、高度和颜色模式相同。</p>
+<p><code class="docutils literal"><span class="pre">delay</span></code> 是前一帧结束后等待播放此帧的厘秒数（若非首帧）。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">delay</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">delay=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="gif.gif.close">
+<code class="descclassname">gif.</code><code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gif.gif.close" title="永久链接至目标">¶</a></dt>
+<dd><p>结束gif录制。须在记录完成后调用此方法，以使文件可查看。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

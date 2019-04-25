@@ -1,0 +1,90 @@
+/*!
+ * NBstrap v2.2.0
+ * Copyright 2017-2018 NBuilder, Inc.
+ * Licensed under MIT
+ */
+
+* :not(i){
+	font-family: Microsoft YaHei !important;
+}
+
+body::-webkit-scrollbar {
+	display: none;
+}
+
+html,
+body {
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+	background: transparent;
+}
+
+.nb-boder-shadow {
+	-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	/*border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;*/
+}
+
+.nb-background-default {
+	background: #ffffff;
+}
+
+.nb-pull-bottom {
+	position: absolute !important;
+	bottom: 0px;
+}
+
+.nb-window {
+	width: 100%;
+	margin: 0px;
+	border: 0px;
+}
+
+.nb-layout {
+	margin: 0px !important;
+	border: 0px !important;
+	position: relative;
+	overflow-y: scroll;
+	overflow-x: scroll;
+	height: calc(100%);
+	width: calc(100%);
+	float: left;
+}
+
+.nb-layout::-webkit-scrollbar {
+	display: none;
+}
+
+.nb-titlebar {
+	-webkit-app-region: drag;
+}
+
+.nb-titlebar-btn {
+	-webkit-app-region: no-drag;
+	cursor: pointer
+}
+
+.nb-titlebar-element {
+	-webkit-app-region: no-drag;
+}
+
+.nb-drag-ew {
+	-webkit-app-region: no-drag;
+	background: #FFFFFF;
+	cursor: ew-resize;
+}
+
+.nb-drag-ns {
+	-webkit-app-region: no-drag;
+	background: #FFFFFF;
+	cursor: ns-resize;
+}
+
+.nb-win-close {}
+
+.nb-win-max {}
+
+.nb-win-min {}

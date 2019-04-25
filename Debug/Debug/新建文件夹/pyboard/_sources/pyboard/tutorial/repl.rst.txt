@@ -1,0 +1,100 @@
+进入一个MicroPython REPL命令行
+=================================
+
+
+REPL意为读取-求值-打印-循环（Read Evaluate Print Loop），是交互式提示的名称，您可在pyboard上访问此交互式终端。
+目前测试代码和运行指令的最简便方法即使用REPL。目前，使用REPL是检验代码和运行指令的最简单方式。
+你可以一边在 ``main.py``中编写脚本，一边使用REPL。
+
+使用REPL，您须连接到pyboard上的串口USB设备。具体步骤取决于您的操作系统。
+
+
+Windows
+-------
+
+使用串行USB设备，您需要安装pyboard驱动。驱动名为 ``pybcdc.inf``，位于pyboard的USB闪存驱动器中。
+
+安装此驱动器，您须打开电脑的设备管理器，在设备列表中找到pyboard（pyboard旁应显示警告标志，因其尚未安装），
+点击pyboard设备，选择属性，然后选择安装驱动。您需要选择手动查找驱动的选项（请勿选择Windows自动更新），
+导航到pyboard的USB驱动，选中后即开始安装。安装后，回到设备管理器，查找已安装的pyboard，
+并查看它是哪个COM端口（例如：COM4）。更全面的说明，请查看 `Guide for pyboard on Windows (PDF) <http://micropython.org/resources/Micro-Python-Windows-setup.pdf>`_。
+若您在安装驱动中遇到问题，请参考此指南。
+
+现在您需运行您的终端程序。您可使用 HyperTerminal（若您已安装），
+或下载免费程序`putty.exe <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_。
+您需连接到在上一步骤中查找到的COM端口。
+下载PuTTY后，单击左侧面板中的 "Session" ，然后单击右侧的 "Serial" 单选按钮，
+然后在 "Serial" 框中输入您的COM端口（例如：COM4）。最后，单击 "Open" 按钮。
+
+Mac OS X
+--------
+
+打开一个终端并运行::
+
+    screen /dev/tty.usbmodem*
+
+当您完成此步骤，退出屏幕请输入 type CTRL-A CTRL-\\.
+
+Linux
+-----
+
+打开一个终端并运行::
+
+    screen /dev/ttyACM0
+
+您可尝试 ``picocom``或 ``minicom`` 。您可能需要使用 ``/dev/ttyACM1``或 ``ttyACM``的更高数字。
+并且您可能需要给自己正确权限以访问设备（例如： ``uucp`` 或 ``dialout``组，或使用sudo）。
+
+使用REPL
+---------------------
+
+现在我们尝试直接在pyboard上运行一些MicroPython代码。
+
+您的串行程序打开时（PuTTY、piconcom、screen等），您可能会看到一个带有闪烁光标的空白屏幕。
+单击Enter键，您应看到一个MicroPython提示符，即 ``>>>``。我们需确保其在进行必要测试::
+
+    >>> print("hello pyboard!")
+    hello pyboard!
+
+在上述过程中，您不应输入 ``>>>`` 字符。此字符表示您应在其后的提示符中输入文本。
+最后，您输入文本print("hello pyboard!")并单击Enter键后，屏幕上的输出应与上面显示的相似。
+
+若您已对python有一定了解，现在即可尝试一些基本指令。
+
+    >>> 1 + 2
+    3
+    >>> 1 / 2
+    0.5
+    >>> 12**34
+    4922235242952026704037113243122008064
+
+若其中某些部分无法运行，您可尝试硬复位或软复位；见下面。
+
+继续进行，尝试输入其他指令。例如：
+
+
+    >>> pyb.LED(1).on()
+    >>> pyb.LED(2).on()
+    >>> 1 + 2
+    3
+    >>> 1 / 2
+    0.5
+    >>> 20 * 'py'
+    'pypypypypypypypypypypypypypypypypypypypy'
+
+重启电路板
+-------------------
+
+若出现故障，您可使用两种方法内重置板。首先，在MicroPython提示符中点击CTRL-D ，即进行软复位。您将会看到类似的信息：
+
+    >>>
+    PYB: sync filesystems
+    PYB: soft reboot
+    Micro Python v1.0 on 2014-05-03; PYBv1.0 with STM32F405RG
+    Type "help()" for more information.
+    >>>
+
+若上述方法仍不奏效，您可通过单击RST按键（距离板上的micro-USB socket最近的小的黑色按键）进行硬重置（关机后再次开机）。
+这一步将结束您的回话，断开所有原与pyboard连接的程序（PuTTY、screen等）。
+
+若您要进行硬重置，建议您首先关闭您的串口软件，并弹出/卸载pyboard驱动。

@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Timer类 – 控制内部定时器 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="pyb — 板级功能" href="pyb.html"/>
+        <link rel="next" title="UART类 – 双向串行通信总线" href="pyb.UART.html"/>
+        <link rel="prev" title="class Switch – 开关对象" href="pyb.Switch.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id1">时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id2">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id3">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id4">电源相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id5">其他功能</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pyb.html#id6">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lcd160cr.html"><code class="docutils literal"><span class="pre">lcd160cr</span></code> — 控制LCD160CR显示屏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+          <li><a href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a> &raquo;</li>
+        
+      <li>Timer类 – 控制内部定时器</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/pyb.Timer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="timer">
+<span id="pyb-timer"></span><h1>Timer类 – 控制内部定时器<a class="headerlink" href="#timer" title="永久链接至标题">¶</a></h1>
+<p>定时器可用于多种任务。目前，仅实现了最简单的情况：周期性调用函数。</p>
+<p>每个定时器都包含一个以某一比率计数的计数器。其计数的频率为外设时钟频率（Hz为单位）除以定时器预分频器。
+当计数器到达定时器周期时，会触发事件，且计数器重置为0。通过使用回调函数，定时器事件可调用一个Python函数。</p>
+<p>以固定频率切换LED的示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">tim</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>              <span class="c1"># create a timer object using timer 4 使用定时器4创建一个定时器对象</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>                <span class="c1"># trigger at 2Hz 以2Hz触发</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">pyb</span><span class="o">.</span><span class="n">LED</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">toggle</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>将命名函数用于回调的示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="n">timer</span><span class="p">):</span>                <span class="c1"># we will receive the timer object when being called 我们将在被调用时接收定时器对象</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">timer</span><span class="o">.</span><span class="n">counter</span><span class="p">())</span>      <span class="c1"># show current timer&#39;s counter value 显示当前定时器的计数器值</span>
+<span class="n">tim</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># create a timer object using timer 4 - trigger at 1Hz 使用定时器4(以1Hz触发)创建一个定时器对象</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>              <span class="c1"># set the callback to our tick function 将回调设置为tick函数</span>
+</pre></div>
+</div>
+<p>更多示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">tim</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>    <span class="c1"># freq in Hz 以Hz为单位的频率</span>
+<span class="n">tim</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">prescaler</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">99</span><span class="p">)</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">counter</span><span class="p">()</span>                   <span class="c1"># get counter (can also set) 获取计数器（也可设置）</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">prescaler</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                <span class="c1"># set prescaler (can also get) 设置预分频器（也可获取）</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">period</span><span class="p">(</span><span class="mi">199</span><span class="p">)</span>                 <span class="c1"># set period (can also get) 设置周期（也可获取）</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="o">...</span><span class="p">)</span>     <span class="c1"># set callback for update interrupt (t=tim instance) 为更新中断设置回调（t=tim实例）</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>              <span class="c1"># clear callback 清除回调</span>
+</pre></div>
+</div>
+<p><em>Note:</em> 定时器(2)和定时器(3)分别用于PWM设置LED(3)和LED(4)的亮度。但是，若相关LED的亮度设置为介于1至254的值，
+则这些定时器仅配置为PWM。若LED的亮度特性未使用，则这些定时器可用于一般用途。类似地，定时器(5)控制伺服驱动，
+定时器(6)用于定时ADC/DAC读/写。我们建议您在程序中使用其他定时器。</p>
+<p><em>注意:</em> 内存无法在回调(中断)过程中分配，因此在回调中引发的异常不能提供大量信息。如何克服这一限制，请参见:<a class="reference internal" href="micropython.html#micropython.alloc_emergency_exception_buf" title="micropython.alloc_emergency_exception_buf"><code class="xref any py py-func docutils literal"><span class="pre">micropython.alloc_emergency_exception_buf</span></code></a> 。</p>
+<div class="section" id="id1">
+<h2>构造函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="pyb.pyb.Timer">
+<em class="property">class </em><code class="descclassname">pyb.</code><code class="descname">Timer</code><span class="sig-paren">(</span><em>id</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pyb.Timer" title="永久链接至目标">¶</a></dt>
+<dd><p>创建一个给定ID的新定时器对象。若给定额外参数，定时器由 <code class="docutils literal"><span class="pre">init(...)</span></code> 初始化。ID可为1-14。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="pyb.Timer.init">
+<code class="descclassname">Timer.</code><code class="descname">init</code><span class="sig-paren">(</span><em>*</em>, <em>freq</em>, <em>prescaler</em>, <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Timer.init" title="永久链接至目标">¶</a></dt>
+<dd><p>初始化定时器。初始化必须通过频率(单位：Hz)或通过预标量和周期进行:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">tim</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>                  <span class="c1"># set the timer to trigger at 100Hz 设置定时器在100Hz触发</span>
+<span class="n">tim</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">prescaler</span><span class="o">=</span><span class="mi">83</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>  <span class="c1"># set the prescaler and period directly 直接设置分频数与周期</span>
+</pre></div>
+</div>
+<p>键值参数:</p>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">freq</span></code> — 指定定时器的周期性频率。您可以将此视为定时器经过一个完整周期的频率。</li>
+<li><code class="docutils literal"><span class="pre">prescaler</span></code> &nbsp;[0-0xffff] – 指定要加载到定时器的PSC中的值。定时器时钟源除以（ <code class="docutils literal"><span class="pre">prescaler&nbsp;+&nbsp;1</span></code> ）以得出定时器时钟。</li>
+</ul>
+<p>定时器2-7和12-14的时钟源为84Hz(pyb.freq()[2] * 2)，定时器1和8-11的时钟源为168Hz(pyb.freq()[3] * 2)。</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">period</span></code> [0-0xffff] 用于定时器1、3、4、6-15。[0-0x3fffffff]用于定时器2和5。</li>
+</ul>
+<p>指定要加载到定时器的ARR中的值。该值决定定时器的周期（即当计数器循环时）。定时器将在 <code class="docutils literal"><span class="pre">period&nbsp;+&nbsp;1</span></code> 定时器时钟循环后滚动。</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">mode</span></code> 可为下列之一:<ul>
+<li><code class="docutils literal"><span class="pre">Timer.UP</span></code> - 将定时器配置为从0至ARR（默认）</li>
+<li><code class="docutils literal"><span class="pre">Timer.DOWN</span></code> - 将定时器配置为从ARR至0。</li>
+<li><code class="docutils literal"><span class="pre">Timer.CENTER</span></code> - 将定时器配置为从0至ARR再到0。</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">div</span></code> 可为1或2或4。划分定时器时钟，以确定数字滤波器所使用的采样时钟。</li>
+<li><code class="docutils literal"><span class="pre">callback</span></code> - 依据Timer.callback()</li>
+<li><dl class="first docutils">
+<dt><code class="docutils literal"><span class="pre">deadtime</span></code> - 指定“dead”的数量或在免费通道（两通道须为非活动通道）间转换的无效时间。</dt>
+<dd><code class="docutils literal"><span class="pre">deadtime</span></code> -&nbsp;可为一个介于0-1008间的整数，并满足下列要求：0-128按照步骤1进行，128-256按照步骤2进行，256-512按照步骤8进行，512-1008按照步骤16进行。
+<code class="docutils literal"><span class="pre">deadime</span></code> - 测量以div时钟滴答划分的 <code class="docutils literal"><span class="pre">source_freq</span></code> 滴答。
+<code class="docutils literal"><span class="pre">Deadtime</span></code> - 仅适用于定时器1和8。</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>您必须指定频率或周期和分频数。</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Timer.deinit">
+<code class="descclassname">Timer.</code><code class="descname">deinit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Timer.deinit" title="永久链接至目标">¶</a></dt>
+<dd><p>反初始化定时器。</p>
+<p>禁用回调（以及关联的中断请求）。</p>
+<p>禁用任何通道回调（以及关联的中断请求）。停用定时器，并禁用定时器外围设备。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Timer.callback">
+<code class="descclassname">Timer.</code><code class="descname">callback</code><span class="sig-paren">(</span><em>fun</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Timer.callback" title="永久链接至目标">¶</a></dt>
+<dd><p>设置定时器触发时所调用的函数。 <code class="docutils literal"><span class="pre">fun</span></code>&nbsp;是被传递的1参数，即定时器对象。若 <code class="docutils literal"><span class="pre">fun</span></code> 为 <code class="docutils literal"><span class="pre">None</span></code> ，则禁用回调。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Timer.channel">
+<code class="descclassname">Timer.</code><code class="descname">channel</code><span class="sig-paren">(</span><em>channel</em>, <em>mode</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Timer.channel" title="永久链接至目标">¶</a></dt>
+<dd><p>若只有一个通道被传递，则返回一个先前初始化的通道对象（若无先前通道，则 <code class="docutils literal"><span class="pre">None</span></code> ）。</p>
+<p>另外，初始化并返回一个定时器通道对象。</p>
+<p>每一通道都可配置来进行脉宽调制、输出比较和输入捕捉。所有通道公用同一基本定时器，即共用同一定时器时钟。</p>
+<p>键值参数：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">mode</span></code> 可为下列之一:<ul>
+<li><code class="docutils literal"><span class="pre">Timer.PWM</span></code> — 配置PWM模式下的定时器（高电平有效）。</li>
+<li><code class="docutils literal"><span class="pre">Timer.PWM_INVERTED</span></code> — 配置PWM模式下的定时器（低电平有效）。</li>
+<li><code class="docutils literal"><span class="pre">Timer.OC_TIMING</span></code> — 表示未驱动引脚。</li>
+<li><code class="docutils literal"><span class="pre">Timer.OC_ACTIVE</span></code> — 当比较匹配出现时，引脚就被激活（活性取决于极性）。</li>
+<li><code class="docutils literal"><span class="pre">Timer.OC_INACTIVE</span></code> — 当比较匹配出现时，引脚失效。</li>
+<li><code class="docutils literal"><span class="pre">Timer.OC_TOGGLE</span></code> — 当比较匹配出现时，将切换引脚。</li>
+<li><code class="docutils literal"><span class="pre">Timer.OC_FORCED_ACTIVE</span></code> — 强制激活引脚（忽略比较匹配）。</li>
+<li><code class="docutils literal"><span class="pre">Timer.OC_FORCED_INACTIVE</span></code> — 强制使引脚失效（忽略比较匹配）。</li>
+<li><code class="docutils literal"><span class="pre">Timer.IC</span></code> — 配置输入捕捉模式下的定时器。</li>
+<li><code class="docutils literal"><span class="pre">Timer.ENC_A</span></code> — 配置编码器模式下的定时器。定时器只在CH1改变时改变。</li>
+<li><code class="docutils literal"><span class="pre">Timer.ENC_B</span></code> — 配置编码器模式下的定时器。定时器只在CH2改变时改变。</li>
+<li><code class="docutils literal"><span class="pre">Timer.ENC_AB</span></code> — 配置编码器模式下的定时器。定时器只在CH1和CH2改变时改变。</li>
+</ul>
+</li>
+<li><code class="docutils literal"><span class="pre">callback</span></code> - 依据TimerChannel.callback()。</li>
+<li><code class="docutils literal"><span class="pre">pin</span></code> 无（默认值）或一个引脚对象。若指定（非默认值），将导致为此定时器通道配置指定引脚的替代函数。若该引脚不支持任何该定时器通道的替代函数，则将引发错误。</li>
+</ul>
+</div></blockquote>
+<p>Timer.PWM模式的键值参数:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">pulse_width</span></code> - 决定使用的初始脉宽值。</li>
+<li><code class="docutils literal"><span class="pre">pulse_width_percent</span></code> - 决定使用的初始脉宽值百分比。</li>
+</ul>
+</div></blockquote>
+<p>Timer.OC模式的键值参数：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">compare</span></code> - 决定比较寄存器的初始值。</li>
+<li><code class="docutils literal"><span class="pre">polarity</span></code> 可为下列之一:<ul>
+<li><code class="docutils literal"><span class="pre">Timer.HIGH</span></code> - 输出为高电平有效</li>
+<li><code class="docutils literal"><span class="pre">Timer.LOW</span></code> - 输出为低电平有效</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p>Timer.IC模式的可选键值参数：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">polarity</span></code> 可为下列之一:<ul>
+<li><code class="docutils literal"><span class="pre">Timer.RISING</span></code> - 捕捉上升沿。</li>
+<li><code class="docutils literal"><span class="pre">Timer.FALLING</span></code> - 捕捉下降沿。</li>
+<li><code class="docutils literal"><span class="pre">Timer.BOTH</span></code> - 捕捉上升沿和下降沿。</li>
+</ul>
+</li>
+</ul>
+<p>注意：捕捉仅在主通道运行，而不适用于免费通道。</p>
+</div></blockquote>
+<p>Timer.ENC模式注意事项：</p>
+<blockquote>
+<div><ul class="simple">
+<li>需2个引脚，其中一个或两个需使用引脚API配置为使用适当的定时器AF。</li>
+<li>使用timer.counter()方法来读取编码值。</li>
+<li>仅在CH1和CH2上运行（而非CH1N或CH2N）。</li>
+<li>设置编码模式时忽略通道数。</li>
+</ul>
+</div></blockquote>
+<p>PWM Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">timer</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ch2</span> <span class="o">=</span> <span class="n">timer</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="o">.</span><span class="n">PWM</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X2</span><span class="p">,</span> <span class="n">pulse_width</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
+<span class="n">ch3</span> <span class="o">=</span> <span class="n">timer</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="o">.</span><span class="n">PWM</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">X3</span><span class="p">,</span> <span class="n">pulse_width</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>PWM示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">timer</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ch2</span> <span class="o">=</span> <span class="n">timer</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="o">.</span><span class="n">PWM</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="s2">&quot;P7&quot;</span><span class="p">),</span> <span class="n">pulse_width</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
+<span class="n">ch3</span> <span class="o">=</span> <span class="n">timer</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="o">.</span><span class="n">PWM</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="s2">&quot;P8&quot;</span><span class="p">),</span> <span class="n">pulse_width</span><span class="o">=</span><span class="mi">16000</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Timer.counter">
+<code class="descclassname">Timer.</code><code class="descname">counter</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Timer.counter" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置定时器。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Timer.freq">
+<code class="descclassname">Timer.</code><code class="descname">freq</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Timer.freq" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置定时器频率（改变分频数与周期）。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Timer.period">
+<code class="descclassname">Timer.</code><code class="descname">period</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Timer.period" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置定时器周期。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Timer.prescaler">
+<code class="descclassname">Timer.</code><code class="descname">prescaler</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Timer.prescaler" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置定时器分频数。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.Timer.source_freq">
+<code class="descclassname">Timer.</code><code class="descname">source_freq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.Timer.source_freq" title="永久链接至目标">¶</a></dt>
+<dd><p>获取时钟源的频率。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="timerchannel">
+<h1>TimerChannel类 — 为定时器建立一个通道<a class="headerlink" href="#timerchannel" title="永久链接至标题">¶</a></h1>
+<p>定时器通道用来使用定时器生成/捕捉信号。</p>
+<p>使用Timer.channel()方法来创建定时器对象。</p>
+<div class="section" id="id3">
+<h2>方法<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="pyb.timerchannel.callback">
+<code class="descclassname">timerchannel.</code><code class="descname">callback</code><span class="sig-paren">(</span><em>fun</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.timerchannel.callback" title="永久链接至目标">¶</a></dt>
+<dd><p>设置定时器触发时调用的函数。<code class="docutils literal"><span class="pre">fun</span></code>&nbsp;是被传递的1参数，即定时器对象。若 <code class="docutils literal"><span class="pre">fun</span></code> 为 <code class="docutils literal"><span class="pre">None</span></code> ，则禁用回调。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.timerchannel.capture">
+<code class="descclassname">timerchannel.</code><code class="descname">capture</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.timerchannel.capture" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置与通道相关的获取值。捕捉、比较和脉宽都是同一函数的别名。捕捉是通道在输入捕捉模式下的所使用的逻辑名。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.timerchannel.compare">
+<code class="descclassname">timerchannel.</code><code class="descname">compare</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.timerchannel.compare" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置与通道相关的比较值。捕捉、比较和脉宽都是同一函数的别名。比较是通道在输出比较模式下的所使用的逻辑名。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.timerchannel.pulse_width">
+<code class="descclassname">timerchannel.</code><code class="descname">pulse_width</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.timerchannel.pulse_width" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置与通道相关的脉宽值。捕捉、比较和脉宽都是同一函数的别名。脉宽是通道在PWM模式下的所使用的逻辑名。</p>
+<p>在边沿对齐模式下， <code class="docutils literal"><span class="pre">period&nbsp;+&nbsp;1</span></code> 的脉宽与100%的任务周期相对应。在中心对齐模式下， <code class="docutils literal"><span class="pre">period</span></code> 的脉宽与100%的任务周期相对应。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.timerchannel.pulse_width_percent">
+<code class="descclassname">timerchannel.</code><code class="descname">pulse_width_percent</code><span class="sig-paren">(</span><span class="optional">[</span><em>value</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.timerchannel.pulse_width_percent" title="永久链接至目标">¶</a></dt>
+<dd><p>获取或设置与通道相关的脉宽百分比。该数值（介于1-100间）设置脉冲活动的定时器周期的百分比。该值可为整数或更为准确的浮点值。例如：取值25则设置任务周期的25%。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.UART.html" class="btn btn-neutral float-right" title="UART类 – 双向串行通信总线" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyb.Switch.html" class="btn btn-neutral" title="class Switch – 开关对象" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

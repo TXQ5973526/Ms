@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>uselect – 在一组流中等待事件 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="MicroPython 函数库" href="index.html"/>
+        <link rel="next" title="usocket – socket模块" href="usocket.html"/>
+        <link rel="prev" title="ure – 正则表达式" href="ure.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="builtins.html">内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="array.html"><code class="docutils literal"><span class="pre">array</span></code> – 数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmath.html"><code class="docutils literal"><span class="pre">cmath</span></code> – 复数的数学函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gc.html"><code class="docutils literal"><span class="pre">gc</span></code> – 控制垃圾回收器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="math.html"><code class="docutils literal"><span class="pre">math</span></code> – 数学函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sys.html"><code class="docutils literal"><span class="pre">sys</span></code> – 系统相关函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ubinascii.html"><code class="docutils literal"><span class="pre">ubinascii</span></code> – 二进制/ASCII转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ucollections.html"><code class="docutils literal"><span class="pre">ucollections</span></code> – 容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uerrno.html"><code class="docutils literal"><span class="pre">uerrno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uhashlib.html"><code class="docutils literal"><span class="pre">uhashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uheapq.html"><code class="docutils literal"><span class="pre">uheapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uio.html"><code class="docutils literal"><span class="pre">uio</span></code> – 输入/输出流</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ujson.html"><code class="docutils literal"><span class="pre">ujson</span></code> – JSON编码与解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uos.html"><code class="docutils literal"><span class="pre">uos</span></code> – 基本“操作系统”服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ure.html"><code class="docutils literal"><span class="pre">ure</span></code> – 正则表达式</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">uselect</span></code> – 在一组流中等待事件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#poll"><code class="docutils literal"><span class="pre">Poll</span></code> 类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="usocket.html"><code class="docutils literal"><span class="pre">usocket</span></code> – socket模块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ustruct.html"><code class="docutils literal"><span class="pre">ustruct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utime.html"><code class="docutils literal"><span class="pre">utime</span></code> – 时间相关的函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uzlib.html"><code class="docutils literal"><span class="pre">uzlib</span></code> – zlib解压缩</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">uselect</span></code> – 在一组流中等待事件</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/uselect.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-uselect">
+<span id="uselect"></span><h1><a class="reference internal" href="#module-uselect" title="uselect: 在一组流中等待事件"><code class="xref py py-mod docutils literal"><span class="pre">uselect</span></code></a> – 在一组流中等待事件<a class="headerlink" href="#module-uselect" title="永久链接至标题">¶</a></h1>
+<p>该模块实现相应 <a class="reference internal" href="../reference/glossary.html#term-cpython"><code class="xref any std std-term docutils literal"><span class="pre">CPython</span></code></a> 模块的子集，如下所示。更多信息，请参见</p>
+<p><em>This module implements a subset of the corresponding</em> <a class="reference internal" href="../reference/glossary.html#term-cpython"><code class="xref any std std-term docutils literal"><span class="pre">CPython</span></code></a> <em>module,
+as described below. For more information, refer to the original
+CPython documentation:</em> <a class="reference external" href="https://docs.python.org/3/library/select.html#module-select" title="(在 Python v3.6)"><code class="docutils literal"><span class="pre">select</span></code></a>.</p>
+<p>该模块提供用以在流中等待事件的函数（选择用于操作的流）。</p>
+<div class="section" id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="uselect.poll">
+<code class="descclassname">uselect.</code><code class="descname">poll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uselect.poll" title="永久链接至目标">¶</a></dt>
+<dd><p>创建轮询类的实例。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="uselect.select">
+<code class="descclassname">uselect.</code><code class="descname">select</code><span class="sig-paren">(</span><em>rlist</em>, <em>wlist</em>, <em>xlist</em><span class="optional">[</span>, <em>timeout</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uselect.select" title="永久链接至目标">¶</a></dt>
+<dd><p>等待一组对象上的活动。</p>
+<p>这个函数为兼容性设计，效率不高。建议使用 <code class="docutils literal"><span class="pre">Poll</span></code> 。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="poll">
+<h2><code class="docutils literal"><span class="pre">Poll</span></code> 类<a class="headerlink" href="#poll" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id2">
+<h3>方法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<dl class="method">
+<dt id="uselect.poll.register">
+<code class="descclassname">poll.</code><code class="descname">register</code><span class="sig-paren">(</span><em>obj</em><span class="optional">[</span>, <em>eventmask</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uselect.poll.register" title="永久链接至目标">¶</a></dt>
+<dd><p>注册用于轮询的 <code class="docutils literal"><span class="pre">obj</span></code> 。 <code class="docutils literal"><span class="pre">eventmask</span></code>&nbsp;是下列的逻辑或：</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">select.POLLIN</span></code>  - 用于读取的数据</li>
+<li><code class="docutils literal"><span class="pre">select.POLLOUT</span></code> - 可写入更多数据</li>
+<li><code class="docutils literal"><span class="pre">select.POLLERR</span></code> - 出现误差</li>
+<li><code class="docutils literal"><span class="pre">select.POLLHUP</span></code> - 检测到流结束/连接终止</li>
+</ul>
+<p><em>eventmask</em> 默认值为 <code class="docutils literal"><span class="pre">select.POLLIN</span> <span class="pre">|</span> <span class="pre">select.POLLOUT</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uselect.poll.unregister">
+<code class="descclassname">poll.</code><code class="descname">unregister</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#uselect.poll.unregister" title="永久链接至目标">¶</a></dt>
+<dd><p>注销轮询的 <em>obj</em> 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uselect.poll.modify">
+<code class="descclassname">poll.</code><code class="descname">modify</code><span class="sig-paren">(</span><em>obj</em>, <em>eventmask</em><span class="sig-paren">)</span><a class="headerlink" href="#uselect.poll.modify" title="永久链接至目标">¶</a></dt>
+<dd><p>修改用于 <em>obj</em> 的 <em>eventmask</em> 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="uselect.poll.poll">
+<code class="descclassname">poll.</code><code class="descname">poll</code><span class="sig-paren">(</span><span class="optional">[</span><em>timeout</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uselect.poll.poll" title="永久链接至目标">¶</a></dt>
+<dd><dl class="docutils">
+<dt>等待至少一个已注册对象准备就绪。返回元组的列表( <code class="docutils literal"><span class="pre">obj</span></code> ,&nbsp;<code class="docutils literal"><span class="pre">event</span></code> , …)，</dt>
+<dd><code class="docutils literal"><span class="pre">event</span></code>&nbsp;元素为一个上述select.POLL*常量的组合，且指定流中发生的事件。元组中可能有其他元素，这取决于平台和版本，故请勿假设其大小为2。在超时情况下，则返回一个空列表。</dd>
+</dl>
+<p>超时以毫秒计。</p>
+<div class="attention admonition">
+<p class="first admonition-title">与CPython区别</p>
+<p class="last">如上所述，返回的元组可能包括多于2个元素。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="uselect.poll.ipoll">
+<code class="descclassname">poll.</code><code class="descname">ipoll</code><span class="sig-paren">(</span><span class="optional">[</span><em>timeout</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#uselect.poll.ipoll" title="永久链接至目标">¶</a></dt>
+<dd><p>与 <a class="reference internal" href="#uselect.poll.poll" title="uselect.poll.poll"><code class="xref py py-meth docutils literal"><span class="pre">poll.poll()</span></code></a> 类似，但是返回一个产生被调用函数所有元组的迭代器。该函数提供高效的、无位置的在流中进行轮询的方法。</p>
+<div class="attention admonition">
+<p class="first admonition-title">与CPython区别</p>
+<p class="last">该函数是MicroPython的扩展。</p>
+</div>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="usocket.html" class="btn btn-neutral float-right" title="usocket – socket模块" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ure.html" class="btn btn-neutral" title="ure – 正则表达式" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

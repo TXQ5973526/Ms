@@ -1,0 +1,578 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>math – 数学函数 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="MicroPython 函数库" href="index.html"/>
+        <link rel="next" title="sys – 系统相关函数" href="sys.html"/>
+        <link rel="prev" title="gc – 控制垃圾回收器" href="gc.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="builtins.html">内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="array.html"><code class="docutils literal"><span class="pre">array</span></code> – 数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmath.html"><code class="docutils literal"><span class="pre">cmath</span></code> – 复数的数学函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gc.html"><code class="docutils literal"><span class="pre">gc</span></code> – 控制垃圾回收器</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">math</span></code> – 数学函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sys.html"><code class="docutils literal"><span class="pre">sys</span></code> – 系统相关函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ubinascii.html"><code class="docutils literal"><span class="pre">ubinascii</span></code> – 二进制/ASCII转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ucollections.html"><code class="docutils literal"><span class="pre">ucollections</span></code> – 容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uerrno.html"><code class="docutils literal"><span class="pre">uerrno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uhashlib.html"><code class="docutils literal"><span class="pre">uhashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uheapq.html"><code class="docutils literal"><span class="pre">uheapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uio.html"><code class="docutils literal"><span class="pre">uio</span></code> – 输入/输出流</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ujson.html"><code class="docutils literal"><span class="pre">ujson</span></code> – JSON编码与解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uos.html"><code class="docutils literal"><span class="pre">uos</span></code> – 基本“操作系统”服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ure.html"><code class="docutils literal"><span class="pre">ure</span></code> – 正则表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uselect.html"><code class="docutils literal"><span class="pre">uselect</span></code> – 在一组流中等待事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usocket.html"><code class="docutils literal"><span class="pre">usocket</span></code> – socket模块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ustruct.html"><code class="docutils literal"><span class="pre">ustruct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utime.html"><code class="docutils literal"><span class="pre">utime</span></code> – 时间相关的函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uzlib.html"><code class="docutils literal"><span class="pre">uzlib</span></code> – zlib解压缩</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">math</span></code> – 数学函数</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/math.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-math">
+<span id="math"></span><h1><a class="reference internal" href="#module-math" title="math: 数学函数"><code class="xref py py-mod docutils literal"><span class="pre">math</span></code></a> – 数学函数<a class="headerlink" href="#module-math" title="永久链接至标题">¶</a></h1>
+<p>该模块实现相应CPython模块的子集，如下所示。更多信息，请参见
+<a href="#id3"><span class="problematic" id="id4">|CPython文档|</span></a> <a class="reference external" href="https://docs.python.org/3/library/math.html#module-math" title="(在 Python v3.6)"><code class="docutils literal"><span class="pre">math</span></code></a>.</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">math</span></code> 模块提供一些用于处理浮点数的基本函数。</div></blockquote>
+<p>注意:&nbsp;在pyboard和OpenMV Cam中，浮点数的精度为32位。</p>
+<div class="section" id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="math.acos">
+<code class="descclassname">math.</code><code class="descname">acos</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.acos" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的反余弦函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.acosh">
+<code class="descclassname">math.</code><code class="descname">acosh</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.acosh" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的反双曲余弦函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.asin">
+<code class="descclassname">math.</code><code class="descname">asin</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.asin" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的反正弦函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.asinh">
+<code class="descclassname">math.</code><code class="descname">asinh</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.asinh" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的反双曲正弦函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.atan">
+<code class="descclassname">math.</code><code class="descname">atan</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.atan" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的反正切函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.atan2">
+<code class="descclassname">math.</code><code class="descname">atan2</code><span class="sig-paren">(</span><em>y</em>, <em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.atan2" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">y/x</span></code> 的反正切函数的主值。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.atanh">
+<code class="descclassname">math.</code><code class="descname">atanh</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.atanh" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的反双曲正切函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.ceil">
+<code class="descclassname">math.</code><code class="descname">ceil</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.ceil" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个正整数,将 <code class="docutils literal"><span class="pre">x</span></code> 向正无穷大舍入。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.copysign">
+<code class="descclassname">math.</code><code class="descname">copysign</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#math.copysign" title="永久链接至目标">¶</a></dt>
+<dd><p>以 <code class="docutils literal"><span class="pre">y</span></code> 的符号返回 <code class="docutils literal"><span class="pre">x</span></code> 。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.cos">
+<code class="descclassname">math.</code><code class="descname">cos</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.cos" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的的余弦函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.cosh">
+<code class="descclassname">math.</code><code class="descname">cosh</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.cosh" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的双曲余弦函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.degrees">
+<code class="descclassname">math.</code><code class="descname">degrees</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.degrees" title="永久链接至目标">¶</a></dt>
+<dd><p>返回弧度 <code class="docutils literal"><span class="pre">x</span></code> 对应的度数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.erf">
+<code class="descclassname">math.</code><code class="descname">erf</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.erf" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的误差函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.erfc">
+<code class="descclassname">math.</code><code class="descname">erfc</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.erfc" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的补差函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.exp">
+<code class="descclassname">math.</code><code class="descname">exp</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.exp" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的指数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.expm1">
+<code class="descclassname">math.</code><code class="descname">expm1</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.expm1" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">exp(x)</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.fabs">
+<code class="descclassname">math.</code><code class="descname">fabs</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.fabs" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的绝对值。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.floor">
+<code class="descclassname">math.</code><code class="descname">floor</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.floor" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个整数,将 <code class="docutils literal"><span class="pre">x</span></code> 向负无穷大舍入.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.fmod">
+<code class="descclassname">math.</code><code class="descname">fmod</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#math.fmod" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x/y</span></code> 的余数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.frexp">
+<code class="descclassname">math.</code><code class="descname">frexp</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.frexp" title="永久链接至目标">¶</a></dt>
+<dd><p>将浮点数分解为尾数和指数。返回值是元组 <code class="docutils literal"><span class="pre">(m,&nbsp;e)</span></code> ，确切表示为 <code class="docutils literal"><span class="pre">x&nbsp;==&nbsp;m&nbsp;*&nbsp;2**e</span></code> 。
+若&nbsp;<code class="docutils literal"><span class="pre">x&nbsp;==&nbsp;0</span></code> ，则该函数返回 <code class="docutils literal"><span class="pre">(0.0,&nbsp;0)</span></code> ，否则 <code class="docutils literal"><span class="pre">0.5&nbsp;&lt;=&nbsp;abs(m)&nbsp;&lt;&nbsp;1</span></code> 关系成立。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.gamma">
+<code class="descclassname">math.</code><code class="descname">gamma</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.gamma" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的伽玛函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.isfinite">
+<code class="descclassname">math.</code><code class="descname">isfinite</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.isfinite" title="永久链接至目标">¶</a></dt>
+<dd><p>若 <code class="docutils literal"><span class="pre">x</span></code> 为有限的，则返回 <code class="docutils literal"><span class="pre">True</span></code> 。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.isinf">
+<code class="descclassname">math.</code><code class="descname">isinf</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.isinf" title="永久链接至目标">¶</a></dt>
+<dd><p>若 <code class="docutils literal"><span class="pre">x</span></code> 为无限，则返回 <code class="docutils literal"><span class="pre">True</span></code> 。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.isnan">
+<code class="descclassname">math.</code><code class="descname">isnan</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.isnan" title="永久链接至目标">¶</a></dt>
+<dd><p>若 <code class="docutils literal"><span class="pre">x</span></code> 非数字，则返回 <code class="docutils literal"><span class="pre">True</span></code> 。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.ldexp">
+<code class="descclassname">math.</code><code class="descname">ldexp</code><span class="sig-paren">(</span><em>x</em>, <em>exp</em><span class="sig-paren">)</span><a class="headerlink" href="#math.ldexp" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span> <span class="pre">*</span> <span class="pre">(2**exp)</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.lgamma">
+<code class="descclassname">math.</code><code class="descname">lgamma</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.lgamma" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的伽玛函数的自然对数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.log">
+<code class="descclassname">math.</code><code class="descname">log</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.log" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的自然对数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.log10">
+<code class="descclassname">math.</code><code class="descname">log10</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.log10" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 以10为底的对数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.log2">
+<code class="descclassname">math.</code><code class="descname">log2</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.log2" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 以2为底的对数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.modf">
+<code class="descclassname">math.</code><code class="descname">modf</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.modf" title="永久链接至目标">¶</a></dt>
+<dd><p>返回包含两个浮点值的元组，即x的分数和积分部分。两个返回值都与 <code class="docutils literal"><span class="pre">x</span></code> 有同样标记。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.pow">
+<code class="descclassname">math.</code><code class="descname">pow</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#math.pow" title="永久链接至目标">¶</a></dt>
+<dd><p>将 <code class="docutils literal"><span class="pre">x</span></code> 返回 <code class="docutils literal"><span class="pre">y</span></code> 的幂。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.radians">
+<code class="descclassname">math.</code><code class="descname">radians</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.radians" title="永久链接至目标">¶</a></dt>
+<dd><p>返回度数 <code class="docutils literal"><span class="pre">x</span></code> 的弧度。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.sin">
+<code class="descclassname">math.</code><code class="descname">sin</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.sin" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的正弦函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.sinh">
+<code class="descclassname">math.</code><code class="descname">sinh</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.sinh" title="永久链接至目标">¶</a></dt>
+<dd><p>返回的 <code class="docutils literal"><span class="pre">x</span></code> 双曲正弦函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.sqrt">
+<code class="descclassname">math.</code><code class="descname">sqrt</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.sqrt" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的平方根.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.tan">
+<code class="descclassname">math.</code><code class="descname">tan</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.tan" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的正切函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.tanh">
+<code class="descclassname">math.</code><code class="descname">tanh</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.tanh" title="永久链接至目标">¶</a></dt>
+<dd><p>返回 <code class="docutils literal"><span class="pre">x</span></code> 的双曲正切函数。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="math.trunc">
+<code class="descclassname">math.</code><code class="descname">trunc</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#math.trunc" title="永久链接至目标">¶</a></dt>
+<dd><p>截尾函数，返回 <code class="docutils literal"><span class="pre">x</span></code> 的整数部分。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>常量<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="math.e">
+<code class="descclassname">math.</code><code class="descname">e</code><a class="headerlink" href="#math.e" title="永久链接至目标">¶</a></dt>
+<dd><p>自然对数的底。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="math.pi">
+<code class="descclassname">math.</code><code class="descname">pi</code><a class="headerlink" href="#math.pi" title="永久链接至目标">¶</a></dt>
+<dd><p>一个圆的周长与其直径的比值。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sys.html" class="btn btn-neutral float-right" title="sys – 系统相关函数" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gc.html" class="btn btn-neutral" title="gc – 控制垃圾回收器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

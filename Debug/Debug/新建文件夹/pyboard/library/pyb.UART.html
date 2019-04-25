@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>UART类 – 双向串行通信总线 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="pyb — 板级功能" href="pyb.html"/>
+        <link rel="next" title="class USB_HID – USB 人机接口设备 (HID)" href="pyb.USB_HID.html"/>
+        <link rel="prev" title="Timer类 – 控制内部定时器" href="pyb.Timer.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id1">时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id2">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id3">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id4">电源相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id5">其他功能</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pyb.html#id6">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lcd160cr.html"><code class="docutils literal"><span class="pre">lcd160cr</span></code> — 控制LCD160CR显示屏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+          <li><a href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a> &raquo;</li>
+        
+      <li>UART类 – 双向串行通信总线</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/pyb.UART.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="uart">
+<span id="pyb-uart"></span><h1>UART类 – 双向串行通信总线<a class="headerlink" href="#uart" title="永久链接至标题">¶</a></h1>
+<p>UART执行标准UART/USART双向串行通信协议。其物理层包括两条线：RX和TX。通信单元为8位或9位宽的字符（勿与字符串字符混淆）。</p>
+<p>UART对象可通过下列方式创建和初始化:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">UART</span>
+
+<span class="n">uart</span> <span class="o">=</span> <span class="n">UART</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9600</span><span class="p">)</span>                         <span class="c1"># init with given baudrate</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="mi">9600</span><span class="p">,</span> <span class="n">bits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">parity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># init with given parameters</span>
+</pre></div>
+</div>
+<p>位数可为7、8、9。奇偶性可为None、0（偶）、1（奇）。停止位可为1或2。</p>
+<p><em>注意:</em> 奇偶性为None时，仅支持位数为8和9。启用奇偶性时，仅支持位数为7和8。</p>
+<p>UART对象与流对象相似，其读取与写入均使用流对象方法:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">uart</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>       <span class="c1"># read 10 characters, returns a bytes object 读取10字符，返回一个字节对象</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>         <span class="c1"># read all available characters 读取所有可用字符</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>     <span class="c1"># read a line 读取一条线</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>  <span class="c1"># read and store into the given buffer 读取并存入缓冲区</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>   <span class="c1"># write the 3 characters 写入3个字符</span>
+</pre></div>
+</div>
+<p>单个字符可通过下列方法读取/写入:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">uart</span><span class="o">.</span><span class="n">readchar</span><span class="p">()</span>     <span class="c1"># read 1 character and returns it as an integer 读取一个字符，并返回其整数形式</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">writechar</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># write 1 character 写入一个字符</span>
+</pre></div>
+</div>
+<p>检查是否有内容有待读取，请使用:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">uart</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>          <span class="c1"># returns the number of characters waiting 返回等待的字符数量</span>
+</pre></div>
+</div>
+<p><em>注意：</em> 流函数 <code class="docutils literal"><span class="pre">read</span></code> 、 <code class="docutils literal"><span class="pre">write</span></code> 等适用于MicroPython v1.3.4。早期版本请使用 <code class="docutils literal"><span class="pre">uart.send</span></code> 和 <code class="docutils literal"><span class="pre">uart.recv</span></code> 。</p>
+<div class="section" id="id1">
+<h2>构造函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="pyb.pyb.UART">
+<em class="property">class </em><code class="descclassname">pyb.</code><code class="descname">UART</code><span class="sig-paren">(</span><em>bus</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pyb.UART" title="永久链接至目标">¶</a></dt>
+<dd><p>在给定总线上创建一个UART对象。bus可为3。若无额外参数，可创建UART对象，但未进行初始化（
+其设置来自总线的最后一次初始化，若存在的话）。若给定额外参数，则总线初始化。初始化参数请参见 <code class="docutils literal"><span class="pre">init</span></code> 。</p>
+<p>UART总线的物理引脚为:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">UART(4)</span></code> is on <code class="docutils literal"><span class="pre">XA</span></code>: <code class="docutils literal"><span class="pre">(TX,</span> <span class="pre">RX)</span> <span class="pre">=</span> <span class="pre">(X1,</span> <span class="pre">X2)</span> <span class="pre">=</span> <span class="pre">(PA0,</span> <span class="pre">PA1)</span></code></li>
+<li><code class="docutils literal"><span class="pre">UART(1)</span></code> is on <code class="docutils literal"><span class="pre">XB</span></code>: <code class="docutils literal"><span class="pre">(TX,</span> <span class="pre">RX)</span> <span class="pre">=</span> <span class="pre">(X9,</span> <span class="pre">X10)</span> <span class="pre">=</span> <span class="pre">(PB6,</span> <span class="pre">PB7)</span></code></li>
+<li><code class="docutils literal"><span class="pre">UART(6)</span></code> is on <code class="docutils literal"><span class="pre">YA</span></code>: <code class="docutils literal"><span class="pre">(TX,</span> <span class="pre">RX)</span> <span class="pre">=</span> <span class="pre">(Y1,</span> <span class="pre">Y2)</span> <span class="pre">=</span> <span class="pre">(PC6,</span> <span class="pre">PC7)</span></code></li>
+<li><code class="docutils literal"><span class="pre">UART(3)</span></code> is on <code class="docutils literal"><span class="pre">YB</span></code>: <code class="docutils literal"><span class="pre">(TX,</span> <span class="pre">RX)</span> <span class="pre">=</span> <span class="pre">(Y9,</span> <span class="pre">Y10)</span> <span class="pre">=</span> <span class="pre">(PB10,</span> <span class="pre">PB11)</span></code></li>
+<li><code class="docutils literal"><span class="pre">UART(2)</span></code> is on: <code class="docutils literal"><span class="pre">(TX,</span> <span class="pre">RX)</span> <span class="pre">=</span> <span class="pre">(X3,</span> <span class="pre">X4)</span> <span class="pre">=</span> <span class="pre">(PA2,</span> <span class="pre">PA3)</span></code></li>
+</ul>
+</div></blockquote>
+<p>The Pyboard Lite supports UART(1), UART(2) and UART(6) only. Pins are as above except:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">UART(2)</span></code> is on: <code class="docutils literal"><span class="pre">(TX,</span> <span class="pre">RX)</span> <span class="pre">=</span> <span class="pre">(X1,</span> <span class="pre">X2)</span> <span class="pre">=</span> <span class="pre">(PA2,</span> <span class="pre">PA3)</span></code></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="pyb.UART.init">
+<code class="descclassname">UART.</code><code class="descname">init</code><span class="sig-paren">(</span><em>baudrate</em>, <em>bits=8</em>, <em>parity=None</em>, <em>stop=1</em>, <em>*</em>, <em>timeout=1000</em>, <em>flow=0</em>, <em>timeout_char=0</em>, <em>read_buf_len=64</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.UART.init" title="永久链接至目标">¶</a></dt>
+<dd><p>使用给定参数初始化UART总线:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">baudrate</span></code> 为时钟频率。</li>
+<li><code class="docutils literal"><span class="pre">bits</span></code> 为每个字符的位数，7、8或9。</li>
+<li><code class="docutils literal"><span class="pre">parity</span></code> 为奇偶校验， <code class="docutils literal"><span class="pre">None</span></code> ，0（偶）或1（奇）。</li>
+<li><code class="docutils literal"><span class="pre">stop</span></code> 为停止位的数量，1或2</li>
+<li><code class="docutils literal"><span class="pre">flow</span></code> 设置流控制类型。可为0、 <code class="docutils literal"><span class="pre">UART.RTS</span></code>, <code class="docutils literal"><span class="pre">UART.CTS</span></code>
+或 <code class="docutils literal"><span class="pre">UART.RTS</span> <span class="pre">|</span> <span class="pre">UART.CTS</span></code>.</li>
+<li><code class="docutils literal"><span class="pre">timeout</span></code> 为等待读取/写入首个字符的超时时长（以毫秒为单位）。</li>
+<li><code class="docutils literal"><span class="pre">timeout_char</span></code> 为读取或写入时字符间等待的超时时长（以毫秒为单位）。</li>
+<li><code class="docutils literal"><span class="pre">read_buf_len</span></code> 为读取缓冲区的字符长度（0为禁用）。</li>
+</ul>
+</div></blockquote>
+<p>若波特率不能设置为期望值的5%以内，此方法将会引发故障。最小波特率是由UART所在总线的频率决定的。
+UART(1)和UART(6)为APB2，其他则在APB1。默认总线频率给定UART(1)和UART(6)的最小波特率为1300，
+其他为650。使用pyb.freq来降低总线频率以获得更低的波特率。</p>
+<p><em>注意：</em> &nbsp;奇偶校验为None时，仅支持8位和9位。启用奇偶校验时，仅支持7位和8位。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.UART.deinit">
+<code class="descclassname">UART.</code><code class="descname">deinit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.UART.deinit" title="永久链接至目标">¶</a></dt>
+<dd><p>关闭UART总线。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.UART.any">
+<code class="descclassname">UART.</code><code class="descname">any</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.UART.any" title="永久链接至目标">¶</a></dt>
+<dd><p>返回等待的字节数量（可能为0）。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.UART.read">
+<code class="descclassname">UART.</code><code class="descname">read</code><span class="sig-paren">(</span><span class="optional">[</span><em>nbytes</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.UART.read" title="永久链接至目标">¶</a></dt>
+<dd><p>读取字符。若指定 <code class="docutils literal"><span class="pre">nbytes</span></code> ，则最多只能读取该数量的字节。若在缓冲区中可用，立即返回，否则在达到足够字符或超时时间过期时返回。</p>
+<p><em>注意：</em> 9位字符的每个字符占2字节， <code class="docutils literal"><span class="pre">nbytes</span></code> 须为偶，字符的数量为 <code class="docutils literal"><span class="pre">nbytes/2</span></code>.</p>
+<p>Return value: a bytes object containing the bytes read in.  Returns <code class="docutils literal"><span class="pre">None</span></code>
+on timeout.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.UART.readchar">
+<code class="descclassname">UART.</code><code class="descname">readchar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.UART.readchar" title="永久链接至目标">¶</a></dt>
+<dd><p>在总线上接收单个字符。</p>
+<p>返回值：整数形式的读取的字符。超时返回-1。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.UART.readinto">
+<code class="descclassname">UART.</code><code class="descname">readinto</code><span class="sig-paren">(</span><em>buf</em><span class="optional">[</span>, <em>nbytes</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.UART.readinto" title="永久链接至目标">¶</a></dt>
+<dd><p>将字节读取到 <code class="docutils literal"><span class="pre">buf</span></code> 。若指定 <code class="docutils literal"><span class="pre">nbytes</span></code> ，则最多只能读取该数量的字节。否则最多只能读取 <code class="docutils literal"><span class="pre">len(buf)</span></code> 字节。</p>
+<p>返回值：读取并存储在 <code class="docutils literal"><span class="pre">buf</span></code> 或 <code class="docutils literal"><span class="pre">None</span></code> 超时的字节数。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.UART.readline">
+<code class="descclassname">UART.</code><code class="descname">readline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.UART.readline" title="永久链接至目标">¶</a></dt>
+<dd><p>读取一行，以换行符结尾。若存这样的一行，立即返回。若超时时间过期，无论是否存在新的一行，都返回所有可用数据。</p>
+<p>返回值：读取的行，或超时的 <a href="#id3"><span class="problematic" id="id4">``</span></a>None``（若无可用数据）。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.UART.write">
+<code class="descclassname">UART.</code><code class="descname">write</code><span class="sig-paren">(</span><em>buf</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.UART.write" title="永久链接至目标">¶</a></dt>
+<dd><p>将字节的缓冲区写入总线。若字符为7位或8位宽，则每个字节为一个字符。若字符为9位宽，则每个字符（小端模式）为2个字节，且 <code class="docutils literal"><span class="pre">buf</span></code> 须包括偶数个字节。</p>
+<p>返回值：写入的字节数。若超时且未写入任何字节，则返回 <code class="docutils literal"><span class="pre">None</span></code> 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.UART.writechar">
+<code class="descclassname">UART.</code><code class="descname">writechar</code><span class="sig-paren">(</span><em>char</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.UART.writechar" title="永久链接至目标">¶</a></dt>
+<dd><p>在总线上写入单个字符。 <code class="docutils literal"><span class="pre">char</span></code> 是要写入的整数。返回值： <code class="docutils literal"><span class="pre">None</span></code> 。CTS流控制是否使用，请参见以下注释。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.UART.sendbreak">
+<code class="descclassname">UART.</code><code class="descname">sendbreak</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.UART.sendbreak" title="永久链接至目标">¶</a></dt>
+<dd><p>在总线上发送一个中断状态。这将使得总线持续13位的低位。</p>
+<p>返回值： <code class="docutils literal"><span class="pre">None</span></code> 。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id5">
+<h2>常量<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="pyb.UART.RTS">
+<code class="descclassname">UART.</code><code class="descname">RTS</code><a class="headerlink" href="#pyb.UART.RTS" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="pyb.UART.CTS">
+<code class="descclassname">UART.</code><code class="descname">CTS</code><a class="headerlink" href="#pyb.UART.CTS" title="永久链接至目标">¶</a></dt>
+<dd><p>选择流控制类型。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id6">
+<h2>流控制<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>在Pyboards V1和V1.1上， <code class="docutils literal"><span class="pre">UART(2)</span></code> 和 <code class="docutils literal"><span class="pre">UART(3)</span></code>&nbsp;使用以下引脚支持硬件流控制:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">UART(2)</span></code> 在: <code class="docutils literal"><span class="pre">(TX,</span> <span class="pre">RX,</span> <span class="pre">nRTS,</span> <span class="pre">nCTS)</span> <span class="pre">=</span> <span class="pre">(X3,</span> <span class="pre">X4,</span> <span class="pre">X2,</span> <span class="pre">X1)</span> <span class="pre">=</span> <span class="pre">(PA2,</span> <span class="pre">PA3,</span> <span class="pre">PA1,</span> <span class="pre">PA0)</span></code></li>
+<li><code class="docutils literal"><span class="pre">UART(3)</span></code> 在 :<code class="docutils literal"><span class="pre">(TX,</span> <span class="pre">RX,</span> <span class="pre">nRTS,</span> <span class="pre">nCTS)</span> <span class="pre">=</span> <span class="pre">(Y9,</span> <span class="pre">Y10,</span> <span class="pre">Y7,</span> <span class="pre">Y6)</span> <span class="pre">=</span> <span class="pre">(PB10,</span> <span class="pre">PB11,</span> <span class="pre">PB14,</span> <span class="pre">PB13)</span></code></li>
+</ul>
+</div></blockquote>
+<p>在Pyboard上，Lite仅 <code class="docutils literal"><span class="pre">UART(2)</span></code> 支持以下引脚上的流控制:</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">(TX,</span> <span class="pre">RX,</span> <span class="pre">nRTS,</span> <span class="pre">nCTS)</span> <span class="pre">=</span> <span class="pre">(X1,</span> <span class="pre">X2,</span> <span class="pre">X4,</span> <span class="pre">X3)</span> <span class="pre">=</span> <span class="pre">(PA2,</span> <span class="pre">PA3,</span> <span class="pre">PA1,</span> <span class="pre">PA0)</span></code></div></blockquote>
+<p>在以下的段落中，术语“target”指连接到UART的设备。</p>
+<p>当UART的 <code class="docutils literal"><span class="pre">init()</span></code> 函数被调用，且 <code class="docutils literal"><span class="pre">flow</span></code> 设置为 <code class="docutils literal"><span class="pre">UART.RTS</span></code> 和 <code class="docutils literal"><span class="pre">UART.CTS</span></code> 中的一个或两个，
+则相关流控制引脚被配置。 <code class="docutils literal"><span class="pre">nRTS</span></code> 为低电平有效输出， <code class="docutils literal"><span class="pre">nCTS</span></code> 为启用上拉的低电平有效输入。
+为实现流控制，Pyboard 的 <code class="docutils literal"><span class="pre">nCTS</span></code> 信号应连接到目标的 <code class="docutils literal"><span class="pre">nRTS</span></code> ， <code class="docutils literal"><span class="pre">nRTS</span></code> 连接到目标的 <code class="docutils literal"><span class="pre">nCTS</span></code> 。</p>
+<div class="section" id="cts-pyboard">
+<h3>CTS: 目标控制Pyboard发送器<a class="headerlink" href="#cts-pyboard" title="永久链接至标题">¶</a></h3>
+<p>若启用了CTS流控制，则写入行为如下s:</p>
+<p>若调用了Pyboard的 <code class="docutils literal"><span class="pre">UART.write(buf)</span></code>&nbsp;函数，且 <code class="docutils literal"><span class="pre">nCTS</span></code> 为 <code class="docutils literal"><span class="pre">False</span></code> 时，
+传输将在任何时段停止。若整个缓冲区未在超时周期内传输，则将导致超时。此方法返回写入的字节数量，
+使用户能够根据需要写入剩余的数据。发生超时事件时，字符将保留在UART中。组成该字符的字节数量将包含在返回值中。</p>
+<p>若在 <code class="docutils literal"><span class="pre">nCTS</span></code> 为 <code class="docutils literal"><span class="pre">False</span></code> 时调用 <code class="docutils literal"><span class="pre">UART.writechar()</span></code> ，
+则此方法将会超时，除非目标即使断言 <code class="docutils literal"><span class="pre">nCTS</span></code> 。若 <code class="docutils literal"><span class="pre">OSError&nbsp;116</span></code> 超时，
+则将出现故障。目标断言 <code class="docutils literal"><span class="pre">nCTS</span></code> 后，字符将立即被传输。</p>
+</div>
+<div class="section" id="rts-pyboard">
+<h3>RTS: Pyboard控制目标发送器<a class="headerlink" href="#rts-pyboard" title="永久链接至标题">¶</a></h3>
+<p>若启用RTS流控制，行为应如下:</p>
+<p>若使用缓冲输入（ <code class="docutils literal"><span class="pre">read_buf_len</span></code>&nbsp;&gt; 0），则传入的字符被缓冲。若缓冲区满，
+则接收的下一个字符将导致 <code class="docutils literal"><span class="pre">nRTS</span></code> 出现 <code class="docutils literal"><span class="pre">False</span></code> ：目标应停止传输。字符从缓冲区中读取时， <code class="docutils literal"><span class="pre">nRTS</span></code> 将恢复 <code class="docutils literal"><span class="pre">True</span></code> 。</p>
+<p>注意： <code class="docutils literal"><span class="pre">any()</span></code> 方法返回缓冲区中的字节数量。假设一个 <code class="docutils literal"><span class="pre">N</span></code> 字节的缓冲区长度。
+若缓冲区满，且又接收到字符，则 <code class="docutils literal"><span class="pre">nRTS</span></code> 将被设置为 <code class="docutils literal"><span class="pre">False</span></code> ，且 <code class="docutils literal"><span class="pre">any()</span></code> 将返回N计数。
+字符被读取时，其他字符将被置于缓冲区中，且将包括在随后 <code class="docutils literal"><span class="pre">any()</span></code> 调用的结果中。</p>
+<p>若未使用缓冲输入（ <code class="docutils literal"><span class="pre">read_buf_len</span></code>&nbsp;== 0），接收下一个字符则将导致 <code class="docutils literal"><span class="pre">nRTS</span></code> 出现 <code class="docutils literal"><span class="pre">False</span></code> ，此状态一直持续到字符被读取。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.USB_HID.html" class="btn btn-neutral float-right" title="class USB_HID – USB 人机接口设备 (HID)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyb.Timer.html" class="btn btn-neutral" title="Timer类 – 控制内部定时器" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

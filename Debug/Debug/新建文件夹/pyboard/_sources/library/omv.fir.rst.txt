@@ -1,0 +1,137 @@
+:mod:`fir` --- 热成像扩展板驱动 (fir == 远红外线)
+=============================================================
+
+.. module:: fir
+   :synopsis: 热成像扩展板驱动 (fir == 远红外线)
+
+``fir`` 模块用于控制热成像扩展板。
+
+用法示例::
+
+    import sensor, fir
+
+    # Setup camera. 设置摄像机。
+    sensor.reset()
+    sensor.set_pixformat(sensor.RGB565)
+    sensor.set_framesize(sensor.QVGA)
+    sensor.skip_frames()
+    fir.init()
+
+    # Show image. 显示图像。
+    while(True):
+        img = sensor.snapshot()
+        ta, ir, to_min, to_max = fir.read_ir()
+        fir.draw_ir(image, ir)
+        print("ambient temperature: %0.2f" % ta)
+        print("min temperature seen: %0.2f" % to_min)
+        print("max temperature seen: %0.2f" % to_max)
+
+函数
+---------
+
+.. function:: fir.init(type=1, refresh=64, resolution=18)
+
+   使用I/O引脚P4和P5将附加的热成像扩展板初始化。
+
+   ``type`` 表明热成像扩展板的类型（留待将来使用）：
+
+      * 0: None
+      * 1: thermopile shield
+
+   ``refresh`` 是热成像传感器的2次幂更新率（单位：Hz）。默认值为64Hz。可为1 Hz, 2 Hz, 4 Hz, 8 Hz, 16 Hz, 32 Hz, 64 Hz, 128 Hz, 256 Hz, 512 Hz。注意：较高的刷新率会降低准确性，反之亦然。
+
+   ``resolution`` 是热成像传感器的测量分辨率。默认值为18位。可为15位、16位、17位、18位。 注意：更高的分辨率降低温度最高值，反之亦然。
+
+      * 15-bits -> Max of ~950C.
+      * 16-bits -> Max of ~750C.
+      * 17-bits -> Max of ~600C.
+      * 18-bits -> Max of ~450C.
+
+   .. note::
+
+      ``type``, ``refresh``,  ``resolution`` 是键值参数，必须在函数调用中通过写入 ``type=`` , ``refresh=`` 和 ``resolution=`` 来显式地调用。
+
+.. function:: fir.deinit()
+
+   反初始化热成像扩展板，释放I/O引脚。
+
+.. function:: fir.width()
+
+   返回热成像扩展板的宽度（水平分辨率）。
+
+      * None: 0 像素。
+      * thermopile shield: 16 像素。
+
+.. function:: fir.height()
+
+   返回热成像扩展板的高度（垂直分辨率）。
+
+      * None: 0 像素。
+      * thermopile shield: 4 像素。
+
+.. function:: fir.type()
+
+   返回热成像扩展板的类型（留待未来可用）：
+
+      * 0: None
+      * 1: thermopile shield
+
+.. function:: fir.read_ta()
+
+   返回环境温度（即传感器温度）。
+
+   示例::
+
+      ta = fir.read_ta()
+
+   返回值是表示温度（单位：摄氏度）的浮点值。
+
+.. function:: fir.read_ir()
+
+   返回一个包含环境温度（即传感器温度）、温度列表（宽度*高度）、所见最低温度和所见最高温度的元组。
+
+   示例::
+
+      ta, ir, to_min, to_max = fir.read_ir()
+
+   返回值是表示温度（单位：摄氏度）的浮点值。
+
+   .. note::
+
+      ``ir`` 是一个浮点值列表（宽度*高度）。
+
+.. function:: fir.draw_ta(image, ta, alpha=128, scale=[-17.7778, 37.7778])
+
+   使用彩虹表颜色转换在 ``image`` 上画出环境温度列表（ ``ta`` ）。
+
+   ``alpha`` 控制透明度。不透明为256，透明为0。
+
+   ``scale`` 控制彩虹表颜色转换。第一个数字为截止的最低温度，第二个数字为最高温度。靠近最小值的值为蓝色，靠近最大值的值为红色。
+
+   ``scale`` 的默认值[-17.7778C, 37.7778C]与[0F, 100F]相对应。 
+
+   .. note::
+
+      为得到最佳结果，请查看极冷或极热对象。
+
+   .. note::
+
+      ``alpha`` 和 ``scale`` 是键值参数，必须在函数调用中通过写入 ``alpha=`` 和 ``scale=`` 来显式地调用。
+
+.. function:: fir.draw_ta(image, ir, alpha=128, scale=[auto, auto])
+
+   使用彩虹表颜色转换在 ``image`` 上画出环境温度列表( ``ir`` )。
+
+   ``alpha`` 控制透明度。不透明为256，透明为0。
+
+   ``scale`` 控制彩虹表颜色转换。第一个数字为截止的最低温度，第二个数字为最高温度。靠近最小值的值为蓝色，靠近最大值的值为红色。
+
+   温度列表上的最大值和最小值用来对输出 ``image`` 进行自动缩放（除非被显式地覆盖）。
+
+   .. note::
+
+      为得到最佳结果，请查看极冷或极热对象。
+
+   .. note::
+
+      ``alpha`` 和 ``scale`` 是键值参数，必须在函数调用中通过写入 ``alpha=`` 和 ``scale=`` 来显式地调用。

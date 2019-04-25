@@ -1,0 +1,595 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>usocket – socket模块 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="MicroPython 函数库" href="index.html"/>
+        <link rel="next" title="ustruct – 打包和解压缩原始数据类型" href="ustruct.html"/>
+        <link rel="prev" title="uselect – 在一组流中等待事件" href="uselect.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="builtins.html">内置函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="array.html"><code class="docutils literal"><span class="pre">array</span></code> – 数组</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cmath.html"><code class="docutils literal"><span class="pre">cmath</span></code> – 复数的数学函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gc.html"><code class="docutils literal"><span class="pre">gc</span></code> – 控制垃圾回收器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="math.html"><code class="docutils literal"><span class="pre">math</span></code> – 数学函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sys.html"><code class="docutils literal"><span class="pre">sys</span></code> – 系统相关函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ubinascii.html"><code class="docutils literal"><span class="pre">ubinascii</span></code> – 二进制/ASCII转换</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ucollections.html"><code class="docutils literal"><span class="pre">ucollections</span></code> – 容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uerrno.html"><code class="docutils literal"><span class="pre">uerrno</span></code> – 系统错误代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uhashlib.html"><code class="docutils literal"><span class="pre">uhashlib</span></code> – 散列算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uheapq.html"><code class="docutils literal"><span class="pre">uheapq</span></code> – 堆队列算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uio.html"><code class="docutils literal"><span class="pre">uio</span></code> – 输入/输出流</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ujson.html"><code class="docutils literal"><span class="pre">ujson</span></code> – JSON编码与解码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uos.html"><code class="docutils literal"><span class="pre">uos</span></code> – 基本“操作系统”服务</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ure.html"><code class="docutils literal"><span class="pre">ure</span></code> – 正则表达式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uselect.html"><code class="docutils literal"><span class="pre">uselect</span></code> – 在一组流中等待事件</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal"><span class="pre">usocket</span></code> – socket模块</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#socket">Socket地址格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">常量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ustruct.html"><code class="docutils literal"><span class="pre">ustruct</span></code> – 打包和解压缩原始数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utime.html"><code class="docutils literal"><span class="pre">utime</span></code> – 时间相关的函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uzlib.html"><code class="docutils literal"><span class="pre">uzlib</span></code> – zlib解压缩</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">usocket</span></code> – socket模块</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/usocket.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-usocket">
+<span id="usocket-socket"></span><h1><a class="reference internal" href="#module-usocket" title="usocket: socket模块"><code class="xref py py-mod docutils literal"><span class="pre">usocket</span></code></a> – socket模块<a class="headerlink" href="#module-usocket" title="永久链接至标题">¶</a></h1>
+<p>该模块实现相应 <a class="reference internal" href="../reference/glossary.html#term-cpython"><code class="xref any std std-term docutils literal"><span class="pre">CPython</span></code></a> 模块的子集，如下所示。更多信息，请参见
+<a href="#id5"><span class="problematic" id="id6">|CPython文档|</span></a> <a class="reference external" href="https://docs.python.org/3/library/socket.html#module-socket" title="(在 Python v3.6)"><code class="docutils literal"><span class="pre">socket</span></code></a>.</p>
+<p>该模块提供BSD socket接口的访问。</p>
+<p>对比请参见相应的&nbsp;CPython 模块&nbsp;。</p>
+<div class="attention admonition">
+<p class="first admonition-title">与CPython区别</p>
+<p class="last">为提高效率与一致性，MicroPython中的套接字对象直接实现流（类文件）接口。在CPython中，
+需使用 <a class="reference internal" href="#usocket.socket.makefile" title="usocket.socket.makefile"><code class="xref any py py-meth docutils literal"><span class="pre">makefile()</span></code></a> 方法来将套接字转换为类文件对象。该方法仍由MicroPython（但是是无操作）支持，所以在CPython的兼容性问题上，请一定使用该方法。</p>
+</div>
+<div class="section" id="socket">
+<h2>Socket地址格式<a class="headerlink" href="#socket" title="永久链接至标题">¶</a></h2>
+<p>下列函数期望一个网络地址，并以(ipv4_address, port)格式接受该地址。
+其中地址是一个带有点符号数字IPv4地址的字符串，如 <code class="docutils literal"><span class="pre">&quot;8.8.8.8&quot;</span></code> ；
+port是一个取值1-65535的整数端口号。注意：域名不被接受为ipv4地址，
+应首先使用 <code class="docutils literal"><span class="pre">socket.getaddrinfo()</span></code> 来分解。</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">usocket</span></code> 模块的本机套接字地址格式是一个由 <a class="reference internal" href="#usocket.getaddrinfo" title="usocket.getaddrinfo"><code class="xref any py py-func docutils literal"><span class="pre">getaddrinfo</span></code></a> 函数返回的不透明数据类型，须用其来解析文本地址（包括数字型地址）:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sockaddr</span> <span class="o">=</span> <span class="n">usocket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;www.micropython.org&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># You must use getaddrinfo() even for numeric addresses 您必须使用getaddrinfo()，即使是用于数字型地址</span>
+<span class="n">sockaddr</span> <span class="o">=</span> <span class="n">usocket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Now you can use that address 现在您可以使用这一地址了</span>
+<span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>使用 <a class="reference internal" href="#usocket.getaddrinfo" title="usocket.getaddrinfo"><code class="xref any py py-func docutils literal"><span class="pre">getaddrinfo</span></code></a> 是处理地址最有效（在内存和处理能力方面皆是如此）且最便捷的方式。</p>
+<p>但是，如下所述， <code class="docutils literal"><span class="pre">socket</span></code> 模块（注意此处所说的与本机MicroPython&nbsp; <code class="docutils literal"><span class="pre">usocket</span></code> 模块的不同）提供与
+CPython兼容的使用元组指定地址的方法。注意： <code class="docutils literal"><span class="pre">socket</span></code> 模块可为内置或需 <code class="xref any docutils literal"><span class="pre">从micropython-lib</span></code> 中安装
+（在 <code class="xref any docutils literal"><span class="pre">MicroPython&nbsp;Unix&nbsp;port</span></code> 的情况下），这取决于 <code class="xref any docutils literal"><span class="pre">MicroPython&nbsp;port</span></code> ，而某些端口仍只接受元组格式的数字地址，
+且需使用 <a class="reference internal" href="#usocket.getaddrinfo" title="usocket.getaddrinfo"><code class="xref any py py-func docutils literal"><span class="pre">getaddrinfo</span></code></a> 函数以解析域名。</p>
+<p>总结:</p>
+<ul class="simple">
+<li>编写便捷式应用程序时，请使用 <a class="reference internal" href="#usocket.getaddrinfo" title="usocket.getaddrinfo"><code class="xref any py py-func docutils literal"><span class="pre">getaddrinfo</span></code></a> 。</li>
+<li>若您的端口支持，下述元组地址可用作快速破解和交互式使用的快捷方式。</li>
+</ul>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">socket</span></code> 模块的元组地址格式:</div></blockquote>
+<ul class="simple">
+<li>IPv4: <em>(ipv4_address, port)</em>, 此处是一个带有点记法的数字型ipv4_address的字符串，
+例如 <code class="docutils literal"><span class="pre">&quot;8.8.8.8&quot;</span></code> ，端口是一个介于1-65535的整数端口号。注意：域名不被接受为ipv4_address形式，
+需首先使用 <a class="reference internal" href="#usocket.getaddrinfo" title="usocket.getaddrinfo"><code class="xref any py py-func docutils literal"><span class="pre">usocket.getaddrinfo()</span></code></a> 解析。</li>
+<li>IPv6: <em>(ipv6_address, port, flowinfo, scopeid)</em>, 此处ipv6_address是一个带有冒号标记法的
+数字型ipv6_address的字符串，例如 <code class="docutils literal"><span class="pre">&quot;2001:db8::1&quot;</span></code> ，其端口是一个介于1-65535的整数端口号。
+Flowinfo须为0。scopeid是链接本地地址的接口范围标识符。注意：域名不被接受为ipv6_address形式，
+需首先使用 <a class="reference internal" href="#usocket.getaddrinfo" title="usocket.getaddrinfo"><code class="xref any py py-func docutils literal"><span class="pre">usocket.getaddrinfo()</span></code></a> 解析。IPv6支持的可用性取决于 <code class="xref any docutils literal"><span class="pre">MicroPython&nbsp;port</span></code> 。</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="usocket.socket">
+<code class="descclassname">usocket.</code><code class="descname">socket</code><span class="sig-paren">(</span><em>af=AF_INET</em>, <em>type=SOCK_STREAM</em>, <em>proto=IPPROTO_TCP</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket" title="永久链接至目标">¶</a></dt>
+<dd><p>使用给定的地址群、类型和协议号创建一个新的socket对象。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="usocket.getaddrinfo">
+<code class="descclassname">usocket.</code><code class="descname">getaddrinfo</code><span class="sig-paren">(</span><em>host</em>, <em>port</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.getaddrinfo" title="永久链接至目标">¶</a></dt>
+<dd><p>将参数翻译为一个5元组序列，该序列包含创建一个与设备连接的socket所需的全部必要参数。该5元组列表有以下结构:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">family</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">canonname</span><span class="p">,</span> <span class="n">sockaddr</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>下列示例演示了如何连接到给定的url:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;www.micropython.org&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="attention admonition">
+<p class="first admonition-title">Difference to CPython</p>
+<p class="last">该函数发生错误时，会引发一个 <code class="docutils literal"><span class="pre">socket.gaierror</span></code> 异常（ <a class="reference internal" href="builtins.html#OSError" title="OSError"><code class="xref any py py-exc docutils literal"><span class="pre">OSError</span></code></a> 子类）。
+MicroPython并不具有 <code class="docutils literal"><span class="pre">socket.gaierror</span></code> ，会直接引发OSError。
+注意： <a class="reference internal" href="#usocket.getaddrinfo" title="usocket.getaddrinfo"><code class="xref any py py-func docutils literal"><span class="pre">getaddrinfo()</span></code></a> 的错误数量组成一个单独的名称空间，可能与 <a class="reference internal" href="uerrno.html"><span class="doc">uerrno – 系统错误代码</span></a>  – 系统错误代码模块中的错误数量不匹配。
+为区分 <a class="reference internal" href="#usocket.getaddrinfo" title="usocket.getaddrinfo"><code class="xref any py py-func docutils literal"><span class="pre">getaddrinfo()</span></code></a> 错误，该错误使用负数标记，标准系统错误为正数（错误数可通过使用异常对象的 <code class="docutils literal"><span class="pre">e.args[0]</span></code> 特性访问）。暂时使用负数，未来可能改变。</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>常量<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="usocket.AF_INET">
+<code class="descclassname">usocket.</code><code class="descname">AF_INET</code><a class="headerlink" href="#usocket.AF_INET" title="永久链接至目标">¶</a></dt>
+<dt id="usocket.AF_INET6">
+<code class="descclassname">usocket.</code><code class="descname">AF_INET6</code><a class="headerlink" href="#usocket.AF_INET6" title="永久链接至目标">¶</a></dt>
+<dd><p>家庭类型。
+可用性取决于特定的板。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="usocket.SOCK_STREAM">
+<code class="descclassname">usocket.</code><code class="descname">SOCK_STREAM</code><a class="headerlink" href="#usocket.SOCK_STREAM" title="永久链接至目标">¶</a></dt>
+<dt id="usocket.SOCK_DGRAM">
+<code class="descclassname">usocket.</code><code class="descname">SOCK_DGRAM</code><a class="headerlink" href="#usocket.SOCK_DGRAM" title="永久链接至目标">¶</a></dt>
+<dd><p>socket类型。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="usocket.IPPROTO_UDP">
+<code class="descclassname">usocket.</code><code class="descname">IPPROTO_UDP</code><a class="headerlink" href="#usocket.IPPROTO_UDP" title="永久链接至目标">¶</a></dt>
+<dt id="usocket.IPPROTO_TCP">
+<code class="descclassname">usocket.</code><code class="descname">IPPROTO_TCP</code><a class="headerlink" href="#usocket.IPPROTO_TCP" title="永久链接至目标">¶</a></dt>
+<dd><p>IP 协议数。</p>
+</dd></dl>
+
+<dl class="data">
+<dt>
+<code class="descname">usocket.SOL_*</code></dt>
+<dd><p>套接字操作阶层（ <a class="reference internal" href="#usocket.socket.setsockopt" title="usocket.socket.setsockopt"><code class="xref any py py-meth docutils literal"><span class="pre">setsockopt()</span></code></a> 的一个参数）。确切目录取决于MicroPython端口。</p>
+</dd></dl>
+
+<dl class="data">
+<dt>
+<code class="descname">usocket.SO_*</code></dt>
+<dd><p>套接字选项（ <a class="reference internal" href="#usocket.socket.setsockopt" title="usocket.socket.setsockopt"><code class="xref any py py-meth docutils literal"><span class="pre">setsockopt()</span></code></a> 的一个参数）。确切目录取决于MicroPython端口。</p>
+</dd></dl>
+
+<div class="section" id="id3">
+<h3>socket类<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>方法<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="usocket.socket.close">
+<code class="descclassname">socket.</code><code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.close" title="永久链接至目标">¶</a></dt>
+<dd><p>标记关闭的socket。一旦发生这种情况，所有将对socket对象进行的操作都将失败。远程端将无法再接收到任何数据（队列数据刷新后）。</p>
+<p>Socket在垃圾回收时自动关闭，但是建议您明确地关闭它们，或在使用时附加声明语句。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.bind">
+<code class="descclassname">socket.</code><code class="descname">bind</code><span class="sig-paren">(</span><em>address</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.bind" title="永久链接至目标">¶</a></dt>
+<dd><p>将socket绑定到地址。socket不能为已绑定的。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.listen">
+<code class="descclassname">socket.</code><code class="descname">listen</code><span class="sig-paren">(</span><span class="optional">[</span><em>backlog</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.listen" title="永久链接至目标">¶</a></dt>
+<dd><p>启用一个服务器以接受连接。若指定积压工作，则其不得小于0（若数值小于0，则需设置为0）；指定系统在拒绝新连接之所允许的未接受的连接的数量。若未指定，则选择一个默认的合理值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.accept">
+<code class="descclassname">socket.</code><code class="descname">accept</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.accept" title="永久链接至目标">¶</a></dt>
+<dd><p>接受连接。Socket须绑定到一个地址并监听连接。返回值是两个数值（conn, address），其中conn为一个新的socket对象，可用来发送和接收连接上的数据，而address是绑定到连接另一端的socket的地址。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.connect">
+<code class="descclassname">socket.</code><code class="descname">connect</code><span class="sig-paren">(</span><em>address</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.connect" title="永久链接至目标">¶</a></dt>
+<dd><p>连接到地址上的远程socket。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.send">
+<code class="descclassname">socket.</code><code class="descname">send</code><span class="sig-paren">(</span><em>bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.send" title="永久链接至目标">¶</a></dt>
+<dd><p>将数据发送到socket。Socket须连接到一个远程socket。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.sendall">
+<code class="descclassname">socket.</code><code class="descname">sendall</code><span class="sig-paren">(</span><em>bytes</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.sendall" title="永久链接至目标">¶</a></dt>
+<dd><p>将数据发送到socket。Socket须连接到一个远程socket。</p>
+<p>将所有数据发送到套接字。套接字须连接到一个远程套接字。与 <a class="reference internal" href="#usocket.socket.send" title="usocket.socket.send"><code class="xref any py py-meth docutils literal"><span class="pre">send()</span></code></a> 不同，该方法会通过连续发送尽量发送所有数据。</p>
+<p>该方法在非阻塞套接字上的行为尚未定义。因此在MicroPython中，推荐使用 <a class="reference internal" href="#usocket.socket.write" title="usocket.socket.write"><code class="xref any py py-meth docutils literal"><span class="pre">write()</span></code></a> 方法，该方法对阻塞套接字实行相同的“无短写”方法，并将返回在非阻塞套接字上发送的字节的数量。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.recv">
+<code class="descclassname">socket.</code><code class="descname">recv</code><span class="sig-paren">(</span><em>bufsize</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.recv" title="永久链接至目标">¶</a></dt>
+<dd><p>从socket上接收数据。返回值是一个表示接收到的数据的字节对象。要接收到的数据最大数量由缓冲区大小指定。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.sendto">
+<code class="descclassname">socket.</code><code class="descname">sendto</code><span class="sig-paren">(</span><em>bytes</em>, <em>address</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.sendto" title="永久链接至目标">¶</a></dt>
+<dd><p>将数据发送到socket。Socket不应连接到远程socket，因为目的地socket由 <em>address</em> 指定。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.recvfrom">
+<code class="descclassname">socket.</code><code class="descname">recvfrom</code><span class="sig-paren">(</span><em>bufsize</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.recvfrom" title="永久链接至目标">¶</a></dt>
+<dd><p>从socket上接收数据。返回值是两个数值（bytes, address），其中bytes是一个表示接收到的数据的字节对象，address是发送数据的socket地址。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.setsockopt">
+<code class="descclassname">socket.</code><code class="descname">setsockopt</code><span class="sig-paren">(</span><em>level</em>, <em>optname</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.setsockopt" title="永久链接至目标">¶</a></dt>
+<dd><p>设置给定的socket选项的值。在socket模块(SO_* etc.)中定义了所需的符号常量。该值可为一个整数，也可为一个表示缓冲区的bytes类对象。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.settimeout">
+<code class="descclassname">socket.</code><code class="descname">settimeout</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.settimeout" title="永久链接至目标">¶</a></dt>
+<dd><p>设置阻塞socket操作的超时时间。值参数可以是一个表示秒或None的非负浮点数。若给定一个非零值，且在操作完成前超时时间已过期，则后续的socket操作将会引发异常。若给定0值，则socket采用非阻塞模式。若给定None，则socket给定阻塞模式。</p>
+<div class="attention admonition">
+<p class="first admonition-title">与CPython区别</p>
+<p class="last">CPython在超时时引发 <code class="docutils literal"><span class="pre">socket.timeout</span></code> 异常，即一个 <a class="reference internal" href="builtins.html#OSError" title="OSError"><code class="xref any py py-exc docutils literal"><span class="pre">OSError</span></code></a> 的子类。MicroPython则直接引发OSError。
+若您使用 <code class="docutils literal"><span class="pre">except&nbsp;OSError:</span></code> 来匹配异常，您的代码将在MicroPython和CPython中同时运行。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.setblocking">
+<code class="descclassname">socket.</code><code class="descname">setblocking</code><span class="sig-paren">(</span><em>flag</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.setblocking" title="永久链接至目标">¶</a></dt>
+<dd><p>设置socket的阻塞或非阻塞模式：若标记为false，则将该socket设置为非阻塞模式，而非阻塞模式。</p>
+<p>该方法为某些settimeout()调用的简写:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>* ``sock.setblocking(True)`` is equivalent to ``sock.settimeout(None)``
+* ``sock.setblocking(False)`` is equivalent to ``sock.settimeout(0)``
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.makefile">
+<code class="descclassname">socket.</code><code class="descname">makefile</code><span class="sig-paren">(</span><em>mode='rb'</em>, <em>buffering=0</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.makefile" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个与socket相关联的文件对象。具体的返回类型取决于给定makefile()的参数。该支持仅限于二进制模式（‘rb’和‘wb’）.</p>
+<p>CPython的参数为：不支持 <em>encoding</em> 、 <em>errors</em> 、 <em>newline</em> 。</p>
+<p>Socket须为阻塞模式；允许超时存在，但若出现超时，文件对象的内部缓冲区可能会以不一致状态结束。</p>
+<div class="attention admonition">
+<p class="first admonition-title">与CPython区别</p>
+<p class="last">由于MicroPython不支持缓冲流，则将忽略缓冲参数的值，且将按照该值为0（未缓冲）时处理。</p>
+</div>
+<div class="attention admonition">
+<p class="first admonition-title">与CPython区别</p>
+<p class="last">关闭所有由makefile()返回的文件对象，同样将关闭原始socket。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.read">
+<code class="descclassname">socket.</code><code class="descname">read</code><span class="sig-paren">(</span><span class="optional">[</span><em>size</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.read" title="永久链接至目标">¶</a></dt>
+<dd><p>从socket中读取size字节。返回一个字节对象。若未给定 <code class="docutils literal"><span class="pre">size</span></code> ，则按照类似 <code class="docutils literal"><span class="pre">socket.readall()</span></code> 的模式运行，见下。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.readinto">
+<code class="descclassname">socket.</code><code class="descname">readinto</code><span class="sig-paren">(</span><em>buf</em><span class="optional">[</span>, <em>nbytes</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.readinto" title="永久链接至目标">¶</a></dt>
+<dd><p>将字节读取入缓冲区。若指定 <em>nbytes</em> ，则最多读取该数量的字节。否则，最多读取 <em>len(buf)</em> 数量的字节。正如 <code class="docutils literal"><span class="pre">read()</span></code> ，该方法遵循“无短读”方法。</p>
+<p>返回值：读取并存入缓冲区的字节数量。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.readline">
+<code class="descclassname">socket.</code><code class="descname">readline</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.readline" title="永久链接至目标">¶</a></dt>
+<dd><p>读取一行，以换行符结尾。</p>
+<p>返回值：读取的行。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="usocket.socket.write">
+<code class="descclassname">socket.</code><code class="descname">write</code><span class="sig-paren">(</span><em>buf</em><span class="sig-paren">)</span><a class="headerlink" href="#usocket.socket.write" title="永久链接至目标">¶</a></dt>
+<dd><p>将字节缓冲区写入socket。</p>
+<p>返回值：写入的字节数量。</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="usocket.socket.error">
+<em class="property">exception </em><code class="descclassname">socket.</code><code class="descname">error</code><a class="headerlink" href="#usocket.socket.error" title="永久链接至目标">¶</a></dt>
+<dd><p>MicroPython中没有这一异常。</p>
+<div class="attention admonition">
+<p class="first admonition-title">与CPython区别</p>
+<p class="last">CPython曾经有 <code class="docutils literal"><span class="pre">socket.error</span></code> 异常（ <a class="reference internal" href="builtins.html#OSError" title="OSError"><code class="xref any py py-exc docutils literal"><span class="pre">OSError</span></code></a> 的别名），现已弃用。在MicroPython中，直接使用 <a class="reference internal" href="builtins.html#OSError" title="OSError"><code class="xref any py py-exc docutils literal"><span class="pre">OSError</span></code></a> 。</p>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ustruct.html" class="btn btn-neutral float-right" title="ustruct – 打包和解压缩原始数据类型" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="uselect.html" class="btn btn-neutral" title="uselect – 在一组流中等待事件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

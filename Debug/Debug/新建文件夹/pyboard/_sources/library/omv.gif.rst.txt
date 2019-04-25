@@ -1,0 +1,92 @@
+:mod:`gif` --- 录制gif动图 
+============================
+
+.. module:: gif
+   :synopsis: 录制gif动图 
+
+``gif`` 模块用于录制gif。
+
+Gif类 – Gif录制器
+=========================
+
+您可以使用gif模块来记录短视频剪辑。注意：gif文件保存的是未压缩图像数据。因此，非常适合记录您想分享的短视频剪辑。使用 ``mjpeg`` 进行长视频剪辑。
+
+用法示例::
+
+    import sensor, gif
+
+    # Setup camera. 设置摄像机。
+    sensor.reset()
+    sensor.set_pixformat(sensor.GRAYSCALE)
+    sensor.set_framesize(sensor.QQVGA)
+    sensor.skip_frames()
+
+    # Create the gif object. 创建一个gif对象。
+    g = gif.Gif("example.gif")
+
+    # Add frames. 添加帧。
+    for i in range(100):
+        g.add_frame(sensor.snapshot())
+
+    # Finalize. 完成。
+    g.close()
+
+构造函数
+------------
+
+.. class:: gif.Gif(filename, width=Auto, height=Auto, color=Auto, loop=True)
+
+   创建一个可添加帧的Gif对象。 ``filename`` 是保存录制的gif的路径。
+
+   ``width`` 自动设置为图像传感器水平分辨率（除非显式覆盖）。
+
+   ``height`` 自动设置为图像传感器垂直分辨率（除非显式覆盖）。
+
+   ``color`` 自动设置为图像传感器颜色模式（除非显式覆盖）：
+
+     - 颜色False将生成一个7位灰度/像素的gif。
+     - 颜色True将生成一个rgb232、7位/像素的gif。
+
+   ``loop`` 当True使gif自动循环播放时。默认值为True。
+
+   .. note::
+
+      ``width``, ``height``, ``color``,  ``loop`` 是键值参数，必须在函数调用中通过写入
+       ``width=`` , ``height=`` , ``color=`` 和 ``resolution=`` 来显式地调用。
+
+方法
+-------
+
+.. method:: gif.width()
+
+   返回gif对象的宽度（水平分辨率）。
+
+.. method:: gif.height()
+
+   返回gif对象的高度（垂直分辨率）。
+
+.. method:: gif.format()
+
+   如果是彩图返回 ``sensor.RGB565`` ， 灰度图返回 ``sensor.GRAYCSCALE`` 。
+
+.. method:: gif.size()
+
+   返回gif目前的文件大小。该值在添加帧后更新。
+
+.. method:: gif.loop()
+
+   若gif对象在其构造函数中设置了循环，则返回。
+
+.. method:: gif.add_frame(image, delay=10)
+
+   将一张图像添加到gif记录中。图像的宽度、高度和颜色模式必须与gif构造函数中使用的宽度、高度和颜色模式相同。
+
+   ``delay`` 是前一帧结束后等待播放此帧的厘秒数（若非首帧）。
+
+   .. note::
+
+      ``delay`` 是键值参数，必须在函数调用中通过写入 ``delay=`` 来显式地调用。
+
+.. method:: gif.close()
+
+   结束gif录制。须在记录完成后调用此方法，以使文件可查看。

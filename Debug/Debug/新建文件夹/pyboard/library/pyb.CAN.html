@@ -1,0 +1,520 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CAN类 –控制器区域网络通信总线 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="pyb — 板级功能" href="pyb.html"/>
+        <link rel="next" title="DAC类 – 数字模拟变换" href="pyb.DAC.html"/>
+        <link rel="prev" title="ADC类 – 模数转换" href="pyb.ADC.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython 函数库</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#pythonmicro-libraries">Python标准库和micro-libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">MicroPython特定的库</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id1">时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id2">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id3">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id4">电源相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyb.html#id5">其他功能</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pyb.html#id6">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lcd160cr.html"><code class="docutils literal"><span class="pre">lcd160cr</span></code> — 控制LCD160CR显示屏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython 函数库</a> &raquo;</li>
+        
+          <li><a href="pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a> &raquo;</li>
+        
+      <li>CAN类 –控制器区域网络通信总线</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/pyb.CAN.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="can">
+<h1>CAN类 –控制器区域网络通信总线<a class="headerlink" href="#can" title="永久链接至标题">¶</a></h1>
+<p>CAN实施标准CAN通信协议。其物理层包括两道线：RX和TX。注意：将pyboard或OpenMV Cam与CAN总线连接时，您必须使用来CAN传输器将来自的CAN逻辑信号转换为总线上正确的电压等级。</p>
+<p>Example usage (works without anything connected):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyb</span> <span class="k">import</span> <span class="n">CAN</span>
+<span class="n">can</span> <span class="o">=</span> <span class="n">CAN</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">CAN</span><span class="o">.</span><span class="n">LOOPBACK</span><span class="p">)</span>
+<span class="n">can</span><span class="o">.</span><span class="n">setfilter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">CAN</span><span class="o">.</span><span class="n">LIST16</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="mi">124</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">126</span><span class="p">))</span>  <span class="c1"># set a filter to receive messages with id=123, 124, 125 and 126</span>
+<span class="n">can</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">&#39;message!&#39;</span><span class="p">,</span> <span class="mi">123</span><span class="p">)</span>   <span class="c1"># send a message with id 123</span>
+<span class="n">can</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                 <span class="c1"># receive message on FIFO 0</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>构造函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="pyb.pyb.CAN">
+<em class="property">class </em><code class="descclassname">pyb.</code><code class="descname">CAN</code><span class="sig-paren">(</span><em>bus</em>, <em>...</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.pyb.CAN" title="永久链接至目标">¶</a></dt>
+<dd><p>在给定总线上构建一个CAN对象。 <code class="docutils literal"><span class="pre">bus</span></code> 可为2。在没有其他参数的情况下，可创建CAN对象，但未进行初始化（
+该对象的设置来自总线的最后一次初始化，若存在的话）。若给定额外参数，则总线进行初始化。初始化参数详见 <code class="docutils literal"><span class="pre">init</span></code> 。</p>
+<p>CAN的物理引脚为：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">CAN(1)</span></code> is on <code class="docutils literal"><span class="pre">YA</span></code>: <code class="docutils literal"><span class="pre">(RX,</span> <span class="pre">TX)</span> <span class="pre">=</span> <span class="pre">(Y3,</span> <span class="pre">Y4)</span> <span class="pre">=</span> <span class="pre">(PB8,</span> <span class="pre">PB9)</span></code></li>
+<li><code class="docutils literal"><span class="pre">CAN(2)</span></code> is on <code class="docutils literal"><span class="pre">YB</span></code>: <code class="docutils literal"><span class="pre">(RX,</span> <span class="pre">TX)</span> <span class="pre">=</span> <span class="pre">(Y5,</span> <span class="pre">Y6)</span> <span class="pre">=</span> <span class="pre">(PB12,</span> <span class="pre">PB13)</span></code></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="class-methods">
+<h2>Class Methods<a class="headerlink" href="#class-methods" title="永久链接至标题">¶</a></h2>
+<dl class="classmethod">
+<dt id="pyb.CAN.initfilterbanks">
+<em class="property">classmethod </em><code class="descclassname">CAN.</code><code class="descname">initfilterbanks</code><span class="sig-paren">(</span><em>nr</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.CAN.initfilterbanks" title="永久链接至目标">¶</a></dt>
+<dd><p>Reset and disable all filter banks and assign how many banks should be available for CAN(1).</p>
+<p>STM32F405 has 28 filter banks that are shared between the two available CAN bus controllers.
+This function configures how many filter banks should be assigned to each. <code class="docutils literal"><span class="pre">nr</span></code> is the number of banks
+that will be assigned to CAN(1), the rest of the 28 are assigned to CAN(2).
+At boot, 14 banks are assigned to each controller.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h2>方法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="pyb.CAN.init">
+<code class="descclassname">CAN.</code><code class="descname">init</code><span class="sig-paren">(</span><em>mode</em>, <em>extframe=False</em>, <em>prescaler=100</em>, <em>*</em>, <em>sjw=1</em>, <em>bs1=6</em>, <em>bs2=8</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.CAN.init" title="永久链接至目标">¶</a></dt>
+<dd><p>使用给定参数初始化CAN总线：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">mode</span></code> 为下列之一：NORMAL, LOOPBACK, SILENT, SILENT_LOOPBACK</li>
+<li>若 <code class="docutils literal"><span class="pre">extframe</span></code> 为True，总线使用框架（29位）中的扩展标识符；否则使用标准的11位标识符。</li>
+<li><code class="docutils literal"><span class="pre">prescaler</span></code> 用于设置1时间量的持续时长；时间量为分配器分割的输入时钟（PCLK1，见 <a class="reference internal" href="pyb.html#pyb.freq" title="pyb.freq"><code class="xref any py py-func docutils literal"><span class="pre">pyb.freq()</span></code></a> ）。</li>
+<li><code class="docutils literal"><span class="pre">sjw</span></code> 是以时间量计的同步跳转宽度；数值可为1、2、3、4。</li>
+<li><code class="docutils literal"><span class="pre">bs1</span></code> 以时间量为单位定义了样本点的位置；该数值介于1-1024间。</li>
+<li><code class="docutils literal"><span class="pre">bs2</span></code> 以时间量为单位定义了传输点的位置；该数值介于1-16间。</li>
+</ul>
+</div></blockquote>
+<p>时间量（tq）是CAN总线的基本时间单位。Tq即CAN预分频器值除以PCLK1（内部外围总线1的频率）；确定PCLK1，详见 <a class="reference internal" href="pyb.html#pyb.freq" title="pyb.freq"><code class="xref any py py-func docutils literal"><span class="pre">pyb.freq()</span></code></a> 。</p>
+<p>一个位是由同步段组成的，通常即为1时间量。然后是位段1，位段2。样本点在位段1结束后。传输点在位段2结束后。波特率是二进时间，位时间即1 + BS1 + BS2与tq的乘积。</p>
+<p>例：当PCLK1=42MHz，prescaler=100，sjw=1，bs1=6，bs2=8，tq值为2.38微秒。位时间为35.7微秒，波特率为28kHz。</p>
+<p>See page 680 of the STM32F405 datasheet for more details.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.CAN.deinit">
+<code class="descclassname">CAN.</code><code class="descname">deinit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyb.CAN.deinit" title="永久链接至目标">¶</a></dt>
+<dd><p>关闭CAN总线。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.CAN.setfilter">
+<code class="descclassname">CAN.</code><code class="descname">setfilter</code><span class="sig-paren">(</span><em>bank</em>, <em>mode</em>, <em>fifo</em>, <em>params</em>, <em>*</em>, <em>rtr</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.CAN.setfilter" title="永久链接至目标">¶</a></dt>
+<dd><p>配置一个滤波器组：</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">bank</span></code> 是将被配置的滤波器组。</li>
+<li><code class="docutils literal"><span class="pre">mode</span></code> 是滤波器运行的模式。</li>
+<li><code class="docutils literal"><span class="pre">fifo</span></code> 是fifo (0 or 1)信息储存的位置，前提是滤波器接受该信息。</li>
+<li><code class="docutils literal"><span class="pre">params</span></code> 是一组定义滤波器的值。该组值取决于mode参数。</li>
+</ul>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">rtr</span></code> 是一组布尔数组，该数组规定过滤器是否应接受远程传输请求消息。若该参数未给出，则默认所有条目为False。这一数组的长度取决于 <a class="reference internal" href="omv.image.html#statistics.mode" title="statistics.mode"><code class="xref any py py-meth docutils literal"><span class="pre">mode</span></code></a> 参数。</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.CAN.clearfilter">
+<code class="descclassname">CAN.</code><code class="descname">clearfilter</code><span class="sig-paren">(</span><em>bank</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.CAN.clearfilter" title="永久链接至目标">¶</a></dt>
+<dd><p>清空并禁用一个滤波器组:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">bank</span></code> 是将被清空的滤波器组。</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.CAN.any">
+<code class="descclassname">CAN.</code><code class="descname">any</code><span class="sig-paren">(</span><em>fifo</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.CAN.any" title="永久链接至目标">¶</a></dt>
+<dd><p>若有消息在FIFO上等待，则返回 <code class="docutils literal"><span class="pre">True</span></code> ；若无，则返回 <code class="docutils literal"><span class="pre">False</span></code> 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.CAN.recv">
+<code class="descclassname">CAN.</code><code class="descname">recv</code><span class="sig-paren">(</span><em>fifo</em>, <em>*</em>, <em>timeout=5000</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.CAN.recv" title="永久链接至目标">¶</a></dt>
+<dd><p>在总线上接收数据：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">fifo</span></code> 是一个整数，FIFO即在此接收。</li>
+<li><code class="docutils literal"><span class="pre">timeout</span></code> 是以毫秒计的等待接收的超时时长。</li>
+</ul>
+</div></blockquote>
+<p>返回值：包含4个值的元组</p>
+<blockquote>
+<div><ul class="simple">
+<li>消息的id。</li>
+<li>一个表明消息是否是RTR消息的布尔值。</li>
+<li>FMI值（过滤器匹配指数）。</li>
+<li>一个包含数据的数组。.</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.CAN.send">
+<code class="descclassname">CAN.</code><code class="descname">send</code><span class="sig-paren">(</span><em>data</em>, <em>id</em>, <em>*</em>, <em>timeout=0</em>, <em>rtr=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.CAN.send" title="永久链接至目标">¶</a></dt>
+<dd><p>在总线上发送消息：</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">data</span></code> 是发送的数据（发送一个整数或一个缓冲区对象）。</li>
+<li><code class="docutils literal"><span class="pre">id</span></code> 是所发送的消息的id。</li>
+<li><code class="docutils literal"><span class="pre">timeout</span></code> 是以毫秒计的等待发送的超时时长。</li>
+<li><code class="docutils literal"><span class="pre">rtr</span></code> 是一个指定消息是否应该作为远程传输请求发送的布尔值。若 <code class="docutils literal"><span class="pre">rtr</span></code> 为True  ，则只使用 <code class="docutils literal"><span class="pre">data</span></code> 长度来填充框架的DLC插槽，</li>
+</ul>
+<p>而不使用 <code class="docutils literal"><span class="pre">data</span></code> 中的实际字节。</p>
+<p>若暂停时间为0，消息则置于三个硬件缓冲区中的其中一个，该方法立即返回。若三个缓冲区都被占用，则会引发异常。若暂停时间不为0，该方法会等待消息传输完毕。若该消息不能在指定时间内传输，则会引发异常。</p>
+</div></blockquote>
+<p>返回值： <code class="docutils literal"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyb.CAN.rxcallback">
+<code class="descclassname">CAN.</code><code class="descname">rxcallback</code><span class="sig-paren">(</span><em>fifo</em>, <em>fun</em><span class="sig-paren">)</span><a class="headerlink" href="#pyb.CAN.rxcallback" title="永久链接至目标">¶</a></dt>
+<dd><p>当空FIFO接收消息时，注册一个回调函数：</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">fifo</span></code> 是接收的FIFO。</li>
+<li><code class="docutils literal"><span class="pre">fun</span></code> 是FIFO变为非空时要调用的函数。</li>
+</ul>
+<p>回调函数有两个参数：一个是CAN对象本身，一个是表明回调原因的整数。</p>
+<p>回调用法示例:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cb0</span><span class="p">(</span><span class="n">bus</span><span class="p">,</span> <span class="n">reason</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cb0&#39;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">reason</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pending&#39;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">reason</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">reason</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;overflow&#39;</span><span class="p">)</span>
+
+<span class="n">can</span> <span class="o">=</span> <span class="n">CAN</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">CAN</span><span class="o">.</span><span class="n">LOOPBACK</span><span class="p">)</span>
+<span class="n">can</span><span class="o">.</span><span class="n">rxcallback</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cb0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h2>常量<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="pyb.CAN.NORMAL">
+<code class="descclassname">CAN.</code><code class="descname">NORMAL</code><a class="headerlink" href="#pyb.CAN.NORMAL" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="pyb.CAN.LOOPBACK">
+<code class="descclassname">CAN.</code><code class="descname">LOOPBACK</code><a class="headerlink" href="#pyb.CAN.LOOPBACK" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="pyb.CAN.SILENT">
+<code class="descclassname">CAN.</code><code class="descname">SILENT</code><a class="headerlink" href="#pyb.CAN.SILENT" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="pyb.CAN.SILENT_LOOPBACK">
+<code class="descclassname">CAN.</code><code class="descname">SILENT_LOOPBACK</code><a class="headerlink" href="#pyb.CAN.SILENT_LOOPBACK" title="永久链接至目标">¶</a></dt>
+<dd><p>CAN总线的模式</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="pyb.CAN.LIST16">
+<code class="descclassname">CAN.</code><code class="descname">LIST16</code><a class="headerlink" href="#pyb.CAN.LIST16" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="pyb.CAN.MASK16">
+<code class="descclassname">CAN.</code><code class="descname">MASK16</code><a class="headerlink" href="#pyb.CAN.MASK16" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="pyb.CAN.LIST32">
+<code class="descclassname">CAN.</code><code class="descname">LIST32</code><a class="headerlink" href="#pyb.CAN.LIST32" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="data">
+<dt id="pyb.CAN.MASK32">
+<code class="descclassname">CAN.</code><code class="descname">MASK32</code><a class="headerlink" href="#pyb.CAN.MASK32" title="永久链接至目标">¶</a></dt>
+<dd><p>过滤器运行模式</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyb.DAC.html" class="btn btn-neutral float-right" title="DAC类 – 数字模拟变换" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyb.ADC.html" class="btn btn-neutral" title="ADC类 – 模数转换" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,378 @@
+:mod:`sensor` --- 感光元件
+===============================
+
+.. module:: sensor
+   :synopsis: 感光元件
+
+``sensor`` 模块用于拍摄照片。
+
+用法示例::
+
+    import sensor
+
+    # Setup camera. 设置相机
+    sensor.reset()
+    sensor.set_pixformat(sensor.RGB565)
+    sensor.set_framesize(sensor.QVGA)
+    sensor.skip_frames()
+
+    # Take pictures. 拍照。
+    while(True):
+        sensor.snapshot()
+
+函数
+---------
+
+.. function:: sensor.reset()
+
+   初始化相机传感器。
+
+.. function:: sensor.flush()
+
+   将帧缓冲区中的内容复制到IDE中。若其未运行无限循环的脚本，您应调用该方法来显示您的OpenMV Cam拍摄的最后一张照片。
+
+.. function:: sensor.snapshot(line_filter=None)
+
+   使用相机拍摄一张照片，并返回 ``image`` 对象。
+
+   ``line_filter`` 可能为用于处理从相机中传入的每一行像素的python函数回调。例如::
+
+      # This callback just copies the src to dst. 该回调将src复制到dst中。
+      # Note source is YUYV destination is 1BPP Grayscale 注意：来源为YUYV，目的为1BPP灰度
+      def line_filter_call_back(src, dst):
+        for i in range(len(src)):
+          dst[i] = src[i>>1]
+      sensor.snapshot(line_filter=line_filter_call_back)
+
+      # This callback copies and thresholds src to dst. 该回调将src复制到dst中。
+      # Note source is YUYV destination is 1BPP Grayscale 注意：来源为YUYV，目的为1BPP灰度
+      def line_filter_call_back_2(src, dst):
+        for i in range(len(src)):
+          dst[i] = if src[i>>1] > 128 then 0xFF or 0x00
+      sensor.snapshot(line_filter=line_filter_call_back_2)
+
+   .. note::
+
+      OpenMV Cam M4的速度不足以在大图像的每行执行行过滤函数。请勿使用。
+
+   .. note::
+
+      ``line_filter`` 是键值参数，需通过写入 ``line_filter=`` 来显式地调用。
+
+.. function:: sensor.skip_frames([n, time])
+
+   使用 ``n`` 个快照，让相机图像在改变相机设置后稳定下来。 ``n`` 作为普通参数传输，
+   例如： ``skip_frames(10)`` 跳过 ``10`` 帧。您应在改变相机设置后调用该函数。
+
+   或者，您可通过关键字参数 ``time`` 来跳过几毫秒的帧数，例如： ``kip_frames(time = 2000)`` ，跳过2000毫秒的帧。
+
+   若 ``n`` 和 ``time`` 皆未指定，该方法跳过300毫秒的帧。
+
+   若二者皆指定，该方法会跳过 ``n`` 数量的帧，但将在 ``time`` 毫秒后超时。
+
+.. function:: sensor.width()
+
+   返回传感器的分辨率宽度。
+
+.. function:: sensor.height()
+
+   返回传感器的分辨率高度。
+
+.. function:: sensor.get_fb()
+
+   (获取帧缓冲区)返回由先前调用的 ``sensor.snapshot()`` 所返回的图像对象。 若此前未调用过 ``sensor.snapshot()`` ，则返回 ``None`` 。
+
+.. function:: sensor.get_id()
+
+   返回相机模块ID。
+
+      * sensor.OV2640: 旧传感器模块
+      * sensor.OV7725: 新传感器模块
+
+.. function:: sensor.set_pixformat(pixformat)
+
+   设置相机模块的像素模式。
+
+      * sensor.GRAYSCALE: 每像素8位。
+      * sensor.RGB565: 每像素16位。
+
+.. function:: sensor.sleep(enable)
+
+   将相机置于睡眠模式。这节省了大约40毫安。重置自动清除。
+
+.. function:: sensor.set_framerate(rate)
+
+   设置相机模块的帧速率。
+
+   .. note:: 弃用。请勿使用。
+
+.. function:: sensor.set_framesize(framesize)
+
+   设置相机模块的帧大小。
+
+      * sensor.QQCIF: 88x72
+      * sensor.QCIF: 176x144
+      * sensor.CIF: 352x288
+      * sensor.QQSIF: 88x60
+      * sensor.QSIF: 176x120
+      * sensor.SIF: 352x240
+      * sensor.QQQQVGA: 40x30
+      * sensor.QQQVGA: 80x60
+      * sensor.QQVGA: 160x120
+      * sensor.QVGA: 320x240
+      * sensor.VGA: 640x480
+      * sensor.HQQQVGA: 80x40
+      * sensor.HQQVGA: 160x80
+      * sensor.HQVGA: 240x160
+      * sensor.LCD: 128x160  (与lcd扩展板结合使用)
+      * sensor.QQVGA2: 128x160 (与lcd扩展板结合使用)
+      * sensor.B40x30: 160x120 (与 ``image.find_displacement`` 结合使用)
+      * sensor.B64x32: 160x120 (与 ``image.find_displacement`` 结合使用)
+      * sensor.B64x64: 160x120 (与 ``image.find_displacement`` 结合使用)
+      * sensor.SVGA: 800x600 (只在OV2640传感器的JPEG模式下)
+      * sensor.SXGA: 1280x1024 (只在OV2640传感器的JPEG模式下)
+      * sensor.UXGA: 1600x1200 (只在OV2640传感器的JPEG模式下)
+
+.. function:: sensor.set_windowing(roi)
+
+   将相机的分辨率设置为当前分辨率的子分辨率。例如：将分辨率设置为sensor.VGA，然后将windowing设置为(120, 140, 200, 200)，
+   设置sensor.snapshot()以捕捉由相机传感器输出的VGA分辨率的200x200中心像素。您可使用窗口来获得定制的分辨率。另外，
+   当你在更大分辨率下使用窗口时，实际上是进行数字缩放。
+
+   ``roi`` 是一个矩形元组(x, y, w, h)。
+
+.. function:: sensor.set_gainceiling(gainceiling)
+
+   设置相机图像增益上限。2, 4, 8, 16, 32, 64, 128。
+
+   .. note:: 您无需调用该函数。请勿使用。
+
+.. function:: sensor.set_contrast(constrast)
+
+   设置相机图像对比度。-3至+3。
+
+   .. note:: 您无需调用该函数。请勿使用。
+
+.. function:: sensor.set_brightness(brightness)
+
+   设置相机图像亮度。-3至+3。
+
+   .. note:: 您无需调用该函数。请勿使用。
+
+.. function:: sensor.set_saturation(saturation)
+
+   设置相机图像饱和度。-3至+3。
+
+   .. note:: 您无需调用该函数。请勿使用。
+
+.. function:: sensor.set_quality(quality)
+
+   设置相机图像JPEG压缩质量。0-100。
+
+   .. note:: 是用于OV2640相机。
+
+.. function:: sensor.set_colorbar(enable)
+
+   打开（True）或关闭（False）彩色模式。默认关闭。
+
+.. function:: sensor.set_auto_gain(enable, value=-1)
+
+   ``enable`` 打开（True）或关闭（False）自动增益。默认打开。 ``value`` 强迫增益值。更多细节请参见摄像头数据表。
+
+   .. note:: 若您想追踪颜色，则需关闭白平衡。
+
+   .. note::
+
+      ``value`` 是键值参数，需通过写入 ``value=`` 来显式地调用。
+
+.. function:: sensor.set_auto_exposure(enable, value=-1)
+
+   ``enable`` 打开（True）或关闭（False）自动曝光。默认打开。 ``Value`` 强制曝光值。更多细节请参见摄像头数据表。
+
+   .. note::
+
+      ``value`` 是键值参数，需通过写入 ``value=`` 来显式地调用。
+
+.. function:: sensor.set_auto_whitebal(enable, value=(-1,-1,-1))
+
+   ``enable`` 打开（True）或关闭（False）自动白平衡。默认打开。 ``value`` 强制白平衡值。更多细节请参见摄像头数据表。
+
+   .. note:: 若您想追踪颜色，则需关闭白平衡。
+
+   .. note::
+
+      ``value`` 是键值参数，需通过写入 ``value=`` 来显式地调用。
+
+.. function:: sensor.set_hmirror(enable)
+
+   打开（True）或关闭（False）水平镜像模式。默认关闭。
+
+.. function:: sensor.set_vflip(enable)
+
+   打开（True）或关闭（False）垂直翻转模式。默认关闭。
+
+.. function:: sensor.set_special_effect(effect)
+
+   设置相机图像的特殊效果：
+
+      * sensor.NORMAL: 常规图像
+      * sensor.NEGATIVE: Negative Image
+
+   .. note:: 禁用。请勿使用。
+
+.. function:: sensor.set_lens_correction(enable, radi, coef)
+
+   ``enable`` True为启用，False为禁用（布尔值）。
+   ``radi`` 像素的整数半径调整（int）。
+   ``coef`` 功率校正(int)。
+
+.. function:: sensor.set_vsync_output(pin_object)
+
+   用 ``pyb.Pin`` 创建 ``pin_object`` 。相机上的VSYNC信号将会在此引脚上生成，从而在另一个OpenMV Cam上实现FSIN，
+   从而同步相机图像流，以用于立体视觉应用。
+
+.. function:: sensor.__write_reg(address, value)
+
+   在 ``address(int)`` 向相机寄存器中写入 ``value (int)`` 。
+
+   .. note:: 请参阅摄像头数据表以获得注册信息。
+
+.. function:: sensor.__read_reg(address)
+
+   在 ``address`` (int)上读取摄像头数据表。
+
+   .. note:: 请参阅摄像头数据表以获得注册信息。
+
+常量
+---------
+
+.. data:: sensor.GRAYSCALE
+
+   GRAYSCALE像素模式(Y from YUV422)。每像素为8位、1字节。 
+
+   我们所有的计算机视觉算法在灰度图像上比在RGB565图像上运行更快。
+
+
+.. data:: sensor.RGB565
+
+   RGB565像素模式。每像素为16位、2字节。5位用于红色，6位用于绿色，5位用于蓝色。 
+
+   我们所有的计算机视觉算法在RGB565图像上比在灰度图像上运行更慢。
+
+.. data:: sensor.JPEG
+
+   JPEG模式。只适用于OV2640相机。
+
+.. data:: sensor.YUV422
+
+   禁用。请勿使用。
+
+.. data:: sensor.OV9650
+
+   ``sensor.get_id()`` 返回此以适用于OV9650 相机。
+
+.. data:: sensor.OV2640
+
+   ``sensor.get_id()`` 返回此以适用于OV2640相机。
+
+.. data:: sensor.OV7725
+
+   ``sensor.get_id()`` 返回此以适用于OV7725相机。
+
+.. data:: sensor.QQCIF
+
+   88x72 分辨率的相机传感器。
+
+.. data:: sensor.QCIF
+
+   176x144 分辨率的相机传感器。
+
+.. data:: sensor.CIF
+
+   352x288 分辨率的相机传感器。
+
+.. data:: sensor.QQSIF
+
+   88x60 分辨率的相机传感器。
+
+.. data:: sensor.QSIF
+
+   176x120 分辨率的相机传感器。
+
+.. data:: sensor.SIF
+
+   352x240 分辨率的相机传感器。
+
+.. data:: sensor.QQQQVGA
+
+   40x30 分辨率的相机传感器。
+
+.. data:: sensor.QQQVGA
+
+   80x60 分辨率的相机传感器。
+
+.. data:: sensor.QQVGA
+
+   160x120 分辨率的相机传感器。
+
+.. data:: sensor.QVGA
+
+   320x240 分辨率的相机传感器。
+
+.. data:: sensor.VGA
+
+   640x480 分辨率的相机传感器。
+   只适用于OV2640相机或OpenMV Cam M7。
+
+.. data:: sensor.HQQQVGA
+
+   60x40 分辨率的相机传感器。
+
+.. data:: sensor.HQQVGA
+
+   120x80 分辨率的相机传感器。
+
+.. data:: sensor.HQVGA
+
+   240x160 分辨率的相机传感器。
+
+.. data:: sensor.LCD
+
+   128x160 分辨率的相机传感器 （与lcd扩展板结合使用）。
+
+.. data:: sensor.QQVGA2
+
+   128x160 分辨率的相机传感器 （与lcd扩展板结合使用）。
+
+.. data:: sensor.B40x30
+
+   40x30 分辨率的相机传感器 （与 ``image.find_displacement`` 结合使用）。
+
+.. data:: sensor.B64x32
+
+   64x32 分辨率的相机传感器 （与 ``image.find_displacement`` 结合使用）。
+
+.. data:: sensor.B64x64
+
+   64x64 分辨率的相机传感器 （与 ``image.find_displacement`` 结合使用）。
+
+.. data:: sensor.SVGA
+
+   800x600 分辨率的相机传感器。 只适用于OV2640相机。
+
+.. data:: sensor.SXGA
+
+   1280x1024 分辨率的相机传感器。 只适用于OV2640相机。
+
+.. data:: sensor.UXGA
+
+   1600x1200 分辨率的相机传感器。 只适用于OV2640相机。
+
+.. data:: sensor.NORMAL
+
+   将特殊效果滤波器设置为正常。
+
+.. data:: sensor.NEGATIVE
+
+   将特殊效果滤波器设置为负。
+

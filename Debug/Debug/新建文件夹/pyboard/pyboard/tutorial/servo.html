@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. 控制hobby伺服电机 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../../index.html"/>
+        <link rel="up" title="pyboard的MicroPython教程" href="index.html"/>
+        <link rel="next" title="2. LED亮度渐变" href="fading_led.html"/>
+        <link rel="prev" title="11. 电源管理" href="power_ctrl.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">pyboard基本信息</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">pyboard的MicroPython教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">1. pyboard 介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script.html">2. 运行您的首个脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repl.html">3. 进入一个MicroPython REPL命令行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leds.html">4. 点亮LED和基本Python概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">5. 切换、回调和中断</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accel.html">6. 加速度计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reset.html">7. 安全模式和恢复出厂设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb_mouse.html">8. 将pyboard用作USB鼠标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timer.html">9. 定时器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assembler.html">10. 内联汇编</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_ctrl.html">11. 电源管理</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id1">需要额外的配件的教程</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1. 控制hobby伺服电机</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#servo">1.1. 创建Servo对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">1.2. 连续旋转伺服</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">1.3. 校准</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fading_led.html">2. LED亮度渐变</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lcd_skin.html">3. LCD和触摸传感器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="amp_skin.html">4. AMP音频面板</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lcd160cr_skin.html">5. LCD160CR面板</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">需要知道小技巧</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">pyboard的MicroPython教程</a> &raquo;</li>
+        
+      <li>1. 控制hobby伺服电机</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pyboard/tutorial/servo.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hobby">
+<h1>1. 控制hobby伺服电机<a class="headerlink" href="#hobby" title="永久链接至标题">¶</a></h1>
+<p>在板上有4个用于连接业余hobby伺服电机的专用连接点 (详见 eg
+[Wikipedia](<a class="reference external" href="http://en.wikipedia.org/wiki/Servo_%28radio_control%29">http://en.wikipedia.org/wiki/Servo_%28radio_control%29</a>)).
+这些电机有3条线：地线、电源线和信号线。您可在板上将三条线连接在右下角，信号引脚在最右边。引脚X1、X2、X3和X4是4个专用伺服信号引脚。</p>
+<img alt="../../_images/pyboard_servo.jpg" src="../../_images/pyboard_servo.jpg" />
+<p>这张图片中呈现了将伺服电机用公对公杜邦线连接到pyboard。</p>
+<p>伺服上的地线通常是深色的，可能为黑色或深棕色。电源线最有可能是红色。</p>
+<p>伺服的电源引脚（标为VIN）直接连接到pyboard的输入电源。当通过USB供电时，VIN由5V的USB电源线通过二极管供电。
+连接到USB，pyboard可以驱动至少4个小到中型的伺服电机。</p>
+<p>若您使用电池为pyboard供电并运行伺服电机，请确保电压不大于6V，6V为大多数伺服电机可承受的最大电压。（有些电机最高仅支持4.8V，所以请仔细查看您所使用的电机类型）。</p>
+<div class="section" id="servo">
+<h2>1.1. 创建Servo对象<a class="headerlink" href="#servo" title="永久链接至标题">¶</a></h2>
+<p>将一个伺服插入位置1（带有引脚X1的位置）并使用以下代码创建一个伺服对象:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Servo</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>使用 <code class="docutils literal"><span class="pre">angle</span></code> 方法更改伺服的角度:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="o">-</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>此处的角度以度为单位，且其值介于-90至90间，该值取决于电机。调用无参数的 <code class="docutils literal"><span class="pre">angle</span></code> 将返回当前角度:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span><span class="o">.</span><span class="n">angle</span><span class="p">()</span>
+<span class="go">-60</span>
+</pre></div>
+</div>
+<p>注意：对于某些角度而言，返回的角度并非与您所设定的角度相同，这是设置脉宽的舍入误差造成的。</p>
+<p>您可将第二个参数传递给 <code class="docutils literal"><span class="pre">angle</span></code> 方法，此参数指定到达预设角度所花费的时间（以毫秒为单位）。
+例如，花费1秒（1000毫秒）从当前位置到达50度，使用:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>此指令将直接返回，而伺服将继续移动到预设角度，并在到达该角度后停止。
+您可将此特性用作速度控制，或同步2个或更多的伺服电机。 若我们还有另外的伺服电机 (<code class="docutils literal"><span class="pre">servo2</span> <span class="pre">=</span> <span class="pre">pyb.Servo(2)</span></code>) ，则我们可</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">2000</span><span class="p">);</span> <span class="n">servo2</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>此代码将同时移动伺服，使二者在耗时2秒后到达各自的最终角度。</p>
+<p>注意：上述两表达式中的使用分号使在您点击Enter键后可一个接一个地执行。在脚本中您无需使用分号，您只需在一行结束后在下一行写入。</p>
+</div>
+<div class="section" id="id1">
+<h2>1.2. 连续旋转伺服<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>目前我们已在使用移动到特定角度后停留在该角度的标准伺服。这些伺服电机可用于创建机器人的关节，
+或诸如平面-倾斜机制等。在其内部，电机有一个可变电阻器（电位计），
+其作用为测量当前角度和向电机施加与其到达预设角度的距离成正比的功率。
+此预设角度由在伺服信号线上的高脉冲的宽度设定。1500微秒的脉宽对应中心位置（0度）。
+脉冲以50Hz频率发送，即每秒50脉冲。</p>
+<p>您也可获取顺/逆时针旋转的连续旋转伺服电机。旋转的角度和速度由信号线上的脉宽设定。
+1500微秒的脉宽对应停止的电机。大于或小于此角度的脉宽即代表以给定速度顺/逆时针旋转。</p>
+<p>在pyboard上，连续旋转电机的Servo对象与前无异。实际上，您可使用 <code class="docutils literal"><span class="pre">angle</span></code> 来设置速度。
+但是，为方便大家理解，此处我们提供另外一种设置速度的方法，称为 <code class="docutils literal"><span class="pre">speed</span></code></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">speed</span></code> 与 <code class="docutils literal"><span class="pre">angle</span></code> 功能相同：您可获取并设置速度，并设置到达最终速度所需时间。:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span><span class="o">.</span><span class="n">speed</span><span class="p">()</span>
+<span class="go">30</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>上述的最后一条指令将电机设置为停止，但需耗时2秒使其停止。这实际是对连续伺服加速度的控制。</p>
+<p>通常认为，伺服速度100（或-100）即为最大速度，但实际上您可取比其略大的数值，具体情况取决于特定电机。</p>
+<p><code class="docutils literal"><span class="pre">angle</span></code> 和 <code class="docutils literal"><span class="pre">speed</span></code> 方法的唯一区别（除名称外）在于输入数字（角度或速度）转换为脉宽。</p>
+</div>
+<div class="section" id="id2">
+<h2>1.3. 校准<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>从角度/速度到脉宽的转换是由伺服对象使用其校准值完成的。使用以下代码获取当前校准:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span><span class="o">.</span><span class="n">calibration</span><span class="p">()</span>
+<span class="go">(640, 2420, 1500, 2470, 2200)</span>
+</pre></div>
+</div>
+<p>此处有5个数字，其意为:</p>
+<ol class="arabic simple">
+<li>最小脉宽；伺服接受的最小脉宽。</li>
+<li>最大脉宽；伺服接受的最大脉宽。</li>
+<li>中心脉宽；使伺服处于0度或0速度的脉宽。</li>
+<li>与90度对应的脉宽。这就设置了角度的 <code class="docutils literal"><span class="pre">angle</span></code> 方法到脉宽的转换。</li>
+<li>与速度100相对应的脉宽。这就设置了速度的 <code class="docutils literal"><span class="pre">speed</span></code> 方法与脉宽的转换。</li>
+</ol>
+<p>您可使用以下代码重新校正伺服（更改其默认值）:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">servo1</span><span class="o">.</span><span class="n">calibration</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">2400</span><span class="p">,</span> <span class="mi">1510</span><span class="p">,</span> <span class="mi">2500</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>当然，您可根据特定伺服电机更改上述值。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fading_led.html" class="btn btn-neutral float-right" title="2. LED亮度渐变" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="power_ctrl.html" class="btn btn-neutral" title="11. 电源管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

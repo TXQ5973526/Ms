@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. 安全模式和恢复出厂设置 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../../index.html"/>
+        <link rel="up" title="pyboard的MicroPython教程" href="index.html"/>
+        <link rel="next" title="8. 将pyboard用作USB鼠标" href="usb_mouse.html"/>
+        <link rel="prev" title="6. 加速度计" href="accel.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general.html">pyboard基本信息</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">pyboard的MicroPython教程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">1. pyboard 介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="script.html">2. 运行您的首个脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repl.html">3. 进入一个MicroPython REPL命令行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leds.html">4. 点亮LED和基本Python概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="switch.html">5. 切换、回调和中断</a></li>
+<li class="toctree-l2"><a class="reference internal" href="accel.html">6. 加速度计</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. 安全模式和恢复出厂设置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">7.1. 安全模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">7.2. 恢复文件系统的出厂设置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="usb_mouse.html">8. 将pyboard用作USB鼠标</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timer.html">9. 定时器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assembler.html">10. 内联汇编</a></li>
+<li class="toctree-l2"><a class="reference internal" href="power_ctrl.html">11. 电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id1">需要额外的配件的教程</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">需要知道小技巧</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">pyboard的MicroPython教程</a> &raquo;</li>
+        
+      <li>7. 安全模式和恢复出厂设置</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pyboard/tutorial/reset.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>7. 安全模式和恢复出厂设置<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>若您的pyboard出现问题，请不要慌张！错误地编写程序几乎不可能对pyboard造成损坏。</p>
+<p>首先您应尝试安全模式：这一模式暂时跳过 <code class="docutils literal"><span class="pre">boot.py</span></code> 和 <code class="docutils literal"><span class="pre">main.py</span></code> 的执行，并给定默认USB设置。</p>
+<p>若您在文件系统中遇到问题，您可恢复出厂设置，便可将文件系统恢复至初始状态。</p>
+<div class="section" id="id2">
+<h2>7.1. 安全模式<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>按照以下步骤进入安全模式:</p>
+<ol class="arabic simple">
+<li>将pyboard与USB连接，即可通电。</li>
+<li>按下USR开关。</li>
+<li>按下USR开关的同时，按下再松开RST开关。</li>
+<li>LED将循环亮起绿色、橙色再到绿色+橙色，然后再次循环。</li>
+<li>始终按住USR，直至仅橙色LED亮起，然后松开USR开关。</li>
+<li>橙色LED应快速闪烁4次，然后熄灭。</li>
+<li>现在您就处于安全模式了。</li>
+</ol>
+<p>在安全模式中，不执行&nbsp;<code class="docutils literal"><span class="pre">boot.py</span></code> 和 <code class="docutils literal"><span class="pre">main.py</span></code> 文件，因此pyboard以默认设置启动。
+这就意味着现在您可访问文件系统（USB驱动应显示），并编辑 <code class="docutils literal"><span class="pre">boot.py</span></code>
+和 <code class="docutils literal"><span class="pre">main.py</span></code> 来修复问题。</p>
+<p>安全模式是暂时的，且不会更改pyboard上的文件。</p>
+</div>
+<div class="section" id="id3">
+<h2>7.2. 恢复文件系统的出厂设置<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>若您的pyboard的文件系统损坏（例如：您忘记弹出/卸载），或有些您无法避开的 <code class="docutils literal"><span class="pre">boot.py</span></code>
+或 <code class="docutils literal"><span class="pre">main.py</span></code> 中的代码，那您可重置文件系统。</p>
+<p>重置文件系统删除了pyboard内部存储（并非SD卡）中的所有文件，并将 <code class="docutils literal"><span class="pre">boot.py</span></code>, <code class="docutils literal"><span class="pre">main.py</span></code>, <code class="docutils literal"><span class="pre">README.txt</span></code>
+和 <code class="docutils literal"><span class="pre">pybcdc.inf</span></code> 恢复到其初始状态。</p>
+<p>恢复文件系统的出厂设置，其步骤与进入安全模式相似，但是在绿色+橙色LED亮起时松开USR开关:</p>
+<ol class="arabic simple">
+<li>将pyboard与USB连接，即可通电。</li>
+<li>按下USR开关。</li>
+<li>按下USR开关，然后按下再松开RST开关。</li>
+<li>LED将循环亮起绿色、橙色再到绿色+橙色，然后再次循环。</li>
+<li>始终按住USR，直至仅绿色+橙色LED亮起，然后松开USR开关。</li>
+<li>绿色+橙色LED应快速闪烁4次。</li>
+<li>红色LED将亮起（因此现在红色、绿色、橙色LED点亮）。</li>
+<li>现在Pyboard正在重置文件系统（耗时数秒）。</li>
+<li>LED全都熄灭。</li>
+<li>现在您即完成了文件系统的重置，且处于安全模式。</li>
+<li>按下再松开RST开关进行正常启动。</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="usb_mouse.html" class="btn btn-neutral float-right" title="8. 将pyboard用作USB鼠标" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="accel.html" class="btn btn-neutral" title="6. 加速度计" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

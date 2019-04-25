@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. 比对指令 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/>
+        <link rel="up" title="Thumb2架构的内联汇编" href="asm_thumb2_index.html"/>
+        <link rel="next" title="7. 分支指令" href="asm_thumb2_label_branch.html"/>
+        <link rel="prev" title="5. 算法指令" href="asm_thumb2_arith.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">MicroPython语言</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="glossary.html">术语表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repl.html">MicroPython的交互式解释器模式 （又称REPL）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="isr_rules.html">编写中断处理程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speed_python.html">最大化MicroPython速度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="constrained.html">微控制器中的MicroPython</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="asm_thumb2_index.html">Thumb2架构的内联汇编</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="asm_thumb2_index.html#id1">文件规范</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="asm_thumb2_index.html#id2">指令分类</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_mov.html">1. 寄存器移位指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_ldr.html">2. 从内存中加载寄存器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_str.html">3. 将寄存器存入内存</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_logical_bit.html">4. 逻辑&amp;位运算指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_arith.html">5. 算法指令</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">6. 比对指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_label_branch.html">7. 分支指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_stack.html">8. 入栈和出栈</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_misc.html">9. 各种指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_float.html">10. 浮点数指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="asm_thumb2_directives.html">11. 汇编指令</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="asm_thumb2_index.html#id3">用法示例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="asm_thumb2_index.html#id4">参考目录</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">MicroPython语言</a> &raquo;</li>
+        
+          <li><a href="asm_thumb2_index.html">Thumb2架构的内联汇编</a> &raquo;</li>
+        
+      <li>6. 比对指令</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/reference/asm_thumb2_compare.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>6. 比对指令<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>这些指令对两个参数执行算术或逻辑指令，放弃结果但会设置条件标志。通常，这些指令用于在执行条件分支之前，在不更改数据值的前提下测试数据值。</p>
+<div class="section" id="id2">
+<h2>6.1. 文件规范<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>符号： <code class="docutils literal"><span class="pre">Rd,</span> <span class="pre">Rm,</span> <span class="pre">Rn</span></code> 表示ARM寄存器R0-R7。 <code class="docutils literal"><span class="pre">imm8</span></code> 表示一个具有8位宽度的即时值。</p>
+</div>
+<div class="section" id="apsr">
+<h2>6.2. 应用程序状态寄存器(APSR)<a class="headerlink" href="#apsr" title="永久链接至标题">¶</a></h2>
+<p>这包含四个由条件分支指令测试的位。通常情况下，条件分支将测试多个位，例如 <code class="docutils literal"><span class="pre">bge(LABEL)</span></code> 。
+条件码的含义取决于算术指令的操作数是否被视为有符号或无符号整数。因此， <code class="docutils literal"><span class="pre">bhi(LABEL)</span></code> 假定处理无符号数， <code class="docutils literal"><span class="pre">bgt(LABEL)</span></code> 假定处理有符号数。</p>
+</div>
+<div class="section" id="id3">
+<h2>6.3. APSR位<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>Z (zero)</li>
+</ul>
+<p>若运算的结果为0或比对的操作数相等，则设置为0。</p>
+<ul class="simple">
+<li>N (negative)</li>
+</ul>
+<p>若结果为负，则设置为N。</p>
+<ul class="simple">
+<li>C (carry)</li>
+</ul>
+<p>若结果溢出MSB，则加法设定进位标记，例如把0x80000000和0x80000000相加。由于二进制补码算术的性质，
+这种行为在减法时反转，清除借助进位位指示的借位。因此0x10 - 0x01执行为0x10 + 0xffffffff，它将设置进位位。</p>
+<ul class="simple">
+<li>V (overflow)</li>
+</ul>
+<p>若结果（被视为二进制数的补码）具有与操作数相关的”错误”符号，则会设置溢出标志。例如，将1添加到0x7fffffff将设置溢出位，
+因为结果（0x8000000）（被视为二进制补码整数）为负值。请注意：在此情况下，未设置进位位。</p>
+</div>
+<div class="section" id="id4">
+<h2>6.4. 比对指令<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>这些指令会设置APSR（应用程序状态寄存器）、N（负）、Z（零）、C（进位）和V（溢出）标志。</p>
+<ul class="simple">
+<li>cmp(Rn, imm8) <code class="docutils literal"><span class="pre">Rn</span> <span class="pre">-</span> <span class="pre">imm8</span></code></li>
+<li>cmp(Rn, Rm) <code class="docutils literal"><span class="pre">Rn</span> <span class="pre">-</span> <span class="pre">Rm</span></code></li>
+<li>cmn(Rn, Rm) <code class="docutils literal"><span class="pre">Rn</span> <span class="pre">+</span> <span class="pre">Rm</span></code></li>
+<li>tst(Rn, Rm) <code class="docutils literal"><span class="pre">Rn</span> <span class="pre">&amp;</span> <span class="pre">Rm</span></code></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>6.5. 条件执行<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">It</span></code> 和 <code class="docutils literal"><span class="pre">ite</span></code> 指令提供一种有条件地执行一到四个后续指令而无需标记的方法。</p>
+<ul class="simple">
+<li>it(&lt;condition&gt;) If then</li>
+</ul>
+<p>若&lt;condition&gt;为True，则执行下一指令:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">cmp</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">)</span>
+<span class="n">it</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
+<span class="n">mov</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># runs if r0 == r1</span>
+<span class="c1"># execution continues here 此处继续执行</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>ite(&lt;condition&gt;) If then else</li>
+</ul>
+<p>若&lt;condtion&gt;为真，执行下一指令，否则执行后续指令，因此:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">cmp</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r1</span><span class="p">)</span>
+<span class="n">ite</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span>
+<span class="n">mov</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># runs if r0 == r1</span>
+<span class="n">mov</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span> <span class="c1"># runs if r0 != r1</span>
+<span class="c1"># execution continues here 此处继续执行</span>
+</pre></div>
+</div>
+<p>这可能回扩展为控制至多四条后续指令的执行：it[x[y[z]]] where x,y,z=t/e; e.g. itt, itee, itete, ittte, itttt, iteee, etc.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="asm_thumb2_label_branch.html" class="btn btn-neutral float-right" title="7. 分支指令" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="asm_thumb2_arith.html" class="btn btn-neutral" title="5. 算法指令" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,1050 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MicroPython中文文档和参考 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜索" href="search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="index.html"/>
+        <link rel="next" title="pyboard快速参考" href="pyboard/quickref.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library/index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>MicroPython中文文档和参考</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pyboard_index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="micropython">
+<h1>MicroPython中文文档和参考<a class="headerlink" href="#micropython" title="永久链接至标题">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyboard/quickref.html">pyboard快速参考</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#id1">通用硬件控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#id2">延时和时间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#led">LED 发光二极管</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#pins-and-gpio">Pins and GPIO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#id3">舵机控制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#id4">外部中断</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#id5">定时器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#pwm">PWM脉宽调制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#adc">ADC (模数转换)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#dac">DAC (数模转换)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#uart">UART (串行总线)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#spi">SPI总线</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/quickref.html#i2c-bus">I2C bus</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyboard/general.html">pyboard基本信息</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/general.html#sd">文件系统和sd卡</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/general.html#id2">启动模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/general.html#led">LED闪灯错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/general.html#windowspyboard">Windows中Pyboard的使用指南</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/general.html#the-pyboard">The pyboard 硬件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/general.html#id4">pyboard元件数据手册</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/general.html#id5">其他元件的数据手册</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyboard/tutorial/index.html">pyboard的MicroPython教程</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/intro.html">1. pyboard 介绍</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/intro.html#id1">1.1. 小心你的pyboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/intro.html#id2">1.2. pyboard的布局</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/intro.html#id3">1.3. 插入并供电</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/intro.html#id4">1.4. 外部电源供电</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/script.html">2. 运行您的首个脚本</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/script.html#pyboard">2.1. 连接您的pyboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/script.html#pyboard-usb">2.2. 打开pyboard USB驱动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/script.html#id2">2.3. 编辑 <code class="docutils literal"><span class="pre">main.py</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/script.html#id5">2.4. 重启 pyboard</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/repl.html">3. 进入一个MicroPython REPL命令行</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/repl.html#windows">3.1. Windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/repl.html#mac-os-x">3.2. Mac OS X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/repl.html#linux">3.3. Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/repl.html#repl">3.4. 使用REPL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/repl.html#id5">3.5. 重启电路板</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/leds.html">4. 点亮LED和基本Python概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/leds.html#pyboard">4.1. pyboard的磁盘</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/leds.html#led">4.2. 第四个特殊LED</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/switch.html">5. 切换、回调和中断</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/switch.html#id2">5.1. 开关回调</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/switch.html#id3">5.2. 中断的技术细节</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/switch.html#id4">5.3. 扩展阅读</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/accel.html">6. 加速度计</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/accel.html#id2">6.1. 使用加速度计</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/accel.html#spirit">6.2. Spirit水平</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/reset.html">7. 安全模式和恢复出厂设置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/reset.html#id2">7.1. 安全模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/reset.html#id3">7.2. 恢复文件系统的出厂设置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/usb_mouse.html">8. 将pyboard用作USB鼠标</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/usb_mouse.html#id1">8.1. 手动发送鼠标事件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/usb_mouse.html#id2">8.2. 使用加速度计制作一个鼠标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/usb_mouse.html#pyboard">8.3. 将pyboard恢复至常态</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/timer.html">9. 定时器</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/timer.html#id2">9.1. 定时计数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/timer.html#id3">9.2. 定时器回调</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/timer.html#id4">9.3. 制作一个微秒计数器</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/assembler.html">10. 内联汇编</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/assembler.html#id2">10.1. 返回一个值</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/assembler.html#id3">10.2. 访问外设</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/assembler.html#id4">10.3. 接受参数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/assembler.html#id5">10.4. 循环</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/assembler.html#id6">10.5. 扩展阅读</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/power_ctrl.html">11. 电源管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/index.html#id1">需要额外的配件的教程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/servo.html">1. 控制hobby伺服电机</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/servo.html#servo">1.1. 创建Servo对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/servo.html#id1">1.2. 连续旋转伺服</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/servo.html#id2">1.3. 校准</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/fading_led.html">2. LED亮度渐变</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/fading_led.html#id1">2.1. 元件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/fading_led.html#id3">2.2. 连线</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/fading_led.html#id4">2.3. 代码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/fading_led.html#id5">2.4. 呼吸灯效果</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/fading_led.html#id6">2.5. 高级练习</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/fading_led.html#id7">2.6. 附录</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/lcd_skin.html">3. LCD和触摸传感器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/lcd_skin.html#id1">3.1. 使用LCD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/lcd_skin.html#id2">3.2. 使用触摸传感器</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/amp_skin.html">4. AMP音频面板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/amp_skin.html#id1">4.1. 示例代码</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/lcd160cr_skin.html">5. LCD160CR面板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/lcd160cr_skin.html#id1">5.1. 插入显示屏</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/lcd160cr_skin.html#id2">5.2. 获取驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/lcd160cr_skin.html#id5">5.3. 测试显示屏</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/lcd160cr_skin.html#id6">5.4. 绘制图形</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/lcd160cr_skin.html#id7">5.5. 使用触摸传感器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyboard/tutorial/lcd160cr_skin.html#micropython">5.6. 将MicroPython输入导向到显示屏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyboard/tutorial/index.html#id2">需要知道小技巧</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/debounce.html">1. 引脚输入去抖</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyboard/tutorial/pass_through.html">2. 制作一个UART - USB转换器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="library/index.html">MicroPython 函数库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="library/index.html#pythonmicro-libraries">Python标准库和micro-libraries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="library/builtins.html">内置函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/builtins.html#id2">函数和类型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/builtins.html#exceptions">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/array.html"><code class="docutils literal"><span class="pre">array</span></code> – 数组</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/array.html#id1">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/cmath.html"><code class="docutils literal"><span class="pre">cmath</span></code> – 复数的数学函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/cmath.html#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/cmath.html#id2">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/gc.html"><code class="docutils literal"><span class="pre">gc</span></code> – 控制垃圾回收器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/gc.html#id1">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/math.html"><code class="docutils literal"><span class="pre">math</span></code> – 数学函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/math.html#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/math.html#id2">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/sys.html"><code class="docutils literal"><span class="pre">sys</span></code> – 系统相关函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/sys.html#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/sys.html#id2">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/ubinascii.html"><code class="docutils literal"><span class="pre">ubinascii</span></code> – 二进制/ASCII转换</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/ubinascii.html#id1">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/ucollections.html"><code class="docutils literal"><span class="pre">ucollections</span></code> – 容器</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/ucollections.html#id1">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uerrno.html"><code class="docutils literal"><span class="pre">uerrno</span></code> – 系统错误代码</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uerrno.html#id1">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uhashlib.html"><code class="docutils literal"><span class="pre">uhashlib</span></code> – 散列算法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uhashlib.html#id3">构造函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uhashlib.html#id4">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uheapq.html"><code class="docutils literal"><span class="pre">uheapq</span></code> – 堆队列算法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uheapq.html#id1">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uio.html"><code class="docutils literal"><span class="pre">uio</span></code> – 输入/输出流</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uio.html#id1">层次结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uio.html#id2">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uio.html#id3">类</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/ujson.html"><code class="docutils literal"><span class="pre">ujson</span></code> – JSON编码与解码</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/ujson.html#id1">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uos.html"><code class="docutils literal"><span class="pre">uos</span></code> – 基本“操作系统”服务</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uos.html#id1">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/ure.html"><code class="docutils literal"><span class="pre">ure</span></code> – 正则表达式</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/ure.html#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/ure.html#regex">正则表达式对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/ure.html#id3">匹配对象</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uselect.html"><code class="docutils literal"><span class="pre">uselect</span></code> – 在一组流中等待事件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uselect.html#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uselect.html#poll"><code class="docutils literal"><span class="pre">Poll</span></code> 类</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/uselect.html#id2">方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/usocket.html"><code class="docutils literal"><span class="pre">usocket</span></code> – socket模块</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/usocket.html#socket">Socket地址格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/usocket.html#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/usocket.html#id2">常量</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/usocket.html#id3">socket类</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="library/usocket.html#id4">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/ustruct.html"><code class="docutils literal"><span class="pre">ustruct</span></code> – 打包和解压缩原始数据类型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/ustruct.html#id1">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/utime.html"><code class="docutils literal"><span class="pre">utime</span></code> – 时间相关的函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/utime.html#id1">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uzlib.html"><code class="docutils literal"><span class="pre">uzlib</span></code> – zlib解压缩</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uzlib.html#id1">函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="library/index.html#id2">MicroPython特定的库</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="library/btree.html"><code class="docutils literal"><span class="pre">btree</span></code> – 简单B树数据库</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/btree.html#id1">函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/btree.html#id4">方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/btree.html#id5">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/framebuf.html"><code class="docutils literal"><span class="pre">framebuf</span></code> — 帧缓冲区操作</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/framebuf.html#id1">帧缓冲区类</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/framebuf.html#id2">构造函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/framebuf.html#id3">绘制原始形状</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/framebuf.html#id4">绘制文本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/framebuf.html#id5">其他类函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/framebuf.html#id6">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/machine.html"><code class="docutils literal"><span class="pre">machine</span></code> — 硬件相关的函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.html#id1">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.html#id2">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.html#id3">电源相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.html#id4">其他功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.html#machine-constants">常量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/machine.html#id6">类</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/machine.Pin.html">Pin类 – 控制I/O引脚</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.Pin.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.Pin.html#id2">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.Pin.html#id3">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/machine.Signal.html">Signal类 – 控制和感应外部I/O设备</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.Signal.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.Signal.html#id2">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/machine.UART.html">UART类 – 双工串行通信总线</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.UART.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.UART.html#id2">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/machine.SPI.html">SPI类 – 串行外设接口总线协议(主机)</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.SPI.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.SPI.html#id2">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.SPI.html#id3">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/machine.I2C.html">I2C类 – 双线串行协议</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.I2C.html#id1">构建函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.I2C.html#id2">通用方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.I2C.html#id3">原始I2C操作</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.I2C.html#id4">标准总线操作</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.I2C.html#id5">内存操作</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/machine.RTC.html">RTC类 – 实时时钟</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.RTC.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.RTC.html#id2">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.RTC.html#id3">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/machine.Timer.html">定时器类 – 控制硬件定时器</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.Timer.html#id2">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.Timer.html#id3">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.Timer.html#id4">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/machine.WDT.html">WDT类 – 看门狗定时器</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.WDT.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/machine.WDT.html#id2">方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/micropython.html"><code class="docutils literal"><span class="pre">micropython</span></code> – 访问和控制MicroPython内部构件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/micropython.html#id1">函数</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/network.html"><code class="docutils literal"><span class="pre">network</span></code> — 网络配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/network.html#id1">常见的网络适配器接口</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/network.html#class-cc3k">class CC3K</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/network.html#id2">构造函数</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/network.html#methods">Methods</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/network.html#id3">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="library/network.html#class-wiznet5k">class WIZNET5K</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/network.html#id4">构造函数</a></li>
+<li class="toctree-l5"><a class="reference internal" href="library/network.html#id5">方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/uctypes.html"><code class="docutils literal"><span class="pre">uctypes</span></code> – 以结构化的方式访问二进制数据</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/uctypes.html#id1">定义结构布局</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uctypes.html#id2">模块内容</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uctypes.html#id3">结构描述符和实例化结构对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uctypes.html#id4">结构对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/uctypes.html#id5">局限性</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="library/index.html#libraries-specific-to-the-pyboard">Libraries specific to the pyboard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="library/pyb.html"><code class="docutils literal"><span class="pre">pyb</span></code> — 板级功能</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#id1">时间相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#id2">复位相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#id3">中断相关的函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#id4">电源相关函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#id5">其他功能</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/pyb.html#id6">类</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.Accel.html">class Accel – 加速计控制</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Accel.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Accel.html#id2">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Accel.html#id3">硬件的注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.ADC.html">ADC类 – 模数转换</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ADC.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ADC.html#id2">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ADC.html#adcall">ADCAll对象</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.CAN.html">CAN类 –控制器区域网络通信总线</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.CAN.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.CAN.html#class-methods">Class Methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.CAN.html#id2">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.CAN.html#id3">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.DAC.html">DAC类 – 数字模拟变换</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.DAC.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.DAC.html#id2">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.ExtInt.html">ExtInt类 – 配置I/O引脚以中断外部事件</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ExtInt.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ExtInt.html#class-methods">Class methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ExtInt.html#id2">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.ExtInt.html#id3">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.I2C.html">I2C类 – 二线串行协议</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.I2C.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.I2C.html#id2">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.I2C.html#constants">Constants</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.LCD.html">class LCD – 用于控制 带触摸传感器的lcd模块</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.LCD.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.LCD.html#methods">Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.LED.html">LED类 – LED对象</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.LED.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.LED.html#id2">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.Pin.html">Pin类 – 控制I/O 引脚</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Pin.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Pin.html#class-methods">Class methods</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Pin.html#id2">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Pin.html#id3">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.Pin.html#class-pinaf">class PinAF – 引脚替代函数</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Pin.html#id4">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.RTC.html">class RTC – 实时时钟</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.RTC.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.RTC.html#id2">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.Servo.html">Servo类 –三线hobby舵机驱动</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Servo.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Servo.html#id2">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.SPI.html">SPI类 – 串行外设接口</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.SPI.html#id1">构建函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.SPI.html#id2">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.SPI.html#id3">常量</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.Switch.html">class Switch – 开关对象</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Switch.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Switch.html#id2">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.Timer.html">Timer类 – 控制内部定时器</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Timer.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Timer.html#id2">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.Timer.html#timerchannel">TimerChannel类 — 为定时器建立一个通道</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.Timer.html#id3">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.UART.html">UART类 – 双向串行通信总线</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.UART.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.UART.html#id2">方法</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.UART.html#id5">常量</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.UART.html#id6">流控制</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="library/pyb.UART.html#cts-pyboard">CTS: 目标控制Pyboard发送器</a></li>
+<li class="toctree-l7"><a class="reference internal" href="library/pyb.UART.html#rts-pyboard">RTS: Pyboard控制目标发送器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.USB_HID.html">class USB_HID – USB 人机接口设备 (HID)</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.USB_HID.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.USB_HID.html#id2">方法</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="library/pyb.USB_VCP.html">USB_VCP 类– USB 虚拟通讯端口</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.USB_VCP.html#id1">构造函数</a></li>
+<li class="toctree-l6"><a class="reference internal" href="library/pyb.USB_VCP.html#id2">方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/lcd160cr.html"><code class="docutils literal"><span class="pre">lcd160cr</span></code> — 控制LCD160CR显示屏</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="library/lcd160cr.html#class-lcd160cr">class LCD160CR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/lcd160cr.html#id1">构造函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/lcd160cr.html#id2">静态方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/lcd160cr.html#id3">实例成员</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/lcd160cr.html#id4">设置指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/lcd160cr.html#id5">像素访问方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/lcd160cr.html#id6">绘制文本</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/lcd160cr.html#id9">绘制原始图形</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/lcd160cr.html#id10">触屏函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/lcd160cr.html#id13">高级指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="library/lcd160cr.html#id18">常量</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference/index.html">MicroPython语言</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference/glossary.html">术语表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/repl.html">MicroPython的交互式解释器模式 （又称REPL）</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#id1">自动-缩进</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#id2">自动-完成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#id3">中断一个运行程序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#id4">粘贴模式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#id5">软复位</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#id6">特殊变量 _ (下划线)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/repl.html#id7">原始模式</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/isr_rules.html">编写中断处理程序</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/isr_rules.html#id2">提示与推荐练习</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/isr_rules.html#micropython">MicroPython问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#id3">紧急异常缓冲区</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#id4">简化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#isr">ISR和主程序间的通信</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#id5">对象方法用作回调</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#python">创建Python对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#id6">使用Python对象</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#id7">克服浮点数限制</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/isr_rules.html#id8">异常</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/isr_rules.html#id9">一般问题</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#id10">中断处理程序设计</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#id12">可重入性</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#critical">临界区</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/isr_rules.html#repl">中断和REPL</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/speed_python.html">最大化MicroPython速度</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/speed_python.html#id2">速度设计</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#id3">算法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#ram">RAM分配</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#id4">缓冲区</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#id5">浮点数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#id6">数组</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/speed_python.html#id7">识别代码的最慢段</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/speed_python.html#id8">MicroPython代码改进</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#const">const()声明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#caching">缓存对象引用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/speed_python.html#controlling-gc">控制垃圾回收</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/speed_python.html#id11">本地密码发射器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/speed_python.html#viper">Viper代码发送器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/speed_python.html#id12">直接访问硬件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/constrained.html">微控制器中的MicroPython</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/constrained.html#id1">闪存</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/constrained.html#ram">RAM</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/constrained.html#id2">编译阶段</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/constrained.html#id3">执行阶段</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/constrained.html#heap">堆</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/constrained.html#id5">碎片化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/constrained.html#id6">报告</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/constrained.html#id7">控制垃圾回收</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/constrained.html#id8">字符串操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/constrained.html#id9">附言</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/constrained.html#gc-collect">脚注：gc.collect()返回值</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reference/asm_thumb2_index.html">Thumb2架构的内联汇编</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reference/asm_thumb2_index.html#id1">文件规范</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reference/asm_thumb2_index.html#id2">指令分类</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_mov.html">1. 寄存器移位指令</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_mov.html#id2">1.1. 文件规范</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_mov.html#id3">1.2. 寄存器移位</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_ldr.html">2. 从内存中加载寄存器</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_ldr.html#id2">2.1. 文件规范</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_ldr.html#id3">2.2. 寄存器加载</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_str.html">3. 将寄存器存入内存</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_str.html#id2">3.1. 文件规范</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_str.html#id3">3.2. 寄存器存储</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_logical_bit.html">4. 逻辑&amp;位运算指令</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_logical_bit.html#id2">4.1. 文件规范</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_logical_bit.html#id3">4.2. 逻辑指令</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_logical_bit.html#id4">4.3. 转换和旋转指令</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_logical_bit.html#id5">4.4. 特殊指令</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_arith.html">5. 算法指令</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_arith.html#id2">5.1. 文件规范</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_arith.html#id3">5.2. 加</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_arith.html#id4">5.3. 减</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_arith.html#id5">5.4. 取反</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_arith.html#id6">5.5. 乘和除</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_compare.html">6. 比对指令</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_compare.html#id2">6.1. 文件规范</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_compare.html#apsr">6.2. 应用程序状态寄存器(APSR)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_compare.html#id3">6.3. APSR位</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_compare.html#id4">6.4. 比对指令</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_compare.html#id5">6.5. 条件执行</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_label_branch.html">7. 分支指令</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_label_branch.html#id2">7.1. 文件规范</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_label_branch.html#id3">7.2. 转移标记</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_label_branch.html#id4">7.3. 长分支</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_label_branch.html#id5">7.4. 子程序（函数）</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_stack.html">8. 入栈和出栈</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_stack.html#id2">8.1. 文件规范</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_misc.html">9. 各种指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_float.html">10. 浮点数指令</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#id2">10.1. 文件规范</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#id3">10.2. 算法</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#armfpu">10.3. 在ARM和FPU寄存器间移动</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#fpu">10.4. 在FPU寄存器和内存间移动</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#id4">10.5. 数据比对</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_float.html#id5">10.6. 整数和浮点间的转换</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_directives.html">11. 汇编指令</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_directives.html#id2">11.1. 标记</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_directives.html#id3">11.2. 定义内联数据</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/asm_thumb2_index.html#id3">用法示例</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html">1. 代码分支和子程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#id2">2. 传输和返回参数</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#id3">2.1. 多个参数</a></li>
+<li class="toctree-l5"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#id4">2.2. 非整数数据类型</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#id5">3. 命名常量</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#id6">4. 汇编代码作为类方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#id7">5. 使用不支持的指令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="reference/asm_thumb2_hints_tips.html#micropython">6. 克服MicroPython的整数限制</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="reference/asm_thumb2_index.html#id4">参考目录</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genrst/index.html">MicroPython 与 CPython 的不同</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="genrst/syntax.html">Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="genrst/syntax.html#spaces">Spaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/syntax.html#upy-requires-spaces-between-literal-numbers-and-keywords-cpy-doesn-t">uPy requires spaces between literal numbers and keywords, CPy doesn’t</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/syntax.html#unicode">Unicode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/syntax.html#unicode-name-escapes-are-not-implemented">Unicode name escapes are not implemented</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="genrst/core_language.html">Core Language</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="genrst/core_language.html#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/core_language.html#special-method-del-not-implemented-for-user-defined-classes">Special method __del__ not implemented for user-defined classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/core_language.html#method-resolution-order-mro-is-not-compliant-with-cpython">Method Resolution Order (MRO) is not compliant with CPython</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/core_language.html#when-inheriting-from-multiple-classes-super-only-calls-one-class">When inheriting from multiple classes super() only calls one class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/core_language.html#calling-super-getter-property-in-subclass-will-return-a-property-object-not-the-value">Calling super() getter property in subclass will return a property object, not the value</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/core_language.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/core_language.html#error-messages-for-methods-may-display-unexpected-argument-counts">Error messages for methods may display unexpected argument counts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/core_language.html#unpacking-function-arguments-in-non-last-position-isn-t-detected-as-an-error">Unpacking function arguments in non-last position isn’t detected as an error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/core_language.html#user-defined-attributes-for-functions-are-not-supported">User-defined attributes for functions are not supported</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/core_language.html#generator">Generator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/core_language.html#context-manager-exit-not-called-in-a-generator-which-does-not-run-to-completion">Context manager __exit__() not called in a generator which does not run to completion</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/core_language.html#import">import</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/core_language.html#path-attribute-of-a-package-has-a-different-type-single-string-instead-of-list-of-strings-in-micropython">__path__ attribute of a package has a different type (single string instead of list of strings) in MicroPython</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/core_language.html#failed-to-load-modules-are-still-registered-as-loaded">Failed to load modules are still registered as loaded</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/core_language.html#micropython-does-t-support-namespace-packages-split-across-filesystem">MicroPython does’t support namespace packages split across filesystem.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="genrst/builtin_types.html">Builtin Types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="genrst/builtin_types.html#exception">Exception</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#exception-chaining-not-implemented">Exception chaining not implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#user-defined-attributes-for-builtin-exceptions-are-not-supported">User-defined attributes for builtin exceptions are not supported</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#exception-in-while-loop-condition-may-have-unexpected-line-number">Exception in while loop condition may have unexpected line number</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#exception-init-raises-typeerror-if-overridden-and-called-by-subclass">Exception.__init__ raises TypeError if overridden and called by subclass</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/builtin_types.html#bytearray">bytearray</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#array-slice-assignment-with-unsupported-rhs">Array slice assignment with unsupported RHS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/builtin_types.html#bytes">bytes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#bytes-with-keywords-not-implemented">bytes() with keywords not implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#bytes-subscription-with-step-1-not-implemented">Bytes subscription with step != 1 not implemented</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/builtin_types.html#float">float</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#upy-and-cpython-outputs-formats-may-differ">uPy and CPython outputs formats may differ</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/builtin_types.html#int">int</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#no-int-conversion-for-int-derived-types-available">No int conversion for int-derived types available</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#incorrect-error-message-when-passing-float-into-to-bytes">Incorrect error message when passing float into to_bytes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/builtin_types.html#list">list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#list-delete-with-step-1-not-implemented">List delete with step != 1 not implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#list-slice-store-with-non-iterable-on-rhs-is-not-implemented">List slice-store with non-iterable on RHS is not implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#list-store-with-step-1-not-implemented">List store with step != 1 not implemented</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/builtin_types.html#str">str</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#unicodedecodeerror-not-raised-when-expected">UnicodeDecodeError not raised when expected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#start-end-indices-such-as-str-endswith-s-start-not-implemented">Start/end indices such as str.endswith(s, start) not implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#attributes-subscr-not-implemented">Attributes/subscr not implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#str-with-keywords-not-implemented">str(…) with keywords not implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#str-ljust-and-str-rjust-not-implemented">str.ljust() and str.rjust() not implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#none-as-first-argument-for-rsplit-such-as-str-rsplit-none-n-not-implemented">None as first argument for rsplit such as str.rsplit(None, n) not implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#instance-of-a-subclass-of-str-cannot-be-compared-for-equality-with-an-instance-of-a-str">Instance of a subclass of str cannot be compared for equality with an instance of a str</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#subscript-with-step-1-is-not-yet-implemented">Subscript with step != 1 is not yet implemented</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/builtin_types.html#tuple">tuple</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/builtin_types.html#tuple-load-with-step-1-not-implemented">Tuple load with step != 1 not implemented</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="genrst/modules.html">Modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="genrst/modules.html#array">array</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/modules.html#looking-for-integer-not-implemented">Looking for integer not implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/modules.html#array-deletion-not-implemented">Array deletion not implemented</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/modules.html#subscript-with-step-1-is-not-yet-implemented">Subscript with step != 1 is not yet implemented</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/modules.html#deque">deque</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/modules.html#deque-not-implemented">Deque not implemented</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/modules.html#json">json</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/modules.html#json-module-does-not-throw-exception-when-object-is-not-serialisable">JSON module does not throw exception when object is not serialisable</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/modules.html#struct">struct</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/modules.html#struct-pack-with-too-few-args-not-checked-by-upy">Struct pack with too few args, not checked by uPy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="genrst/modules.html#struct-pack-with-too-many-args-not-checked-by-upy">Struct pack with too many args, not checked by uPy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="genrst/modules.html#sys">sys</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="genrst/modules.html#overriding-sys-stdin-sys-stdout-and-sys-stderr-not-possible">Overriding sys.stdin, sys.stdout and sys.stderr not possible</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">MicroPython 许可证信息</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyboard/quickref.html" class="btn btn-neutral float-right" title="pyboard快速参考" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

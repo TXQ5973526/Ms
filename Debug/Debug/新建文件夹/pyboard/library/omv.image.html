@@ -1,0 +1,2648 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>image — 机器视觉 &mdash; MicroPython 1.9.2 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/customstyle.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="索引"
+              href="../genindex.html"/>
+        <link rel="search" title="搜索" href="../search.html"/>
+    <link rel="top" title="MicroPython 1.9.2 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MicroPython
+          
+
+          
+            
+            <img src="../_static/singtown.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.9.2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/quickref.html">pyboard快速参考</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/general.html">pyboard基本信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pyboard/tutorial/index.html">pyboard的MicroPython教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">MicroPython 函数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">MicroPython语言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genrst/index.html">MicroPython 与 CPython 的不同</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">MicroPython 许可证信息</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MicroPython</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li><code class="docutils literal"><span class="pre">image</span></code> — 机器视觉</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/library/omv.image.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="image">
+<h1><code class="xref py py-mod docutils literal"><span class="pre">image</span></code> — 机器视觉<a class="headerlink" href="#image" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>函数<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<dl class="function">
+<dt id="image.rgb_to_lab">
+<code class="descclassname">image.</code><code class="descname">rgb_to_lab</code><span class="sig-paren">(</span><em>rgb_tuple</em><span class="sig-paren">)</span><a class="headerlink" href="#image.rgb_to_lab" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB888格式的元组 <code class="docutils literal"><span class="pre">rgb_tuple</span></code> (r, g, b)对应的LAB格式的元组(l, a, b)。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">RGB888是指红、绿、蓝各8位（0-255）。在LAB中，L的取值范围为0-100，a/b 的取值范围为-128到127。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="image.lab_to_rgb">
+<code class="descclassname">image.</code><code class="descname">lab_to_rgb</code><span class="sig-paren">(</span><em>lab_tuple</em><span class="sig-paren">)</span><a class="headerlink" href="#image.lab_to_rgb" title="永久链接至目标">¶</a></dt>
+<dd><p>返回LAB格式的元组 <code class="docutils literal"><span class="pre">lab_tuple</span></code> (l, a, b)对应的RGB888格式的元组(r, g, b)。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">RGB888是指红、绿、蓝各8位（0-255）。在LAB中，L的取值范围为0-100，a/b 的取值范围为-128到127。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="image.rgb_to_grayscale">
+<code class="descclassname">image.</code><code class="descname">rgb_to_grayscale</code><span class="sig-paren">(</span><em>rgb_tuple</em><span class="sig-paren">)</span><a class="headerlink" href="#image.rgb_to_grayscale" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB888格式的元组 <code class="docutils literal"><span class="pre">rgb_tuple</span></code> (r, g, b)对应的灰度值。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">RGB888是指红、绿、蓝各8位（0-255）。灰度值取值于0-255。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="image.grayscale_to_rgb">
+<code class="descclassname">image.</code><code class="descname">grayscale_to_rgb</code><span class="sig-paren">(</span><em>g_value</em><span class="sig-paren">)</span><a class="headerlink" href="#image.grayscale_to_rgb" title="永久链接至目标">¶</a></dt>
+<dd><p>返回灰度值 <code class="docutils literal"><span class="pre">g_value</span></code> 对应的RGB888格式的元组(r, g, b)。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">RGB888是指红、绿、蓝各8位（0-255）。灰度值取值于0-255。</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="image.load_decriptor">
+<code class="descclassname">image.</code><code class="descname">load_decriptor</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#image.load_decriptor" title="永久链接至目标">¶</a></dt>
+<dt>
+<code class="descname">从磁盘上加载一个描述符对象(descriptor object).</code></dt>
+<dd><p><code class="docutils literal"><span class="pre">path</span></code> 是描述符文件保存的路径。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="image.save_descriptor">
+<code class="descclassname">image.</code><code class="descname">save_descriptor</code><span class="sig-paren">(</span><em>path</em>, <em>descriptor</em><span class="sig-paren">)</span><a class="headerlink" href="#image.save_descriptor" title="永久链接至目标">¶</a></dt>
+<dd><p>保存描述符对象&nbsp;<code class="docutils literal"><span class="pre">descriptor</span></code>&nbsp;到磁盘。</p>
+<p><code class="docutils literal"><span class="pre">path</span></code> 是描述符文件保存的路径。</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="image.match_descriptor">
+<code class="descclassname">image.</code><code class="descname">match_descriptor</code><span class="sig-paren">(</span><em>descritor0</em>, <em>descriptor1</em>, <em>threshold=70</em>, <em>filter_outliers=False</em><span class="sig-paren">)</span><a class="headerlink" href="#image.match_descriptor" title="永久链接至目标">¶</a></dt>
+<dd><p>对于LBP描述符来说，这个函数返回的是一个体现两个描述符之间区别的整数。这一距离测度尤为必要。这个距离是对相似度的一个度量。这个测度值越接近0，LBPF特征点匹配得就越好。
+对于ORB描述符来说，这个函数返回的是kptmatch对象。见上。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">threshold</span></code> 是用来为ORB键点过滤不明确匹配服务的。</div></blockquote>
+<p>一个较低的 <code class="docutils literal"><span class="pre">threshold</span></code> 值将紧扣关键点匹配算法。
+<code class="docutils literal"><span class="pre">threshold</span></code>&nbsp;值位于0-100 (int)。默认值为70。
+<code class="docutils literal"><span class="pre">filter_outliers</span></code>&nbsp;是用来为ORB键点过滤异常值服务的。
+特征点允许用户提高 <code class="docutils literal"><span class="pre">threshold</span></code> 值。默认设置为False。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">threshold</span></code>&nbsp;和 <code class="docutils literal"><span class="pre">filter_outliers</span></code>&nbsp;是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">threshold=</span></code> 和 <code class="docutils literal"><span class="pre">filter_outliers=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="haarcascade">
+<h1>HaarCascade 类 – 特征描述符<a class="headerlink" href="#haarcascade" title="永久链接至标题">¶</a></h1>
+<p>Haar Cascade特征描述符用于image.find_features()&nbsp;方法。它没有供用户调用的方法。</p>
+<div class="section" id="id2">
+<h2>构造函数<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="image.HaarCascade">
+<em class="property">class </em><code class="descclassname">image.</code><code class="descname">HaarCascade</code><span class="sig-paren">(</span><em>path</em>, <em>stages=Auto</em><span class="sig-paren">)</span><a class="headerlink" href="#image.HaarCascade" title="永久链接至目标">¶</a></dt>
+<dd><p>从一个Haar Cascade二进制文件（适合OpenMV Cam的格式）加载一个Haar Cascade。
+如果您传递“frontalface”字符串 而非一条路径，这个构造函数将会把一个内置的正脸Haar Cascade载入内存。
+此外，您也可以通过“eye”来把Haar Cascade载入内存。
+最后，这个方法会返回载入的Haar Cascade对象，用来使用image.find_features()。</p>
+<p>stages&nbsp;默认值为Haar Cascade中的阶段数。然而，您可以指定一个较低的数值来加速运行特征检测器，当然这会带来较高的误报率。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">您可以制作自己的Haar Cascades 来配合您的OpenMV Cam 使用。
+首先，使用谷歌搜索“&lt;thing&gt; Haar Cascade”，检测是否有人已经为您想要检测的对象制作了OpenCV Haar Cascade。
+如果没有，那您需要自己动手制作（工作量巨大）。
+关于如何制作自己的Haar Cascade，<a class="reference external" href="http://coding-robin.de/2013/07/22/train-your-own-opencv-haar-classifier.html">见此</a>
+关于如何把OpenCV Haar Cascades转化成您的OpenMV Cam可以读取的模式，
+<a class="reference external" href="https://github.com/openmv/openmv/blob/master/usr/openmv-cascade.py">见此script</a></p>
+</div>
+<p>问：Haar Cascade 是什么？</p>
+<p>答：Haar Cascade是一系列用来确定一个对象是否存在于图像中的对比检查。
+这一系列的对比检查分成了多个阶段，后一阶段的运行以先前阶段的完成为前提。
+对比检查并不复杂，不过是像检查图像的中心垂直是否比边缘更轻微之类的过程。
+大范围的检查在前期阶段首先进行，在后期进行更多更小的区域检查。</p>
+<p>问：Haar Cascades 是如何制作而成的？</p>
+<p>答：Haar Cascades通过标有正负的图像对发生器算法进行训练。
+比如，用数百张含有猫（已被标记为内含猫）的图片和数百张不含有猫形物的图片（已作出不同标记）来训练这个生成算法。
+这个生成算法最后会产生一个用来检测猫的Haar Cascades。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="histogram">
+<h1>Histogram 类 – 直方图对象<a class="headerlink" href="#histogram" title="永久链接至标题">¶</a></h1>
+<p>直方图对象是由 <code class="docutils literal"><span class="pre">image.get_histogram</span></code> 返回。 灰度直方图有一个包含多个二进制的通道。
+所有二进制都进行标准化，使其总和为1。
+RGB565有三个包含多个二进制的通道。所有二进制都进行标准化，使其总和为1。</p>
+<div class="section" id="id4">
+<h2>方法<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="histogram.bins">
+<code class="descclassname">histogram.</code><code class="descname">bins</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#histogram.bins" title="永久链接至目标">¶</a></dt>
+<dd><p>返回灰度直方图的浮点数列表。
+您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.l_bins">
+<code class="descclassname">histogram.</code><code class="descname">l_bins</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#histogram.l_bins" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB565直方图LAB的L通道的浮点数列表。
+您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.a_bins">
+<code class="descclassname">histogram.</code><code class="descname">a_bins</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#histogram.a_bins" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB565直方图LAB的A通道的浮点数列表。
+您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.b_bins">
+<code class="descclassname">histogram.</code><code class="descname">b_bins</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#histogram.b_bins" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB565直方图LAB的B通道的浮点数列表。
+您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.get_percentile">
+<code class="descclassname">histogram.</code><code class="descname">get_percentile</code><span class="sig-paren">(</span><em>percentile</em><span class="sig-paren">)</span><a class="headerlink" href="#histogram.get_percentile" title="永久链接至目标">¶</a></dt>
+<dd><p>计算直方图频道的CDF，返回一个传递&nbsp;<code class="docutils literal"><span class="pre">percentile</span></code>&nbsp;(0.0 - 1.0) (浮点数)中的直方图的值。</p>
+<p>因此，若您进入0.1，该方法会告知您，当累加入累加器时，哪一个二进制会使累加器跨过0.1。</p>
+<p>在没有异常效用破坏您的自适应色跟踪结果时，这对于确定颜色分布的最小值(0.1)和max(0.9)甚是有效。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="histogram.get_statistics">
+<code class="descclassname">histogram.</code><code class="descname">get_statistics</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#histogram.get_statistics" title="永久链接至目标">¶</a></dt>
+<dd><p>计算直方图中每个颜色通道的平均值、中值、众值、标准差、最小值、最大值、下四分值和上四分值，
+并返回一个statistics对象。
+您也可以使用 <code class="docutils literal"><span class="pre">histogram.statistics()</span></code>&nbsp;和 <code class="docutils literal"><span class="pre">histogram.get_stats()</span></code>&nbsp;作为这个方法的别名。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="percentile">
+<h1>Percentile 类 – 百分比值对象<a class="headerlink" href="#percentile" title="永久链接至标题">¶</a></h1>
+<p>百分比值对象由histogram.get_percentile 返回。
+灰度百分比值有一个通道。不使用&nbsp;<code class="docutils literal"><span class="pre">l_*</span></code> 、&nbsp;<code class="docutils literal"><span class="pre">a_*</span></code> 或&nbsp;<code class="docutils literal"><span class="pre">b_*</span></code> 方法。
+RGB565百分比值有三个通道。使用&nbsp;<code class="docutils literal"><span class="pre">l_*</span></code> 、&nbsp;<code class="docutils literal"><span class="pre">a_*</span></code> 和&nbsp;<code class="docutils literal"><span class="pre">b_*</span></code> 方法。</p>
+<div class="section" id="id5">
+<h2>方法<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="percentile.value">
+<code class="descclassname">percentile.</code><code class="descname">value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#percentile.value" title="永久链接至目标">¶</a></dt>
+<dd><p>返回灰度百分比值（取值区间为0-255）。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<p>
+.. method:: percentile.l_value()</p>
+<blockquote>
+<div><p>返回RGB565 LAB 的L通道的百分比值（取值区间为0-100）。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</div></blockquote>
+<dl class="method">
+<dt id="percentile.a_value">
+<code class="descclassname">percentile.</code><code class="descname">a_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#percentile.a_value" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB565 LAB 的A通道的百分比值（取值区间为-128-127）。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="percentile.b_value">
+<code class="descclassname">percentile.</code><code class="descname">b_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#percentile.b_value" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB565 LAB 的B通道的百分比值（取值区间为-128-127）。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="class-statistics">
+<h1>class Statistics – 统计数据对象<a class="headerlink" href="#class-statistics" title="永久链接至标题">¶</a></h1>
+<p>统计数据对象是由 <code class="docutils literal"><span class="pre">histogram.get_statistics</span></code>
+或&nbsp;<code class="docutils literal"><span class="pre">image.get_statistics</span></code> 返回的。</p>
+<p>灰度统计数据有一个通道，使用非&nbsp;<code class="docutils literal"><span class="pre">l_*</span></code> 、&nbsp;<code class="docutils literal"><span class="pre">a_*</span></code> 或&nbsp;<code class="docutils literal"><span class="pre">b_*</span></code> 方法。</p>
+<p>RGB565百分比值有三个通道。使用&nbsp;<code class="docutils literal"><span class="pre">l_*</span></code> 、&nbsp;<code class="docutils literal"><span class="pre">a_*</span></code> 和&nbsp;<code class="docutils literal"><span class="pre">b_*</span></code> 方法。</p>
+<div class="section" id="id6">
+<h2>方法<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="statistics.mean">
+<code class="descclassname">statistics.</code><code class="descname">mean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.mean" title="永久链接至目标">¶</a></dt>
+<dd><p>返回灰度均值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.median">
+<code class="descclassname">statistics.</code><code class="descname">median</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.median" title="永久链接至目标">¶</a></dt>
+<dd><p>返回灰度中值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.mode">
+<code class="descclassname">statistics.</code><code class="descname">mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.mode" title="永久链接至目标">¶</a></dt>
+<dd><p>返回灰度众值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.stdev">
+<code class="descclassname">statistics.</code><code class="descname">stdev</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.stdev" title="永久链接至目标">¶</a></dt>
+<dd><p>返回灰度标准差(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[3]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.min">
+<code class="descclassname">statistics.</code><code class="descname">min</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.min" title="永久链接至目标">¶</a></dt>
+<dd><p>返回灰度最小值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[4]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.max">
+<code class="descclassname">statistics.</code><code class="descname">max</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.max" title="永久链接至目标">¶</a></dt>
+<dd><p>返回灰度最大值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[5]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.lq">
+<code class="descclassname">statistics.</code><code class="descname">lq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.lq" title="永久链接至目标">¶</a></dt>
+<dd><p>返回灰度下四分值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[6]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.uq">
+<code class="descclassname">statistics.</code><code class="descname">uq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.uq" title="永久链接至目标">¶</a></dt>
+<dd><p>返回灰度上四分值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[7]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.l_mean">
+<code class="descclassname">statistics.</code><code class="descname">l_mean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.l_mean" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中L的均值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.l_median">
+<code class="descclassname">statistics.</code><code class="descname">l_median</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.l_median" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中L的中值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.l_mode">
+<code class="descclassname">statistics.</code><code class="descname">l_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.l_mode" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中L的众值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.l_stdev">
+<code class="descclassname">statistics.</code><code class="descname">l_stdev</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.l_stdev" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中L的标准偏差值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[3]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.l_min">
+<code class="descclassname">statistics.</code><code class="descname">l_min</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.l_min" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中L的最小值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[4]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.l_max">
+<code class="descclassname">statistics.</code><code class="descname">l_max</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.l_max" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中L的最大值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[5]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.l_lq">
+<code class="descclassname">statistics.</code><code class="descname">l_lq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.l_lq" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中L的下四分值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[6]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.l_uq">
+<code class="descclassname">statistics.</code><code class="descname">l_uq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.l_uq" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中L的上四分值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[7]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.a_mean">
+<code class="descclassname">statistics.</code><code class="descname">a_mean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.a_mean" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中A的均值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[8]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.a_median">
+<code class="descclassname">statistics.</code><code class="descname">a_median</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.a_median" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中A的中值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[9]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.a_mode">
+<code class="descclassname">statistics.</code><code class="descname">a_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.a_mode" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中A的众值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[10]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.a_stdev">
+<code class="descclassname">statistics.</code><code class="descname">a_stdev</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.a_stdev" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中A的标准偏差值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[11]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.a_min">
+<code class="descclassname">statistics.</code><code class="descname">a_min</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.a_min" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中A的最小值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[12]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.a_max">
+<code class="descclassname">statistics.</code><code class="descname">a_max</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.a_max" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中A的最大值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[13]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.a_lq">
+<code class="descclassname">statistics.</code><code class="descname">a_lq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.a_lq" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中A的下四分值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[14]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.a_uq">
+<code class="descclassname">statistics.</code><code class="descname">a_uq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.a_uq" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中A的上四分值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[15]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.b_mean">
+<code class="descclassname">statistics.</code><code class="descname">b_mean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.b_mean" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中B的均值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[16]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.b_median">
+<code class="descclassname">statistics.</code><code class="descname">b_median</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.b_median" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中B的中值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[17]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.b_mode">
+<code class="descclassname">statistics.</code><code class="descname">b_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.b_mode" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中B的众值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[18]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.b_stdev">
+<code class="descclassname">statistics.</code><code class="descname">b_stdev</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.b_stdev" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中B的标准差值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[19]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.b_min">
+<code class="descclassname">statistics.</code><code class="descname">b_min</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.b_min" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中B的最小值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[20]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.b_max">
+<code class="descclassname">statistics.</code><code class="descname">b_max</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.b_max" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中B的最大值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[21]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.b_lq">
+<code class="descclassname">statistics.</code><code class="descname">b_lq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.b_lq" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中B的下四分值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[22]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="statistics.b_uq">
+<code class="descclassname">statistics.</code><code class="descname">b_uq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#statistics.b_uq" title="永久链接至目标">¶</a></dt>
+<dd><p>返回RGB5656 LAB 中B的上四分值(0-255) (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[23]</span></code> 取得这个值。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="blob">
+<h1>Blob 类 – 色块对象<a class="headerlink" href="#blob" title="永久链接至标题">¶</a></h1>
+<p>色块对象是由&nbsp;<code class="docutils literal"><span class="pre">image.find_blobs</span></code> 返回的。</p>
+<div class="section" id="id7">
+<h2>方法<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>r
+.. method:: blob.rect()</p>
+<blockquote>
+<div>返回一个矩形元组(x, y, w, h) ，用于如色块边界框的&nbsp;<code class="docutils literal"><span class="pre">image.draw_rectangle</span></code> 等
+其他的 <code class="docutils literal"><span class="pre">image</span></code> 方法。</div></blockquote>
+<dl class="method">
+<dt id="blob.x">
+<code class="descclassname">blob.</code><code class="descname">x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.x" title="永久链接至目标">¶</a></dt>
+<dd><p>返回色块的边界框的x坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="blob.y">
+<code class="descclassname">blob.</code><code class="descname">y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.y" title="永久链接至目标">¶</a></dt>
+<dd><p>返回色块的边界框的y坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="blob.w">
+<code class="descclassname">blob.</code><code class="descname">w</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.w" title="永久链接至目标">¶</a></dt>
+<dd><p>返回色块的边界框的w坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="blob.h">
+<code class="descclassname">blob.</code><code class="descname">h</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.h" title="永久链接至目标">¶</a></dt>
+<dd><p>返回色块的边界框的h坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[3]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="blob.pixels">
+<code class="descclassname">blob.</code><code class="descname">pixels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.pixels" title="永久链接至目标">¶</a></dt>
+<dd><p>返回从属于色块(int)一部分的像素数量。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[4]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="blob.cx">
+<code class="descclassname">blob.</code><code class="descname">cx</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.cx" title="永久链接至目标">¶</a></dt>
+<dd><p>返回色块(int)的中心x位置。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[5]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="blob.cy">
+<code class="descclassname">blob.</code><code class="descname">cy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.cy" title="永久链接至目标">¶</a></dt>
+<dd><p>返回色块(int)的中心x位置。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[6]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="blob.rotation">
+<code class="descclassname">blob.</code><code class="descname">rotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.rotation" title="永久链接至目标">¶</a></dt>
+<dd><p>返回色块的旋转（单位：弧度）。如果色块类似铅笔或钢笔，那么这个值就是介于0-180之间的唯一值。
+如果这个色块圆的，那么这个值就没有效用。如果这个色块完全不具有对称性，您只能由此得到0-360度的旋转。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[7]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="blob.code">
+<code class="descclassname">blob.</code><code class="descname">code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.code" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个16位的二进制数字，其中为每个颜色阈值设置一个位，这是色块的一部分。
+例如，如果您通过 <code class="docutils literal"><span class="pre">image.find_blobs</span></code> 来寻找三个颜色阈值，这个色块可以设置为0/1/2位。
+注意：除非以 <code class="docutils literal"><span class="pre">merge=True</span></code>
+调用 <code class="docutils literal"><span class="pre">image.find_blobs</span></code> ，否则每个色块只能设置一位。
+那么颜色阈值不同的多个色块就可以合并在一起了。
+您也可以用这个方法以及多个阈值来实现颜色代码跟踪。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[8]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="blob.count">
+<code class="descclassname">blob.</code><code class="descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.count" title="永久链接至目标">¶</a></dt>
+<dd><p>返回合并为这一色块的多个色块的数量。只有您以 <code class="docutils literal"><span class="pre">merge=True</span></code>
+调用 <code class="docutils literal"><span class="pre">image.find_blobs</span></code> 时，这个数字才不是1。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[9]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="blob.area">
+<code class="descclassname">blob.</code><code class="descname">area</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.area" title="永久链接至目标">¶</a></dt>
+<dd><p>返回色块周围的边框面积(w * h)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="blob.density">
+<code class="descclassname">blob.</code><code class="descname">density</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#blob.density" title="永久链接至目标">¶</a></dt>
+<dd><p>返回这个色块的密度比。这是在色块边界框区域内的像素点的数量。
+总的来说，较低的密度比意味着这个对象的锁定得不是很好。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="line">
+<h1>Line类 – 直线对象<a class="headerlink" href="#line" title="永久链接至标题">¶</a></h1>
+<p>直线对象是由 <code class="docutils literal"><span class="pre">image.find_lines</span></code> ,&nbsp;<code class="docutils literal"><span class="pre">image.find_line_segments</span> <span class="pre">``</span> <span class="pre">或&nbsp;</span> <span class="pre">``image.get_regression</span></code> 返回的。</p>
+<div class="section" id="id8">
+<h2>方法<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="line.line">
+<code class="descclassname">line.</code><code class="descname">line</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#line.line" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个直线元组(x1, y1, x2, y2) ，用于如``image.draw_line``等其他的``image``方法。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="line.x1">
+<code class="descclassname">line.</code><code class="descname">x1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#line.x1" title="永久链接至目标">¶</a></dt>
+<dd><p>返回直线的p1顶点 x坐标分量。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="line.y1">
+<code class="descclassname">line.</code><code class="descname">y1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#line.y1" title="永久链接至目标">¶</a></dt>
+<dd><p>返回直线的p1 y分量。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="line.x2">
+<code class="descclassname">line.</code><code class="descname">x2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#line.x2" title="永久链接至目标">¶</a></dt>
+<dd><p>返回直线的p2 x分量。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="line.y2">
+<code class="descclassname">line.</code><code class="descname">y2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#line.y2" title="永久链接至目标">¶</a></dt>
+<dd><p>返回直线的p2 y分量。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[3]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="line.length">
+<code class="descclassname">line.</code><code class="descname">length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#line.length" title="永久链接至目标">¶</a></dt>
+<dd><p>返回直线长度即 sqrt(((x2-x1)^2) + ((y2-y1)^2).</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[4]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="line.magnitude">
+<code class="descclassname">line.</code><code class="descname">magnitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#line.magnitude" title="永久链接至目标">¶</a></dt>
+<dd><p>返回霍夫变换后的直线的长度。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[5]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="line.theta">
+<code class="descclassname">line.</code><code class="descname">theta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#line.theta" title="永久链接至目标">¶</a></dt>
+<dd><p>返回霍夫变换后的直线的角度（0-179度）。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[7]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="line.rho">
+<code class="descclassname">line.</code><code class="descname">rho</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#line.rho" title="永久链接至目标">¶</a></dt>
+<dd><p>返回霍夫变换后的直线p值。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[8]</span></code> 取得这个值。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="circle">
+<h1>Circle类 –圆形对象<a class="headerlink" href="#circle" title="永久链接至标题">¶</a></h1>
+<p>圆形对象是由&nbsp;<code class="docutils literal"><span class="pre">image.find_circles</span></code> 返回的。</p>
+<div class="section" id="id9">
+<h2>方法<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="circle.x">
+<code class="descclassname">circle.</code><code class="descname">x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#circle.x" title="永久链接至目标">¶</a></dt>
+<dd><p>返回圆的x位置。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="circle.y">
+<code class="descclassname">circle.</code><code class="descname">y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#circle.y" title="永久链接至目标">¶</a></dt>
+<dd><p>返回圆的y位置。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="circle.r">
+<code class="descclassname">circle.</code><code class="descname">r</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#circle.r" title="永久链接至目标">¶</a></dt>
+<dd><p>返回圆的半径。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="circle.magnitude">
+<code class="descclassname">circle.</code><code class="descname">magnitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#circle.magnitude" title="永久链接至目标">¶</a></dt>
+<dd><p>返回圆的大小。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[3]</span></code> 取得这个值。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="rect">
+<h1>Rect类 – 矩形对象<a class="headerlink" href="#rect" title="永久链接至标题">¶</a></h1>
+<p>矩形对象是由` <code class="xref any docutils literal"><span class="pre">image.find_rects`</span></code> 返回的。</p>
+<div class="section" id="id10">
+<h2>方法<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="rect.corners">
+<code class="descclassname">rect.</code><code class="descname">corners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rect.corners" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个由矩形对象的四个角组成的四个元组(x,y)的列表。四个角通常是按照从左上角开始沿顺时针顺序返回的。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rect.rect">
+<code class="descclassname">rect.</code><code class="descname">rect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rect.rect" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个矩形元组(x, y, w, h)，用于如&nbsp;矩形的边界框的 <code class="docutils literal"><span class="pre">image.draw_rectangle</span></code> 等其他的 <code class="docutils literal"><span class="pre">image</span></code> 方法。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rect.x">
+<code class="descclassname">rect.</code><code class="descname">x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rect.x" title="永久链接至目标">¶</a></dt>
+<dd><p>返回矩形的左上角的x位置。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rect.y">
+<code class="descclassname">rect.</code><code class="descname">y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rect.y" title="永久链接至目标">¶</a></dt>
+<dd><p>返回矩形的左上角的y位置。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rect.w">
+<code class="descclassname">rect.</code><code class="descname">w</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rect.w" title="永久链接至目标">¶</a></dt>
+<dd><p>返回矩形的宽度。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rect.h">
+<code class="descclassname">rect.</code><code class="descname">h</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rect.h" title="永久链接至目标">¶</a></dt>
+<dd><p>返回矩形的高度。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[3]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="rect.magnitude">
+<code class="descclassname">rect.</code><code class="descname">magnitude</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rect.magnitude" title="永久链接至目标">¶</a></dt>
+<dd><p>返回矩形的大小。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[4]</span></code> 取得这个值。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="qrcode">
+<h1>QRCode类 – 二维码对象<a class="headerlink" href="#qrcode" title="永久链接至标题">¶</a></h1>
+<p>二维码对象是由 <code class="docutils literal"><span class="pre">image.find_qrcodes</span></code> 返回的。</p>
+<div class="section" id="id11">
+<h2>方法<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="qrcode.corners">
+<code class="descclassname">qrcode.</code><code class="descname">corners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.corners" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个由该对象的四个角组成的四个元组(x,y)的列表。四个角通常是按照从左上角开始沿顺时针顺序返回的。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.rect">
+<code class="descclassname">qrcode.</code><code class="descname">rect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.rect" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个矩形元组(x, y, w, h)，用于如二维码的边界框的 <code class="docutils literal"><span class="pre">image.draw_rectangle</span></code> 等其他的 <code class="docutils literal"><span class="pre">image</span></code> 方法。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.x">
+<code class="descclassname">qrcode.</code><code class="descname">x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.x" title="永久链接至目标">¶</a></dt>
+<dd><p>返回二维码的边界框的x坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.y">
+<code class="descclassname">qrcode.</code><code class="descname">y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.y" title="永久链接至目标">¶</a></dt>
+<dd><p>返回二维码的边界框的y坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.w">
+<code class="descclassname">qrcode.</code><code class="descname">w</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.w" title="永久链接至目标">¶</a></dt>
+<dd><p>返回二维码的边界框的w坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.h">
+<code class="descclassname">qrcode.</code><code class="descname">h</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.h" title="永久链接至目标">¶</a></dt>
+<dd><p>返回二维码的边界框的h坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[3]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.payload">
+<code class="descclassname">qrcode.</code><code class="descname">payload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.payload" title="永久链接至目标">¶</a></dt>
+<dd><p>返回二维码有效载荷的字符串，例如URL 。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[4]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.version">
+<code class="descclassname">qrcode.</code><code class="descname">version</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.version" title="永久链接至目标">¶</a></dt>
+<dd><p>返回二维码的版本号(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[5]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.ecc_level">
+<code class="descclassname">qrcode.</code><code class="descname">ecc_level</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.ecc_level" title="永久链接至目标">¶</a></dt>
+<dd><p>返回二维码的ECC水平(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[6]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.mask">
+<code class="descclassname">qrcode.</code><code class="descname">mask</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.mask" title="永久链接至目标">¶</a></dt>
+<dd><p>返回二维码的掩码(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[7]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.data_type">
+<code class="descclassname">qrcode.</code><code class="descname">data_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.data_type" title="永久链接至目标">¶</a></dt>
+<dd><p>返回二维码的数据类型。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[8]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.eci">
+<code class="descclassname">qrcode.</code><code class="descname">eci</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.eci" title="永久链接至目标">¶</a></dt>
+<dd><p>返回二维码的ECI。ECI储存了QR码中存储数据字节的编码。若您想要处理包含超过标准ASCII文本的二维码，您需要查看这一数值。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[9]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.is_numeric">
+<code class="descclassname">qrcode.</code><code class="descname">is_numeric</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.is_numeric" title="永久链接至目标">¶</a></dt>
+<dd><p>若二维码的数据类型为数字式，则返回True。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.is_alphanumeric">
+<code class="descclassname">qrcode.</code><code class="descname">is_alphanumeric</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.is_alphanumeric" title="永久链接至目标">¶</a></dt>
+<dd><p>若二维码的数据类型为文字数字式，则返回True。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.is_binary">
+<code class="descclassname">qrcode.</code><code class="descname">is_binary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.is_binary" title="永久链接至目标">¶</a></dt>
+<dd><p>若二维码的数据类型为二进制式，则返回True。如果您认真处理所有类型的文本，则需要检查eci是否为True，以确定数据的文本编码。通常它只是标准的ASCII，但是它也可能是有两个字节字符的UTF8。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="qrcode.is_kanji">
+<code class="descclassname">qrcode.</code><code class="descname">is_kanji</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qrcode.is_kanji" title="永久链接至目标">¶</a></dt>
+<dd><p>若二维码的数据类型为日本汉字，则返回True。设置为True后，您就需要自行解码字符串，因为日本汉字符号每个字符是10位，而MicroPython不支持解析这类文本。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="apriltag-apriltag">
+<h1>AprilTag类 – AprilTag对象<a class="headerlink" href="#apriltag-apriltag" title="永久链接至标题">¶</a></h1>
+<p>AprilTag对象是由 <code class="docutils literal"><span class="pre">image.find_apriltags</span></code> 返回的。</p>
+<div class="section" id="id12">
+<h2>方法<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="apriltag.corners">
+<code class="descclassname">apriltag.</code><code class="descname">corners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.corners" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个由该对象的四个角组成的四个元组(x,y)的列表。四个角通常是按照从左上角开始沿顺时针顺序返回的。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.rect">
+<code class="descclassname">apriltag.</code><code class="descname">rect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.rect" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个矩形元组(x, y, w, h)，用于如AprilTag边界框的 <code class="docutils literal"><span class="pre">image.draw_rectangle</span></code> 等其他的 <code class="docutils literal"><span class="pre">image</span></code> 方法。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.x">
+<code class="descclassname">apriltag.</code><code class="descname">x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.x" title="永久链接至目标">¶</a></dt>
+<dd><p>返回AprilTag边界框的x坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.y">
+<code class="descclassname">apriltag.</code><code class="descname">y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.y" title="永久链接至目标">¶</a></dt>
+<dd><p>返回AprilTag边界框的y坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.w">
+<code class="descclassname">apriltag.</code><code class="descname">w</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.w" title="永久链接至目标">¶</a></dt>
+<dd><p>返回AprilTag边界框的w坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.h">
+<code class="descclassname">apriltag.</code><code class="descname">h</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.h" title="永久链接至目标">¶</a></dt>
+<dd><p>返回AprilTag边界框的h坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[3]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.id">
+<code class="descclassname">apriltag.</code><code class="descname">id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.id" title="永久链接至目标">¶</a></dt>
+<dd><p>返回AprilTag的数字ID。</p>
+<blockquote>
+<div><ul class="simple">
+<li>TAG16H5 -&gt; 0 to 29</li>
+<li>TAG25H7 -&gt; 0 to 241</li>
+<li>TAG25H9 -&gt; 0 to 34</li>
+<li>TAG36H10 -&gt; 0 to 2319</li>
+<li>TAG36H11 -&gt; 0 to 586</li>
+<li>ARTOOLKIT -&gt; 0 to 511</li>
+</ul>
+</div></blockquote>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[4]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.family">
+<code class="descclassname">apriltag.</code><code class="descname">family</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.family" title="永久链接至目标">¶</a></dt>
+<dd><p>返回AprilTag的数字家庭。</p>
+<blockquote>
+<div><ul class="simple">
+<li>image.TAG16H5</li>
+<li>image.TAG25H7</li>
+<li>image.TAG25H9</li>
+<li>image.TAG36H10</li>
+<li>image.TAG36H11</li>
+<li>image.ARTOOLKIT</li>
+</ul>
+</div></blockquote>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[5]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.cx">
+<code class="descclassname">apriltag.</code><code class="descname">cx</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.cx" title="永久链接至目标">¶</a></dt>
+<dd><p>返回AprilTag的中心x位置(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[6]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.cy">
+<code class="descclassname">apriltag.</code><code class="descname">cy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.cy" title="永久链接至目标">¶</a></dt>
+<dd><p>返回AprilTag的中心y位置(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[7]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.rotation">
+<code class="descclassname">apriltag.</code><code class="descname">rotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.rotation" title="永久链接至目标">¶</a></dt>
+<dd><p>返回以弧度计的AprilTag的旋度(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[8]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.decision_margin">
+<code class="descclassname">apriltag.</code><code class="descname">decision_margin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.decision_margin" title="永久链接至目标">¶</a></dt>
+<dd><p>返回AprilTag匹配的色饱和度（取值0.0 - 1.0），其中1.0为最佳。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[9]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.hamming">
+<code class="descclassname">apriltag.</code><code class="descname">hamming</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.hamming" title="永久链接至目标">¶</a></dt>
+<dd><p>返回AprilTag的可接受的数位误差数值。</p>
+<blockquote>
+<div><ul class="simple">
+<li>TAG16H5 -&gt; 0 bit errors will be accepted</li>
+<li>TAG25H7 -&gt; up to 1 bit error may be accepted</li>
+<li>TAG25H9 -&gt; up to 3 bit errors may be accepted</li>
+<li>TAG36H10 -&gt; up to 3 bit errors may be accepted</li>
+<li>TAG36H11 -&gt; up to 4 bit errors may be accepted</li>
+<li>ARTOOLKIT -&gt; 0 bit errors will be accepted</li>
+</ul>
+</div></blockquote>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[10]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.goodness">
+<code class="descclassname">apriltag.</code><code class="descname">goodness</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.goodness" title="永久链接至目标">¶</a></dt>
+<dd><p>返回AprilTag图像的色饱和度（取值0.0 - 1.0），其中1.0为最佳。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">目前这一数值通常是0.0。未来我们可以启用一个称为“标签细化”的功能，以实现对更小的AprilTag的检测。然而，现在这个功能将帧速率降低到1 FPS以下。</p>
+</div>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[11]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.x_translation">
+<code class="descclassname">apriltag.</code><code class="descname">x_translation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.x_translation" title="永久链接至目标">¶</a></dt>
+<dd><p>返回距离摄像机x方向的变换，距离的单位未知。</p>
+<p>这个方法对于确定远离摄像机的AprilTag的位置很有用。但是，AprilTag的大小以及您使用的镜头等因素都会影响X单元归属的确定。为使用方便，我们推荐您使用查找表将该方法的输出转换为对您的应用程序有用的信息。</p>
+<p>注意：此处的方向为从左至右。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[12]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.y_translation">
+<code class="descclassname">apriltag.</code><code class="descname">y_translation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.y_translation" title="永久链接至目标">¶</a></dt>
+<dd><p>返回距离摄像机y方向的变换，距离的单位未知。</p>
+<p>这个方法对于确定远离摄像机的AprilTag的位置很有用。但是，AprilTag的大小以及您使用的镜头等因素都会影响Y单元归属的确定。为使用方便，我们推荐您使用查找表将该方法的输出转换为对您的应用程序有用的信息。</p>
+<p>注意：此处的方向为从上至下。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[13]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.z_translation">
+<code class="descclassname">apriltag.</code><code class="descname">z_translation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.z_translation" title="永久链接至目标">¶</a></dt>
+<dd><p>返回距离摄像机z方向的变换，距离的单位未知。</p>
+<p>T这个方法对于确定远离摄像机的AprilTag的位置很有用。但是，AprilTag的大小以及您使用的镜头等因素都会影响Z单元归属的确定。为使用方便，我们推荐您使用查找表将该方法的输出转换为对您的应用程序有用的信息。</p>
+<p>注意：此处的方向为从前至后。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[14]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.x_rotation">
+<code class="descclassname">apriltag.</code><code class="descname">x_rotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.x_rotation" title="永久链接至目标">¶</a></dt>
+<dd><p>返回以弧度计的AprilTag在X平面上的旋度。例：目视AprilTag，从左至右移动摄像头。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[15]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.y_rotation">
+<code class="descclassname">apriltag.</code><code class="descname">y_rotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.y_rotation" title="永久链接至目标">¶</a></dt>
+<dd><p>返回以弧度计的AprilTag在Y平面上的旋度。例：目视AprilTag，从上至下移动摄像头。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[16]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="apriltag.z_rotation">
+<code class="descclassname">apriltag.</code><code class="descname">z_rotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#apriltag.z_rotation" title="永久链接至目标">¶</a></dt>
+<dd><p>返回以弧度计的AprilTag在Z平面上的旋度。例：目视AprilTag，旋转摄像头。</p>
+<p>注意：这只是 <code class="docutils literal"><span class="pre">apriltag.rotation()</span></code> 的重命名版本。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[17]</span></code> 取得这个值。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="datamatrix">
+<h1>DataMatrix类 – 数据矩阵对象<a class="headerlink" href="#datamatrix" title="永久链接至标题">¶</a></h1>
+<p>数据矩阵对象是由i <code class="docutils literal"><span class="pre">mage.find_datamatrices</span></code> 返回的。</p>
+<div class="section" id="id13">
+<h2>方法<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="datamatrix.corners">
+<code class="descclassname">datamatrix.</code><code class="descname">corners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.corners" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个由该对象的四个角组成的四个元组(x,y)的列表。四个角通常是按照从左上角开始沿顺时针顺序返回的。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamatrix.rect">
+<code class="descclassname">datamatrix.</code><code class="descname">rect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.rect" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个矩形元组(x, y, w, h)，用于如数据矩阵的边界框的 <code class="docutils literal"><span class="pre">image.draw_rectangle</span></code> 等其他的 <code class="docutils literal"><span class="pre">image</span></code> 方法。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamatrix.x">
+<code class="descclassname">datamatrix.</code><code class="descname">x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.x" title="永久链接至目标">¶</a></dt>
+<dd><p>返回数据矩阵的边界框的x坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamatrix.y">
+<code class="descclassname">datamatrix.</code><code class="descname">y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.y" title="永久链接至目标">¶</a></dt>
+<dd><p>返回数据矩阵的边界框的y坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamatrix.w">
+<code class="descclassname">datamatrix.</code><code class="descname">w</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.w" title="永久链接至目标">¶</a></dt>
+<dd><p>返回数据矩阵的边界框的w宽度。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamatrix.h">
+<code class="descclassname">datamatrix.</code><code class="descname">h</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.h" title="永久链接至目标">¶</a></dt>
+<dd><p>返回数据矩阵的边界框的h高度。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[3]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamatrix.payload">
+<code class="descclassname">datamatrix.</code><code class="descname">payload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.payload" title="永久链接至目标">¶</a></dt>
+<dd><p>返回数据矩阵的有效载荷的字符串。例：字符串。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[4]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamatrix.rotation">
+<code class="descclassname">datamatrix.</code><code class="descname">rotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.rotation" title="永久链接至目标">¶</a></dt>
+<dd><p>返回以弧度计的数据矩阵的旋度(浮点数)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[5]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamatrix.rows">
+<code class="descclassname">datamatrix.</code><code class="descname">rows</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.rows" title="永久链接至目标">¶</a></dt>
+<dd><p>返回数据矩阵的行数(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[6]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamatrix.columns">
+<code class="descclassname">datamatrix.</code><code class="descname">columns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.columns" title="永久链接至目标">¶</a></dt>
+<dd><p>返回数据矩阵的列数(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[7]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamatrix.capacity">
+<code class="descclassname">datamatrix.</code><code class="descname">capacity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.capacity" title="永久链接至目标">¶</a></dt>
+<dd><p>返回这一数据矩阵所能容纳的字符的数量。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[8]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datamatrix.padding">
+<code class="descclassname">datamatrix.</code><code class="descname">padding</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#datamatrix.padding" title="永久链接至目标">¶</a></dt>
+<dd><p>返回这一数据矩阵中未使用的字符的数量。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[9]</span></code> 取得这个值。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="barcode">
+<h1>BarCode类 – 条形码对象<a class="headerlink" href="#barcode" title="永久链接至标题">¶</a></h1>
+<p>条形码对象是由 <code class="docutils literal"><span class="pre">image.find_barcodes</span></code> 返回的。</p>
+<div class="section" id="id14">
+<h2>方法<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="barcode.corners">
+<code class="descclassname">barcode.</code><code class="descname">corners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#barcode.corners" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个由该对象的四个角组成的四个元组(x,y)的列表。四个角通常是按照从左上角开始沿顺时针顺序返回的。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="barcode.rect">
+<code class="descclassname">barcode.</code><code class="descname">rect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#barcode.rect" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个矩形元组(x, y, w, h)，用于如数据矩阵的边界框的 <code class="docutils literal"><span class="pre">image.draw_rectangle</span></code> 等其他的 <code class="docutils literal"><span class="pre">image</span></code> 方法。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="barcode.x">
+<code class="descclassname">barcode.</code><code class="descname">x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#barcode.x" title="永久链接至目标">¶</a></dt>
+<dd><p>返回条形码的边界框的x坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="barcode.y">
+<code class="descclassname">barcode.</code><code class="descname">y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#barcode.y" title="永久链接至目标">¶</a></dt>
+<dd><p>返回条形码的边界框的y坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="barcode.w">
+<code class="descclassname">barcode.</code><code class="descname">w</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#barcode.w" title="永久链接至目标">¶</a></dt>
+<dd><p>返回条形码的边界框的w宽度(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="barcode.h">
+<code class="descclassname">barcode.</code><code class="descname">h</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#barcode.h" title="永久链接至目标">¶</a></dt>
+<dd><p>返回条形码的边界框的h高度(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[3]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="barcode.payload">
+<code class="descclassname">barcode.</code><code class="descname">payload</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#barcode.payload" title="永久链接至目标">¶</a></dt>
+<dd><p>返回条形码的有效载荷的字符串。例：数量。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[4]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="barcode.type">
+<code class="descclassname">barcode.</code><code class="descname">type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#barcode.type" title="永久链接至目标">¶</a></dt>
+<dd><p>返回条形码的列举类型 (int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[5]</span></code> 取得这个值。</p>
+<blockquote>
+<div><ul class="simple">
+<li>image.EAN2</li>
+<li>image.EAN5</li>
+<li>image.EAN8</li>
+<li>image.UPCE</li>
+<li>image.ISBN10</li>
+<li>image.UPCA</li>
+<li>image.EAN13</li>
+<li>image.ISBN13</li>
+<li>image.I25</li>
+<li>image.DATABAR</li>
+<li>image.DATABAR_EXP</li>
+<li>image.CODABAR</li>
+<li>image.CODE39</li>
+<li>image.PDF417 - Future (e.g. doesn’t work right now).</li>
+<li>image.CODE93</li>
+<li>image.CODE128</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="barcode.rotation">
+<code class="descclassname">barcode.</code><code class="descname">rotation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#barcode.rotation" title="永久链接至目标">¶</a></dt>
+<dd><p>返回以弧度计的条形码的旋度(浮点数)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[6]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="barcode.quality">
+<code class="descclassname">barcode.</code><code class="descname">quality</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#barcode.quality" title="永久链接至目标">¶</a></dt>
+<dd><p>返回条形码在图像中被检测到的次数(int)。</p>
+<p>扫描条形码时，每一条新的扫描线都能解码相同的条形码。每次进行这一过程，条形码的值都会随之增加。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[7]</span></code> 取得这个值。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="kptmatch">
+<h1>Kptmatch类 – 特征点对象<a class="headerlink" href="#kptmatch" title="永久链接至标题">¶</a></h1>
+<p>特征点对象是由 <code class="docutils literal"><span class="pre">image.match_descriptor</span></code> 返回的。</p>
+<div class="section" id="id15">
+<h2>方法<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="kptmatch.rect">
+<code class="descclassname">kptmatch.</code><code class="descname">rect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kptmatch.rect" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个矩形元组(x, y, w, h)，用于如特征点的边界框的 <code class="docutils literal"><span class="pre">image.draw_rectangle</span></code> 等其他的 <code class="docutils literal"><span class="pre">image</span></code> 方法。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kptmatch.cx">
+<code class="descclassname">kptmatch.</code><code class="descname">cx</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kptmatch.cx" title="永久链接至目标">¶</a></dt>
+<dd><p>返回特征点的中心x位置(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[0]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kptmatch.cy">
+<code class="descclassname">kptmatch.</code><code class="descname">cy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kptmatch.cy" title="永久链接至目标">¶</a></dt>
+<dd><p>返回特征点的中心y位置(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[1]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kptmatch.x">
+<code class="descclassname">kptmatch.</code><code class="descname">x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kptmatch.x" title="永久链接至目标">¶</a></dt>
+<dd><p>返回特征点边界框的x坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[2]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kptmatch.y">
+<code class="descclassname">kptmatch.</code><code class="descname">y</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kptmatch.y" title="永久链接至目标">¶</a></dt>
+<dd><p>返回特征点边界框的y坐标(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[3]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kptmatch.w">
+<code class="descclassname">kptmatch.</code><code class="descname">w</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kptmatch.w" title="永久链接至目标">¶</a></dt>
+<dd><p>返回特征点边界框的w宽度(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[4]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kptmatch.h">
+<code class="descclassname">kptmatch.</code><code class="descname">h</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kptmatch.h" title="永久链接至目标">¶</a></dt>
+<dd><p>返回特征点边界框的h高度(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[5]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kptmatch.match">
+<code class="descclassname">kptmatch.</code><code class="descname">match</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kptmatch.match" title="永久链接至目标">¶</a></dt>
+<dd><p>返回匹配的特征点的数量(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[6]</span></code> 取得这个值。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="kptmatch.theta">
+<code class="descclassname">kptmatch.</code><code class="descname">theta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kptmatch.theta" title="永久链接至目标">¶</a></dt>
+<dd><p>返回估计的特征点的旋度(int)。</p>
+<p>您也可以通过索引 <code class="docutils literal"><span class="pre">[7]</span></code> 取得这个值。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="imagewriter-imagewriter">
+<h1>ImageWriter类 – ImageWriter对象<a class="headerlink" href="#imagewriter-imagewriter" title="永久链接至标题">¶</a></h1>
+<p>ImageWriter对象使得您可以快速地将未压缩的图像写入磁盘。</p>
+<div class="section" id="id16">
+<h2>构造函数<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="image.ImageWriter">
+<em class="property">class </em><code class="descclassname">image.</code><code class="descname">ImageWriter</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#image.ImageWriter" title="永久链接至目标">¶</a></dt>
+<dd><p>创建一个ImageWriter对象，您就可以以用于OpenMV Cams的简单文件格式将未压缩的图像写到磁盘上。然后未压缩的图像可以使用ImageReader重新读取。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id17">
+<h2>方法<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="imagewriter.size">
+<code class="descclassname">imagewriter.</code><code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#imagewriter.size" title="永久链接至目标">¶</a></dt>
+<dd><p>返回正在写入的文件的大小。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="imagewriter.add_frame">
+<code class="descclassname">imagewriter.</code><code class="descname">add_frame</code><span class="sig-paren">(</span><em>img</em><span class="sig-paren">)</span><a class="headerlink" href="#imagewriter.add_frame" title="永久链接至目标">¶</a></dt>
+<dd><p>将一张图像写入磁盘。由于图像未被压缩，因此执行迅速，但会占用大量磁盘空间。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="imagewriter.close">
+<code class="descclassname">imagewriter.</code><code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#imagewriter.close" title="永久链接至目标">¶</a></dt>
+<dd><p>关闭图像流文件。您必须关闭文件，否则文件会损坏。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="imagereader-imagereader">
+<h1>ImageReader 类– ImageReader对象<a class="headerlink" href="#imagereader-imagereader" title="永久链接至标题">¶</a></h1>
+<p>ImageReader对象使得您可以快速地从磁盘中读取未压缩的图像。</p>
+<div class="section" id="id18">
+<h2>构造函数<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="image.ImageReader">
+<em class="property">class </em><code class="descclassname">image.</code><code class="descname">ImageReader</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#image.ImageReader" title="永久链接至目标">¶</a></dt>
+<dd><p>创建一个ImageReader对象，用来回放由ImageWriter对象编写的图像数据。ImageWriter对象回放的帧会在与写入磁盘时相同的FPS下回放。</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id19">
+<h2>方法<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="imagereader.size">
+<code class="descclassname">imagereader.</code><code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#imagereader.size" title="永久链接至目标">¶</a></dt>
+<dd><p>返回正在读取的文件的大小。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="imagereader.next_frame">
+<code class="descclassname">imagereader.</code><code class="descname">next_frame</code><span class="sig-paren">(</span><span class="optional">[</span><em>copy_to_fb=True</em>, <em>loop=True</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#imagereader.next_frame" title="永久链接至目标">¶</a></dt>
+<dd><p>从ImageWriter写就的文件中返回图像对象。若 <code class="docutils literal"><span class="pre">copy_to_fb</span></code>&nbsp;为True，图像对象将被直接加载到帧缓冲区中。否则图像对象将被放入堆中。注意：除非图像很小，否则堆可能没有足够的空间来存储图像对象。若loop 为True，流的最后一个图像读取之后，回放将重新开始。否则所有帧被读取后，这个方法将返回None。
+注意：下一帧尽量在读取帧后通过暂停播放来限制回放速度，以与帧记录的速度相匹配。否则，这个方法会以200+FPS的速度图像快读播放所有图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="imagereader.close">
+<code class="descclassname">imagereader.</code><code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#imagereader.close" title="永久链接至目标">¶</a></dt>
+<dd><p>关闭正在读取的文件。您需要进行这一操作，以防imagereader 对象受损。但由于是只读文件，文件不会在未关闭时受损。</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="id20">
+<h1>Image类 – 图像对象<a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h1>
+<p>图像对象是机器视觉操作的基本对象。</p>
+<div class="section" id="id21">
+<h2>构造函数<a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h2>
+<dl class="class">
+<dt id="image.Image">
+<em class="property">class </em><code class="descclassname">image.</code><code class="descname">Image</code><span class="sig-paren">(</span><em>path</em>, <em>copy_to_fb=False</em><span class="sig-paren">)</span><a class="headerlink" href="#image.Image" title="永久链接至目标">¶</a></dt>
+<dd><p>从 <code class="docutils literal"><span class="pre">path</span></code> 中的文件中创建一个新的图像对象。</p>
+<p>支持bmp/pgm/ppm/jpg/jpeg格式的图像文件。</p>
+<p>若 <code class="docutils literal"><span class="pre">copy_to_fb</span></code>&nbsp;为True，图像会直接载入帧缓冲区，您就可以加载大幅图片了。若为False，图像会载入MicroPython的堆中，堆远比帧缓冲区小。</p>
+<blockquote>
+<div><ul class="simple">
+<li>在OpenMV Cam M4中，若 <code class="docutils literal"><span class="pre">copy_to_fb</span></code> 为False，您应该尽量把图像大小控制在8KB以下。若为True，则图像最大可为160KB。</li>
+<li>在OpenMV Cam M7中，若 <code class="docutils literal"><span class="pre">copy_to_fb</span></code> 为False，您应该尽量把图像大小控制在16KB以下。若为True，则图像最大可为320KB。</li>
+</ul>
+</div></blockquote>
+<p>图像支持“[]”记法。 令&nbsp;<code class="docutils literal"><span class="pre">image[index]&nbsp;=&nbsp;8/16-bit&nbsp;value</span></code> ，&nbsp;以便分配图像像素或 <code class="docutils literal"><span class="pre">image[index]</span></code> ，并得到一个图像像素，若是用于RGB图像的16位RGB565值的灰度图像，
+这一像素则为8位。</p>
+<p>对于JPEG图像而言，“[]”使得您可以访问压缩的节数组形式的JPEG图像色块。由于JPEG图像是压缩的字节流形式，因而对数据组的读取和写入是不透明的。</p>
+<p>图像还支持读缓冲区操作。您可以把图像当作节数组对象，将图像输入所有类型的MicroPython函数。若您想传送一个图像，可以将它传递给UART /SPI/ I2C写入函数，可实现自动传送。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">copy_to_fb</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">copy_to_fb=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id22">
+<h2>方法<a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="image.copy">
+<code class="descclassname">image.</code><code class="descname">copy</code><span class="sig-paren">(</span><em>roi=Auto</em><span class="sig-paren">)</span><a class="headerlink" href="#image.copy" title="永久链接至目标">¶</a></dt>
+<dd><p>创建一个图像对象的副本。</p>
+<p><code class="docutils literal"><span class="pre">Roi</span></code>&nbsp;是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即复制整个图像的图像矩形。但这不适用于JPEG图像。</p>
+<p>请记住图像副本储存在MicroPython 堆中而不是帧缓冲区。同样，您需要将图像副本大小控制在8KB以下（OpenMV）或16KB以下（OpenMV Cam M7）
+如果您想使用一个复制操作来使用所有的堆空间，这个函数会出现异常。过大的图像极易触发异常。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">roi=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.save">
+<code class="descclassname">image.</code><code class="descname">save</code><span class="sig-paren">(</span><em>path</em>, <em>roi=Auto</em>, <em>quality=50</em><span class="sig-paren">)</span><a class="headerlink" href="#image.save" title="永久链接至目标">¶</a></dt>
+<dd><p>将图像的副本保存到 <code class="docutils literal"><span class="pre">path</span></code> 中的文件系统。</p>
+<p>支持bmp/pgm/ppm/jpg/jpeg格式的图像文件。注意：您无法将jpeg格式的压缩图像保存成未压缩的格式。</p>
+<p><code class="docutils literal"><span class="pre">roi</span></code>&nbsp;是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即复制整个图像的图像矩形。但这不适用于JPEG图像。</p>
+<p><code class="docutils literal"><span class="pre">quality</span></code>&nbsp;指在图像尚未被压缩时将图像保存为JPEG格式的JPEG压缩质量。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code>&nbsp;和&nbsp;<code class="docutils literal"><span class="pre">quality</span></code>&nbsp;是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">roi=</span></code>&nbsp;或 <code class="docutils literal"><span class="pre">quality=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.compress">
+<code class="descclassname">image.</code><code class="descname">compress</code><span class="sig-paren">(</span><em>quality=50</em><span class="sig-paren">)</span><a class="headerlink" href="#image.compress" title="永久链接至目标">¶</a></dt>
+<dd><p>JPEG对图像进行适当压缩。使用这种方法与 <code class="docutils literal"><span class="pre">compressed</span></code> 保存堆空间相比，使用更高quality的压缩率是以破坏原始图像为代价的。</p>
+<p><code class="docutils literal"><span class="pre">quality</span></code> 是压缩质量（0-100）（int）。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">quality</span></code> 是键值参数，必须在函数调用中通过写入quality=来显式地调用。</p>
+</div>
+<p>只在灰度图与RGB565图像中调用。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.compress_for_ide">
+<code class="descclassname">image.</code><code class="descname">compress_for_ide</code><span class="sig-paren">(</span><em>quality=50</em><span class="sig-paren">)</span><a class="headerlink" href="#image.compress_for_ide" title="永久链接至目标">¶</a></dt>
+<dd><p>JPEG对图像进行适当压缩。使用这种方法与 <code class="docutils literal"><span class="pre">compressed</span></code> 保存堆空间相比，使用更高quality的压缩率是以破坏原始图像为代价的。</p>
+<p>这个方法压缩图像，然后通过将每6比特编码为128 - 191之间的字节将JPEG数据格式化，转换为OpenMV IDE，以便显示。进行这一步是为防止JPEG数据被误认为是字节流中的其他文本数据。</p>
+<p>您需要使用这一方法来格式化图像数据，以便在OpenMV IDE中通过“开放终端”创建的终端窗口中显示。</p>
+<p><code class="docutils literal"><span class="pre">quality</span></code> 是压缩质量（0-100）（int）。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">quality</span></code> 是键值参数，必须在函数调用中通过写入quality=来显式地调用。</p>
+</div>
+<p>只在灰度图与RGB565图像中调用。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.compressed">
+<code class="descclassname">image.</code><code class="descname">compressed</code><span class="sig-paren">(</span><em>quality=50</em><span class="sig-paren">)</span><a class="headerlink" href="#image.compressed" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个JPEG压缩图像—原始图像未经处理。但是，这个方法需要堆空间的大分配，所以图像压缩质量和图像分辨率必须很低。
+<code class="docutils literal"><span class="pre">quality</span></code> 是压缩质量（0-100）（int）。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">quality</span></code> 是键值参数，必须在函数调用中通过写入q <code class="docutils literal"><span class="pre">uality=</span></code> 来显式地调用。</p>
+</div>
+<p>只在灰度图与RGB565图像中调用。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.compressed_for_ide">
+<code class="descclassname">image.</code><code class="descname">compressed_for_ide</code><span class="sig-paren">(</span><em>quality=50</em><span class="sig-paren">)</span><a class="headerlink" href="#image.compressed_for_ide" title="永久链接至目标">¶</a></dt>
+<dd><p>返回一个JPEG压缩图像—原始图像未经处理。但是，这个方法需要堆空间的大分配，所以图像压缩质量和图像分辨率必须很低。</p>
+<p>这个方法压缩图像，然后通过将每6比特编码为128 - 191之间的字节将JPEG数据格式化，转换为OpenMV IDE，以便显示。进行这一步是为防止JPEG数据被误认为是字节流中的其他文本数据。</p>
+<p>您需要使用这一方法来格式化图像数据，以便在OpenMV IDE中通过“开放终端”创建的终端窗口中显示。</p>
+<p><code class="docutils literal"><span class="pre">quality</span></code> 是压缩质量（0-100）（int）。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">quality</span></code> 是键值参数，必须在函数调用中通过写入quality=来显式地调用。</p>
+</div>
+<p>只在灰度图与RGB565图像中调用。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.width">
+<code class="descclassname">image.</code><code class="descname">width</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image.width" title="永久链接至目标">¶</a></dt>
+<dd><p>返回以像素计的图像的宽度。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.height">
+<code class="descclassname">image.</code><code class="descname">height</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image.height" title="永久链接至目标">¶</a></dt>
+<dd><p>返回以像素计的图像的高度。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.format">
+<code class="descclassname">image.</code><code class="descname">format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image.format" title="永久链接至目标">¶</a></dt>
+<dd><p>返回用于灰度图的 <code class="docutils literal"><span class="pre">sensor.GRAYSCALE</span></code> 、用于RGB图像的 <code class="docutils literal"><span class="pre">sensor.RGB565</span></code> 和用于JPEG图像的 <code class="docutils literal"><span class="pre">sensor.JPEG</span></code> 。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.size">
+<code class="descclassname">image.</code><code class="descname">size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image.size" title="永久链接至目标">¶</a></dt>
+<dd><p>返回以字节计的图像大小。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.clear">
+<code class="descclassname">image.</code><code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image.clear" title="永久链接至目标">¶</a></dt>
+<dd><p>将灰度图和RGB565图像中的所有字节都归零。请勿在JPEG图像中调用此。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.get_pixel">
+<code class="descclassname">image.</code><code class="descname">get_pixel</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#image.get_pixel" title="永久链接至目标">¶</a></dt>
+<dd><p>灰度图：返回(x, y)位置的灰度像素值。</p>
+<p>RGB565l：返回(x, y)位置的RGB888像素元组(r, g, b)。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.set_pixel">
+<code class="descclassname">image.</code><code class="descname">set_pixel</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>pixel</em><span class="sig-paren">)</span><a class="headerlink" href="#image.set_pixel" title="永久链接至目标">¶</a></dt>
+<dd><p>灰度图：将(x, y) 位置的像素设置为灰度值 <code class="docutils literal"><span class="pre">pixel</span></code> 。</p>
+<p>RGB图像：将(x, y) 位置的像素设置为RGB888元组(r, g, b)&nbsp;<code class="docutils literal"><span class="pre">pixel</span></code> 。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.draw_line">
+<code class="descclassname">image.</code><code class="descname">draw_line</code><span class="sig-paren">(</span><em>line_tuple</em>, <em>color=White</em><span class="sig-paren">)</span><a class="headerlink" href="#image.draw_line" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像上用从(x0, y0)到(x1, y1)的 <code class="docutils literal"><span class="pre">line_tuple</span></code> (x0, y0, x1, y1)画一条直线。</p>
+<p>对灰度图而言，<code class="docutils literal"><span class="pre">color</span></code> 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">color</span></code> 是键值参数，必须在函数调用中通过写入color=来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.draw_rectangle">
+<code class="descclassname">image.</code><code class="descname">draw_rectangle</code><span class="sig-paren">(</span><em>rect_tuple</em>, <em>color=White</em><span class="sig-paren">)</span><a class="headerlink" href="#image.draw_rectangle" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像上用 <code class="docutils literal"><span class="pre">rect_tuple</span></code>&nbsp;(x, y, w, h)画一个不填充的矩形。</p>
+<p>对灰度图而言，<code class="docutils literal"><span class="pre">color</span></code> 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">color</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">color=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.draw_circle">
+<code class="descclassname">image.</code><code class="descname">draw_circle</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>radius</em>, <em>color=White</em><span class="sig-paren">)</span><a class="headerlink" href="#image.draw_circle" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像上( <code class="docutils literal"><span class="pre">x</span></code> ,&nbsp;<code class="docutils literal"><span class="pre">y</span></code> )位置用整数半径 <code class="docutils literal"><span class="pre">radius</span></code> 画一个不填充的圆圈。</p>
+<p>对灰度图而言，<code class="docutils literal"><span class="pre">color</span></code> 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">color</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">color=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.draw_string">
+<code class="descclassname">image.</code><code class="descname">draw_string</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>text</em>, <em>color=White</em><span class="sig-paren">)</span><a class="headerlink" href="#image.draw_string" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像上的( <code class="docutils literal"><span class="pre">x</span></code> ,&nbsp;<code class="docutils literal"><span class="pre">y</span></code> )位置用 <code class="docutils literal"><span class="pre">text</span></code> 画一个8x10的文本框。<code class="docutils literal"><span class="pre">\n</span></code> 、 <code class="docutils literal"><span class="pre">\r</span></code> 和&nbsp;<code class="docutils literal"><span class="pre">\r\n</span></code>&nbsp;结束符将光标移至下一行。</p>
+<p>对灰度图而言， <code class="docutils literal"><span class="pre">color</span></code> 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">color</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">color=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.draw_cross">
+<code class="descclassname">image.</code><code class="descname">draw_cross</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>size=5</em>, <em>color=White</em><span class="sig-paren">)</span><a class="headerlink" href="#image.draw_cross" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像上的( <code class="docutils literal"><span class="pre">x</span></code> ,&nbsp;<code class="docutils literal"><span class="pre">y</span></code> )位置画一个边长为&nbsp;<code class="docutils literal"><span class="pre">size</span></code>&nbsp;(int)的十字。</p>
+<p>对灰度图而言， <code class="docutils literal"><span class="pre">color</span></code> 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">size</span></code>&nbsp;和 <code class="docutils literal"><span class="pre">color</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">size=</span></code>&nbsp;和 <code class="docutils literal"><span class="pre">color=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.draw_keypoints">
+<code class="descclassname">image.</code><code class="descname">draw_keypoints</code><span class="sig-paren">(</span><em>keypoints</em>, <em>size=Auto</em>, <em>color=White</em><span class="sig-paren">)</span><a class="headerlink" href="#image.draw_keypoints" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像上画出一个特征点对象的各个点。 <code class="docutils literal"><span class="pre">size</span></code>&nbsp;控制特征点的大小，通过缩放或扩展来使特征点在图像上看起来适当（被覆盖除外）。</p>
+<p>对灰度图而言， <code class="docutils literal"><span class="pre">color</span></code> 是一个int值(0-255)；对于RGB图像而言是一个RGB888元组(r, g, b)。默认值为白色。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">size</span></code>&nbsp;和 <code class="docutils literal"><span class="pre">color</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">size=</span></code>&nbsp;和 <code class="docutils literal"><span class="pre">color=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.binary">
+<code class="descclassname">image.</code><code class="descname">binary</code><span class="sig-paren">(</span><em>thresholds</em>, <em>invert=False</em><span class="sig-paren">)</span><a class="headerlink" href="#image.binary" title="永久链接至目标">¶</a></dt>
+<dd><p>对于灰度图而言， <code class="docutils literal"><span class="pre">thresholds</span></code> 是一个用来分割图像的(下方的、上方的)灰度像素阈值的列表。这种分割将所有阈值内的像素转为1（白色），所有阈值外的像素转为0（黑色）。</p>
+<p>对于RGB图像而言，是一个用来分割图像的(l_lo, l_hi, a_lo, a_hi, b_lo, b_hi) LAB像素阈值的列表。这种分割使得所有阈值内的像素转为1（白色），所有阈值外的像素转为0（黑色）。</p>
+<p>变化的Lo/Hi阈值进行自动处理。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">Invert</span></code>&nbsp;对分割操作的结果进行转化。</div></blockquote>
+<p>不支持压缩图片。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">invert</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">Invert</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.invert">
+<code class="descclassname">image.</code><code class="descname">invert</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image.invert" title="永久链接至目标">¶</a></dt>
+<dd><p>将二进制图像0（黑色）变为1（白色），1（白色）变为0（黑色）。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.b_and">
+<code class="descclassname">image.</code><code class="descname">b_and</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#image.b_and" title="永久链接至目标">¶</a></dt>
+<dd><p>用另一图像与这一图像进行逻辑与运算。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">mage</span></code>&nbsp;可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。</div></blockquote>
+<p>图像须为同样大小和同种类型(grayscale/rgb)。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.b_or">
+<code class="descclassname">image.</code><code class="descname">b_or</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#image.b_or" title="永久链接至目标">¶</a></dt>
+<dd><p>用另一图像与这一图像进行逻辑或运算。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">mage</span></code>&nbsp;可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。</div></blockquote>
+<p>图像须为同样大小和同种类型(grayscale/rgb)。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.b_nand">
+<code class="descclassname">image.</code><code class="descname">b_nand</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#image.b_nand" title="永久链接至目标">¶</a></dt>
+<dd><p>用另一图像与这一图像进行逻辑与非运算。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">mage</span></code>&nbsp;可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。</div></blockquote>
+<p>图像须为同样大小和同种类型(grayscale/rgb)。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.b_nor">
+<code class="descclassname">image.</code><code class="descname">b_nor</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#image.b_nor" title="永久链接至目标">¶</a></dt>
+<dd><p>用另一图像与这一图像进行逻辑或非运算。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">mage</span></code>&nbsp;可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。</div></blockquote>
+<p>图像须为同样大小和同种类型(grayscale/rgb)。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.b_xor">
+<code class="descclassname">image.</code><code class="descname">b_xor</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#image.b_xor" title="永久链接至目标">¶</a></dt>
+<dd><p>用另一图像与这一图像进行逻辑异或运算。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">mage</span></code>&nbsp;可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。</div></blockquote>
+<p>图像须为同样大小和同种类型(grayscale/rgb)。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.b_xnor">
+<code class="descclassname">image.</code><code class="descname">b_xnor</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#image.b_xnor" title="永久链接至目标">¶</a></dt>
+<dd><p>用另一图像与这一图像进行逻辑同或运算。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">mage</span></code>&nbsp;可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。</div></blockquote>
+<p>图像须为同样大小和同种类型(grayscale/rgb)。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.erode">
+<code class="descclassname">image.</code><code class="descname">erode</code><span class="sig-paren">(</span><em>size</em>, <em>threshold=Auto</em><span class="sig-paren">)</span><a class="headerlink" href="#image.erode" title="永久链接至目标">¶</a></dt>
+<dd><p>从分割区域的边缘删除像素。</p>
+<p>这一方法通过卷积图像上((size*2)+1)x((size*2)+1)像素的核心来实现，如果相邻像素集的总和小于 <code class="docutils literal"><span class="pre">threshold</span></code> ，则对内核的中心像素进行归零。</p>
+<p>若 <code class="docutils literal"><span class="pre">threshold</span></code> 未设定，这个方法的功能如标准腐蚀方法一样。若threshold设定，您就可以指定腐蚀的特定像素，例如：设置低于2个的像素周围阈值为2。</p>
+<p>不支持压缩图像。这个方法设计用来处理二进制图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">threshold</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">threshold=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.dilate">
+<code class="descclassname">image.</code><code class="descname">dilate</code><span class="sig-paren">(</span><em>size</em>, <em>threshold=Auto</em><span class="sig-paren">)</span><a class="headerlink" href="#image.dilate" title="永久链接至目标">¶</a></dt>
+<dd><p>将像素添加到分割区域的边缘中。</p>
+<p>这一方法通过卷积图像上((size*2)+1)x((size*2)+1)像素的核心来实现，如果相邻像素集的总和大于 <code class="docutils literal"><span class="pre">threshold</span></code> ，则将内核的中心像素进行设置。</p>
+<p>若 <code class="docutils literal"><span class="pre">threshold</span></code> 未设定，这个方法的功能如标准扩展方法一样。若阈值设定，您就可以指定扩展的特定像素，例如：设置多于2个的像素周围阈值为2。</p>
+<p>不支持压缩图像。这个方法设计用来处理二进制图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">threshold</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">threshold=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.negate">
+<code class="descclassname">image.</code><code class="descname">negate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image.negate" title="永久链接至目标">¶</a></dt>
+<dd><p>对每个颜色通道的像素值进行数值转换。例： (255 - pixel).</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.difference">
+<code class="descclassname">image.</code><code class="descname">difference</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#image.difference" title="永久链接至目标">¶</a></dt>
+<dd><p>从这一图像中减去另一图像。例：对于每个颜色通道而言，将每个像素替换为ABS(this.pixel-image.pixel)。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">image</span></code>&nbsp;可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。</div></blockquote>
+<p>图像须为同样大小和同种类型(grayscale/rgb)。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">这个函数适用于帧差法，您可以用这种方法来做运动监测。在运行统计函数前，您可以使用NAND/NOR 来屏蔽生成的图像。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.replace">
+<code class="descclassname">image.</code><code class="descname">replace</code><span class="sig-paren">(</span><em>image</em><span class="sig-paren">)</span><a class="headerlink" href="#image.replace" title="永久链接至目标">¶</a></dt>
+<dd><p>用&nbsp;<code class="docutils literal"><span class="pre">image</span></code>&nbsp;来替代这一图像（这一操作远比混合图像省时）。</p>
+<p>图像须为同样大小和同种类型(grayscale/rgb)。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.blend">
+<code class="descclassname">image.</code><code class="descname">blend</code><span class="sig-paren">(</span><em>image</em>, <em>alpha=128</em><span class="sig-paren">)</span><a class="headerlink" href="#image.blend" title="永久链接至目标">¶</a></dt>
+<dd><p>将另外一张图像 <code class="docutils literal"><span class="pre">image</span></code> 与这一图像融合。</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">image</span></code>&nbsp;可为一个图像对象或是一条打开未压缩图像文件(bmp/pgm/ppm)的路径。</p>
+<p><code class="docutils literal"><span class="pre">alpha</span></code>&nbsp;控制透明度。不透明覆盖层为256，透明为0。</p>
+</div></blockquote>
+<p>两张图像须为同样大小和同种类型(grayscale/rgb)。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">alpha</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">alpha=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.morph">
+<code class="descclassname">image.</code><code class="descname">morph</code><span class="sig-paren">(</span><em>size</em>, <em>kernel</em>, <em>mul=Auto</em>, <em>add=0</em><span class="sig-paren">)</span><a class="headerlink" href="#image.morph" title="永久链接至目标">¶</a></dt>
+<dd><p>通过过滤器内核对图像进行卷积。</p>
+<p><code class="docutils literal"><span class="pre">size</span></code> 将内核的大小控制为((size*2)+1)x((size*2)+1)像素。</p>
+<p><code class="docutils literal"><span class="pre">kernel</span></code> 用来卷积图像的内核，可为一个元组或一个取值[-128:127]的列表。</p>
+<p><code class="docutils literal"><span class="pre">mul</span></code> 是用以与卷积像素结果相乘的数字。若不设置，则默认一个值，该值将防止卷积输出中的缩放。</p>
+<p><code class="docutils literal"><span class="pre">add</span></code> 是用来与每个像素卷积结果相加的数值。</p>
+<p><code class="docutils literal"><span class="pre">mul</span></code> 可进行全局对比度调整，add可进行全局亮度调整。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">mul</span></code> and <code class="docutils literal"><span class="pre">add</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">mul=</span></code> 和 <code class="docutils literal"><span class="pre">add=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.midpoint">
+<code class="descclassname">image.</code><code class="descname">midpoint</code><span class="sig-paren">(</span><em>size</em>, <em>bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#image.midpoint" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像上运行中点滤波。</p>
+<p><code class="docutils literal"><span class="pre">size</span></code> 是内核的大小。取1 (3x3 内核)、2 (5x5 内核)或更高值。</p>
+<p><code class="docutils literal"><span class="pre">bias</span></code> 控制图像混合的最小/最大程度。0只适用于最小滤波，1仅用于最大滤波。您可以通过对图像进行最小/最大化过滤。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">bias</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">bias=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.mean">
+<code class="descclassname">image.</code><code class="descname">mean</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#image.mean" title="永久链接至目标">¶</a></dt>
+<dd><p>标准均值滤波（较变换图像更为省时）。</p>
+<p><code class="docutils literal"><span class="pre">Size</span></code>&nbsp;是内核的大小。取1 (3x3 内核)、2 (5x5 内核)或更高值。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="median">
+<code class="descname">median</code><span class="sig-paren">(</span><em>size</em>, <em>percentile=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#median" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像上运行中值滤波。在保留边缘的条件下，中值滤波是用来平滑表面的最佳滤波，但是运行速度极慢。</p>
+<p><code class="docutils literal"><span class="pre">Size</span></code>&nbsp;是内核的大小。取1 (3x3 内核)、2 (5x5 内核)或更高值。</p>
+<p><code class="docutils literal"><span class="pre">percentile</span></code>&nbsp;控制内核中所使用值的百分位数。默认情况下，每个像素都使用相邻的第五十个百分位数（中心）替换。使用最小滤波时，您可将此值设置为0，使用下四分位数滤波时设置为0.25，使用上四分位数滤波时设置为0.75，使用最大滤波时设置为1。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">percentile</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">percentile=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.mode">
+<code class="descclassname">image.</code><code class="descname">mode</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#image.mode" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像上运行众数滤波，用相邻像素的模式替换每个像素。这一方法在灰度图上运行效果良好。但由于这一操作的非线性特性，会在RGB图像边缘上产生许多工件。</p>
+<p><code class="docutils literal"><span class="pre">Size</span></code>&nbsp;是内核的大小。取1 (3x3 内核)、2 (5x5 内核)。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.gaussian">
+<code class="descclassname">image.</code><code class="descname">gaussian</code><span class="sig-paren">(</span><em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#image.gaussian" title="永久链接至目标">¶</a></dt>
+<dd><p>用高斯内核平滑图像。对于3x3或5x5内核而言，大小可取3或5。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.histeq">
+<code class="descclassname">image.</code><code class="descname">histeq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#image.histeq" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像上运行直方图均衡化算法。直方图均衡化使得图像的对比度和亮度标准化。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.lens_corr">
+<code class="descclassname">image.</code><code class="descname">lens_corr</code><span class="sig-paren">(</span><em>strength=1.8</em>, <em>zoom=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#image.lens_corr" title="永久链接至目标">¶</a></dt>
+<dd><p>进行镜头畸变校正，以去除镜头造成的图像鱼眼效果。</p>
+<p><code class="docutils literal"><span class="pre">strength</span></code>&nbsp;是一个浮动值，该值确定了对图像进行去Fisheye效果的程度。在默认情况下，首先试用取值1.8，然后调整这一数值使图像显示最佳效果。</p>
+<p><code class="docutils literal"><span class="pre">zoom</span></code>&nbsp;是在对图像进行缩放的数值。默认值为1。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="img.rotation_corr">
+<code class="descclassname">img.</code><code class="descname">rotation_corr</code><span class="sig-paren">(</span><em>x_rotation=0.0</em>, <em>y_rotation=0.0</em>, <em>z_rotation=0.0</em>, <em>x_translation=0.0</em>, <em>y_translation=0.0</em>, <em>zoom=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#img.rotation_corr" title="永久链接至目标">¶</a></dt>
+<dd><p>通过执行帧缓冲区的3D旋转来纠正图像中的透视问题。</p>
+<p><code class="docutils literal"><span class="pre">x_rotation</span></code> 是围绕x轴在帧缓冲器中旋转图像的度数（这使图像上下旋转）。</p>
+<p><code class="docutils literal"><span class="pre">y_rotation</span></code> 是帧缓冲区中围绕y轴旋转图像的度数（即左右旋转图像）。</p>
+<p><code class="docutils literal"><span class="pre">z_rotation</span></code> 是围绕z轴在帧缓冲器中旋转图像的度数（即，使图像旋转到适当位置）。</p>
+<p><code class="docutils literal"><span class="pre">x_translation</span></code> 是旋转后将图像移动到左侧或右侧的单位数。因为这个变换是应用在三维空间的，单位不是像素…</p>
+<p><code class="docutils literal"><span class="pre">y_translation</span></code> 是旋转后将图像上移或下移的单位数。因为这个变换是应用在三维空间的，单位不是像素…</p>
+<p><code class="docutils literal"><span class="pre">zoom</span></code> 是通过图像缩放的量。默认情况下1.0。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.get_histogram">
+<code class="descclassname">image.</code><code class="descname">get_histogram</code><span class="sig-paren">(</span><em>roi=Auto</em>, <em>bins=Auto</em>, <em>l_bins=Auto</em>, <em>a_bins=Auto</em>, <em>b_bins=Auto</em><span class="sig-paren">)</span><a class="headerlink" href="#image.get_histogram" title="永久链接至目标">¶</a></dt>
+<dd><p>在 <code class="docutils literal"><span class="pre">roi</span></code> 的所有颜色通道上进行标准化直方图运算，并返回 <code class="docutils literal"><span class="pre">histogram</span></code> 对象。请观察 <code class="docutils literal"><span class="pre">histogram</span></code> 对象以获取更多信息。您也可以使用 <code class="docutils literal"><span class="pre">image.get_hist</span></code>&nbsp;或 <code class="docutils literal"><span class="pre">image.histogram</span></code> 来调用这一方法。</p>
+<p>通常情况下请使用 <code class="docutils literal"><span class="pre">image.get_statistics</span></code> 方法，除非您需要对色彩数据进行高级处理，请勿将这一方法用于查看图像中像素区域。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">roi</span></code>&nbsp;是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即复制整个图像的图像矩形。</div></blockquote>
+<p>操作范围仅限于 <code class="docutils literal"><span class="pre">roi</span></code> 区域内的像素。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">bin_count</span></code>&nbsp;等是用于直方图通道的。灰度图使用
+<code class="docutils literal"><span class="pre">bin_count</span></code> ，RGB565图像的每个通道都使用其他数值。每个通道的 <code class="docutils literal"><span class="pre">bin_count</span></code> 需大于2。而且，设置比每个通道的唯一像素值更大的 <code class="docutils literal"><span class="pre">bin_count</span></code> 并无意义。</div></blockquote>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code> , <code class="docutils literal"><span class="pre">bin_count``是键值参数，必须在函数调用中通过写入</span> <span class="pre">``roi=</span></code> 等来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.get_statistics">
+<code class="descclassname">image.</code><code class="descname">get_statistics</code><span class="sig-paren">(</span><em>roi=Auto</em>, <em>bins=Auto</em>, <em>l_bins=Auto</em>, <em>a_bins=Auto</em>, <em>b_bins=Auto</em><span class="sig-paren">)</span><a class="headerlink" href="#image.get_statistics" title="永久链接至目标">¶</a></dt>
+<dd><p>计算 <code class="docutils literal"><span class="pre">roi</span></code> 中每个颜色通道的平均值、中值、众值、标准偏差、最小值、最大值、下四分值和上四分值，并返回一个数据对象。请观察 <code class="docutils literal"><span class="pre">statistics</span></code> 对象以获取更多信息。
+您也可以使用 <code class="docutils literal"><span class="pre">image.get_stats</span></code>
+或&nbsp;<code class="docutils literal"><span class="pre">image.statistics</span></code> 来调用这一方法。</p>
+<p>您可以在需要获取图像中一个像素区域信息时使用这一方法。例如：若您想用帧差法来检测运动时，您需要使用这一方法来确定图像颜色通道的变化，从而触发运动检测阈值。</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">roi</span></code>&nbsp;是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定， <code class="docutils literal"><span class="pre">ROI</span></code> 即复制整个图像的图像矩形。操作范围仅限于roi区域内的像素。</p>
+<p><code class="docutils literal"><span class="pre">bin_count</span></code>&nbsp;及其他是用于直方图通道的二进制数量。灰度图使用 <code class="docutils literal"><span class="pre">bin_count</span></code> ，RGB565图像的每个通道都使用其他数值。</p>
+</div></blockquote>
+<p>每个通道的 <code class="docutils literal"><span class="pre">bin_count</span></code> 需大于2。而且，设置比每个通道的唯一像素值更大的 <code class="docutils literal"><span class="pre">bin_count</span></code> 并无意义。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code>, <code class="docutils literal"><span class="pre">bin_count</span></code> 是键值参数，必须在函数调用中通过写入 <code class="docutils literal"><span class="pre">roi=</span></code> 等来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.get_regression">
+<code class="descclassname">image.</code><code class="descname">get_regression</code><span class="sig-paren">(</span><em>thresholds</em><span class="optional">[</span>, <em>roi=Auto</em>, <em>x_stride=2</em>, <em>y_stride=1</em>, <em>invert=False</em>, <em>robust=False</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#image.get_regression" title="永久链接至目标">¶</a></dt>
+<dd><p>对图像所有阈值像素进行线性回归计算。这一计算通过最小二乘法进行，通常速度较快，但不能处理任何异常值。若 <code class="docutils literal"><span class="pre">robust</span></code> 为True，则将使用泰尔指数。泰尔指数计算图像中所有阈值像素间的所有斜率的中值。若在阈值转换后设定太多像素，即使在80x60的图像上，这一N^2操作也可能将您的FPS降到5以下。但是，只要阈值转换后的进行设置的像素数量较少，即使在超过30%的阈值像素为异常值的情况下，线性回归也依然有效。</p>
+<p>这一方法返回的是一个 <code class="docutils literal"><span class="pre">line</span></code> 对象。如何轻松运用直线对象，详见下博文： <a class="reference external" href="https://openmv.io/blogs/news/linear-regression-line-following">https://openmv.io/blogs/news/linear-regression-line-following</a></p>
+<p><code class="docutils literal"><span class="pre">thresholds</span></code> 须为一个标明您想追踪的颜色的元组列表``[(lo, hi), (lo, hi), …, (lo, hi)]`` 您可能在一次 <code class="docutils literal"><span class="pre">image.find_blobs</span></code> 调用中传递16个阈值元组。灰度图的每个元组需包括两个值：一个最小灰度值与一个最大灰度值。只考虑落在两个阈值间的像素区域。RGB565图像的每个元组需要包括六个值(l_lo, l_hi, a_lo, a_hi, b_lo, b_hi)，分别为LAB中的L、A、B通道的最大值与最小值。为方便使用，这一函数会自动修复交换的最大与最小值。而且，若一个元组大于这六个值，那么其余部分将被忽略不计。相反，若元组过小，阈值的剩余部分会假定为0。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>获取所跟踪对象的阈值，只需在IDE帧缓冲区中选择（单击并拖动）跟踪对象。直方图会相应地更新到所在区域。然后只需写下颜色分布在每个直方图通道中起始与下降位置。
+该数据将作为阈值的低值与高值。由于上下四分位数据相差微小，故手动确定阈值为佳。</p>
+<p class="last">最新版本的OpenMV IDE特有一个阈值编辑器，可协助您轻松选择阈值。使用滑块来控制阈值，您就可以看到阈值是如何分段的。</p>
+</div>
+<p><code class="docutils literal"><span class="pre">roi</span></code>&nbsp;是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即复制整个图像的图像矩形。操作范围仅限于 <code class="docutils literal"><span class="pre">roi</span></code> 区域内的像素。</p>
+<p><code class="docutils literal"><span class="pre">x_stride</span></code>&nbsp;是查找某色块时需要跳过的x像素的数量。找到色块后，直线填充算法将精确像素。若已知色块较大，可增加 <code class="docutils literal"><span class="pre">x_stride</span></code> 来提高查找色块的速度。</p>
+<p><code class="docutils literal"><span class="pre">y_stride</span></code>&nbsp;是查找某色块时需要跳过的y像素的数量。找到色块后，直线填充算法将精确像素。若已知色块较大，可增加 <code class="docutils literal"><span class="pre">y_stride</span></code> 来提高查找色块的速度。</p>
+<p><code class="docutils literal"><span class="pre">Invert</span></code>&nbsp;反转阈值操作，像素在已知颜色范围之外进行匹配，而非在已知颜色范围内。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">除 <code class="docutils literal"><span class="pre">thresholds</span></code> 之外的所有参数都是键值参数，须在函数调用中通过写入参数名称和一个加号来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_blobs">
+<code class="descclassname">image.</code><code class="descname">find_blobs</code><span class="sig-paren">(</span><em>thresholds</em><span class="optional">[</span>, <em>roi=Auto</em>, <em>x_stride=2</em>, <em>y_stride=1</em>, <em>invert=False</em>, <em>area_threshold=10</em>, <em>pixels_threshold=10</em>, <em>merge=False</em>, <em>margin=0</em>, <em>threshold_cb=None</em>, <em>merge_cb=None</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#image.find_blobs" title="永久链接至目标">¶</a></dt>
+<dd><p>查找图像中所有色块，并返回一个包括每个色块的色块对象的列表。请观察&nbsp;<code class="docutils literal"><span class="pre">blob</span></code> 对象以获取更多信息</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">thresholds</span></code>&nbsp;须为一个标明您想追踪的颜色的元组列表 <code class="docutils literal"><span class="pre">[(lo,&nbsp;hi),&nbsp;(lo,&nbsp;hi),&nbsp;...,&nbsp;(lo,&nbsp;hi)]</span></code> 。您可能在一次 <code class="docutils literal"><span class="pre">image.find_blobs</span></code> 调用中传递16个阈值元组。灰度图的每个元组需包括两个值：一个最小灰度值与一个最大灰度值。只考虑落在两个阈值间的像素区域。RGB565图像的每个元组需要包括六个值(l_lo, l_hi, a_lo, a_hi, b_lo, b_hi)，分别为LAB中的L、A、B通道的最大值与最小值。为方便使用，这一函数会自动修复交换的最大与最小值。而且，若一个元组大于这六个值，那么其余部分将被忽略不计。相反，若元组过小，阈值的剩余部分会假定为0。</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p>获取所跟踪对象的阈值，只需在IDE帧缓冲区中选择（单击并拖动）跟踪对象。直方图会相应地更新到所在区域。然后只需写下颜色分布在每个直方图通道中起始与下降位置。该数据将作为阈值的低值与高值。由于上下四分位数据相差微小，故手动确定阈值为佳。</p>
+<p class="last">最新版本的OpenMV IDE特有一个阈值编辑器，可协助您轻松选择阈值。使用滑块来控制阈值，您就可以看到阈值是如何分段的。</p>
+</div>
+<p><code class="docutils literal"><span class="pre">roi</span></code> 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定， <code class="docutils literal"><span class="pre">ROI</span></code> 即图像矩形。操作范围仅限于roi区域内的像素。</p>
+<p><code class="docutils literal"><span class="pre">x_stride</span></code>&nbsp;是查找某色块时需要跳过的x像素的数量。找到色块后，直线填充算法将精确像素。若已知色块较大，可增加
+<code class="docutils literal"><span class="pre">x_stride</span></code> 来提高查找色块的速度。</p>
+<p><code class="docutils literal"><span class="pre">y_stride</span></code>&nbsp;是查找某色块时需要跳过的y像素的数量。找到色块后，直线填充算法将精确像素。若已知色块较大，可增加
+<code class="docutils literal"><span class="pre">y_stride</span></code> 来提高查找色块的速度。</p>
+<p><code class="docutils literal"><span class="pre">Invert</span></code>&nbsp;反转阈值操作，像素在已知颜色范围之外进行匹配，而非在已知颜色范围内。</p>
+<p>若一个色块的边界框区域小于 <code class="docutils literal"><span class="pre">area_threshold</span></code> ，则会被过滤掉。</p>
+<p>若一个色块的像素数小于&nbsp;<code class="docutils literal"><span class="pre">pixel_threshold</span></code> ，则会被过滤掉。</p>
+<p><code class="docutils literal"><span class="pre">merge</span></code> 若True合并了所有没有被过滤掉的色块，这些色块的边界矩形互相交错。<code class="docutils literal"><span class="pre">Margin</span></code>&nbsp;可在相交测试中用来增大或减小色块边界矩形的大小。例如：边缘为1、相互间边界矩形为1的色块将被合并。</p>
+<p>合并色块使颜色代码追踪得以实现。每个色块对象有一个代码值 <code class="docutils literal"><span class="pre">code</span></code> ，该值为一个位向量。例如：若您在 <code class="docutils literal"><span class="pre">image.find_blobs</span></code> 中输入两个颜色阈值，则第一个阈值代码为1，第二个代码为2（第三个代码为4，第四个代码为8，以此类推）。将所有代码合理合并，您即可知道这些代码是由哪种颜色生成的。这使得您可以追踪两个颜色，若您用两种颜色得到一个色块对象，则可能是一种颜色代码。</p>
+<p>若您使用严格的颜色范围，无法完全追踪目标对象的所有像素，您可能需要合并色块。</p>
+<p>最后，若您想要合并色块，但不想合并两色块阈值，只需分别使用阈值两次调用 <code class="docutils literal"><span class="pre">image.find_blobs</span></code> ，色块就不会被合并。</p>
+<p><code class="docutils literal"><span class="pre">threshold_cb</span></code> 可设置为用以调用阈值筛选后的每个色块的函数，以便将其中将要合并的色块列表中过滤出来。回调函数将收到一个参数：要被筛选的色块对象。然后回调函数需返回True以保留色块或返回False以过滤色块。</p>
+<p><code class="docutils literal"><span class="pre">merge_cb</span></code> 可设置为用以调用两个即将合并的色块的函数，以禁止或准许合并。回调函数将收到两个参数—两个色块对象将被合并。回调函数须返回True以合并色块，或返回False以防止色块合并。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">除 <code class="docutils literal"><span class="pre">thresholds</span></code> 之外的所有参数都是键值参数，须在函数调用中通过写入参数名称和一个等号来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_lines">
+<code class="descclassname">image.</code><code class="descname">find_lines</code><span class="sig-paren">(</span><em>roi=Auto</em>, <em>x_stride=2</em>, <em>y_stride=1</em>, <em>threshold=1000</em>, <em>theta_margin=25</em>, <em>rho_margin=25</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_lines" title="永久链接至目标">¶</a></dt>
+<dd><p>使用霍夫变换查找图像中的所有直线。返回一个 <code class="docutils literal"><span class="pre">line</span></code> 对象的列表（见上）。</p>
+<p><code class="docutils literal"><span class="pre">roi</span></code> 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定， <code class="docutils literal"><span class="pre">ROI</span></code> 即图像矩形。操作范围仅限于roi区域内的像素。</p>
+<p><code class="docutils literal"><span class="pre">x_stride</span></code> 是霍夫变换时需要跳过的x像素的数量。若已知直线较大，可增加 <code class="docutils literal"><span class="pre">x_stride</span></code> 。</p>
+<p><code class="docutils literal"><span class="pre">y_stride</span></code> 是霍夫变换时需要跳过的y像素的数量。若已知直线较大，可增加 <code class="docutils literal"><span class="pre">y_stride</span></code> 。</p>
+<p><code class="docutils literal"><span class="pre">threshold</span></code> 控制从霍夫变换中监测到的直线。只返回大于或等于阈值的直线。应用程序的阈值正确值取决于图像。注意：一条直线的大小是组成直线所有索贝尔滤波像素大小的总和。</p>
+<p><code class="docutils literal"><span class="pre">theta_margin</span></code> 控制所监测的直线的合并。直线角度为
+<code class="docutils literal"><span class="pre">theta_margin</span></code> 的部分和直线p值为 <code class="docutils literal"><span class="pre">rho_margin</span></code> 的部分合并.</p>
+<p><code class="docutils literal"><span class="pre">rho_margin</span></code> 控制所监测的直线的合并。直线角度为
+<code class="docutils literal"><span class="pre">theta_margin</span></code> 的部分和直线p值为 <code class="docutils literal"><span class="pre">rho_margin</span></code> 的部分合并.</p>
+<p>该方法通过在图像上运行索贝尔滤波器，并利用该滤波器的幅值和梯度响应来进行霍夫变换。无需对图像进行任何预处理。但是，清理图像过滤器可得到更为稳定的结果。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">所有参数都是键值参数，须在函数调用中通过写入参数名称和一个加号来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_line_segments">
+<code class="descclassname">image.</code><code class="descname">find_line_segments</code><span class="sig-paren">(</span><em>roi=Auto</em>, <em>merge_distance=0</em>, <em>max_theta_difference=15</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_line_segments" title="永久链接至目标">¶</a></dt>
+<dd><p>使用霍夫转换来查找图像中的线段。返回一个&nbsp;<code class="docutils literal"><span class="pre">line</span></code>&nbsp;对象的列表（见上）。</p>
+<p><code class="docutils literal"><span class="pre">roi</span></code> 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定， <code class="docutils literal"><span class="pre">ROI</span></code> 即图像矩形。操作范围仅限于roi区域内的像素。</p>
+<p><code class="docutils literal"><span class="pre">merge_distance</span></code> 指定两条线段之间的可以相互分开而不被合并的最大像素数。</p>
+<p><code class="docutils literal"><span class="pre">max_theta_difference</span></code> 是上面要合并的 <code class="docutils literal"><span class="pre">merge_distancede</span></code> 的两个线段的最大角度差值。</p>
+<p>此方法使用LSD库（也被OpenCV使用）来查找图像中的线段。这有点慢，但是非常准确，线段不会跳跃。</p>
+<p>只支持OpenMV Cam M7， M4的RAM不够用。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">所有参数都是键值参数，须在函数调用中通过写入参数名称和一个加号来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_circles">
+<code class="descclassname">image.</code><code class="descname">find_circles</code><span class="sig-paren">(</span><span class="optional">[</span><em>roi=Auto</em>, <em>x_stride=2</em>, <em>y_stride=1</em>, <em>threshold=1600</em>, <em>x_margin=10</em>, <em>y_margin=10</em>, <em>r_margin=10</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#image.find_circles" title="永久链接至目标">¶</a></dt>
+<dd><p>使用霍夫变换在图像中查找圆。返回一个 <code class="docutils literal"><span class="pre">circle</span></code> 对象列表（见上）。</p>
+<p><code class="docutils literal"><span class="pre">roi</span></code> 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定， <code class="docutils literal"><span class="pre">ROI</span></code> 即图像矩形。操作范围仅限于roi区域内的像素。</p>
+<p><code class="docutils literal"><span class="pre">x_stride</span></code> 是霍夫变换时需要跳过的x像素的数量。若已知圆较大，可增加 <code class="docutils literal"><span class="pre">x_stride</span></code> 。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">y_stride</span></code> 是霍夫变换时需要跳过的y像素的数量。若已知圆较大，可增加 <code class="docutils literal"><span class="pre">y_stride</span></code> 。</div></blockquote>
+<p><code class="docutils literal"><span class="pre">threshold</span></code> 控制从霍夫变换中监测到的圆。只返回大于或等于阈值的圆。应用程序的阈值正确值取决于图像。注意：一条圆的大小是组成圆所有索贝尔滤波像素大小的总和。</p>
+<p><code class="docutils literal"><span class="pre">x_margin</span></code> 控制所检测的圆的合并。&nbsp;圆像素为 <code class="docutils literal"><span class="pre">x_margin</span></code> 、 <code class="docutils literal"><span class="pre">y_margin</span></code> 和 <code class="docutils literal"><span class="pre">r_margin</span></code>&nbsp;的部分合并。</p>
+<p><code class="docutils literal"><span class="pre">y_margin</span></code> 控制所检测的圆的合并。&nbsp;圆像素为 <code class="docutils literal"><span class="pre">x_margin</span></code> 、 <code class="docutils literal"><span class="pre">y_margin</span></code> 和 <code class="docutils literal"><span class="pre">r_margin</span></code>&nbsp;的部分合并。</p>
+<p><code class="docutils literal"><span class="pre">r_margin</span></code> 控制所检测的圆的合并。&nbsp;圆像素为 <code class="docutils literal"><span class="pre">x_margin</span></code> 、 <code class="docutils literal"><span class="pre">y_margin</span></code> 和 <code class="docutils literal"><span class="pre">r_margin</span></code>&nbsp;的部分合并。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">所有参数都是键值参数，须在函数调用中通过写入参数名称和一个加号来显式地调用。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">该方法只适用于OpenMV Cam M7。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_rects">
+<code class="descclassname">image.</code><code class="descname">find_rects</code><span class="sig-paren">(</span><span class="optional">[</span><em>roi=Auto</em>, <em>threshold=10000</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#image.find_rects" title="永久链接至目标">¶</a></dt>
+<dd><p>使用四元检测算法来查找图像中的矩形。最适用与背景形成鲜明对比的矩形。AprilTag四轴检测算法可以处理任意缩放/旋转/剪切的矩形。返回一个 <code class="docutils literal"><span class="pre">rect</span></code> 对象的列表（见上）。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">roi</span></code>&nbsp;是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，z
+<code class="docutils literal"><span class="pre">ROI</span></code> 即图像矩形。操作范围仅限于 <code class="docutils literal"><span class="pre">roi</span></code> 区域内的像素。</div></blockquote>
+<p>边界大小（通过在矩形边缘上的所有像素上滑动索贝尔算子并相加该值）小于&nbsp;<code class="docutils literal"><span class="pre">threshold</span></code> 的矩形会从返回列表中过滤出来。 <code class="docutils literal"><span class="pre">threshold</span></code> 的正确值取决于您的应用程序/领域。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">所有参数都是键值参数，须在函数调用中通过写入参数名称和一个加号来显式地调用。</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last">该方法只适用于OpenMV Cam M7。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_qrcodes">
+<code class="descclassname">image.</code><code class="descname">find_qrcodes</code><span class="sig-paren">(</span><em>roi=Auto</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_qrcodes" title="永久链接至目标">¶</a></dt>
+<dd><p>查找 <code class="docutils literal"><span class="pre">roi</span></code> 内的所有二维码并返回一个 <code class="docutils literal"><span class="pre">qrcode</span></code> 对象的列表。请观察 <code class="docutils literal"><span class="pre">qrcode</span></code> 对象以获取更多信息。</p>
+<p>为使这一方法成功运行，图像上二维码需比较平展。通过使用 <code class="docutils literal"><span class="pre">sensor.set_windowing</span></code>&nbsp;函数在镜头中心放大、 <code class="docutils literal"><span class="pre">image.lens_corr</span></code>&nbsp;函数来消解镜头的桶形畸变或通过更换视野较为狭小的镜头，
+您可得到一个不受镜头扭曲变形影响的更为平展的二维码。有些机器视觉透镜不会造成桶形失真，但是其造价远比OpenMV提供的标准镜片高，这种镜头为无畸变镜头。</p>
+<blockquote>
+<div><code class="docutils literal"><span class="pre">roi</span></code>&nbsp;是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。</div></blockquote>
+<p>操作范围仅限于 <code class="docutils literal"><span class="pre">roi</span></code> 区域内的像素。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code> 是键值参数，须在函数调用中通过写入 <code class="docutils literal"><span class="pre">roi=</span></code> 来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_apriltags">
+<code class="descclassname">image.</code><code class="descname">find_apriltags</code><span class="sig-paren">(</span><em>roi=Auto</em>, <em>families=image.TAG36H11</em>, <em>fx=Auto</em>, <em>fy=Auto</em>, <em>cx=Auto</em>, <em>cy=Auto</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_apriltags" title="永久链接至目标">¶</a></dt>
+<dd><p>查找 <code class="docutils literal"><span class="pre">roi</span></code> 内的所有AprilTag, 并返回一个 <code class="docutils literal"><span class="pre">apriltag</span></code> 对象的列表。请观察&nbsp;<a href="#id23"><span class="problematic" id="id24">``</span></a>apriltag``对象以获取更多信息。</p>
+<p>与二维码相比，AprilTags可在更远距离、较差光线和更扭曲的图像环境下被检测到。AprilTags可应对所有种类的图像失真问题，而二维码并不能。也就是说，AprilTags只能将数字ID编码作为其有效载荷。</p>
+<p>AprilTags也可用于本地化。每个 <code class="docutils literal"><span class="pre">apriltag</span></code> 对象都从摄像机返回其平动和转动。平动单元由 <code class="docutils literal"><span class="pre">fx</span></code> 、 <code class="docutils literal"><span class="pre">fy</span></code> 、 <code class="docutils literal"><span class="pre">cx</span></code> 和 <code class="docutils literal"><span class="pre">cy</span></code> 决定，分别为X和Y方向上图像的焦距和中心点。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<blockquote>
+<div>使用内置的标签生成器工具来创建AprilTags。标签生成器可创建可打印的8.5“x11”AprilTags。</div></blockquote>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code>&nbsp;是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。</p>
+</div>
+<p>操作范围仅限于 <code class="docutils literal"><span class="pre">roi</span></code> 区域内的像素。</p>
+<p><code class="docutils literal"><span class="pre">families</span></code> 标签解码的位掩码。是一个逻辑或：</p>
+<blockquote>
+<div><ul class="simple">
+<li>image.TAG16H5</li>
+<li>image.TAG25H7</li>
+<li>image.TAG25H9</li>
+<li>image.TAG36H10</li>
+<li>image.TAG36H11</li>
+<li>image.ARTOOLKIT</li>
+</ul>
+</div></blockquote>
+<p>默认设置为最适用于标签群的&nbsp;<code class="docutils literal"><span class="pre">image.TAG36H11</span></code> 。注意：每启用一个标签群， <code class="docutils literal"><span class="pre">find_apriltags</span></code> 的速度都会略有放慢。</p>
+<p><code class="docutils literal"><span class="pre">fx</span></code> 是以像素计的X摄像机的焦距。标准OpenMV Cam的值为(2.8 / 3.984) * 656，该值通过毫米计的焦距值除以X方向上摄像机传感器的长度，再乘以X方向上相机传感器像素数量得来（对OV7725摄像机而言）。</p>
+<p><code class="docutils literal"><span class="pre">fy</span></code> 是以像素计的Y摄像机的焦距。标准OpenMV Cam的值为(2.8 / 2.952) * 488，该值通过毫米计的焦距值除以Y方向上摄像机传感器的长度，再乘以Y方向上相机传感器像素数量得来（对OV7725摄像机而言）。</p>
+<p><code class="docutils literal"><span class="pre">cx</span></code> 是图像的中心，即 <code class="docutils literal"><span class="pre">image.width()/2</span></code> ，而非 <code class="docutils literal"><span class="pre">roi.w()/2</span></code> 。</p>
+<p><code class="docutils literal"><span class="pre">cy</span></code> 是图像的中心，即 <code class="docutils literal"><span class="pre">image.height()/2</span></code>，而非 <code class="docutils literal"><span class="pre">roi.h()/2</span></code> 。</p>
+<p>不支持压缩图像。</p>
+<p>只支持OpenMV Cam M7或更高版本（M4不具备足够RAM）。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code>, <code class="docutils literal"><span class="pre">families</span></code>, <code class="docutils literal"><span class="pre">fx</span></code>, <code class="docutils literal"><span class="pre">fy</span></code>, <code class="docutils literal"><span class="pre">cx</span></code>, and <code class="docutils literal"><span class="pre">cy</span></code> 是键值参数，须在函数调用中通过写入 <code class="docutils literal"><span class="pre">roi=</span></code>, <code class="docutils literal"><span class="pre">families=</span></code>, <code class="docutils literal"><span class="pre">fx=</span></code>, <code class="docutils literal"><span class="pre">fy=</span></code>, <code class="docutils literal"><span class="pre">cx=</span></code>, and <code class="docutils literal"><span class="pre">cy=</span></code> 来显式地调用。.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_datamatrices">
+<code class="descclassname">image.</code><code class="descname">find_datamatrices</code><span class="sig-paren">(</span><em>roi=Auto</em>, <em>effort=200</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_datamatrices" title="永久链接至目标">¶</a></dt>
+<dd><p>查找 <code class="docutils literal"><span class="pre">roi</span></code> 内的所有数据矩阵并返回一个 <code class="docutils literal"><span class="pre">datamatrix</span></code> 对象的列表。请观察&nbsp;<code class="docutils literal"><span class="pre">datamatrix</span></code> 对象以获取更多信息。</p>
+<p>为使这一方法成功运行，图像上矩形码需比较平展。通过使用 <code class="docutils literal"><span class="pre">sensor.set_windowing</span></code>&nbsp;函数在镜头中心放大、 <code class="docutils literal"><span class="pre">image.lens_corr</span></code>&nbsp;函数来消解镜头的桶形畸变或通过更换视野较为狭小的镜头，您可得到一个不受镜头扭曲变形影响的更为平展的矩形码。有些机器视觉透镜不会造成桶形失真，但是其造价远比OpenMV提供的标准镜片高，这种镜头是无畸变镜头。</p>
+<p><code class="docutils literal"><span class="pre">roi</span></code> 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。操作范围仅限于 <code class="docutils literal"><span class="pre">roi</span></code> 区域内的像素。</p>
+<p><code class="docutils literal"><span class="pre">effort</span></code> 控制用于查找数据矩阵匹配的时间。默认值为200使用于所有用例。但是您也可能以帧速率为代价增加检测，或以检测为代价增加帧速率。注意：若 <code class="docutils literal"><span class="pre">effort</span></code> 设置在约160以下，您就无法进行任何检测；相反，您可将将设置为您需要的任何高值，但是若设置值高于240，检测率将不会继续随之提高。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code> and <code class="docutils literal"><span class="pre">effort</span></code> 是键值参数，须在函数调用中通过写入 <code class="docutils literal"><span class="pre">roi=</span></code> and/or <a href="#id25"><span class="problematic" id="id26">``</span></a>effort=``来显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_barcodes">
+<code class="descclassname">image.</code><code class="descname">find_barcodes</code><span class="sig-paren">(</span><em>roi=Auto</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_barcodes" title="永久链接至目标">¶</a></dt>
+<dd><p>查找 <code class="docutils literal"><span class="pre">roi</span></code> 内所有一维条形二维码并返回一个 <code class="docutils literal"><span class="pre">barcode</span></code> 对象列表。请观察&nbsp;<code class="docutils literal"><span class="pre">barcode</span></code> 对象以获取更多信息。</p>
+<p>为了获得最佳效果，请使用640／40/80／160窗口。垂直程度越低，运行速度越快。由于条形码是线性一维图像，所以只需在一个方向上有较高分辨率，
+而在另一方向上只需较低分辨率。注意：该函数进行水平和垂直扫描，所以您可使用40/80／160／480的窗口。最后，请一定调整镜头，这样条形码会定位在焦距产生最清晰图像的地方。模糊条码无法被解码。</p>
+<p>该函数支持所有一维条形码：</p>
+<blockquote>
+<div><ul class="simple">
+<li>image.EAN2</li>
+<li>image.EAN5</li>
+<li>image.EAN8</li>
+<li>image.UPCE</li>
+<li>image.ISBN10</li>
+<li>image.UPCA</li>
+<li>image.EAN13</li>
+<li>image.ISBN13</li>
+<li>image.I25</li>
+<li>image.DATABAR (RSS-14)</li>
+<li>image.DATABAR_EXP (RSS-Expanded)</li>
+<li>image.CODABAR</li>
+<li>image.CODE39</li>
+<li>image.PDF417</li>
+<li>image.CODE93</li>
+<li>image.CODE128</li>
+</ul>
+</div></blockquote>
+<p><code class="docutils literal"><span class="pre">roi</span></code> 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。操作范围仅限于 <code class="docutils literal"><span class="pre">roi</span></code> 区域内的像素。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code> 是键值参数，须在函数调用中通过写入 <code class="docutils literal"><span class="pre">roi=</span></code> 显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.midpoint_pooled">
+<code class="descclassname">image.</code><code class="descname">midpoint_pooled</code><span class="sig-paren">(</span><em>x_div</em>, <em>y_div</em>, <em>bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#image.midpoint_pooled" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像中找到&nbsp;<code class="docutils literal"><span class="pre">x_div</span></code>&nbsp;*&nbsp;<code class="docutils literal"><span class="pre">y_div</span></code>&nbsp;正方形的中点，并返回一个由每个正方形中点组成的新图像。</p>
+<p>0的 <code class="docutils literal"><span class="pre">bias</span></code> 返回每个区域的最小值，而1的 <code class="docutils literal"><span class="pre">bias</span></code> 返回每个区域的最大值。</p>
+<p>该方法对于制备相位相关的图像甚是有用。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">bias</span></code> 是键值参数，须在函数调用中通过写入 <code class="docutils literal"><span class="pre">bias=</span></code> 显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.mean_pooled">
+<code class="descclassname">image.</code><code class="descname">mean_pooled</code><span class="sig-paren">(</span><em>x_div</em>, <em>y_div</em>, <em>bias=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#image.mean_pooled" title="永久链接至目标">¶</a></dt>
+<dd><p>在图像中找到 &nbsp;<code class="docutils literal"><span class="pre">x_div</span></code>&nbsp;*&nbsp;<code class="docutils literal"><span class="pre">y_div</span></code> 正方形的均值，并返回一个由每个正方形均值组成的新图像。</p>
+<p>该方法对于制备相位相关的图像甚是有用。</p>
+<p>不支持压缩图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_template">
+<code class="descclassname">image.</code><code class="descname">find_template</code><span class="sig-paren">(</span><em>template</em>, <em>threshold</em>, <em>roi=Auto</em>, <em>step=2</em>, <em>search=image.SEARCH_EX</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_template" title="永久链接至目标">¶</a></dt>
+<dd><p>尝试在模板匹配使用归一化互相关的图像中找到第一个位置。返回用于匹配位置的一个边界框元组(x, y, w, h)。</p>
+<p><code class="docutils literal"><span class="pre">template</span></code> 是一个与这以图像对象相匹配的小图像对象。注意：两图像须都为灰度图。</p>
+<p><code class="docutils literal"><span class="pre">threshold</span></code> 是一个浮点数(0.0-1.0)，对该浮点数而言，较高阈值可防止假阳性值，并降低检测率，而较低阈值作用则相反。</p>
+<p><code class="docutils literal"><span class="pre">roi</span></code> 是一个用于搜索的感兴趣矩形(x, y, w, h)。</p>
+<p><code class="docutils literal"><span class="pre">step</span></code> 是查找模板时需要跳过的像素数量。跳过像素可大大提高算法运行的速度。该方法只适用于SERACH_EX模式下的算法。</p>
+<p><code class="docutils literal"><span class="pre">search</span></code> 可为 <code class="docutils literal"><span class="pre">image.SEARCH_DS</span></code> or <code class="docutils literal"><span class="pre">image.SEARCH_EX</span></code>.
+<code class="docutils literal"><span class="pre">image.SEARCH_DS</span></code> 搜索模板所用算法较 <code class="docutils literal"><span class="pre">image.SEARCH_EX</span></code> 更快，但若模板位于图像边缘周围，可能无法成功搜索。
+<code class="docutils literal"><span class="pre">image.SEARCH_EX</span></code>&nbsp;可对图像进行较为详尽的搜索，但其运行速度远低于 <code class="docutils literal"><span class="pre">image.SEARCH_DS</span></code> 。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code>, <code class="docutils literal"><span class="pre">step</span></code>, and <code class="docutils literal"><span class="pre">search</span></code> 是键值参数，须在函数调用中通过写入&nbsp;<code class="docutils literal"><span class="pre">roi=</span></code> 、 <code class="docutils literal"><span class="pre">step=</span></code> 和 <code class="docutils literal"><span class="pre">search=</span></code> 显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_displacement">
+<code class="descclassname">image.</code><code class="descname">find_displacement</code><span class="sig-paren">(</span><em>template</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_displacement" title="永久链接至目标">¶</a></dt>
+<dd><dl class="docutils">
+<dt>从模板中找到图像的平移偏移量。该方法可用于光流。该方法返回含有三个值的元组(x_offset, y_offset, response)。</dt>
+<dd><code class="docutils literal"><span class="pre">x_offset</span></code> 是图像间x像素平移的浮点值。 <code class="docutils literal"><span class="pre">y_offset</span></code> 是图像间y像素平移的浮点值。 <code class="docutils literal"><span class="pre">response</span></code>&nbsp;是介于0.0到1.0的浮点置信值。</dd>
+</dl>
+<p>置信值降低时，您应相应地降低对 <code class="docutils literal"><span class="pre">x_offset</span></code> 和 <code class="docutils literal"><span class="pre">y_offset</span></code> 的信任。一般而言，只要 <code class="docutils literal"><span class="pre">response</span></code> 高于0.2，就大可放心。 <code class="docutils literal"><span class="pre">response</span></code> 一旦开始降低，下降速度是很快的。</p>
+<p>注意：这一算法需要大量临时内存来进行转换，故对OpenMV Cam M4而言，无法在大于32x32像素的图像上运行。但您可以在OpenMV Cam M7上处理更大的图像。在调用此方法得到位移之前，您应使用池化函数来缩小这两个图像。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_features">
+<code class="descclassname">image.</code><code class="descname">find_features</code><span class="sig-paren">(</span><em>cascade</em>, <em>roi=Auto</em>, <em>threshold=0.5</em>, <em>scale=1.5</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_features" title="永久链接至目标">¶</a></dt>
+<dd><p>这个方法搜索与Haar Cascade匹配的所有区域的图像，并返回一个关于这些特征的边界框矩形元组(x，y，w，h)的列表。若未发现任何特征，则返回一个空白列表。</p>
+<p><code class="docutils literal"><span class="pre">cascade</span></code> 是一个Haar Cascade对象。详细信息请查看 `` for more
+details.</p>
+<p><code class="docutils literal"><span class="pre">roi</span></code> 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。</p>
+<p><code class="docutils literal"><span class="pre">threshold</span></code> 是介于0.0-1.0的阈值，较低值会同时提高检出率和假阳性率。相反，较高值会同时降低检出率和假阳性率。</p>
+<p><code class="docutils literal"><span class="pre">scale</span></code> 是一个必须大于1.0的浮点。is a float that must be greater than 1.0. 较高的比例因子运行更快，但其图像匹配相应较差。理想值介于1.35-1.5之间。</p>
+<p>不支持压缩图像。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code>, <code class="docutils literal"><span class="pre">threshold</span></code> and <code class="docutils literal"><span class="pre">scale</span></code> 是键值参数，须在函数调用中通过写入&nbsp;<code class="docutils literal"><span class="pre">roi=</span></code> 、 <code class="docutils literal"><span class="pre">threshold=</span></code> 和 <code class="docutils literal"><span class="pre">scale=</span></code> 显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_eye">
+<code class="descclassname">image.</code><code class="descname">find_eye</code><span class="sig-paren">(</span><em>roi</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_eye" title="永久链接至目标">¶</a></dt>
+<dd><p>在眼睛周围的感兴趣区域(x, y, w, h)查找瞳孔。返回一个包含图像中瞳孔(x，y)位置的元组。若未发现瞳孔，则返回(0,0)。</p>
+<p>使用这一函数之前，需首先使用&nbsp;<code class="docutils literal"><span class="pre">image.find_features</span></code> 和 <code class="docutils literal"><span class="pre">frontalface</span></code>&nbsp;来搜索某人面部。
+然后使用 <code class="docutils literal"><span class="pre">image.find_features</span></code>&nbsp;和&nbsp;<code class="docutils literal"><span class="pre">eye</span></code>&nbsp;HaarCascade在面部搜索眼睛。最后，在图像返回的每个眼睛ROI上调用这一方法，以得到瞳孔的坐标。</p>
+<p>只适用于灰度图。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_lbp">
+<code class="descclassname">image.</code><code class="descname">find_lbp</code><span class="sig-paren">(</span><em>roi</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_lbp" title="永久链接至目标">¶</a></dt>
+<dd><p>从ROI元组(x, y, w, h)中提取LBP（局部二值模式）键点。您可以使用 <code class="docutils literal"><span class="pre">image.match_descriptor</span></code> 函数来比较两组要点，以获取匹配距离。</p>
+<p>只适用于灰度图。</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_keypoints">
+<code class="descclassname">image.</code><code class="descname">find_keypoints</code><span class="sig-paren">(</span><em>roi=Auto</em>, <em>threshold=20</em>, <em>normalized=False</em>, <em>scale_factor=1.5</em>, <em>max_keypoints=100</em>, <em>corner_detector=CORNER_AGAST</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_keypoints" title="永久链接至目标">¶</a></dt>
+<dd><p>从ROI元组(x, y, w, h)中提取ORB键点。您可以使用 <code class="docutils literal"><span class="pre">image.match_descriptor</span></code> 函数来比较两组要点，以获取匹配区域。若未发现键点，则返回None。</p>
+<p><code class="docutils literal"><span class="pre">threshold</span></code> 是控制提取角点的数量的数字（取值0-255）。对于默认的AGAST角点检测器，该值应在20左右。对于FAST角点检测器，该值约为60-80。阈值越低，您提取的角点越多。</p>
+<p><code class="docutils literal"><span class="pre">normalized</span></code> 是布尔值。若为True，在多分辨率下关闭提取键点。若您不关心处理扩展问题，且希望算法运行更快，就将之设置为True。</p>
+<p><code class="docutils literal"><span class="pre">scale_factor</span></code> 是一个必须大于1.0的浮点。is a float that must be greater than 1.0. 较高的比例因子运行更快，但其图像匹配相应较差。理想值介于1.35-1.5之间。</p>
+<p><code class="docutils literal"><span class="pre">max_keypoints</span></code> 是一个键点对象所能容纳的键点最大数量。若键点对象过大导致内存问题，请降低该值。</p>
+<p><code class="docutils literal"><span class="pre">corner_detector</span></code> 是从图像中提取键点所使用的角点检测器算法。可为 <code class="docutils literal"><span class="pre">image.FAST</span></code> 或 <code class="docutils literal"><span class="pre">image.AGAST</span></code> 。角点检测器运行速度更快，但其准确度较低。</p>
+<p>只适用于灰度图。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code>, <code class="docutils literal"><span class="pre">threshold</span></code>, <code class="docutils literal"><span class="pre">normalized</span></code> m <code class="docutils literal"><span class="pre">scale_factor</span></code>, <code class="docutils literal"><span class="pre">max_keypoints</span></code>,
+and <code class="docutils literal"><span class="pre">corner_detector</span></code> 是键值参数，须在函数调用中通过写入 <code class="docutils literal"><span class="pre">roi=</span></code> 、 <code class="docutils literal"><span class="pre">threshold=</span></code> 等显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descclassname">image.</code><code class="descname">find_lines</code><span class="sig-paren">(</span><em>roi=Auto</em>, <em>threshold=50</em><span class="sig-paren">)</span></dt>
+<dd><p>只适用于灰度图。使用霍夫变换在边缘检测图像中搜索直线。返回一个直线元组(x0, y0, x1, y1)列表。</p>
+<p><code class="docutils literal"><span class="pre">roi</span></code> 是一个用以复制的矩形的感兴趣区域(x, y, w, h)。如果未指定，ROI即图像矩形。</p>
+<p><code class="docutils literal"><span class="pre">threshold</span></code> 取值介于0-255。阈值越低，从图像中提取的直线越多。</p>
+<p>只适用于灰度图。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">roi</span></code> and <code class="docutils literal"><span class="pre">threshold</span></code> 是键值参数，须在函数调用中通过写入 <code class="docutils literal"><span class="pre">roi=</span></code> 和 <code class="docutils literal"><span class="pre">threshold=</span></code> 显式地调用。</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="image.find_edges">
+<code class="descclassname">image.</code><code class="descname">find_edges</code><span class="sig-paren">(</span><em>edge_type, threshold=[100,200]</em><span class="sig-paren">)</span><a class="headerlink" href="#image.find_edges" title="永久链接至目标">¶</a></dt>
+<dd><p>只适用于灰度图。在图像上进行边缘检测，并使用只有边缘的图像来代替这一图像。 <code class="docutils literal"><span class="pre">edge_type</span></code>&nbsp;可为：</p>
+<blockquote>
+<div><ul class="simple">
+<li>image.EDGE_SIMPLE - 简单的阈值高通滤波算法</li>
+<li>image.EDGE_CANNY - Canny边缘检测算法</li>
+</ul>
+</div></blockquote>
+<p><code class="docutils literal"><span class="pre">threshold</span></code> 是一个包含一个低阈值和一个高阈值的二值元组。您可以通过调整该值来控制边缘质量。</p>
+<p>只适用于灰度图。</p>
+<div class="admonition note">
+<p class="first admonition-title">注解</p>
+<p class="last"><code class="docutils literal"><span class="pre">threshold</span></code> 是键值参数，须在函数调用中通过写入 <code class="docutils literal"><span class="pre">threshold=</span></code> 显式地调用。</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="id27">
+<h2>常量<a class="headerlink" href="#id27" title="永久链接至标题">¶</a></h2>
+<dl class="data">
+<dt id="image.LBP">
+<code class="descclassname">image.</code><code class="descname">LBP</code><a class="headerlink" href="#image.LBP" title="永久链接至目标">¶</a></dt>
+<dd><p>切换为LBP的描述符函数。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.ORB">
+<code class="descclassname">image.</code><code class="descname">ORB</code><a class="headerlink" href="#image.ORB" title="永久链接至目标">¶</a></dt>
+<dd><p>切换为ORB的描述符函数。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.SEARCH_EX">
+<code class="descclassname">image.</code><code class="descname">SEARCH_EX</code><a class="headerlink" href="#image.SEARCH_EX" title="永久链接至目标">¶</a></dt>
+<dd><p>详尽的模板匹配搜索。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.SEARCH_DS">
+<code class="descclassname">image.</code><code class="descname">SEARCH_DS</code><a class="headerlink" href="#image.SEARCH_DS" title="永久链接至目标">¶</a></dt>
+<dd><p>更快的模板匹配搜索。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.EDGE_CANNY">
+<code class="descclassname">image.</code><code class="descname">EDGE_CANNY</code><a class="headerlink" href="#image.EDGE_CANNY" title="永久链接至目标">¶</a></dt>
+<dd><p>使用Canny边缘检测算法对图像进行边缘检测。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.EDGE_SIMPLE">
+<code class="descclassname">image.</code><code class="descname">EDGE_SIMPLE</code><a class="headerlink" href="#image.EDGE_SIMPLE" title="永久链接至目标">¶</a></dt>
+<dd><p>使用阈值高通滤波算法对图像进行边缘检测。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.CORNER_FAST">
+<code class="descclassname">image.</code><code class="descname">CORNER_FAST</code><a class="headerlink" href="#image.CORNER_FAST" title="永久链接至目标">¶</a></dt>
+<dd><p>用于ORB键点的高速低准确率角点检测算法</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.CORNER_AGAST">
+<code class="descclassname">image.</code><code class="descname">CORNER_AGAST</code><a class="headerlink" href="#image.CORNER_AGAST" title="永久链接至目标">¶</a></dt>
+<dd><p>用于ORB键点的低速高准确率算法。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.TAG16H5">
+<code class="descclassname">image.</code><code class="descname">TAG16H5</code><a class="headerlink" href="#image.TAG16H5" title="永久链接至目标">¶</a></dt>
+<dd><p>TAG1H5标签群的位掩码枚举。用于AprilTags。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.TAG25H7">
+<code class="descclassname">image.</code><code class="descname">TAG25H7</code><a class="headerlink" href="#image.TAG25H7" title="永久链接至目标">¶</a></dt>
+<dd><p>TAG25H7标签群的位掩码枚举。用于AprilTags。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.TAG25H9">
+<code class="descclassname">image.</code><code class="descname">TAG25H9</code><a class="headerlink" href="#image.TAG25H9" title="永久链接至目标">¶</a></dt>
+<dd><p>TAG25H9标签群的位掩码枚举。用于AprilTags。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.TAG36H10">
+<code class="descclassname">image.</code><code class="descname">TAG36H10</code><a class="headerlink" href="#image.TAG36H10" title="永久链接至目标">¶</a></dt>
+<dd><p>TAG36H10标签群的位掩码枚举。用于AprilTags。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.TAG36H11">
+<code class="descclassname">image.</code><code class="descname">TAG36H11</code><a class="headerlink" href="#image.TAG36H11" title="永久链接至目标">¶</a></dt>
+<dd><p>TAG36H11标签群的位掩码枚举。用于AprilTags。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.ARTOOLKIT">
+<code class="descclassname">image.</code><code class="descname">ARTOOLKIT</code><a class="headerlink" href="#image.ARTOOLKIT" title="永久链接至目标">¶</a></dt>
+<dd><p>ARTOOLKIT标签群的位掩码枚举。用于AprilTags。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.EAN2">
+<code class="descclassname">image.</code><code class="descname">EAN2</code><a class="headerlink" href="#image.EAN2" title="永久链接至目标">¶</a></dt>
+<dd><p>EAN2条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.EAN5">
+<code class="descclassname">image.</code><code class="descname">EAN5</code><a class="headerlink" href="#image.EAN5" title="永久链接至目标">¶</a></dt>
+<dd><p>EAN5条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.EAN8">
+<code class="descclassname">image.</code><code class="descname">EAN8</code><a class="headerlink" href="#image.EAN8" title="永久链接至目标">¶</a></dt>
+<dd><p>EAN8条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.UPCE">
+<code class="descclassname">image.</code><code class="descname">UPCE</code><a class="headerlink" href="#image.UPCE" title="永久链接至目标">¶</a></dt>
+<dd><p>UPCE条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.ISBN10">
+<code class="descclassname">image.</code><code class="descname">ISBN10</code><a class="headerlink" href="#image.ISBN10" title="永久链接至目标">¶</a></dt>
+<dd><p>ISBN10条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.UPCA">
+<code class="descclassname">image.</code><code class="descname">UPCA</code><a class="headerlink" href="#image.UPCA" title="永久链接至目标">¶</a></dt>
+<dd><p>UPCA条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.EAN13">
+<code class="descclassname">image.</code><code class="descname">EAN13</code><a class="headerlink" href="#image.EAN13" title="永久链接至目标">¶</a></dt>
+<dd><p>EAN13条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.ISBN13">
+<code class="descclassname">image.</code><code class="descname">ISBN13</code><a class="headerlink" href="#image.ISBN13" title="永久链接至目标">¶</a></dt>
+<dd><p>ISBN13条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.I25">
+<code class="descclassname">image.</code><code class="descname">I25</code><a class="headerlink" href="#image.I25" title="永久链接至目标">¶</a></dt>
+<dd><p>I25条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.DATABAR">
+<code class="descclassname">image.</code><code class="descname">DATABAR</code><a class="headerlink" href="#image.DATABAR" title="永久链接至目标">¶</a></dt>
+<dd><p>DATABAR条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.DATABAR_EXP">
+<code class="descclassname">image.</code><code class="descname">DATABAR_EXP</code><a class="headerlink" href="#image.DATABAR_EXP" title="永久链接至目标">¶</a></dt>
+<dd><p>DATABAR_EXP条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.CODABAR">
+<code class="descclassname">image.</code><code class="descname">CODABAR</code><a class="headerlink" href="#image.CODABAR" title="永久链接至目标">¶</a></dt>
+<dd><p>CODABAR条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.CODE39">
+<code class="descclassname">image.</code><code class="descname">CODE39</code><a class="headerlink" href="#image.CODE39" title="永久链接至目标">¶</a></dt>
+<dd><p>CODE39条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.PDF417">
+<code class="descclassname">image.</code><code class="descname">PDF417</code><a class="headerlink" href="#image.PDF417" title="永久链接至目标">¶</a></dt>
+<dd><p>PDF417条形码类型枚举（目前尚不能运行）。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.CODE93">
+<code class="descclassname">image.</code><code class="descname">CODE93</code><a class="headerlink" href="#image.CODE93" title="永久链接至目标">¶</a></dt>
+<dd><p>CODE93条形码类型枚举。</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="image.CODE128">
+<code class="descclassname">image.</code><code class="descname">CODE128</code><a class="headerlink" href="#image.CODE128" title="永久链接至目标">¶</a></dt>
+<dd><p>CODE128条形码类型枚举。</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014-2017, Damien P. George, Paul Sokolovsky, 星瞳科技SingTown, and contributors.
+      最后更新于 17 3月 2018.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Ports and Versions</span>
+    pyboard (latest)
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Ports</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">pyboard</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/esp32/index.html">esp32</a></dd>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/openmvcam/index.html">openmvcam</a></dd>
+      
+    </dl>
+    <dl>
+      <dt>Versions</dt>
+      
+        <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">latest</a></dd>
+      
+    </dl>
+    <dl>
+        <dt>Language</dt>
+        
+          <dd><a href="https://docs.micropython.org/en/latest/pyboard">English</a></dd>
+        
+          <dd><a href="https://docs.singtown.com/micropython/zh/latest/pyboard/index.html">中文</a></dd>
+        
+    </dl>
+
+    <dl>
+    </dl>
+    <hr/>
+    <dl>
+      <dt>External links</dt>
+        <dd>
+          <a href="https://kaizhi-xu.taobao.com">立即购买 OpenMV Cam</a>
+        </dd>
+    </dl>
+  </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.9.2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
